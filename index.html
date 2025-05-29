@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="el"> ```
+*Δεν αλλάζουμε τίποτα στην `<html>` τώρα, απλά βεβαιωνόμαστε ότι είναι `lang="el"`.*
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,6 +130,15 @@
             border-top: 1px solid #E0E0E0;
             color: #757575; /* Medium grey for copyright */
             font-size: 0.875rem;
+
+            /* Language specific classes */
+.lang-en { display: none; } /* Από προεπιλογή, κρύβουμε το αγγλικό περιεχόμενο */
+.lang-el { display: block; } /* Από προεπιλογή, εμφανίζουμε το ελληνικό περιεχόμενο */
+
+/* Όταν το "lang" της ετικέτας body γίνει "en" (English) */
+body[lang="en"] .lang-en { display: block; } /* Εμφανίζουμε το αγγλικό περιεχόμενο */
+body[lang="en"] .lang-el { display: none; } /* Κρύβουμε το ελληνικό περιεχόμενο */
+            
         }
     </style>
 </head>
@@ -137,23 +147,67 @@
     <div class="container mx-auto p-4 max-w-5xl">
         <header class="text-center mb-8">
             <img src="https://raw.githubusercontent.com/TheHappyLeashblog/the-happy-leash/main/images/the-happy-leash-logo.png" alt="The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού" class="w-full mb-4 object-contain" style="max-height: 400px;">
-            <h1 class="font-bold text-gray-700">🐾 Οδηγός Φροντίδας Κουταβιού 🐾</h1>
-            <p class="text-2xl text-gray-600 mt-2">Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!</p>
+            <h1 class="font-bold text-gray-700">
+    <span class="lang-el">🐾 Οδηγός Φροντίδας Κουταβιού 🐾</span>
+    <span class="lang-en">🐾 Puppy Care Guide 🐾</span>
+</h1>
+            <p class="text-2xl text-gray-600 mt-2">
+        <span class="lang-el">Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!</span>
+        <span class="lang-en">Everything you need to know about your new friend!</span>
+    </p>
+    <div class="flex justify-center mt-4">
+        <button class="lang-switcher-button bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-l-md" data-lang="el">Ελληνικά</button>
+        <button class="lang-switcher-button bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-r-md" data-lang="en">English</button>
+    </div>
+</header>
         </header>
 
         <div class="nav-container mb-6">
             <div class="flex flex-wrap justify-center space-x-2 sm:space-x-4" id="tab-buttons">
-                <button class="tab-button active py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-intro">Εισαγωγή</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-preparation">Προετοιμασία ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-days">Πρώτες Μέρες ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-health">Υγεία</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-nutrition">Διατροφή ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-exercise">Άσκηση ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-training">Εκπαίδευση ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-aid">Πρώτες Βοήθειες ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-stories">Ιστορίες Κοινωνικοποίησης ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-longterm">Μακροπρόθεσμα</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-conclusion">Συμπέρασμα</button>
+<button class="tab-button active py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-intro">
+    <span class="lang-el">Εισαγωγή</span>
+    <span class="lang-en">Introduction</span>
+</button>               
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-preparation">
+    <span class="lang-el">Προετοιμασία</span>
+    <span class="lang-en">Preparation</span> ✨
+ </button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-days">
+    <span class="lang-el">Πρώτες μέρες</span>
+    <span class="lang-en">First Days</span>✨
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-health">
+    <span class="lang-el">Υγεία</span>
+    <span class="lang-en">Health</span>
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-nutrition">
+    <span class="lang-el">Διατροφή</span>
+    <span class="lang-en">Nutrition</span> ✨
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-exercise">
+    <span class="lang-el">Άσκηση</span>
+    <span class="lang-en">Exercise</span> ✨
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-training">
+    <span class="lang-el">Εκπαίδευση</span>
+    <span class="lang-en">Training</span> ✨
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-aid">
+    <span class="lang-el">Πρώτες Βοήθειες</span>
+    <span class="lang-en">First Aid</span> ✨
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-stories">
+    <span class="lang-el">Ιστορίες Κοινωνικοποίησης</span>
+    <span class="lang-en">Socialization Stories</span>ς ✨
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-longterm">
+    <span class="lang-el">Μακροπρόθεσμα</span>
+    <span class="lang-en">Long-Term Care</span>
+</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-conclusion">
+    <span class="lang-el">Συμπέρασμα</span>
+    <span class="lang-en">Conclusion</span>
+</button>
             </div>
         </div>
 
@@ -681,9 +735,287 @@
         </div>
     </div>
 
-    <script>
+    <script
+        // Λεξικό για μεταφράσεις δυναμικών στοιχείων (placeholders, LLM prompts)
+const translations = {
+    'el': {
+        // Header
+        'title': 'Οδηγός Φροντίδας Κουταβιού - The Happy Leash',
+        'main_title_h1': '🐾 Οδηγός Φροντίδας Κουταβιού 🐾', // Αυτά θα ενημερωθούν από την DOM (δεν είναι 100% απαραίτητα εδώ)
+        'subtitle_p': 'Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!', // Αυτά θα ενημερωθούν από την DOM
+
+        // Tab Buttons (τα κείμενα των tabs)
+        'tab_intro': 'Εισαγωγή',
+        'tab_preparation': 'Προετοιμασία ✨',
+        'tab_first_days': 'Πρώτες Μέρες ✨',
+        'tab_health': 'Υγεία',
+        'tab_nutrition': 'Διατροφή ✨',
+        'tab_exercise': 'Άσκηση ✨',
+        'tab_training': 'Εκπαίδευση ✨',
+        'tab_first_aid': 'Πρώτες Βοήθειες ✨',
+        'tab_stories': 'Ιστορίες Κοινωνικοποίησης ✨',
+        'tab_longterm': 'Μακροπρόθεσμα',
+        'tab_conclusion': 'Συμπέρασμα',
+
+        // Placeholder texts
+        'name_style_placeholder': 'π.χ. χαριτωμένο, δυνατό, ελληνικό',
+        'nutrition_age_placeholder': 'π.χ. 4 μηνών',
+        'nutrition_size_placeholder': 'π.χ. μικρόσωμο, μεγαλόσωμο, Labrador',
+        'nutrition_allergies_placeholder': 'π.χ. αλλεργία στο κοτόπουλο, ευαίσθητο στομάχι',
+        'training_breed_placeholder': 'π.χ. Labrador, Κανίς',
+        'training_age_placeholder': 'π.χ. 3 μηνών, 1 έτους',
+        'training_goal_placeholder': 'π.χ. να μην τραβάει στο λουρί, να έρχεται όταν το καλώ',
+        'behavior_problem_placeholder': 'π.χ. υπερβολικό γάβγισμα, μάσημα επίπλων, άγχος αποχωρισμού',
+        'first_aid_situation_placeholder': 'π.χ. το κουτάβι μου έφαγε σοκολάτα, έχει διάρροια',
+        'socialization_scenario_placeholder': 'π.χ. πώς να συστήσω το κουτάβι μου σε μια γάτα, πρώτη επίσκεψη στον κτηνίατρο',
+
+        // Button texts (μόνο για όσα έχουν LLM prompts)
+        'generate_names_button_text': 'Δημιουργία Ονομάτων ✨',
+        'generate_routine_button_text': 'Δημιουργία Ρουτίνας ✨',
+        'generate_activity_ideas_button_text': 'Δημιουργία Ιδεών ✨',
+        'get_behavior_advice_button_text': 'Λήψη Συμβουλών ✨',
+        'generate_training_plan_button_text': 'Δημιουργία Σχεδίου Εκπαίδευσης ✨',
+        'get_first_aid_advice_button_text': 'Λήψη Συμβουλών Πρώτης Ανταπόκρισης ✨',
+        'generate_nutrition_suggestions_button_text': 'Δημιουργία Προτάσεων Διατροφής ✨',
+        'generate_socialization_story_button_text': 'Δημιουργία Ιστορίας/Πλάνου ✨',
+
+        // Loader and error messages
+        'loading_message': 'Φορτώνει...',
+        'error_prefix': 'Σφάλμα: ',
+        'try_again_suffix': 'Παρακαλώ δοκιμάστε ξανά.',
+        'generate_error_prefix': 'Δεν μπόρεσα να δημιουργήσω ',
+        'fill_all_fields_message': 'Παρακαλώ συμπληρώστε όλα τα πεδία: ',
+        'fill_field_message': 'Παρακαλώ περιγράψτε το ',
+        'select_to_see_suggestions': 'Επιλέξτε για να δείτε προτάσεις.',
+
+        // Exercise recommendations
+        'exercise_rec_puppy': 'Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.',
+        'exercise_rec_adult_low': 'Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.',
+        'exercise_rec_adult_medium': 'Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα.',
+        'exercise_rec_adult_high': 'Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα.',
+        'exercise_rec_senior': 'Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.',
+        'exercise_rec_default': 'Επιλέξτε τύπο για να δείτε προτάσεις.',
+
+        // Chart labels
+        'chart_label_meals_per_day': 'Γεύματα ανά Ημέρα',
+        'chart_label_puppy_age': 'Ηλικία Κουταβιού',
+        'chart_label_age_8_12_weeks': '8-12 εβδ.',
+        'chart_label_age_3_6_months': '3-6 μηνών',
+        'chart_label_age_6_12_months': '6-12 μηνών',
+        'chart_label_age_over_1_year': '>1 έτους',
+
+        // LLM Prompts (αυτά είναι τα κείμενα που στέλνονται στην AI)
+        'prompt_name_ideas': (gender, style) => `Πρότεινε 5-7 <span class="math-inline">\{gender\} ονόματα για κουτάβι, με στυλ/θέμα\: "</span>{style}". Να είναι δημιουργικά και πρωτότυπα.`,
+        'prompt_routine': (age, energy) => `Δώσε 5-7 βασικές δραστηριότητες (π.χ. τουαλέτα, γεύμα, παιχνίδι, ύπνος) για την καθημερινή ρουτίνα ενός κουταβιού ${age} με ${energy} ενέργεια. Μόνο λίστα με ώρα και δραστηριότητα.`,
+        'prompt_behavior_advice': (problem) => `Είμαι εκπαιδευτής σκύλων. Δώσε σύντομες, πρακτικές συμβουλές για το ακόλουθο πρόβλημα συμπεριφοράς κουταβιού: "${problem}". Εστίασε σε θετική ενίσχυση και διαχείριση.`,
+        'prompt_training_plan': (breed, age, goal) => `Δημιούργησε ένα απλό σχέδιο εκπαίδευσης 3-5 βημάτων για ένα κουτάβι ράτσας ${breed}, ηλικίας <span class="math-inline">\{age\}, με στόχο "</span>{goal}". Εστίασε σε θετική ενίσχυση και δώσε πρακτικές, σαφείς οδηγίες για κάθε βήμα.`,
+        'prompt_first_aid_advice': (situation) => `Το κουτάβι μου αντιμετωπίζει την εξής κατάσταση: "${situation}". Δώσε γενικές συμβουλές πρώτης ανταπόκρισης σε μορφή λίστας με 2-4 σημεία και τι να παρακολουθήσω. Στο τέλος, τόνισε έντονα με κεφαλαία γράμματα και bold ότι πρέπει να επικοινωνήσω ΑΜΕΣΑ με κτηνίατρο και ότι αυτές οι πληροφορίες ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική συμβουλή.`,
+        'prompt_nutrition_suggestions': (age, size, allergies) => `Πρότεινε τύπους τροφών ή/και 2-3 ασφαλείς, υγιεινές λιχουδιές για ένα κουτάβι <span class="math-inline">\{age\}, μεγέθους/ράτσας "</span>{size}", με τις εξής πιθανές αλλεργίες/ευαισθησίες: "${allergies}". Δώσε τις προτάσεις σε μορφή λίστας, σύντομα και περιεκτικά.`,
+        'prompt_socialization_story': (scenario) => `Δημιούργησε μια μικρή, θετική ιστορία ή ένα πλάνο 3-4 απλών βημάτων για το πώς να διαχειριστώ το ακόλουθο σενάριο κοινωνικοποίησης για ένα κουτάβι: "${scenario}". Εστίασε σε θετικές εμπειρίες και πρακτικές συμβουλές.`,
+
+        // Select Options
+        'option_gender_male': 'Αρσενικό',
+        'option_gender_female': 'Θηλυκό',
+        'option_gender_any': 'Οποιοδήποτε',
+        'option_routine_age_8_12_weeks': '8-12 εβδομάδων',
+        'option_routine_age_3_6_months': '3-6 μηνών',
+        'option_routine_age_6_12_months': '6-12 μηνών',
+        'option_routine_energy_low': 'Χαμηλό',
+        'option_routine_energy_medium': 'Μέτριο',
+        'option_routine_energy_high': 'Υψηλό',
+        'option_activity_energy_low': 'Χαμηλή',
+        'option_activity_energy_medium': 'Μέτρια',
+        'option_activity_energy_high': 'Υψηλή',
+        'option_activity_type_physical': 'Σωματική',
+        'option_activity_type_mental': 'Πνευματική',
+        'option_activity_type_social': 'Κοινωνική',
+        'option_dog_type_puppy': 'Κουτάβι (<1 έτους)',
+        'option_dog_type_adult_low': 'Ενήλικος - Χαμηλή Ενέργεια',
+        'option_dog_type_adult_medium': 'Ενήλικος - Μεσαία Ενέργεια',
+        'option_dog_type_adult_high': 'Ενήλικος - Υψηλή Ενέργεια',
+        'option_dog_type_senior': 'Ηλικιωμένος Σκύλος',
+    },
+    'en': {
+        // Header
+        'title': 'Puppy Care Guide - The Happy Leash',
+        'main_title_h1': '🐾 Puppy Care Guide 🐾',
+        'subtitle_p': 'Everything you need to know about your new friend!',
+
+        // Tab Buttons
+        'tab_intro': 'Introduction',
+        'tab_preparation': 'Preparation ✨',
+        'tab_first_days': 'First Days ✨',
+        'tab_health': 'Health',
+        'tab_nutrition': 'Nutrition ✨',
+        'tab_exercise': 'Exercise ✨',
+        'tab_training': 'Training ✨',
+        'tab_first_aid': 'First Aid ✨',
+        'tab_stories': 'Socialization Stories ✨',
+        'tab_longterm': 'Long-Term Care',
+        'tab_conclusion': 'Conclusion',
+
+        // Placeholder texts
+        'name_style_placeholder': 'e.g., cute, strong, Greek',
+        'nutrition_age_placeholder': 'e.g., 4 months old',
+        'nutrition_size_placeholder': 'e.g., small, large, Labrador',
+        'nutrition_allergies_placeholder': 'e.g., chicken allergy, sensitive stomach',
+        'training_breed_placeholder': 'e.g., Labrador, Poodle',
+        'training_age_placeholder': 'e.g., 3 months, 1 year',
+        'training_goal_placeholder': 'e.g., stop pulling on leash, come when called',
+        'behavior_problem_placeholder': 'e.g., excessive barking, chewing furniture, separation anxiety',
+        'first_aid_situation_placeholder': 'e.g., my puppy ate chocolate, has diarrhea',
+        'socialization_scenario_placeholder': 'e.g., how to introduce my puppy to a cat, first vet visit',
+
+        // Button texts (only for those with LLM prompts)
+        'generate_names_button_text': 'Generate Names ✨',
+        'generate_routine_button_text': 'Generate Routine ✨',
+        'generate_activity_ideas_button_text': 'Generate Ideas ✨',
+        'get_behavior_advice_button_text': 'Get Advice ✨',
+        'generate_training_plan_button_text': 'Generate Training Plan ✨',
+        'get_first_aid_advice_button_text': 'Get First Aid Advice ✨',
+        'generate_nutrition_suggestions_button_text': 'Generate Nutrition Suggestions ✨',
+        'generate_socialization_story_button_text': 'Generate Story/Plan ✨',
+
+        // Loader and error messages
+        'loading_message': 'Loading...',
+        'error_prefix': 'Error: ',
+        'try_again_suffix': 'Please try again.',
+        'generate_error_prefix': 'Could not generate ',
+        'fill_all_fields_message': 'Please fill all fields: ',
+        'fill_field_message': 'Please describe the ',
+        'select_to_see_suggestions': 'Select to see suggestions.',
+
+        // Exercise recommendations
+        'exercise_rec_puppy': 'For puppies: Short, frequent play sessions (5-10 minutes). Avoid excessive exercise, running on hard surfaces, and too much jumping to protect developing bones.',
+        'exercise_rec_adult_low': 'For low-energy adults (e.g., Pug, Basset Hound): 30 minutes to 1 hour of gentle exercise per day.',
+        'exercise_rec_adult_medium': 'For medium-energy adults (e.g., Labrador, Beagle): 1 to 1.5 hours of exercise per day.',
+        'exercise_rec_adult_high': 'For high-energy adults (e.g., Border Collie, Jack Russell): 1.5 to 2+ hours of intense exercise per day.',
+        'exercise_rec_senior': 'For senior dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.',
+        'exercise_rec_default': 'Select type to see suggestions.',
+
+        // Chart labels
+        'chart_label_meals_per_day': 'Meals per Day',
+        'chart_label_puppy_age': 'Puppy Age',
+        'chart_label_age_8_12_weeks': '8-12 weeks',
+        'chart_label_age_3_6_months': '3-6 months',
+        'chart_label_age_6_12_months': '6-12 months',
+        'chart_label_age_over_1_year': '>1 year',
+
+        // LLM Prompts (αυτά είναι τα κείμενα που στέλνονται στην AI)
+        'prompt_name_ideas': (gender, style) => `Suggest 5-7 <span class="math-inline">\{gender\} puppy names, with a style/theme\: "</span>{style}". Be creative and original.`,
+        'prompt_routine': (age, energy) => `Provide 5-7 basic activities (e.g., potty, meal, play, sleep) for a daily routine of a ${age} puppy with ${energy} energy. List only time and activity.`,
+        'prompt_behavior_advice': (problem) => `I am a dog trainer. Provide short, practical advice for the following puppy behavior problem: "${problem}". Focus on positive reinforcement and management.`,
+        'prompt_training_plan': (breed, age, goal) => `Create a simple 3-5 step training plan for a ${breed} puppy, <span class="math-inline">\{age\} old, with the goal\: "</span>{goal}". Focus on positive reinforcement and provide practical, clear instructions for each step.`,
+        'prompt_first_aid_advice': (situation) => `My puppy is experiencing the following situation: "${situation}". Provide general first-response advice in a 2-4 point list and what to monitor. At the end, strongly emphasize in capital letters and bold that I should IMMEDIATELY contact a veterinarian and that this information DOES NOT replace professional veterinary advice.`,
+        'prompt_nutrition_suggestions': (age, size, allergies) => `Suggest types of food and/or 2-3 safe, healthy treats for a puppy <span class="math-inline">\{age\} old, of size/breed "</span>{size}", with the following potential allergies/sensitivities: "${allergies}". Provide suggestions in a concise list format.`,
+        'prompt_socialization_story': (scenario) => `Create a short, positive story or a 3-4 step plan on how to manage the following socialization scenario for a puppy: "${scenario}". Focus on positive experiences and practical tips.`,
+
+        // Select Options
+        'option_gender_male': 'Male',
+        'option_gender_female': 'Female',
+        'option_gender_any': 'Any',
+        'option_routine_age_8_12_weeks': '8-12 weeks',
+        'option_routine_age_3_6_months': '3-6 months',
+        'option_routine_age_6_12_months': '6-12 months',
+        'option_routine_energy_low': 'Low',
+        'option_routine_energy_medium': 'Medium',
+        'option_routine_energy_high': 'High',
+        'option_activity_energy_low': 'Low',
+        'option_activity_energy_medium': 'Medium',
+        'option_activity_energy_high': 'High',
+        'option_activity_type_physical': 'Physical',
+        'option_activity_type_mental': 'Mental',
+        'option_activity_type_social': 'Social',
+        'option_dog_type_puppy': 'Puppy (<1 year)',
+        'option_dog_type_adult_low': 'Adult - Low Energy',
+        'option_dog_type_adult_medium': 'Adult - Medium Energy',
+        'option_dog_type_adult_high': 'Adult - High Energy',
+        'option_dog_type_senior': 'Senior Dog',
+    }
+};
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabPanes = document.querySelectorAll('.tab-pane');
+        let currentLang = 'el'; // Αρχική γλώσσα
+
+function setLanguage(lang) {
+    currentLang = lang;
+    document.body.setAttribute('lang', lang); // Αλλάζει το lang attribute στο <body>
+    localStorage.setItem('preferredLang', lang); // Αποθηκεύει τη γλώσσα στον browser
+
+    // Ενημέρωση placeholders
+    document.getElementById('name-style-input').placeholder = translations[lang]['name_style_placeholder'];
+    document.getElementById('nutrition-age-input').placeholder = translations[lang]['nutrition_age_placeholder'];
+    document.getElementById('nutrition-size-input').placeholder = translations[lang]['nutrition_size_placeholder'];
+    document.getElementById('nutrition-allergies-input').placeholder = translations[lang]['nutrition_allergies_placeholder'];
+    document.getElementById('training-breed-input').placeholder = translations[lang]['training_breed_placeholder'];
+    document.getElementById('training-age-input').placeholder = translations[lang]['training_age_placeholder'];
+    document.getElementById('training-goal-input').placeholder = translations[lang]['training_goal_placeholder'];
+    document.getElementById('behavior-problem-input').placeholder = translations[lang]['behavior_problem_placeholder'];
+    document.getElementById('first-aid-situation-input').placeholder = translations[lang]['first_aid_situation_placeholder'];
+    document.getElementById('socialization-scenario-input').placeholder = translations[lang]['socialization_scenario_placeholder'];
+
+    // Ενημέρωση κειμένων κουμπιών LLM
+    document.getElementById('generate-name-ideas').querySelector('.lang-el, .lang-en').textContent = translations[lang]['generate_names_button_text'];
+    document.getElementById('generate-routine').querySelector('.lang-el, .lang-en').textContent = translations[lang]['generate_routine_button_text'];
+    document.getElementById('generate-activity-ideas').querySelector('.lang-el, .lang-en').textContent = translations[lang]['generate_activity_ideas_button_text'];
+    document.getElementById('get-behavior-advice').querySelector('.lang-el, .lang-en').textContent = translations[lang]['get_behavior_advice_button_text'];
+    document.getElementById('generate-training-plan').querySelector('.lang-el, .lang-en').textContent = translations[lang]['generate_training_plan_button_text'];
+    document.getElementById('get-first-aid-advice').querySelector('.lang-el, .lang-en').textContent = translations[lang]['get_first_aid_advice_button_text'];
+    document.getElementById('generate-nutrition-suggestions').querySelector('.lang-el, .lang-en').textContent = translations[lang]['generate_nutrition_suggestions_button_text'];
+    document.getElementById('generate-socialization-story').querySelector('.lang-el, .lang-en').textContent = translations[lang]['generate_socialization_story_button_text'];
+
+
+    // Ενημέρωση κειμένων σε select options
+    // Για κάθε select, θα πρέπει να ενημερώσεις τις ορατές επιλογές.
+    // Εδώ δίνουμε το παράδειγμα του gender selector, θα πρέπει να επαναλάβεις για τα υπόλοιπα.
+    const nameGenderSelector = document.getElementById('name-gender-selector');
+    if (nameGenderSelector) {
+        Array.from(nameGenderSelector.options).forEach(option => {
+            if (lang === 'el') {
+                if (option.value === 'αρσενικό') option.textContent = translations.el.option_gender_male;
+                else if (option.value === 'θηλυκό') option.textContent = translations.el.option_gender_female;
+                else if (option.value === 'οποιοδήποτε') option.textContent = translations.el.option_gender_any;
+            } else { // lang === 'en'
+                if (option.value === 'male') option.textContent = translations.en.option_gender_male;
+                else if (option.value === 'female') option.textContent = translations.en.option_gender_female;
+                else if (option.value === 'any') option.textContent = translations.en.option_gender_any;
+            }
+        });
+    }
+    // Επανάλαβε για routine-age-selector, routine-energy-selector, activity-energy-level, activity-type, dog-type-selector
+    // ... (πρέπει να ενημερώσεις κάθε <select> ξεχωριστά) ...
+
+    // Ενημέρωση Exercise recommendations
+    const dogTypeSelector = document.getElementById('dog-type-selector');
+    const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
+    if (dogTypeSelector && exerciseRecommendationDiv) {
+        exerciseRecommendationDiv.textContent = translations[lang]['exercise_rec_default'];
+        const selectedType = dogTypeSelector.value;
+        // Καλούμε την updateRecommendation() για να ενημερωθεί το κείμενο
+        updateRecommendation(); // Αυτό θα χρειαστεί μικρή τροποποίηση
+    }
+
+    // Ενημέρωση Chart labels
+    // Αν το chart έχει ήδη δημιουργηθεί, πρέπει να το καταστρέψουμε και να το ξαναδημιουργήσουμε
+    // ή να ενημερώσουμε τα labels του και να καλέσουμε update().
+    // Για απλότητα, θα κάνουμε update τα labels εδώ.
+    if (window.feedingChart) { // Υποθέτουμε ότι το chart έχει αποθηκευτεί σε μια global μεταβλητή
+        window.feedingChart.data.labels = [
+            translations[lang]['chart_label_age_8_12_weeks'],
+            translations[lang]['chart_label_age_3_6_months'],
+            translations[lang]['chart_label_age_6_12_months'],
+            translations[lang]['chart_label_age_over_1_year']
+        ];
+        window.feedingChart.options.scales.y.title.text = translations[lang]['chart_label_meals_per_day'];
+        window.feedingChart.options.scales.x.title.text = translations[lang]['chart_label_puppy_age'];
+        window.feedingChart.update();
+    }
+
+    // Ενημέρωση Warning Box
+    document.getElementById('first-aid-warning-bold').textContent = translations[lang]['first_aid_warning_bold'];
+    document.getElementById('first-aid-warning-text').textContent = translations[lang]['first_aid_warning_text'];
+
+}
         const accordions = document.querySelectorAll('.accordion');
 
         tabButtons.forEach(button => {
@@ -719,74 +1051,37 @@
         // Feeding Schedule Chart
         const feedingCtx = document.getElementById('feedingScheduleChart');
         if (feedingCtx) {
-            new Chart(feedingCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['8-12 εβδ.', '3-6 μηνών', '6-12 μηνών', '>1 έτους'],
-                    datasets: [{
-                        label: 'Γεύματα ανά Ημέρα',
-                        data: [4, 3, 2, 1.5], // Used 1.5 to represent 1-2 meals
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(153, 102, 255, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 1
-                            },
-                            title: {
-                                display: true,
-                                text: 'Αριθμός Γευμάτων'
-                            }
-                        },
-                        x: {
-                             title: {
-                                display: true,
-                                text: 'Ηλικία Κουταβιού'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        if (context.label === '>1 έτους') {
-                                             label += '1-2';
-                                        } else {
-                                            label += context.parsed.y;
-                                        }
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
+            // Αποθήκευσε το chart σε μια μεταβλητή για να μπορείς να το ενημερώσεις αργότερα
+window.feedingChart = new Chart(feedingCtx, {
+    type: 'bar',
+    data: {
+        // Χρησιμοποίησε αρχικά τα ελληνικά labels
+        labels: [
+            translations.el.chart_label_age_8_12_weeks,
+            translations.el.chart_label_age_3_6_months,
+            translations.el.chart_label_age_6_12_months,
+            translations.el.chart_label_age_over_1_year
+        ],
+        // ...
+    },
+    options: {
+        scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: translations.el.chart_label_meals_per_day // Αρχικά ελληνικά
                 }
-            });
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: translations.el.chart_label_puppy_age // Αρχικά ελληνικά
+                }
+            }
+        },
+        // ...
+    }
+});
         }
 
         // Exercise recommendation selector
@@ -802,9 +1097,33 @@
                 senior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους."
             };
 
-            function updateRecommendation() {
-                const selectedType = dogTypeSelector.value;
-                exerciseRecommendationDiv.textContent = recommendations[selectedType] || "Επιλέξτε τύπο για να δείτε προτάσεις.";
+            // Μετέφερε το recommendations object μέσα στη setLanguage function ή κάνε το global και χρησιμοποίησε το translations object
+// Καλύτερα να το αναδημιουργείς μέσα στην updateRecommendation για να είναι πάντα στη σωστή γλώσσα.
+
+function updateRecommendation() {
+    const selectedType = dogTypeSelector.value;
+    let recommendationText = translations[currentLang]['exercise_rec_default'];
+
+    if (selectedType === 'puppy') {
+        recommendationText = translations[currentLang]['exercise_rec_puppy'];
+    } else if (selectedType === 'adult_low') {
+        recommendationText = translations[currentLang]['exercise_rec_adult_low'];
+    } else if (selectedType === 'adult_medium') {
+        recommendationText = translations[currentLang]['exercise_rec_adult_medium'];
+    } else if (selectedType === 'adult_high') {
+        recommendationText = translations[currentLang]['exercise_rec_adult_high'];
+    } else if (selectedType === 'senior') {
+        recommendationText = translations[currentLang]['exercise_rec_senior'];
+    }
+    exerciseRecommendationDiv.textContent = recommendationText;
+}
+
+// Κατά τη φόρτωση, καλούμε την updateRecommendation αρχικά
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (υπάρχων κώδικας setLanguage) ...
+    // Μετά την κλήση του setLanguage, καλέστε την updateRecommendation
+    updateRecommendation(); 
+});;
             }
             
             dogTypeSelector.addEventListener('change', updateRecommendation);
@@ -822,10 +1141,12 @@
             generateActivityIdeasButton.addEventListener('click', async () => {
                 const energy = activityEnergyLevel.value;
                 const type = activityType.value;
-                const prompt = `Πρότεινε 3-5 ιδέες για ${type} δραστηριότητες για ένα κουτάβι με ${energy} ενέργεια. Να είναι σύντομες και πρακτικές.`;
+                // Χρησιμοποίησε την currentLang για να επιλέξεις το σωστό prompt template
+const prompt = translations[currentLang].prompt_name_ideas(gender, style);
 
                 activityIdeasOutput.classList.add('hidden');
-                activityIdeasLoading.classList.remove('hidden');
+                activityIdeasLoading.textContent = translations[currentLang]['loading_message'];
+activityIdeasLoading.classList.remove('hidden');
                 activityIdeasOutput.innerHTML = '';
 
                 try {
@@ -866,7 +1187,7 @@
             getBehaviorAdviceButton.addEventListener('click', async () => {
                 const problem = behaviorProblemInput.value.trim();
                 if (!problem) {
-                    behaviorAdviceOutput.innerHTML = 'Παρακαλώ περιγράψτε το πρόβλημα συμπεριφοράς.';
+                    behaviorAdviceOutput.innerHTML = translations[currentLang]['fill_field_message'] + (currentLang === 'el' ? 'πρόβλημα συμπεριφοράς.' : 'behavior problem.'); // Ή απλά βάλε το όλο το string στο translations object
                     behaviorAdviceOutput.classList.remove('hidden');
                     return;
                 }
