@@ -3,42 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Οδηγός Φροντίδας Κουταβιού</title>
+    <title>Οδηγός Φροντίδας Κουταβιού - The Happy Leash</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Quicksand', sans-serif; /* Playful font */
-            background-color: #e8f5e9; /* Light mint green background */
+            background-color: #FFF8E1; /* Light warm cream background */
+            font-size: 1.125rem; /* Base font size enlarged for fullness */
+            color: #424242; /* Dark grey for readability */
         }
         .tab-button {
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+        }
+        .tab-button:hover {
+            transform: translateY(-2px);
         }
         .tab-button.active {
-            background-color: #6b7280; /* Muted blue-grey for active tab */
+            background-color: #A1887F; /* Warm Grey-Brown/Taupe for active tab */
             color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .tab-button:hover:not(.active) {
-            background-color: #d1e7d9; /* Lighter green hover for inactive tabs */
+            background-color: #EFEBE9; /* Lighter warm grey-brown hover for inactive tabs */
         }
         .content-section {
-            background-color: #fcfcfc; /* Very light off-white background for content sections */
-            border: 1px solid #e0e0e0; /* Subtle light grey border */
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Lighter shadow */
+            background-color: #FDFBF6; /* Very light off-white background for content sections */
+            border: 1px solid #E0E0E0; /* Subtle light grey border */
+            border-radius: 12px; /* Slightly larger border-radius for softer look */
+            padding: 2.5rem; /* Increased padding for more space */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08); /* Softer, slightly larger shadow */
+            margin-bottom: 2rem; /* More space between sections */
+        }
+        h1 {
+            color: #5D4037; /* Dark Brown for main title */
+            font-size: 2.75rem; /* Larger H1 */
+            letter-spacing: -0.025em; /* Subtle letter spacing */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Soft shadow for depth */
         }
         h2 {
-            color: #374151; /* Darker grey for main titles */
-            border-bottom: 2px solid #6b7280; /* Muted blue-grey accent */
-            padding-bottom: 8px;
-            margin-bottom: 16px;
+            color: #5D4037; /* Dark Brown for main titles */
+            border-bottom: 2px solid #A1887F; /* Warm Grey-Brown/Taupe accent */
+            padding-bottom: 12px; /* More padding */
+            margin-bottom: 1.5rem; /* More margin */
+            font-size: 2rem; /* Larger H2 */
         }
         h3 {
-            color: #4b5563; /* Medium grey for subtitles */
-            margin-top: 20px;
-            margin-bottom: 10px;
+            color: #795548; /* Medium Brown for subtitles */
+            margin-top: 2.5rem; /* More top margin */
+            margin-bottom: 1rem; /* More bottom margin */
+            font-size: 1.5rem; /* Larger H3 */
         }
         .chart-container {
             position: relative;
@@ -55,37 +70,62 @@
             }
         }
         .table-interactive tbody tr:hover {
-            background-color: #f0fdf4; /* Very light green for table row hover */
+            background-color: #FBF8F5; /* Very light cream for table row hover */
         }
         .equipment-list label:hover {
-            background-color: #e6f7ed; /* Light green hover for checklist items */
+            background-color: #FBF8F5; /* Light cream hover for checklist items */
         }
         .accordion-button {
-            background-color: #d1e7d9; /* Light green for accordion button */
-            color: #374151;
+            background-color: #EFEBE9; /* Light warm grey-brown for accordion button */
+            color: #5D4037; /* Dark Brown */
+            padding: 1rem; /* More padding */
+            border-radius: 8px; /* Softer corners */
+            transition: background-color 0.3s, transform 0.2s;
         }
         .accordion-button:hover {
-            background-color: #b8d9c2; /* Slightly darker green on hover */
+            background-color: #D7CCC8; /* Slightly darker warm grey-brown on hover */
+            transform: translateY(-1px);
         }
         .accordion-content {
-            background-color: #f0fdf4; /* Very light green for accordion content */
-            border-left: 3px solid #6b7280;
+            background-color: #F5F2EF; /* Subtle warm light grey for accordion content */
+            border-left: 4px solid #A1887F; /* Matching warm accent border */
+            padding: 1.5rem; /* More padding */
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
         .nav-container {
             position: sticky;
             top: 0;
             z-index: 50;
-            background-color: #e8f5e9; /* Same as body to blend in */
-            padding-bottom: 10px; /* Space below tabs */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+            background-color: #FFF8E1; /* Same as body to blend in */
+            padding-bottom: 1rem; /* More space below tabs */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow for depth */
         }
         .llm-output {
-            background-color: #c8e6c9; /* Light green for LLM output */
-            border-left: 4px solid #4caf50; /* Green accent */
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            color: #1b5e20;
+            background-color: #FBE9E7; /* Light Peach/Pinkish for LLM output */
+            border-left: 4px solid #BF360C; /* Deep Orange-Brown accent */
+            padding: 1.2rem;
+            border-radius: 0.6rem;
+            margin-top: 1.5rem;
+            color: #3E2723; /* Very dark brown text */
+            font-size: 1rem; /* Ensure readability */
+        }
+        .tip-box {
+            background-color: #FFF3E0; /* Light Orange/Cream for tip box */
+            border-left: 5px solid #FF9800; /* Orange accent */
+            padding: 1.2rem;
+            border-radius: 0.6rem;
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: #E65100; /* Darker orange text */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .footer-copyright {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #E0E0E0;
+            color: #757575; /* Medium grey for copyright */
+            font-size: 0.875rem;
         }
     </style>
 </head>
@@ -93,7 +133,7 @@
 
     <div class="container mx-auto p-4 max-w-5xl">
         <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-700">🐾 Οδηγός Φροντίδας Κουταβιού 🐾</h1>
+            <h1 class="font-bold text-gray-700">🐾 Οδηγός Φροντίδας Κουταβιού 🐾</h1>
             <p class="text-lg text-gray-600 mt-2">Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!</p>
         </header>
 
@@ -419,7 +459,7 @@
 
             <div id="tab-training" class="tab-pane hidden content-section">
                 <h2>VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς</h2>
-                <p class="mb-4 text-justify">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος για μια αρμονική και ευτυχισμένη συνύπαρξη με τον σκύλο σας. Δεν πρόκειται απλώς για την εκμάθηση εντολών, αλλά για την οικοδόμηση μιας σταθερής επικοινωνίας, την ενίσχυση του δεσμού σας και την πρόληψη ή διαχείριση συμπεριφορικών προβλημάτων. Μια καλά εκπαιδευμένη σκυλίτσα είναι ένας χαρούμενος, με αυτοπεποίθηση σκύλος που μπορεί να συμμετέχει πλήρως στην οικογενειακή ζωή, ενώ ένας καλά ενημερωμένος κηδεμόνας είναι σε θέση να κατανοεί και να ανταποκρίνεται στις ανάγκες του τετράποδου φίλου του. Με υπομονή, συνέπεια και μια ισορροπημένη προσέγγιση, μπορείτε να διδάξετε στο κουτάβι σας τα βασικά, από την τουαλέτα μέχρι τις εντολές υπακοής, και να διαχειριστείτε συνηθισμένες συμπεριφορές όπως το δάγκωμα, θέτοντας τα θεμέλια για μια ζωή γεμάτη εμπιστοσύνη και συνεργασία.</p>
+                <p class="mb-4 text-justify">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος για μια αρμονική και ευτυχισμένη συνύπαρξη με τον σκύλο σας. Δεν πρόκειται απλώς για την εκμάθηση εντολών, αλλά για την οικοδόμηση μιας σταθερής επικοινωνίας, την ενίσχυση του δεσμού σας και την πρόληψη ή διαχείριση συμπεριφορικών προβλημάτων. Μια καλά εκπαιδευμένη σκυλίτσα είναι ένας χαρούμενος, με αυτοπεποίθηση σκύλος που μπορεί να συμμετέχει πλήρως στην οικογενειακή ζωή, ενώ ένας καλά ενημερωμένος κηδεμόνας είναι σε θέση να κατανοεί και να ανταποκρίνεται στις ανάγκες του τετράποδου φίλου του. Με υπομονή, συνέπεια και μια ισορροπημένη προσέγγιση, μπορείτε να διδάσετε στο κουτάβι σας τα βασικά, από την τουαλέτα μέχρι τις εντολές υπακοής, και να διαχειριστείτε συνηθισμένες συμπεριφορές όπως το δάγκωμα, θέτοντας τα θεμέλια για μια ζωή γεμάτη εμπιστοσύνη και συνεργασία.</p>
 
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Εκπαίδευση Τουαλέτας: Υπομονή και Συνέπεια</button>
@@ -479,7 +519,7 @@
                         <h4 class="font-semibold mt-2">Δημοφιλή Αθλήματα Σκύλων:</h4>
                         <ul class="list-disc list-inside ml-4">
                             <li>**Agility:** Ένα άθλημα όπου ο σκύλος διασχίζει μια διαδρομή με εμπόδια (τούνελ, άλματα, σλάλομ) υπό την καθοδήγηση του κηδεμόνα. Είναι εξαιρετικό για σωματική άσκηση και πνευματική διέγερση.</li>
-                            <li>**Obedience (Υπακοή):** Εστιάζει στην ακρίβεια και την ταχύτητα στην εκτέλεση εντολών. Ενισχύει την επικοινωνία και την πειθαρχία.</li>
+                            <li>**Obedience (Υπακοή):** Εστιάζει στην ακρίτεια και την ταχύτητα στην εκτέλεση εντολών. Ενισχύει την επικοινωνία και την πειθαρχία.</li>
                             <li>**Rally Obedience:** Συνδυάζει την υπακοή με μια διαδρομή, όπου ο σκύλος και ο κηδεμόνας εκτελούν εντολές σε διαδοχικούς σταθμούς. Προσφέρει μια πιο χαλαρή ατμόσφαιρα από την κλασική υπακοή.</li>
                             <li>**Flyball:** Ένα ομαδικό άθλημα όπου σκύλοι τρέχουν σε μια διαδρομή με άλματα, πατούν έναν μηχανισμό για να απελευθερώσουν μια μπάλα, την πιάνουν και επιστρέφουν. Ιδανικό για σκύλους με υψηλή ενέργεια.</li>
                             <li>**Canicross / Bikejoring:** Αθλήματα όπου ο σκύλος τρέχει ή σέρνει τον κηδεμόνα (ο οποίος τρέχει ή κάνει ποδήλατο) με ειδικό εξοπλισμό. Εξαιρετικό για σκύλους που αγαπούν το τρέξιμο.</li>
