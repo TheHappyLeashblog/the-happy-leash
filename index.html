@@ -709,6 +709,86 @@
     </div>
 
     <script>
+        ... (το υπόλοιπο HTML σου) ...
+    </div>
+
+    <script>
+        // --- I18N (Internationalization) ---
+        const langElButton = document.getElementById('lang-el');
+        const langEnButton = document.getElementById('lang-en');
+
+        const translations = {
+            el: {
+                mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού 🐾",
+                subTitle: "Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!",
+                tabIntro: "Εισαγωγή",
+                tabPreparation: "Προετοιμασία ✨",
+                introTitle: "Καλωσορίζοντας το Νέο Μέλος της Οικογένειας",
+                introContent: "Η άφιξη ενός κουταβιού στο σπίτι...", // (το πλήρες κείμενο)
+                prepTabTitle: "I. Προετοιμασία για την Άφιξη του Κουταβιού",
+                prepTabIntro: "Πριν ακόμη την άφιξη του κουταβιού στο σπίτι...", // (το πλήρες κείμενο)
+                prepAccordionEnvTitle: "Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος",
+                prepAccordionEnvContent: "Η προετοιμασία του χώρου είναι ζωτικής σημασίας...", // (το πλήρες κείμενο)
+            },
+            en: {
+                mainTitle: "🐾 Puppy Care Guide 🐾",
+                subTitle: "Everything you need to know for your new friend!",
+                tabIntro: "Introduction",
+                tabPreparation: "Preparation ✨",
+                introTitle: "Welcoming the New Family Member",
+                introContent: "The arrival of a puppy at home is an exciting moment...", // (the full text)
+                prepTabTitle: "I. Preparing for the Puppy's Arrival",
+                prepTabIntro: "Even before the puppy arrives home...", // (the full text)
+                prepAccordionEnvTitle: "Creating a Safe and Comfortable Environment",
+                prepAccordionEnvContent: "Space preparation is vital...", // (the full text)
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('language', lang);
+            document.documentElement.lang = lang;
+
+            if (lang === 'el') {
+                langElButton.classList.add('active');
+                langEnButton.classList.remove('active');
+            } else {
+                langEnButton.classList.add('active');
+                langElButton.classList.remove('active');
+            }
+
+            document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                const key = element.getAttribute('data-i18n-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.hasAttribute('data-i18n-target-placeholder')) {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                } else {
+                    // Έχω αλλάξει το console.warn εδώ για να μην σπάει η εμφάνιση του κώδικα στην απάντηση
+                    console.warn('Translation key "' + key + '" not found for language "' + lang + '".');
+                }
+            });
+        }
+
+        if (langElButton && langEnButton) {
+            langElButton.addEventListener('click', () => switchLanguage('el'));
+            langEnButton.addEventListener('click', () => switchLanguage('en'));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLang = localStorage.getItem('language') || 'el';
+            switchLanguage(currentLang);
+        });
+        // --- End I18N ---
+
+        // Ο υπόλοιπος JavaScript κώδικας σου (για tabs, accordions, chart κ.λπ.) ξεκινάει από εδώ
+        const tabButtons = document.querySelectorAll('.tab-button');
+        // ... και συνεχίζει ...
+    </script>
+</body>
+</html>
+
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabPanes = document.querySelectorAll('.tab-pane');
         const accordions = document.querySelectorAll('.accordion');
