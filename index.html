@@ -10,49 +10,49 @@
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: #FFF8E1;
-            font-size: 1.125rem;
-            color: #424242;
+            background-color: #FFF8E1; /* Warm cream background */
+            font-size: 1.125rem; /* Slightly larger base font size */
+            color: #424242; /* Dark grey for text, good contrast */
         }
         .tab-button {
             transition: background-color 0.3s, color 0.3s, transform 0.2s;
-            font-size: 1.125rem;
+            font-size: 1.125rem; /* Consistent with body */
         }
         .tab-button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px); /* Subtle lift effect */
         }
         .tab-button.active {
-            background-color: #A1887F;
+            background-color: #A1887F; /* Earthy brown, active tab */
             color: white;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .tab-button:hover:not(.active) {
-            background-color: #EFEBE9;
+            background-color: #EFEBE9; /* Light beige for hover */
         }
         .content-section {
-            background-color: #F5F0E8;
-            border: 1px solid #E0E0E0;
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            background-color: #F5F0E8; /* Lighter cream for content */
+            border: 1px solid #E0E0E0; /* Soft border */
+            border-radius: 12px; /* More rounded corners */
+            padding: 2.5rem; /* Generous padding */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08); /* Softer shadow */
             margin-bottom: 2rem;
         }
         h1 {
-            color: #5D4037;
-            font-size: 3.5rem;
-            letter-spacing: -0.025em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            color: #5D4037; /* Darker brown for main title */
+            font-size: 3.5rem; /* Large and impactful */
+            letter-spacing: -0.025em; /* Tighter letter spacing */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle text shadow */
         }
         h2 {
-            color: #5D4037;
-            border-bottom: 2px solid #A1887F;
-            padding-bottom: 12px;
+            color: #5D4037; /* Consistent heading color */
+            border-bottom: 2px solid #A1887F; /* Accent border */
+            padding-bottom: 12px; /* Space below border */
             margin-bottom: 1.5rem;
-            font-size: 2rem;
+            font-size: 2rem; /* Clear section title size */
         }
         h3 {
-            color: #795548;
-            margin-top: 2.5rem;
+            color: #795548; /* Slightly lighter brown for sub-headings */
+            margin-top: 2.5rem; /* More space above h3 */
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
@@ -62,36 +62,36 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 300px;
+            height: 300px; /* Default height */
             max-height: 350px;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 768px) { /* Medium devices and up */
             .chart-container {
-                height: 350px;
+                height: 350px; /* Taller chart on larger screens */
             }
         }
         .table-interactive tbody tr:hover {
-            background-color: #FBF8F5;
+            background-color: #FBF8F5; /* Very light hover for table rows */
         }
         .equipment-list label:hover {
-            background-color: #FBF8F5;
+            background-color: #FBF8F5; /* Hover for checklist items */
         }
         .accordion-button {
-            background-color: #EFEBE9;
-            color: #5D4037;
+            background-color: #EFEBE9; /* Light beige for accordion buttons */
+            color: #5D4037; /* Dark brown text */
             padding: 1rem;
             border-radius: 8px;
             transition: background-color 0.3s, transform 0.2s;
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.25rem; /* Larger font for accordion titles */
+            font-weight: 700; /* Bold */
         }
         .accordion-button:hover {
-            background-color: #D7CCC8;
-            transform: translateY(-1px);
+            background-color: #D7CCC8; /* Slightly darker beige on hover */
+            transform: translateY(-1px); /* Subtle lift */
         }
         .accordion-content {
-            background-color: #F5F2EF;
-            border-left: 4px solid #A1887F;
+            background-color: #F5F2EF; /* Slightly different beige for content */
+            border-left: 4px solid #A1887F; /* Accent border */
             padding: 1.5rem;
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
@@ -100,41 +100,42 @@
             position: sticky;
             top: 0;
             z-index: 50;
-            background-color: #FFF8E1;
-            padding-bottom: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background-color: #FFF8E1; /* Match body background */
+            padding-bottom: 1rem; /* Space for shadow */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow for sticky nav */
         }
+        /* Styles for LLM output and tips - currently not used in visible HTML but defined */
         .llm-output {
-            background-color: #FBE9E7;
-            border-left: 4px solid #BF360C;
+            background-color: #FBE9E7; /* Light reddish-brown */
+            border-left: 4px solid #BF360C; /* Stronger accent for LLM */
             padding: 1.2rem;
             border-radius: 0.6rem;
             margin-top: 1.5rem;
-            color: #3E2723;
+            color: #3E2723; /* Dark brown text */
             font-size: 1rem;
         }
         .tip-box {
-            background-color: #FFF3E0;
-            border-left: 5px solid #FF9800;
+            background-color: #FFF3E0; /* Light orange */
+            border-left: 5px solid #FF9800; /* Orange accent */
             padding: 1.2rem;
             border-radius: 0.6rem;
             margin-top: 1.5rem;
             font-style: italic;
-            color: #E65100;
+            color: #E65100; /* Darker orange text */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .footer-copyright {
             margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid #E0E0E0;
-            color: #757575;
-            font-size: 0.875rem;
+            color: #757575; /* Grey for footer text */
+            font-size: 0.875rem; /* Smaller footer text */
         }
         .lang-button {
             background-color: #A1887F;
             color: white;
             padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
+            border-radius: 0.375rem; /* Tailwind's rounded-md */
             font-weight: 600;
             margin: 0 0.25rem;
             cursor: pointer;
@@ -143,10 +144,10 @@
             outline: none;
         }
         .lang-button:hover {
-            background-color: #8D6E63;
+            background-color: #8D6E63; /* Darker shade on hover */
         }
         .lang-button.active {
-            background-color: #5D4037;
+            background-color: #5D4037; /* Darkest brown for active language */
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
     </style>
@@ -155,7 +156,12 @@
 
     <div class="container mx-auto p-4 max-w-5xl">
         <header class="text-center mb-8">
-            <img src="https://raw.githubusercontent.com/TheHappyLeashblog/the-happy-leash/main/images/the-happy-leash-logo.png" alt="The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού" class="w-full mb-4 object-contain" style="max-height: 400px;">
+            <img src="https://raw.githubusercontent.com/TheHappyLeashblog/the-happy-leash/main/images/the-happy-leash-logo.png" 
+                 alt="The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού" 
+                 class="w-full mb-4 object-contain" 
+                 style="max-height: 400px;"
+                 data-i18n-key="logoAltText"
+                 data-i18n-target-alt="true">
             <h1 class="font-bold text-gray-700" data-i18n-key="mainTitle">🐾 Οδηγός Φροντίδας Κουταβιού 🐾</h1>
             <p class="text-2xl text-gray-600 mt-2" data-i18n-key="subTitle">Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!</p>
             <div class="mt-4" id="language-switcher">
@@ -233,9 +239,11 @@
                         </ul>
                         <p class="text-justify mt-2" data-i18n-key="prepCrateConclusion">Η σωστή εισαγωγή και εκπαίδευση με το crate είναι κρίσιμη. Πρέπει να είναι μια θετική εμπειρία, με λιχουδιές, παιχνίδια και άνετο κρεβάτι, ώστε το κουτάβι να το βλέσει ως το δικό του, ασφαλές καταφύγιο.</p>
                         
-                        </div>
+                    </div>
                 </div>
-            </div> <div id="tab-first-days" class="tab-pane hidden content-section">
+            </div>
+
+            <div id="tab-first-days" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="firstDaysTabTitle">II. Οι Πρώτες Ημέρες στο Νέο Σπίτι</h2>
                 <p class="mb-4 text-justify" data-i18n-key="firstDaysTabIntro">Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.</p>
                 
@@ -243,7 +251,7 @@
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="firstDaysAccordionRoutineTitle">Προσαρμογή και Καθιέρωση Ρουτίνας ✨</button>
                     <div class="accordion-content hidden p-3 rounded-b-md mb-3">
                         <p data-i18n-key="firstDaysAccordionRoutineContent">Δώστε χρόνο στο κουτάβι να συνηθίσει. Δημιουργήστε σταθερή ρουτίνα για σίτιση, τουαλέτα, παιχνίδι και "ήσυχο χρόνο". Ξεκινήστε την εκπαίδευση "Home Alone" από την πρώτη μέρα, αφήνοντας το κουτάβι μόνο του για μικρά διαστήματα, για να αποφύγετε το άγχος αποχωρισμού. Μην επιστρέψετε όταν κλαίει για να μην επιβραβεύσετε την ανεπιθύμητη συμπεριφορά.</p>
-                        </div>
+                    </div>
                 </div>
 
                 <div class="accordion">
@@ -252,7 +260,9 @@
                         <p data-i18n-key="firstDaysAccordionSocialContent">Η κοινωνικοποίηση (3-16 εβδομάδες) είναι κρίσιμη. Εκθέστε το κουτάβι σε διάφορα περιβάλλοντα, ήχους, οσμές, ξένους ανθρώπους, παιδιά και άλλα υγιή, εμβολιασμένα σκυλιά. Οι εμπειρίες πρέπει να είναι θετικές. Πριν την ολοκλήρωση των εμβολιασμών, η κοινωνικοποίηση μπορεί να γίνει με ασφάλεια μεταφέροντας το κουτάβι στην αγκαλιά/τσάντα ή προσκαλώντας εμβολιασμένους φίλους (ανθρώπους/σκύλους) στο σπίτι. Η ψυχική διέγερση με διαδραστικά παιχνίδια είναι επίσης σημαντική.</p>
                     </div>
                 </div>
-            </div> <div id="tab-health" class="tab-pane hidden content-section">
+            </div>
+            
+            <div id="tab-health" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="healthTitle">III. Υγεία και Κτηνιατρική Φροντίδα</h2>
                 <p class="mb-4 text-justify" data-i18n-key="healthIntro">Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.</p>
 
@@ -355,7 +365,9 @@
                         <p class="mt-2 text-sm text-gray-600" data-i18n-key="healthAccordionProblemsP2">Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.</p>
                     </div>
                 </div>
-            </div> <div id="tab-nutrition" class="tab-pane hidden content-section">
+            </div>
+            
+            <div id="tab-nutrition" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="nutritionTitle">IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης</h2>
                 <p class="mb-4 text-justify" data-i18n-key="nutritionIntro">Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.</p>
                 <div class="accordion">
@@ -378,25 +390,27 @@
                     </div>
                 </div>
                 <div class="accordion">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Επικίνδυνες Τροφές προς Αποφυγή</button>
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionDangerousFoodTitle">Επικίνδυνες Τροφές προς Αποφυγή</button>
                     <div class="accordion-content hidden p-3 rounded-b-md">
-                        <p>Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους...</p>
-                        </div>
+                        <p data-i18n-key="nutritionAccordionDangerousFoodContent">Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν: σοκολάτα (ειδικά η μαύρη), κρεμμύδια, σκόρδο, σταφύλια και σταφίδες, αβοκάντο, αλκοόλ, καφεΐνη, ξυλιτόλη (γλυκαντικό), κόκαλα μαγειρεμένα, και γαλακτοκομικά σε μεγάλες ποσότητες. Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.</p>
+                    </div>
                 </div>
-                </div> <div id="tab-exercise" class="tab-pane hidden content-section">
+            </div>
+            
+            <div id="tab-exercise" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="exerciseTitle">V. Άσκηση και Ψυχική διέγερση</h2>
-                <p class="mb-4 text-justify" data-i18n-key="exerciseIntro">Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας...</p>
+                <p class="mb-4 text-justify" data-i18n-key="exerciseIntro">Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.</p>
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="exerciseNeedsTitle">Ανάγκες Άσκησης</button>
                     <div class="accordion-content hidden p-3 rounded-b-md mb-3">
-                        <p data-i18n-key="exerciseNeedsPuppies">Κουτάβια: Προσεκτική άσκηση...</p>
+                        <p data-i18n-key="exerciseNeedsPuppies">Κουτάβια: Προσεκτική άσκηση για την προστασία των αναπτυσσόμενων αρθρώσεων. Κανόνας: 5 λεπτά άσκησης ανά μήνα ηλικίας, δύο φορές την ημέρα. Π.χ. ένα κουτάβι 3 μηνών χρειάζεται περίπου 15 λεπτά άσκησης δύο φορές την ημέρα. Αποφύγετε το τρέξιμο σε σκληρές επιφάνειες και τα πολλά άλματα.</p>
                         <p class="mt-2" data-i18n-key="exerciseNeedsAdults">Ενήλικοι Σκύλοι (Ενδεικτικά):</p>
                         <ul class="list-disc list-inside ml-4">
-                            <li data-i18n-key="exerciseNeedsAdultHigh">Υψηλής ενέργειας (π.χ. Border Collie): 1.5-2 ώρες...</li>
-                            <li data-i18n-key="exerciseNeedsAdultMed">Μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1-1.5 ώρες...</li>
-                            <li data-i18n-key="exerciseNeedsAdultLow">Χαμηλής ενέργειας (π.χ. Pug): 30 λεπτά - 1 ώρα...</li>
+                            <li data-i18n-key="exerciseNeedsAdultHigh">Υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5-2+ ώρες έντονης άσκησης (τρέξιμο, παιχνίδι).</li>
+                            <li data-i18n-key="exerciseNeedsAdultMed">Μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1-1.5 ώρα μέτριας άσκησης (γρήγορο περπάτημα, παιχνίδι).</li>
+                            <li data-i18n-key="exerciseNeedsAdultLow">Χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά - 1 ώρα ήπιας άσκησης (περπάτημα).</li>
                         </ul>
-                        <p class="mt-2" data-i18n-key="exerciseNeedsSeniors">Ηλικιωμένοι Σκύλοι: Η ανάγκη για άσκηση μειώνεται...</p>
+                        <p class="mt-2" data-i18n-key="exerciseNeedsSeniors">Ηλικιωμένοι Σκύλοι: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.</p>
                         <div class="mt-4">
                             <label for="dog-type-selector" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="exerciseDogTypeLabel">Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:</label>
                             <select id="dog-type-selector" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -413,327 +427,408 @@
                     </div>
                 </div>
                 <div class="accordion">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨</button>
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="exercisePlayTitle">Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨</button>
                     <div class="accordion-content hidden p-3 rounded-b-md">
-                       <p>Η ψυχική διέγερση είναι εξίσου σημαντική...</p>
-                       </div>
+                       <p data-i18n-key="exercisePlayContent">Η ψυχική διέγερση είναι εξίσου σημαντική με τη σωματική. Δοκιμάστε: διαδραστικά παιχνίδια (π.χ. κρυμμένες λιχουδιές), παιχνίδια εκπαίδευσης (εκμάθηση νέων εντολών), παιχνίδια μύτης (ανίχνευση οσμών), και ασφαλή παιχνίδια μάσησης. Η εναλλαγή παιχνιδιών κρατά το ενδιαφέρον ζωντανό.</p>
+                    </div>
                 </div>
-                </div> <div id="tab-training" class="tab-pane hidden content-section">
+            </div>
+            
+            <div id="tab-training" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="trainingTitle">VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς</h2>
-                <p class="mb-4 text-justify" data-i18n-key="trainingIntro">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος...</p>
-                 </div> <div id="tab-first-aid" class="tab-pane hidden content-section">
+                <p class="mb-4 text-justify" data-i18n-key="trainingIntro">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως "έλα", "κάτσε", "μείνε", "κάτω" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.</p>
+            </div>
+            
+            <div id="tab-first-aid" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="firstAidSecTitle">"Τι να κάνω αν..." / Πρώτες Βοήθειες ✨</h2>
-                <p class="mb-4 text-justify" data-i18n-key="firstAidSecDesc">Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί...</p>
+                <p class="mb-4 text-justify" data-i18n-key="firstAidSecDesc">Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. "το κουτάβι έφαγε σοκολάτα", "το κουτάβι κουτσαίνει ξαφνικά"). Οι παρακάτω πληροφορίες είναι γενικές και δεν αντικαθιστούν την κτηνιατρική συμβουλή. Σε κάθε περίπτωση έκτακτης ανάγκης, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας.</p>
                 <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
                     <p class="font-bold" data-i18n-key="firstAidWarningTitle">Σημαντική Προειδοποίηση!</p>
-                    <p data-i18n-key="firstAidWarningContent">Οι παρακάτω πληροφορίες είναι γενικές συμβουλές...</p>
+                    <p data-i18n-key="firstAidWarningContent">Οι παρακάτω πληροφορίες είναι γενικές συμβουλές και ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία. Σε κάθε περίπτωση που ανησυχείτε για την υγεία του κουταβιού σας, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας ή μια κλινική έκτακτης ανάγκης.</p>
                 </div>
-                 </div> <div id="tab-stories" class="tab-pane hidden content-section">
+                </div>
+            
+            <div id="tab-stories" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="storiesSecTitle">Δημιουργία "Ιστοριών Κοινωνικοποίησης" / Θετικών Εμπειριών ✨</h2>
-                <p class="mb-4 text-justify" data-i18n-key="storiesSecDesc">Εισάγετε ένα σενάριο κοινωνικοποίησης...</p>
-                 </div> <div id="tab-longterm" class="tab-pane hidden content-section">
+                <p class="mb-4 text-justify" data-i18n-key="storiesSecDesc">Εισάγετε ένα σενάριο κοινωνικοποίησης (π.χ. "πρώτη συνάντηση με άλλο σκύλο", "επίσκεψη σε θορυβώδες μέρος", "γνωριμία με παιδιά") για να λάβετε συμβουλές για το πώς να το χειριστείτε θετικά και με ασφάλεια. Η σωστή κοινωνικοποίηση είναι κλειδί για έναν ισορροπημένο σκύλο.</p>
+                </div>
+            
+            <div id="tab-longterm" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="longtermTitle">VII. Μακροπρόθεσμες Ευθύνες του Κηδεμόνα</h2>
-                <p class="mb-4 text-justify" data-i18n-key="longtermIntro">Η φροντίδα ενός σκύλου είναι μια δέσμευση...</p>
-                </div> <div id="tab-conclusion" class="tab-pane hidden content-section">
+                <p class="mb-4 text-justify" data-i18n-key="longtermIntro">Η φροντίδα ενός σκύλου είναι μια δέσμευση ζωής (10-15+ χρόνια). Περιλαμβάνει συνεχή κτηνιατρική φροντίδα (ετήσιοι έλεγχοι, εμβολιασμοί), προσαρμογή της διατροφής και της άσκησης καθώς μεγαλώνει, διαχείριση αλλαγών στη συμπεριφορά, και οικονομική ευθύνη για τροφή, περίθαλψη, και απρόοπτα έξοδα. Η αγάπη, η υπομονή και η συνέπεια είναι απαραίτητες σε όλη τη διάρκεια της ζωής του.</p>
+            </div>
+            
+            <div id="tab-conclusion" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="conclusionTitle">Συμπέρασμα: Η Ανταμοιβή μιας Υπεύθυνης Φροντίδας</h2>
-                <p class="text-justify" data-i18n-key="conclusionContent">Η υιοθεσία ενός κουταβιού είναι μια δέσμευση...</p>
-            </div> </div> </div> <script>
+                <p class="text-justify" data-i18n-key="conclusionContent">Η υιοθεσία ενός κουταβιού είναι μια δέσμευση που φέρνει τεράστια χαρά και συντροφικότητα. Με την κατάλληλη προετοιμασία, γνώση και αφοσίωση, θα χτίσετε έναν ισχυρό δεσμό με τον νέο σας φίλο, προσφέροντάς του μια υγιή, ευτυχισμένη και γεμάτη αγάπη ζωή. Αυτός ο οδηγός είναι ένα σημείο εκκίνησης. Συνεχίστε να μαθαίνετε, να παρατηρείτε το κουτάβι σας και να προσαρμόζετε τη φροντίδα σας στις ανάγκες του. Η ανταμοιβή θα είναι ένας πιστός σύντροφος για πολλά χρόνια.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
         // --- I18N (Internationalization) ---
-        let langElButton, langEnButton; 
+        let langElButton, langEnButton; // Declared once at the top of the script's scope
 
- // --- I18N (Internationalization) ---
-let langElButton, langEnButton; // ΔΗΛΩΣΗ ΜΟΝΟ ΜΙΑ ΦΟΡΑ ΕΔΩ ΣΤΗΝ ΚΟΡΥΦΗ ΤΟΥ SCRIPT
+        const translations = {
+            el: {
+                logoAltText: "The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού",
+                mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού 🐾",
+                subTitle: "Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!",
+                tabIntro: "Εισαγωγή",
+                tabPreparation: "Προετοιμασία ✨",
+                tabFirstDays: "Πρώτες Μέρες ✨",
+                tabHealth: "Υγεία",
+                tabNutrition: "Διατροφή ✨",
+                tabExercise: "Άσκηση ✨",
+                tabTraining: "Εκπαίδευση ✨",
+                tabFirstAid: "Πρώτες Βοήθειες ✨",
+                tabStories: "Ιστορίες Κοινωνικοποίησης ✨",
+                tabLongterm: "Μακροπρόθεσμα",
+                tabConclusion: "Συμπέρασμα",
 
-const translations = {
-    el: {
-        mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού 🐾",
-        subTitle: "Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!",
-        tabIntro: "Εισαγωγή",
-        tabPreparation: "Προετοιμασία ✨",
-        tabFirstDays: "Πρώτες Μέρες ✨",
-        tabHealth: "Υγεία",
-        tabNutrition: "Διατροφή ✨",
-        tabExercise: "Άσκηση ✨",
-        tabTraining: "Εκπαίδευση ✨",
-        tabFirstAid: "Πρώτες Βοήθειες ✨",
-        tabStories: "Ιστορίες Κοινωνικοποίησης ✨",
-        tabLongterm: "Μακροπρόθεσμα",
-        tabConclusion: "Συμπέρασμα",
+                introTitle: "Καλωσορίζοντας το Νέο Μέλος της Οικογένειας",
+                introContent: "Η άφιξη ενός κουταβιού στο σπίτι αποτελεί μια συναρπαστική στιγμή, γεμάτη χαρά και προσμονή. Ωστόσο, συνοδεύεται και από σημαντικές ευθύνες που απαιτούν προετοιμασία και γνώση. Αυτή η διαδραπτική εφαρμογή έχει σχεδιαστεί για να παρέχει τις απαραίτητες πληροφορίες και πρακτικές συμβουλές, ώστε να εξασφαλιστεί μια ομαλή μετάβαση και μια υγιής, ευτυχισμένη ζωή για το νέο τετράποδο μέλος της οικογένειας. Εξερευνήστε τις παρακάτω ενότητες για να μάθετε τα πάντα, από την προετοιμασία του χώρου και την αρχική προσαρμογή, μέχρι την υγεία, τη διατροφή, την άσκηση, την εκπαίδευση και τις μακροπρόθεσμες ευθύνες.",
+                
+                prepTabTitle: "I. Προετοιμασία για την Άφιξη του Κουταβιού",
+                prepTabIntro: "Πριν ακόμη την άφιξη του κουταβιού στο σπίτι, είναι ζωτικής σημασίας η προετοιμασία του χώρου του. Αυτό περιλαμβάνει τη δημιουργία ενός ασφαλούς και άνετου περιβάλλοντος, όπου το κουτάβι θα νιώθει προστατευμένο και θα μπορεί να προσαρμοστεί ομαλά. Επίσης, η συγκέντρωση του απαραίτητου εξοπλισμού είναι κρίσιμη για μια ομαλή μετάβαση. Αυτή η ενότητα σας καθοδηγεί στη δημιουργία ενός ασφαλούς περιβάλλοντος και στην επιλογή των βασικών προμηθειών.",
+                prepAccordionEnvTitle: "Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος",
+                prepAccordionEnvContent: "Η προετοιμασία του χώρου είναι ζωτικής σημασίας. Ασφαλίστε τον χώρο (\"dog-proofing\") απομακρύνοντας επικίνδυνα αντικείμενα όπως χαλιά, χημικά, καλώδια και ακριββά έπιπλα. Προστατέψτε το κουτάβι από πτώσεις (π.χ. σκάλες). Διατηρήστε κατάλληλη θερμοκρασία (10-26.6°C), υγρασία (30-70%) και αερισμό. Ο τακτικός καθαρισμός είναι απαραίτητος.",
+                prepAccordionEquipTitle: "Απαραίτητος Εξοπλισμός (Λίστα Ελέγχου) ✨",
+                equipItemBed: "Άνετο κρεβατάκι/καλάθι (πλένεται συχνά)",
+                equipItemBowls: "Ανοξείδωτα μπολ για νερό και τροφή",
+                equipItemLeash: "Περιλαίμιο, σαμαράκι και λουρί",
+                equipItemIdTag: "Ταυτότητα με στοιχεία",
+                equipItemPoopBags: "Σακούλες για περιττώματα",
+                equipItemPadsWipes: "Πάνες για κουτάβια, μαντηλάκια καθαρισμού",
+                equipItemToothbrush: "Οδοντόκρεμα & οδοντόβουρτσα σκύλου",
+                equipItemParasiteControl: "Αντιπαρασιτικά (αμπούλες/σπρέι)",
+                equipItemGrooming: "Βούρτσα, σαμπουάν, νυχοκόπτης",
+                equipItemToys: "Ποικιλία παιχνιδιών (μάσησης, παζλ)",
+                equipItemCarrier: "Κλουβί/τσάντα μεταφοράς",
+                equipItemCrate: "Crate (κλουβί εκπαίδευσης)",
+                prepCrateHeading: "Το Crate: Ένα Παρεξηγημένο Εργαλείο",
+                prepCratePara1: "Το crate (κλουβί εκπαίδευσης) είναι ένα σημαντικό εργαλείο για την εκπαίδευση και την ασφάλεια του κουταβιού, αλλά συχνά παρεξηγείται ως \"φυλακή\". Στην πραγματικότητα, όταν χρησιμοποιείται σωστά, το crate μπορεί να αποτελέσει ένα ασφαλές, προσωπικό καταφύγιο για το κουτάβι σας, καθώς και ένα εξαιρετικό βοήθημα για την εκπαίδευση τουαλέτας και τη διαχείριση της συμπεριφοράς.",
+                prepCrateBenefitsTitle: "Οφέλη του Crate:",
+                prepCrateBenefit1: "Εκπαίδευση Τουαλέτας: Τα σκυλιά από τη φύση τους δεν θέλουν να λερώσουν τον χώρο που κοιμούνται. Το crate εκμεταλλεύεται αυτό το ένστικτο, βοηθώντας το κουτάβι να μάθει να κρατιέται μέχρι να βγει έξω.",
+                prepCrateBenefit2: "Ασφάλεια: Προστατεύει το κουτάβι από το να μασήσει επικίνδυνα αντικείμενα ή να πάθει ατύχημα όταν δεν μπορείτε να το επιβλέπετε άμεσα.",
+                prepCrateBenefit3: "Προσωπικός Χώρος: Γίνεται ένα ασφαλές και άνετο \"δωμάτιο\" για το κουτάβι, όπου μπορεί να ξεκουραστεί και να ηρεμήσει χωρίς ενοχλήσεις.",
+                prepCrateBenefit4: "Ταξίδια και Επισκέψεις: Διευκολύνει την ασφαλή μεταφορά και την προσαρμογή του κουταβιού σε νέα περιβάλλοντα, όπως στο σπίτι φίλων ή σε ξενοδοχεία.",
+                prepCrateBenefit5: "Διαχείριση Συμπεριφοράς: Βοηθά στην αντιμετώπιση προβλημάτων όπως το άγχος αποχωρισμού (όταν εκπαιδεύεται σωστά) ή η καταστροφική μάσηση.",
+                prepCrateMisconceptionsTitle: "Τι δεν πρέπει να σκέφτεται ο κηδεμόνας (και γιατί είναι παρεξηγημένο):",
+                prepCrateMisconception1: "Δεν είναι τιμωρία: Το crate δεν πρέπει ποτέ να χρησιμοποιείται ως μέσο τιμωρίας. Αν το κουτάβι συνδέσει το crate με αρνητικές εμπειρίες, θα το φοβάται και θα αρνείται να μπει.",
+                prepCrateMisconception2: "Δεν είναι φυλακή: Το crate δεν είναι για να \"κλείνετε\" το κουτάβι για πολλές ώρες. Πρέπει να έχει επαρκή χρόνο εκτός του crate για παιχνίδι, άσκηση και τουαλέτα. Ο χρόνος παραμονίας πρέπει να είναι ανάλογος με την ηλικία του (π.χ., ένα κουτάβι 8 εβδομάδων μπορεί να κρατηθεί περίπου 3-4 ώρες).",
+                prepCrateMisconception3: "Δεν είναι απάντηση σε όλα τα προβλήματα: Το crate είναι ένα εργαλείο εκπαίδευσης, όχι μια μαγική λύση για όλα τα προβλήματα συμπεριφοράς. Πρέπει να συνδυάζεται με συνεπή εκπαίδευση, κοινωνικοποίηση και άσκηση.",
+                prepCrateMisconception4: "Δεν είναι απάνθρωπο: Για τα σκυλιά, το crate μπορεί να είναι μια φυσική επέκταση του ενστίκτου τους για ένα \"κρησφύγετο\" ή μια \"φωλιά\". Πολλά σκυλιά το αγαπούν και το αναζητούν ως ασφαλές μέρος.",
+                prepCrateConclusion: "Η σωστή εισαγωγή και εκπαίδευση με το crate είναι κρίσιμη. Πρέπει να είναι μια θετική εμπειρία, με λιχουδιές, παιχνίδια και άνετο κρεβάτι, ώστε το κουτάβι να το βλέσει ως το δικό του, ασφαλές καταφύγιο.",
+                
+                firstDaysTabTitle: "II. Οι Πρώτες Ημέρες στο Νέο Σπίτι",
+                firstDaysTabIntro: "Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.",
+                firstDaysAccordionRoutineTitle: "Προσαρμογή και Καθιέρωση Ρουτίνας ✨",
+                firstDaysAccordionRoutineContent: "Δώστε χρόνο στο κουτάβι να συνηθίσει. Δημιουργήστε σταθερή ρουτίνα για σίτιση, τουαλέτα, παιχνίδι και \"ήσυχο χρόνο\". Ξεκινήστε την εκπαίδευση \"Home Alone\" από την πρώτη μέρα, αφήνοντας το κουτάβι μόνο του για μικρά διαστήματα, για να αποφύγετε το άγχος αποχωρισμού. Μην επιστρέψετε όταν κλαίει για να μην επιβραβεύσετε την ανεπιθύμητη συμπεριφορά.",
+                firstDaysAccordionSocialTitle: "Πρώιμη Κοινωνικοποίηση: Η Σημασία της",
+                firstDaysAccordionSocialContent: "Η κοινωνικοποίηση (3-16 εβδομάδες) είναι κρίσιμη. Εκθέστε το κουτάβι σε διάφορα περιβάλλοντα, ήχους, οσμές, ξένους ανθρώπους, παιδιά και άλλα υγιή, εμβολιασμένα σκυλιά. Οι εμπειρίες πρέπει να είναι θετικές. Πριν την ολοκλήρωση των εμβολιασμών, η κοινωνικοποίηση μπορεί να γίνει με ασφάλεια μεταφέροντας το κουτάβι στην αγκαλιά/τσάντα ή προσκαλώντας εμβολιασμένους φίλους (ανθρώπους/σκύλους) στο σπίτι. Η ψυχική διέγερση με διαδραστικά παιχνίδια είναι επίσης σημαντική.",
+                
+                healthTitle: "III. Υγεία και Κτηνιατρική Φροντίδα",
+                healthIntro: "Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.",
+                healthAccordionVetTitle: "Η Πρώτη Επίσκεψη στον Κτηνίατρο",
+                healthAccordionVetContent: "Συνήθως στις 6-8 εβδομάδες. Ο κτηνίατρος θα κάνει φυσική εξέταση (μάτια, αυτιά, μύτη, δέρμα, καρδιά, πνεύμονες κ.ά.) και θα σας ενημερώσει για εμβολιασμούς, οδοντική φροντίδα, grooming, άσκηση, κοινωνικοποίηση, microchipping, στείρωση, ταξίδια, ασφάλεια και ζωονόσους.",
+                healthAccordionVaccTitle: "Πρόγραμμα Εμβολιασμών",
+                healthAccordionVaccP1: "Οι εμβολιασμοί είναι ζωτικής σημασίας για την πρόληψη μεταδοτικών και ενίοτε θανατηφόρων ασθενειών. Διεγείρουν το ανοσοποιητικό σύστημα του κουταβιού να αναπτύξει συγκεκριμένα αντισώματα κατά των ιών και των βακτηρίων.",
+                healthAccordionVaccP2: "Τα βασικά (core) εμβόλια περιλαμβάνουν αυτά για τη μόρβα, τη λοιμώδη ηπατίτιδα, τον παρβοϊό και τη λύσσα. Άλλα συνιστώμενα εμβόλια είναι για τη λοιμώδη τραχειοβρογχίτιδα (κυνοκομειακός βήχας) και τη λεπτοσπείρωση.",
+                healthVaccTableAge: "Ηλικία",
+                healthVaccTableVaccine: "Εμβόλιο",
+                healthVaccRow1Age: "6-8 εβδομάδες",
+                healthVaccRow1Vaccine: "Μόρβα, Ηπατίτιδα, Παρβοϊός",
+                healthVaccRow2Age: "11-13 εβδομάδες",
+                healthVaccRow2Vaccine: "Μόρβα, Ηπατίτιδα, Παρβοϊός (ενισχυτικό) + Λύσσα, Λεπτοσπείρωση",
+                healthVaccRow3Age: "15-17 εβδομάδες",
+                healthVaccRow3Vaccine: "Λύσσα, Λεπτοσπείρωση (ενισχυτικό)",
+                healthVaccRow4Age: "15 μηνών",
+                healthVaccRow4Vaccine: "Ενισχυτικοί για όλα τα παραπάνω",
+                healthVaccRow5Age: "Ετήσια",
+                healthVaccRow5Vaccine: "Μόρβα, Ηπατίτιδα, Παρβοϊός (ενισχυτικοί)",
+                healthAccordionVaccP3: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.",
+                healthAccordionDewormTitle: "Πρόγραμμα Αποπαρασίτωσης",
+                healthAccordionDewormP1: "Η σωστή και πλήρης αποπαρασίτωση είναι απαραίτητη τόσο για την υγεία του σκύλου όσο και για την πρόληψη της μετάδοσης παρασίτων σε ανθρώπους, καθώς πολλά από αυτά είναι ζωονόσοι. Οι κηδεμόνες φέρουν την ευθύνη να προστατεύουν το νοικοκυριό τους και την κοινότητα από πιθανές ζωονόσους, καθιστώντας την πρόληψη παρασίτων μια διπλή πράξη φροντίδας.",
+                healthDewormInternalTitle: "Εσωτερικά Παράσιτα (Ενδοπαράσιτα):",
+                healthDewormInternalP1: "Κοινά Είδη: Περιλαμβάνουν στρογγυλά σκουλήκια (όπως Toxocara canis, Toxascaris leonina), ταινίες (όπως Dipylidium caninum, Echinococcus granulosus), αγκυλόστομα (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), και σκουλήκια πνευμόνων/καρδιάς (Angiostrongylus vasorum).",
+                healthDewormInternalP2: "Πρόγραμμα: Η αποπαρασίτωση για ενδοπαράσιτα ξεκινά από πολύ μικρή ηλικία, σύμφωνα πάντα με τις οδηγίες του κτηνιάτρου. Συνήθως, συνεχίζεται με χάπι ανά τρεις μήνες για όλη τη διάρκεια ζωής του ζώου. Για τις έγκυες σκύλες, η αποπαρασίτωση με φενβενδαζόλη συνιστάται γύρω στην 40η ημέρα της κύησης, ώστε να αποφευχθεί η μετάδοση των παρασίτων στα κουτάβια.",
+                healthDewormInternalP3: "Μορφές: Τα αντιπαρασιτικά για ενδοπαράσιτα διατίθενται σε μορφή χαπιού, πάστας ή πόσιμου εναιωρήματος.",
+                healthDewormExternalTitle: "Εξωτερικά Παράσιτα (Εξωπαράσιτα):",
+                healthDewormExternalP1: "Κοινά Είδη: Σε αυτή την κατηγορία ανήκουν οι κρότωνες (τσιμπούρια), οι ψύλλοι, τα ακάρεα (που προκαλούν ψώρα) και οι ψείρες. Αυτά τα παράσιτα είναι φορείς σοβαρών, ενίοτε θανατηφόρων, ασθενειών και μπορούν να μεταδοθούν και σε ανθρώπους.",
+                healthDewormExternalP2: "Πρόγραμμα: Οι επιλογές αντιμετώπισης περιλαμβάνουν αμπούλες, κολάρα και χάπια.",
+                healthDewormExternalListItem1: "Αμπούλες: Μπορούν να χρησιμοποιηθούν από την ηλικία των οκτώ μηνών και άνω, εφαρμόζονται στη ράχη του ζώου.",
+                healthDewormExternalListItem2: "Χάπια: Παρέχουν τριμηνιαία ή μηνιαία προστασία.",
+                healthDewormExternalListItem3: "Κολάρα: Μπορούν να φορεθούν από την ηλικία των 4 μηνών και άνω, προσφέροντας κάλυψη για ψύλλους, τσιμπούρια και σκνίπα.",
+                healthDewormExternalP3: "Συνδυασμοί: Συχνά χρησιμοποιούνται συνδυασμοί προϊόντων (π.χ., αμπούλα, κολάρο και σπρέι σιτρονέλας) για την επίτευξη του βέλτιστου αποτελέσματος στην προστασία του σκύλου.",
+                healthAccordionProblemsTitle: "Συχνά Προβλήματα Υγείας & Συμπτώματα",    
+                healthAccordionProblemsP1: "Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.",    
+                healthProblemsGeneralSymptomsTitle: "Γενικά Συμπτώματα Ασθένειας:",    
+                healthProblemsGenSymptomEyes: "Μάτια, Στόμα, Μύτη: Βήχας, φτέρνισμα, έντονο λαχάνιασμα, δυσκολία στην αναπνοή, άσχημη αναπνοή, πολλά σάλια, ξηρά, θολά ή κόκκινα μάτια.",    
+                healthProblemsGenSymptomBehavior: "Συμπεριφορά: Μειωμένη δραστηριότητα, μικρότερο ενδιαφέρον για παιχνίδι, περισσότερες ώρες ύπνου, ή άλλες αλλαγές στη συμπεριφορά.",    
+                healthProblemsGenSymptomSkin: "Δερματικές Αλλαγές: Ξηρότητα, αλλοιώσεις, ερυθρότητα, απώλεια τριχών, φλοιώδες δέρμα, έντονος κνησμός.",    
+                healthProblemsGenSymptomDigestion: "Κατανάλωση Τροφής και Πέψη: Μειωμένη όρεξη, απώλεια βάρους, στομαχικές διαταραχές, περιττώματα που περιέχουν αίμα, βλέννα, σκουλήκια ή αχώνευτες τροφές, υπερβολική κατανάλωση νερού ή υπερβολική ούρηση.",    
+                healthProblemsGenSymptomStiffness: "Δυσκαμψία Αρθρώσεων: Δυσκολία στο σήκωμα ή στην ανάβαση σκαλοπατιών.",    
+                healthProblemsSpecificProblemsTitle: "Ειδικά Προβλήματα:",    
+                healthProblemsSpecDiarrhea: "Διάρροια: Είναι αρκετά συνηθισμένη στα κουτάβια και μπορεί να κυμαίνεται από ήπια επεισόδια που υποχωρούν γρήγορα έως σοβαρά γαστρικά προβλήματα που προκαλούνται από σοβαρή ασθένεια ή απόφραξη, με πιθανή παρουσία αίματος ή βλέννας και αφυδάτωση.",    
+                healthProblemsSpecVomiting: "Εμετός: Αποτελεί ένα κοινό πρόβλημα με δεκάδες πιθανές αιτίες, όπως λοιμώξεις, εντερικά παράσιτα, παγκρεατίτιδα, νεφρική ανεπάρκεια, θερμοπληξία, ξένο σώμα στο στομάχι-έντερο και δηλητηρίαση.",    
+                healthProblemsSpecHypoglycemia: "Υπογλυκαιμία: Χαμηλά επίπεδα γλυκόζης στο αίμα, συχνότερα σε μικρόσωμα κουτάβια ή σε περίπτωση ακατάλληλης σίτισης. Συμπτώματα περιλαμβάνουν ανορεξία, λήθαργο, τρόμο (τρέμουλο), αλλαγές συμπεριφοράς και σπασμούς. Σε περίπτωση υποψίας, συνιστάται η άμεση επάλειψη με μέλι στα ούλα ή η χορήγηση νερού με ζάχαρη, και άμεση επικοινωνία με κτηνίατρο.",    
+                healthProblemsSpecCoccidiosis: "Κοκκιδίωση: Προκαλείται από ένα παράσιτο (κοκκίδια) και είναι μια από τις πιο συχνές αιτίες επώδυνης και συχνά θανατηφόρου διάρροιας σε νεαρές ηλικίες. Τα συμπτώματα περιλαμβάνουν σοβαρή διάρροια, ληθαργικότητα, ανορεξία και αφυδάτωση.",    
+                healthProblemsSpecGiardia: "Giardia (Λαμβλίαση): Ένα κοινό εντερικό παράσιτο. Τα συμπτώματα περιλαμβάνουν μαλακά, χλωμά, δύσοσμα κόπρανα, αυξημένη συχνότητα κενώσεων, αέρια, κοιλιακή δυσφορία, μειωμένη όρεξη και αφυδάτωση. Μεταδίδεται μέσω μολυσμένου νερού ή κοπράνων. Η θεραπεία περιλαμβάνει φαινβενδαζόλη και/ή μετρονιδαζόλη, σε συνδυασμό με αυστηρή υγιεινή.",    
+                healthProblemsSpecParvo: "Παρβοϊός: Εξαιρετικά μεταδοτικός και επικίνδυνος, ειδικά για κουτάβια. Τα συμπτώματα περιλαμβάνουν απώλεια όρεξης, λήθαργο, επίμονο εμετό και αιμορραγική διάρροια. Απαιτεί άμεση κτηνιατρική φροντίδα.",    
+                healthProblemsTableSystem: "Σύστημα/Πρόβλημα",    
+                healthProblemsTableSymptoms: "Κοινά Συμπτώματα",    
+                healthProblemsRow1Cat: "Γενικά Συμπτώματα<br>Συμπεριφορά",    
+                healthProblemsRow1Sym: "Λήθαργος, μειωμένη δραστηριότητα, αδιαφορία, αλλαγές στον ύπνο",    
+                healthProblemsRow2Cat: "Αναπνευστικό",    
+                healthProblemsRow2Sym: "Βήχας, φτέρνισμα, λαχάνιασμα, δυσκολία στην αναπνοή",    
+                healthProblemsRow3Cat: "Δέρμα/Τρίχωμα",    
+                healthProblemsRow3Sym: "Ξηρότητα, ερυθρότητα, εξανθήματα, τριχόπτωση, έντονος κνησμός",    
+                healthProblemsRow4Cat: "Πεπτικό Σύστημα<br>Διάρροια",    
+                healthProblemsRow4Sym: "Υδαρή, με αίμα/βλέννα, αυξημένη συχνότητα, αφυδάτωση",    
+                healthProblemsRow5Cat: "Εμετός",    
+                healthProblemsRow5Sym: "Επίμονος, με ή χωρίς τροφή/αίμα",    
+                healthProblemsRow6Cat: "Όρεξη/Βάρος",    
+                healthProblemsRow6Sym: "Μειωμένη όρεξη, ανορεξία, απώλεια βάρους",    
+                healthProblemsRow7Cat: "Ειδικά Προβλήματα<br>Υπογλυκαιμία",    
+                healthProblemsRow7Sym: "Τρέμουλο, αδυναμία, σπασμοί, αλλαγές συμπεριφοράς, λιποθυμία",    
+                healthProblemsRow8Cat: "Παρβοϊός",    
+                healthProblemsRow8Sym: "Εμετός, αιμομορραγική διάρροια, λήθαργος, πυρετός, αφυδάτωση",    
+                healthProblemsRow9Cat: "Κοκκιδίωση",    
+                healthProblemsRow9Sym: "Σοβαρή διάρροια, λήθαργος, ανορεξία, αφυδάτωση",    
+                healthProblemsRow10Cat: "Giardia",    
+                healthProblemsRow10Sym: "Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση",    
+                healthAccordionProblemsP2: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.",
+                
+                nutritionTitle: "IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης",
+                nutritionIntro: "Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.",
+                nutritionAccordionFood: "Επιλογή Κατάλληλης Τροφής και Πρόγραμμα Σίτισης",
+                nutritionFoodSelectP1: "Επιλέξτε υψηλής ποιότητας, επώνυμη τροφή ειδικά σχεδιασμένη για κουτάβια. Για μεγαλόσωμες φυλές, συνιστάται η επιλογή τροφών ειδικά διαμορφωμένων για τις ανάγκες τους. Οι τροφές πρέπει να είναι πλούσιες σε θρεπτικά συστατικά, όπως πρωτεΐνες (για την ανάπτυξη μυών και ιστών), λίπη (για ενέργεια και υγεία του δέρματος), υδατάνθρακες (για ενέργεια), βιταμίνες και μέταλλα (όπως ασβέστιο, σίδηρος, ψευδάργυρος).",
+                nutritionFoodSelectP2: "Η διατροφή του κουταβιού δεν είναι στατική, αλλά εξελίσσεται ραγδαία με την ηλικία και την ανάπτυξη. Η παροχή της σωστής ισορροπίας θρεπτικών συστατικών σε κάθε στάδιο είναι κρίσιμη για τη βέλτιστη ανάπτυξη και την πρόληψη ελλείψεων ή υπερβολών που θα μπορούσαν να επηρεάσουν τη μακροπρόθεσμη υγεία.",
+                nutritionFoodSelectP3: "Εάν το κουτάβι είναι πολύ μικρό, η διαδικασία του απογαλακτισμού ξεκινά γύρω στις 3-4 εβδομάδες και διαρκεί έως τις 8 εβδομάδες. Αρχικά, η στερεά τροφή μπορεί να ανακατευτεί με νερό ή γάλα για κουτάβια για να μαλακώσει και να γίνει πιο εύπεπτη.",
+                nutritionFeedingScheduleTitle: "Πρόγραμμα Σίτισης:",
+                nutritionFeedList1: "8-12 εβδομάδων: 4 γεύματα την ημέρα.",
+                nutritionFeedList2: "3-6 μηνών: 3 γεύματα την ημέρα.",
+                nutritionFeedList3: "6 μηνών - 1 έτους: 2 γεύματα την ημέρα.",
+                nutritionFeedList4: "Μετά τον 1ο χρόνο: Συνήθως 1 γεύμα την ημέρα είναι επαρκές, αν και για μεγαλύτερες φυλές ή σκύλους επιρρεπείς σε φούσκωμα, 2 μικρότερα γεύματα είναι προτιμότερα.",
+                nutritionWaterBowls: "Είναι απαραίτητο να υπάρχει πάντα διαθέσιμο καθαρό, φρέσκο νερό. Τα μπολ φαγητού και νερού πρέπει να πλένονται συχνά για τη διατήρηση της υγιεινής.",
+                nutritionAccordionDangerousFoodTitle: "Επικίνδυνες Τροφές προς Αποφυγή",
+                nutritionAccordionDangerousFoodContent: "Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν: σοκολάτα (ειδικά η μαύρη), κρεμμύδια, σκόρδο, σταφύλια και σταφίδες, αβοκάντο, αλκοόλ, καφεΐνη, ξυλιτόλη (γλυκαντικό), κόκαλα μαγειρεμένα, και γαλακτοκομικά σε μεγάλες ποσότητες. Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.",
 
-        introTitle: "Καλωσορίζοντας το Νέο Μέλος της Οικογένειας",
-        introContent: "Η άφιξη ενός κουταβιού στο σπίτι αποτελεί μια συναρπαστική στιγμή, γεμάτη χαρά και προσμονή. Ωστόσο, συνοδεύεται και από σημαντικές ευθύνες που απαιτούν προετοιμασία και γνώση. Αυτή η διαδραπτική εφαρμογή έχει σχεδιαστεί για να παρέχει τις απαραίτητες πληροφορίες και πρακτικές συμβουλές, ώστε να εξασφαλιστεί μια ομαλή μετάβαση και μια υγιής, ευτυχισμένη ζωή για το νέο τετράποδο μέλος της οικογένειας. Εξερευνήστε τις παρακάτω ενότητες για να μάθετε τα πάντα, από την προετοιμασία του χώρου και την αρχική προσαρμογή, μέχρι την υγεία, τη διατροφή, την άσκηση, την εκπαίδευση και τις μακροπρόθεσμες ευθύνες.",
-        
-        prepTabTitle: "I. Προετοιμασία για την Άφιξη του Κουταβιού",
-        prepTabIntro: "Πριν ακόμη την άφιξη του κουταβιού στο σπίτι, είναι ζωτικής σημασίας η προετοιμασία του χώρου του. Αυτό περιλαμβάνει τη δημιουργία ενός ασφαλούς και άνετου περιβάλλοντος, όπου το κουτάβι θα νιώθει προστατευμένο και θα μπορεί να προσαρμοστεί ομαλά. Επίσης, η συγκέντρωση του απαραίτητου εξοπλισμού είναι κρίσιμη για μια ομαλή μετάβαση. Αυτή η ενότητα σας καθοδηγεί στη δημιουργία ενός ασφαλούς περιβάλλοντος και στην επιλογή των βασικών προμηθειών.",
-        prepAccordionEnvTitle: "Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος",
-        prepAccordionEnvContent: "Η προετοιμασία του χώρου είναι ζωτικής σημασίας. Ασφαλίστε τον χώρο (\"dog-proofing\") απομακρύνοντας επικίνδυνα αντικείμενα όπως χαλιά, χημικά, καλώδια και ακριββά έπιπλα. Προστατέψτε το κουτάβι από πτώσεις (π.χ. σκάλες). Διατηρήστε κατάλληλη θερμοκρασία (10-26.6°C), υγρασία (30-70%) και αερισμό. Ο τακτικός καθαρισμός είναι απαραίτητος.",
-        prepAccordionEquipTitle: "Απαραίτητος Εξοπλισμός (Λίστα Ελέγχου) ✨",
-        equipItemBed: "Άνετο κρεβατάκι/καλάθι (πλένεται συχνά)",
-        equipItemBowls: "Ανοξείδωτα μπολ για νερό και τροφή",
-        equipItemLeash: "Περιλαίμιο, σαμαράκι και λουρί",
-        equipItemIdTag: "Ταυτότητα με στοιχεία",
-        equipItemPoopBags: "Σακούλες για περιττώματα",
-        equipItemPadsWipes: "Πάνες για κουτάβια, μαντηλάκια καθαρισμού",
-        equipItemToothbrush: "Οδοντόκρεμα & οδοντόβουρτσα σκύλου",
-        equipItemParasiteControl: "Αντιπαρασιτικά (αμπούλες/σπρέι)",
-        equipItemGrooming: "Βούρτσα, σαμπουάν, νυχοκόπτης",
-        equipItemToys: "Ποικιλία παιχνιδιών (μάσησης, παζλ)",
-        equipItemCarrier: "Κλουβί/τσάντα μεταφοράς",
-        equipItemCrate: "Crate (κλουβί εκπαίδευσης)",
-        prepCrateHeading: "Το Crate: Ένα Παρεξηγημένο Εργαλείο",
-        prepCratePara1: "Το crate (κλουβί εκπαίδευσης) είναι ένα σημαντικό εργαλείο για την εκπαίδευση και την ασφάλεια του κουταβιού, αλλά συχνά παρεξηγείται ως \"φυλακή\". Στην πραγματικότητα, όταν χρησιμοποιείται σωστά, το crate μπορεί να αποτελέσει ένα ασφαλές, προσωπικό καταφύγιο για το κουτάβι σας, καθώς και ένα εξαιρετικό βοήθημα για την εκπαίδευση τουαλέτας και τη διαχείριση της συμπεριφοράς.",
-        prepCrateBenefitsTitle: "Οφέλη του Crate:",
-        prepCrateBenefit1: "Εκπαίδευση Τουαλέτας: Τα σκυλιά από τη φύση τους δεν θέλουν να λερώσουν τον χώρο που κοιμούνται. Το crate εκμεταλλεύεται αυτό το ένστικτο, βοηθώντας το κουτάβι να μάθει να κρατιέται μέχρι να βγει έξω.",
-        prepCrateBenefit2: "Ασφάλεια: Προστατεύει το κουτάβι από το να μασήσει επικίνδυνα αντικείμενα ή να πάθει ατύχημα όταν δεν μπορείτε να το επιβλέπετε άμεσα.",
-        prepCrateBenefit3: "Προσωπικός Χώρος: Γίνεται ένα ασφαλές και άνετο \"δωμάτιο\" για το κουτάβι, όπου μπορεί να ξεκουραστεί και να ηρεμήσει χωρίς ενοχλήσεις.",
-        prepCrateBenefit4: "Ταξίδια και Επισκέψεις: Διευκολύνει την ασφαλή μεταφορά και την προσαρμογή του κουταβιού σε νέα περιβάλλοντα, όπως στο σπίτι φίλων ή σε ξενοδοχεία.",
-        prepCrateBenefit5: "Διαχείριση Συμπεριφοράς: Βοηθά στην αντιμετώπιση προβλημάτων όπως το άγχος αποχωρισμού (όταν εκπαιδεύεται σωστά) ή η καταστροφική μάσηση.",
-        prepCrateMisconceptionsTitle: "Τι δεν πρέπει να σκέφτεται ο κηδεμόνας (και γιατί είναι παρεξηγημένο):",
-        prepCrateMisconception1: "Δεν είναι τιμωρία: Το crate δεν πρέπει ποτέ να χρησιμοποιείται ως μέσο τιμωρίας. Αν το κουτάβι συνδέσει το crate με αρνητικές εμπειρίες, θα το φοβάται και θα αρνείται να μπει.",
-        prepCrateMisconception2: "Δεν είναι φυλακή: Το crate δεν είναι για να \"κλείνετε\" το κουτάβι για πολλές ώρες. Πρέπει να έχει επαρκή χρόνο εκτός του crate για παιχνίδι, άσκηση και τουαλέτα. Ο χρόνος παραμονίας πρέπει να είναι ανάλογος με την ηλικία του (π.χ., ένα κουτάβι 8 εβδομάδων μπορεί να κρατηθεί περίπου 3-4 ώρες).",
-        prepCrateMisconception3: "Δεν είναι απάντηση σε όλα τα προβλήματα: Το crate είναι ένα εργαλείο εκπαίδευσης, όχι μια μαγική λύση για όλα τα προβλήματα συμπεριφοράς. Πρέπει να συνδυάζεται με συνεπή εκπαίδευση, κοινωνικοποίηση και άσκηση.",
-        prepCrateMisconception4: "Δεν είναι απάνθρωπο: Για τα σκυλιά, το crate μπορεί να είναι μια φυσική επέκταση του ενστίκτου τους για ένα \"κρησφύγετο\" ή μια \"φωλιά\". Πολλά σκυλιά το αγαπούν και το αναζητούν ως ασφαλές μέρος.",
-        prepCrateConclusion: "Η σωστή εισαγωγή και εκπαίδευση με το crate είναι κρίσιμη. Πρέπει να είναι μια θετική εμπειρία, με λιχουδιές, παιχνίδια και άνετο κρεβάτι, ώστε το κουτάβι να το βλέσει ως το δικό του, ασφαλές καταφύγιο.",
-        
-        firstDaysTabTitle: "II. Οι Πρώτες Ημέρες στο Νέο Σπίτι",
-        firstDaysTabIntro: "Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.",
-        firstDaysAccordionRoutineTitle: "Προσαρμογή και Καθιέρωση Ρουτίνας ✨",
-        firstDaysAccordionRoutineContent: "Δώστε χρόνο στο κουτάβι να συνηθίσει. Δημιουργήστε σταθερή ρουτίνα για σίτιση, τουαλέτα, παιχνίδι και \"ήσυχο χρόνο\". Ξεκινήστε την εκπαίδευση \"Home Alone\" από την πρώτη μέρα, αφήνοντας το κουτάβι μόνο του για μικρά διαστήματα, για να αποφύγετε το άγχος αποχωρισμού. Μην επιστρέψετε όταν κλαίει για να μην επιβραβεύσετε την ανεπιθύμητη συμπεριφορά.",
-        firstDaysAccordionSocialTitle: "Πρώιμη Κοινωνικοποίηση: Η Σημασία της",
-        firstDaysAccordionSocialContent: "Η κοινωνικοποίηση (3-16 εβδομάδες) είναι κρίσιμη. Εκθέστε το κουτάβι σε διάφορα περιβάλλοντα, ήχους, οσμές, ξένους ανθρώπους, παιδιά και άλλα υγιή, εμβολιασμένα σκυλιά. Οι εμπειρίες πρέπει να είναι θετικές. Πριν την ολοκλήρωση των εμβολιασμών, η κοινωνικοποίηση μπορεί να γίνει με ασφάλεια μεταφέροντας το κουτάβι στην αγκαλιά/τσάντα ή προσκαλώντας εμβολιασμένους φίλους (ανθρώπους/σκύλους) στο σπίτι. Η ψυχική διέγερση με διαδραστικά παιχνίδια είναι επίσης σημαντική.",
-        
-        healthTitle: "III. Υγεία και Κτηνιατρική Φροντίδα",
-        healthIntro: "Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.",
-        healthAccordionVetTitle: "Η Πρώτη Επίσκεψη στον Κτηνίατρο",
-        healthAccordionVetContent: "Συνήθως στις 6-8 εβδομάδες. Ο κτηνίατρος θα κάνει φυσική εξέταση (μάτια, αυτιά, μύτη, δέρμα, καρδιά, πνεύμονες κ.ά.) και θα σας ενημερώσει για εμβολιασμούς, οδοντική φροντίδα, grooming, άσκηση, κοινωνικοποίηση, microchipping, στείρωση, ταξίδια, ασφάλεια και ζωονόσους.",
-        healthAccordionVaccTitle: "Πρόγραμμα Εμβολιασμών",
-        healthAccordionVaccP1: "Οι εμβολιασμοί είναι ζωτικής σημασίας για την πρόληψη μεταδοτικών και ενίοτε θανατηφόρων ασθενειών. Διεγείρουν το ανοσοποιητικό σύστημα του κουταβιού να αναπτύξει συγκεκριμένα αντισώματα κατά των ιών και των βακτηρίων.",
-        healthAccordionVaccP2: "Τα βασικά (core) εμβόλια περιλαμβάνουν αυτά για τη μόρβα, τη λοιμώδη ηπατίτιδα, τον παρβοϊό και τη λύσσα. Άλλα συνιστώμενα εμβόλια είναι για τη λοιμώδη τραχειοβρογχίτιδα (κυνοκομειακός βήχας) και τη λεπτοσπείρωση.",
-        healthVaccTableAge: "Ηλικία",
-        healthVaccTableVaccine: "Εμβόλιο",
-        healthVaccRow1Age: "6-8 εβδομάδες",
-        healthVaccRow1Vaccine: "Μόρβα, Ηπατίτιδα, Παρβοϊός",
-        healthVaccRow2Age: "11-13 εβδομάδες",
-        healthVaccRow2Vaccine: "Μόρβα, Ηπατίτιδα, Παρβοϊός (ενισχυτικό) + Λύσσα, Λεπτοσπείρωση",
-        healthVaccRow3Age: "15-17 εβδομάδες",
-        healthVaccRow3Vaccine: "Λύσσα, Λεπτοσπείρωση (ενισχυτικό)",
-        healthVaccRow4Age: "15 μηνών",
-        healthVaccRow4Vaccine: "Ενισχυτικοί για όλα τα παραπάνω",
-        healthVaccRow5Age: "Ετήσια",
-        healthVaccRow5Vaccine: "Μόρβα, Ηπατίτιδα, Παρβοϊός (ενισχυτικοί)",
-        healthAccordionVaccP3: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.",
-        healthAccordionDewormTitle: "Πρόγραμμα Αποπαρασίτωσης",
-        healthAccordionDewormP1: "Η σωστή και πλήρης αποπαρασίτωση είναι απαραίτητη τόσο για την υγεία του σκύλου όσο και για την πρόληψη της μετάδοσης παρασίτων σε ανθρώπους, καθώς πολλά από αυτά είναι ζωονόσοι. Οι κηδεμόνες φέρουν την ευθύνη να προστατεύουν το νοικοκυριό τους και την κοινότητα από πιθανές ζωονόσους, καθιστώντας την πρόληψη παρασίτων μια διπλή πράξη φροντίδας.",
-        healthDewormInternalTitle: "Εσωτερικά Παράσιτα (Ενδοπαράσιτα):",
-        healthDewormInternalP1: "Κοινά Είδη: Περιλαμβάνουν στρογγυλά σκουλήκια (όπως Toxocara canis, Toxascaris leonina), ταινίες (όπως Dipylidium caninum, Echinococcus granulosus), αγκυλόστομα (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), και σκουλήκια πνευμόνων/καρδιάς (Angiostrongylus vasorum).",
-        healthDewormInternalP2: "Πρόγραμμα: Η αποπαρασίτωση για ενδοπαράσιτα ξεκινά από πολύ μικρή ηλικία, σύμφωνα πάντα με τις οδηγίες του κτηνιάτρου. Συνήθως, συνεχίζεται με χάπι ανά τρεις μήνες για όλη τη διάρκεια ζωής του ζώου. Για τις έγκυες σκύλες, η αποπαρασίτωση με φενβενδαζόλη συνιστάται γύρω στην 40η ημέρα της κύησης, ώστε να αποφευχθεί η μετάδοση των παρασίτων στα κουτάβια.",
-        healthDewormInternalP3: "Μορφές: Τα αντιπαρασιτικά για ενδοπαράσιτα διατίθενται σε μορφή χαπιού, πάστας ή πόσιμου εναιωρήματος.",
-        healthDewormExternalTitle: "Εξωτερικά Παράσιτα (Εξωπαράσιτα):",
-        healthDewormExternalP1: "Κοινά Είδη: Σε αυτή την κατηγορία ανήκουν οι κρότωνες (τσιμπούρια), οι ψύλλοι, τα ακάρεα (που προκαλούν ψώρα) και οι ψείρες. Αυτά τα παράσιτα είναι φορείς σοβαρών, ενίοτε θανατηφόρων, ασθενειών και μπορούν να μεταδοθούν και σε ανθρώπους.",
-        healthDewormExternalP2: "Πρόγραμμα: Οι επιλογές αντιμετώπισης περιλαμβάνουν αμπούλες, κολάρα και χάπια.",
-        healthDewormExternalListItem1: "Αμπούλες: Μπορούν να χρησιμοποιηθούν από την ηλικία των οκτώ μηνών και άνω, εφαρμόζονται στη ράχη του ζώου.",
-        healthDewormExternalListItem2: "Χάπια: Παρέχουν τριμηνιαία ή μηνιαία προστασία.",
-        healthDewormExternalListItem3: "Κολάρα: Μπορούν να φορεθούν από την ηλικία των 4 μηνών και άνω, προσφέροντας κάλυψη για ψύλλους, τσιμπούρια και σκνίπα.",
-        healthDewormExternalP3: "Συνδυασμοί: Συχνά χρησιμοποιούνται συνδυασμοί προϊόντων (π.χ., αμπούλα, κολάρο και σπρέι σιτρονέλας) για την επίτευξη του βέλτιστου αποτελέσματος στην προστασία του σκύλου.",
-        healthAccordionProblemsTitle: "Συχνά Προβλήματα Υγείας & Συμπτώματα", 
-        healthAccordionProblemsP1: "Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.", 
-        healthProblemsGeneralSymptomsTitle: "Γενικά Συμπτώματα Ασθένειας:", 
-        healthProblemsGenSymptomEyes: "Μάτια, Στόμα, Μύτη: Βήχας, φτέρνισμα, έντονο λαχάνιασμα, δυσκολία στην αναπνοή, άσχημη αναπνοή, πολλά σάλια, ξηρά, θολά ή κόκκινα μάτια.", 
-        healthProblemsGenSymptomBehavior: "Συμπεριφορά: Μειωμένη δραστηριότητα, μικρότερο ενδιαφέρον για παιχνίδι, περισσότερες ώρες ύπνου, ή άλλες αλλαγές στη συμπεριφορά.", 
-        healthProblemsGenSymptomSkin: "Δερματικές Αλλαγές: Ξηρότητα, αλλοιώσεις, ερυθρότητα, απώλεια τριχών, φλοιώδες δέρμα, έντονος κνησμός.", 
-        healthProblemsGenSymptomDigestion: "Κατανάλωση Τροφής και Πέψη: Μειωμένη όρεξη, απώλεια βάρους, στομαχικές διαταραχές, περιττώματα που περιέχουν αίμα, βλέννα, σκουλήκια ή αχώνευτες τροφές, υπερβολική κατανάλωση νερού ή υπερβολική ούρηση.", 
-        healthProblemsGenSymptomStiffness: "Δυσκαμψία Αρθρώσεων: Δυσκολία στο σήκωμα ή στην ανάβαση σκαλοπατιών.", 
-        healthProblemsSpecificProblemsTitle: "Ειδικά Προβλήματα:", 
-        healthProblemsSpecDiarrhea: "Διάρροια: Είναι αρκετά συνηθισμένη στα κουτάβια και μπορεί να κυμαίνεται από ήπια επεισόδια που υποχωρούν γρήγορα έως σοβαρά γαστρικά προβλήματα που προκαλούνται από σοβαρή ασθένεια ή απόφραξη, με πιθανή παρουσία αίματος ή βλέννας και αφυδάτωση.", 
-        healthProblemsSpecVomiting: "Εμετός: Αποτελεί ένα κοινό πρόβλημα με δεκάδες πιθανές αιτίες, όπως λοιμώξεις, εντερικά παράσιτα, παγκρεατίτιδα, νεφρική ανεπάρκεια, θερμοπληξία, ξένο σώμα στο στομάχι-έντερο και δηλητηρίαση.", 
-        healthProblemsSpecHypoglycemia: "Υπογλυκαιμία: Χαμηλά επίπεδα γλυκόζης στο αίμα, συχνότερα σε μικρόσωμα κουτάβια ή σε περίπτωση ακατάλληλης σίτισης. Συμπτώματα περιλαμβάνουν ανορεξία, λήθαργο, τρόμο (τρέμουλο), αλλαγές συμπεριφοράς και σπασμούς. Σε περίπτωση υποψίας, συνιστάται η άμεση επάλειψη με μέλι στα ούλα ή η χορήγηση νερού με ζάχαρη, και άμεση επικοινωνία με κτηνίατρο.", 
-        healthProblemsSpecCoccidiosis: "Κοκκιδίωση: Προκαλείται από ένα παράσιτο (κοκκίδια) και είναι μια από τις πιο συχνές αιτίες επώδυνης και συχνά θανατηφόρου διάρροιας σε νεαρές ηλικίες. Τα συμπτώματα περιλαμβάνουν σοβαρή διάρροια, ληθαργικότητα, ανορεξία και αφυδάτωση.", 
-        healthProblemsSpecGiardia: "Giardia (Λαμβλίαση): Ένα κοινό εντερικό παράσιτο. Τα συμπτώματα περιλαμβάνουν μαλακά, χλωμά, δύσοσμα κόπρανα, αυξημένη συχνότητα κενώσεων, αέρια, κοιλιακή δυσφορία, μειωμένη όρεξη και αφυδάτωση. Μεταδίδεται μέσω μολυσμένου νερού ή κοπράνων. Η θεραπεία περιλαμβάνει φαινβενδαζόλη και/ή μετρονιδαζόλη, σε συνδυασμό με αυστηρή υγιεινή.", 
-        healthProblemsSpecParvo: "Παρβοϊός: Εξαιρετικά μεταδοτικός και επικίνδυνος, ειδικά για κουτάβια. Τα συμπτώματα περιλαμβάνουν απώλεια όρεξης, λήθαργο, επίμονο εμετό και αιμορραγική διάρροια. Απαιτεί άμεση κτηνιατρική φροντίδα.", 
-        healthProblemsTableSystem: "Σύστημα/Πρόβλημα", 
-        healthProblemsTableSymptoms: "Κοινά Συμπτώματα", 
-        healthProblemsRow1Cat: "Γενικά Συμπτώματα<br>Συμπεριφορά", 
-        healthProblemsRow1Sym: "Λήθαργος, μειωμένη δραστηριότητα, αδιαφορία, αλλαγές στον ύπνο", 
-        healthProblemsRow2Cat: "Αναπνευστικό", 
-        healthProblemsRow2Sym: "Βήχας, φτέρνισμα, λαχάνιασμα, δυσκολία στην αναπνοή", 
-        healthProblemsRow3Cat: "Δέρμα/Τρίχωμα", 
-        healthProblemsRow3Sym: "Ξηρότητα, ερυθρότητα, εξανθήματα, τριχόπτωση, έντονος κνησμός", 
-        healthProblemsRow4Cat: "Πεπτικό Σύστημα<br>Διάρροια", 
-        healthProblemsRow4Sym: "Υδαρή, με αίμα/βλέννα, αυξημένη συχνότητα, αφυδάτωση", 
-        healthProblemsRow5Cat: "Εμετός", 
-        healthProblemsRow5Sym: "Επίμονος, με ή χωρίς τροφή/αίμα", 
-        healthProblemsRow6Cat: "Όρεξη/Βάρος", 
-        healthProblemsRow6Sym: "Μειωμένη όρεξη, ανορεξία, απώλεια βάρους", 
-        healthProblemsRow7Cat: "Ειδικά Προβλήματα<br>Υπογλυκαιμία", 
-        healthProblemsRow7Sym: "Τρέμουλο, αδυναμία, σπασμοί, αλλαγές συμπεριφοράς, λιποθυμία", 
-        healthProblemsRow8Cat: "Παρβοϊός", 
-        healthProblemsRow8Sym: "Εμετός, αιμομορραγική διάρροια, λήθαργος, πυρετός, αφυδάτωση", 
-        healthProblemsRow9Cat: "Κοκκιδίωση", 
-        healthProblemsRow9Sym: "Σοβαρή διάρροια, λήθαργος, ανορεξία, αφυδάτωση", 
-        healthProblemsRow10Cat: "Giardia", 
-        healthProblemsRow10Sym: "Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση", 
-        healthAccordionProblemsP2: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.",
-        
-        nutritionTitle: "IV. Nutrition: The Foundation of Health and Development",
-        nutritionIntro: "Proper nutrition is fundamental for your puppy's development and well-being. This section covers choosing the right food, feeding schedules according to age, and foods that must be avoided for your little friend's safety.",
-        nutritionAccordionFood: "Choosing Appropriate Food and Feeding Schedule",
-        nutritionFoodSelectP1: "Choose high-quality, reputable puppy-specific food. For large breeds, foods specially formulated for their needs are recommended. Foods should be rich in nutrients like proteins (for muscle and tissue growth), fats (for energy and skin health), carbohydrates (for energy), vitamins, and minerals (like calcium, iron, zinc).",
-        nutritionFoodSelectP2: "A puppy's diet is not static but evolves rapidly with age and development. Providing the right balance of nutrients at each stage is crucial for optimal growth and preventing deficiencies or excesses that could affect long-term health.",
-        nutritionFoodSelectP3: "If the puppy is very young, the weaning process starts around 3-4 weeks and lasts up to 8 weeks. Initially, solid food can be mixed with water or puppy milk to soften it and make it more digestible.",
-        nutritionFeedingScheduleTitle: "Feeding Schedule:",
-        nutritionFeedList1: "8-12 weeks: 4 meals a day.",
-        nutritionFeedList2: "3-6 months: 3 meals a day.",
-        nutritionFeedList3: "6 months - 1 year: 2 meals a day.",
-        nutritionFeedList4: "After 1 year: Usually 1 meal a day is sufficient, although for larger breeds or dogs prone to bloating, 2 smaller meals are preferable.",
-        nutritionWaterBowls: "It is essential to always have clean, fresh water available. Food and water bowls should be washed frequently to maintain hygiene.",
-        
-        loadingText: "Loading...", // Generic loading text
-    },
-    en: { // Make sure your English translations are complete up to this point
-        mainTitle: "🐾 Puppy Care Guide 🐾",
-        subTitle: "Everything you need to know for your new friend!",
-        tabIntro: "Introduction",
-        tabPreparation: "Preparation ✨",
-        tabFirstDays: "First Days ✨",
-        tabHealth: "Health",
-        tabNutrition: "Nutrition ✨",
-        tabExercise: "Exercise ✨",
-        tabTraining: "Training ✨",
-        tabFirstAid: "First Aid ✨",
-        tabStories: "Socialization Stories ✨",
-        tabLongterm: "Long-term",
-        tabConclusion: "Conclusion",
+                exerciseTitle: "V. Άσκηση και Ψυχική διέγερση",
+                exerciseIntro: "Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.",
+                exerciseNeedsTitle: "Ανάγκες Άσκησης",
+                exerciseNeedsPuppies: "Κουτάβια: Προσεκτική άσκηση για την προστασία των αναπτυσσόμενων αρθρώσεων. Κανόνας: 5 λεπτά άσκησης ανά μήνα ηλικίας, δύο φορές την ημέρα. Π.χ. ένα κουτάβι 3 μηνών χρειάζεται περίπου 15 λεπτά άσκησης δύο φορές την ημέρα. Αποφύγετε το τρέξιμο σε σκληρές επιφάνειες και τα πολλά άλματα.",
+                exerciseNeedsAdults: "Ενήλικοι Σκύλοι (Ενδεικτικά):",
+                exerciseNeedsAdultHigh: "Υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5-2+ ώρες έντονης άσκησης (τρέξιμο, παιχνίδι).",
+                exerciseNeedsAdultMed: "Μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1-1.5 ώρα μέτριας άσκησης (γρήγορο περπάτημα, παιχνίδι).",
+                exerciseNeedsAdultLow: "Χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά - 1 ώρα ήπιας άσκησης (περπάτημα).",
+                exerciseNeedsSeniors: "Ηλικιωμένοι Σκύλοι: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
+                exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
+                dogTypePuppy: "Κουτάβι (<1 έτους)", dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", dogTypeSenior: "Ηλικιωμένος Σκύλος",
+                exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις.",
+                exercisePlayTitle: "Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨",
+                exercisePlayContent: "Η ψυχική διέγερση είναι εξίσου σημαντική με τη σωματική. Δοκιμάστε: διαδραστικά παιχνίδια (π.χ. κρυμμένες λιχουδιές), παιχνίδια εκπαίδευσης (εκμάθηση νέων εντολών), παιχνίδια μύτης (ανίχνευση οσμών), και ασφαλή παιχνίδια μάσησης. Η εναλλαγή παιχνιδιών κρατά το ενδιαφέρον ζωντανό.",
 
-        introTitle: "Welcoming the New Family Member",
-        introContent: "The arrival of a puppy at home is an exciting moment, full of joy and anticipation. However, it also comes with significant responsibilities that require preparation and knowledge. This interactive application is designed to provide the necessary information and practical advice to ensure a smooth transition and a healthy, happy life for the new four-legged member of the family. Explore the sections below to learn everything from preparing the space and initial adjustment, to health, nutrition, exercise, training, and long-term responsibilities.",
-        
-        prepTabTitle: "I. Preparing for the Puppy's Arrival",
-        prepTabIntro: "Even before the puppy arrives home, preparing its space is vital. This includes creating a safe and comfortable environment where the puppy will feel protected and can adjust smoothly. Also, gathering the necessary equipment is crucial for a smooth transition. This section guides you in creating a safe environment and selecting basic supplies.",
-        prepAccordionEnvTitle: "Creating a Safe and Comfortable Environment",
-        prepAccordionEnvContent: "Space preparation is vital. Dog-proof the area by removing hazardous items like rugs, chemicals, cables, and expensive furniture. Protect the puppy from falls (e.g., stairs). Maintain appropriate temperature (10-26.6°C), humidity (30-70%), and ventilation. Regular cleaning is essential.",
-        prepAccordionEquipTitle: "Essential Equipment (Checklist) ✨",
-        equipItemBed: "Comfortable bed/basket (washable)",
-        equipItemBowls: "Stainless steel bowls for water and food",
-        equipItemLeash: "Collar, harness, and leash",
-        equipItemIdTag: "ID tag with contact details",
-        equipItemPoopBags: "Poop bags",
-        equipItemPadsWipes: "Puppy pads, cleaning wipes",
-        equipItemToothbrush: "Dog toothpaste & toothbrush",
-        equipItemParasiteControl: "Parasite control (spot-on/spray)",
-        equipItemGrooming: "Brush, shampoo, nail clippers",
-        equipItemToys: "Variety of toys (chew, puzzle)",
-        equipItemCarrier: "Carrier/transport bag",
-        equipItemCrate: "Crate (training kennel)",
-        prepCrateHeading: "The Crate: A Misunderstood Tool",
-        prepCratePara1: "The crate (training kennel) is an important tool for puppy training and safety, but it is often misunderstood as a 'jail'. In reality, when used correctly, the crate can be a safe, personal haven for your puppy, as well as an excellent aid for house training and behavior management.",
-        prepCrateBenefitsTitle: "Benefits of the Crate:",
-        prepCrateBenefit1: "House Training: Dogs naturally don't want to soil their sleeping area. The crate leverages this instinct, helping the puppy learn to hold it until taken outside.",
-        prepCrateBenefit2: "Safety: Protects the puppy from chewing hazardous items or getting into accidents when you cannot directly supervise.",
-        prepCrateBenefit3: "Personal Space: Becomes a safe and comfortable 'den' for the puppy, where it can rest and relax without disturbances.",
-        prepCrateBenefit4: "Travel and Visits: Facilitates safe transport and adjustment of the puppy to new environments, like friends' homes or hotels.",
-        prepCrateBenefit5: "Behavior Management: Helps in managing issues like separation anxiety (when trained correctly) or destructive chewing.",
-        prepCrateMisconceptionsTitle: "What the guardian should not think (and why it's misunderstood):",
-        prepCrateMisconception1: "It's not punishment: The crate should never be used as a means of punishment. If the puppy associates the crate with negative experiences, it will fear it and refuse to enter.",
-        prepCrateMisconception2: "It's not jail: The crate is not for 'locking up' the puppy for many hours. It must have sufficient time outside the crate for play, exercise, and potty breaks. The duration of stay should be appropriate for its age (e.g., an 8-week-old puppy can be crated for about 3-4 hours).",
-        prepCrateMisconception3: "It's not an answer to all problems: The crate is a training tool, not a magic solution for all behavior problems. It must be combined with consistent training, socialization, and exercise.",
-        prepCrateMisconception4: "It's not inhumane: For dogs, the crate can be a natural extension of their denning instinct. Many dogs love their crate and seek it out as a safe place.",
-        prepCrateConclusion: "Proper introduction and training with the crate are crucial. It must be a positive experience, with treats, toys, and a comfortable bed, so the puppy sees it as its own safe haven.",
-        
-        firstDaysTabTitle: "II. The First Days in the New Home",
-        firstDaysTabIntro: "The first few days are crucial for the puppy's adjustment. Establishing a routine and proper early socialization lay the foundation for a well-balanced adult dog. Here you will find tips to help your puppy feel safe and explore the world with confidence.",
-        firstDaysAccordionRoutineTitle: "Adjustment and Routine Establishment ✨",
-        firstDaysAccordionRoutineContent: "Give the puppy time to get used to its new home. Create a consistent routine for feeding, potty breaks, playtime, and 'quiet time'. Start 'Home Alone' training from day one, leaving the puppy alone for short periods to prevent separation anxiety. Do not return when it's crying to avoid reinforcing unwanted behavior.",
-        firstDaysAccordionSocialTitle: "Early Socialization: Its Importance",
-        firstDaysAccordionSocialContent: "Socialization (3-16 weeks) is crucial. Expose the puppy to various environments, sounds, smells, strangers, children, and other healthy, vaccinated dogs. Experiences should be positive. Before vaccinations are complete, socialization can be done safely by carrying the puppy in your arms/bag or inviting vaccinated friends (people/dogs) to your home. Mental stimulation with interactive toys is also important.",
-        
-        healthTitle: "III. Health and Veterinary Care",
-        healthIntro: "Your puppy's health is paramount. From the first visit to the vet to regular vaccinations and deworming, preventive care is key. Learn how to keep your puppy healthy and when to seek veterinary help.",
-        healthAccordionVetTitle: "The First Visit to the Vet",
-        healthAccordionVetContent: "Usually at 6-8 weeks. The vet will perform a physical examination (eyes, ears, nose, skin, heart, lungs, etc.) and will inform you about vaccinations, dental care, grooming, exercise, socialization, microchipping, neutering, travel, safety, and zoonoses.",
-        healthAccordionVaccTitle: "Vaccination Schedule",
-        healthAccordionVaccP1: "Vaccinations are vital for preventing contagious and sometimes fatal diseases. They stimulate the puppy's immune system to develop specific antibodies against viruses and bacteria.",
-        healthAccordionVaccP2: "Core vaccines include those for distemper, infectious hepatitis, parvovirus, and rabies. Other recommended vaccines are for infectious tracheobronchitis (kennel cough) and leptospirosis.",
-        healthVaccTableAge: "Age",
-        healthVaccTableVaccine: "Vaccine",
-        healthVaccRow1Age: "6-8 weeks",
-        healthVaccRow1Vaccine: "Distemper, Hepatitis, Parvovirus",
-        healthVaccRow2Age: "11-13 weeks",
-        healthVaccRow2Vaccine: "Distemper, Hepatitis, Parvovirus (booster) + Rabies, Leptospirosis",
-        healthVaccRow3Age: "15-17 weeks",
-        healthVaccRow3Vaccine: "Rabies, Leptospirosis (booster)",
-        healthVaccRow4Age: "15 months",
-        healthVaccRow4Vaccine: "Boosters for all of the above",
-        healthVaccRow5Age: "Annual",
-        healthVaccRow5Vaccine: "Distemper, Hepatitis, Parvovirus (boosters)",
-        healthAccordionVaccP3: "Mild lethargy or swelling at the injection site is normal and subsides.",
-        healthAccordionDewormTitle: "Deworming Schedule",
-        healthAccordionDewormP1: "Proper and complete deworming is essential both for the dog's health and for preventing the transmission of parasites to humans, as many of them are zoonotic. Guardians have the responsibility to protect their household and community from potential zoonoses, making parasite prevention a dual act of care.",
-        healthDewormInternalTitle: "Internal Parasites (Endoparasites):",
-        healthDewormInternalP1: "Common Types: Include roundworms (such as Toxocara canis, Toxascaris leonina), tapeworms (such as Dipylidium caninum, Echinococcus granulosus), hookworms (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), and lungworms/heartworms (Angiostrongylus vasorum).",
-        healthDewormInternalP2: "Schedule: Deworming for endoparasites starts from a very young age, always according to the veterinarian's instructions. Usually, it continues with a pill every three months for the animal's entire life. For pregnant bitches, deworming with fenbendazole is recommended around the 40th day of gestation to prevent transmission of parasites to the puppies.",
-        healthDewormInternalP3: "Forms: Antiparasitics for endoparasites are available in pill, paste, or oral suspension form.",
-        healthDewormExternalTitle: "External Parasites (Ectoparasites):",
-        healthDewormExternalP1: "Common Types: This category includes ticks, fleas, mites (which cause mange), and lice. These parasites are vectors of serious, sometimes fatal, diseases and can also be transmitted to humans.",
-        healthDewormExternalP2: "Schedule: Treatment options include spot-ons, collars, and pills.",
-        healthDewormExternalListItem1: "Spot-ons: Can be used from the age of eight months and older, applied to the animal's back.",
-        healthDewormExternalListItem2: "Pills: Provide quarterly or monthly protection.",
-        healthDewormExternalListItem3: "Collars: Can be worn from the age of 4 months and older, offering coverage for fleas, ticks, and sandflies.",
-        healthDewormExternalP3: "Combinations: Combinations of products (e.g., spot-on, collar, and citronella spray) are often used to achieve the optimal result in protecting the dog.",
-        healthAccordionProblemsTitle: "Common Health Problems & Symptoms", 
-        healthAccordionProblemsP1: "It is important for guardians to recognize common signs of illness for immediate veterinary intervention. Due to their vulnerability, puppies require constant monitoring for subtle changes in their health. Prompt recognition of symptoms and communication with the veterinarian are paramount, as rapid health deterioration can occur, making timely intervention life-saving.", 
-        healthProblemsGeneralSymptomsTitle: "General Symptoms of Illness:", 
-        healthProblemsGenSymptomEyes: "Eyes, Mouth, Nose: Coughing, sneezing, heavy panting, difficulty breathing, bad breath, excessive drooling, dry, cloudy, or red eyes.", 
-        healthProblemsGenSymptomBehavior: "Behavior: Decreased activity, less interest in play, more hours of sleep, or other behavioral changes.", 
-        healthProblemsGenSymptomSkin: "Skin Changes: Dryness, lesions, redness, hair loss, scaly skin, intense itching.", 
-        healthProblemsGenSymptomDigestion: "Food Consumption and Digestion: Decreased appetite, weight loss, stomach upsets, feces containing blood, mucus, worms, or undigested food, excessive water consumption, or excessive urination.", 
-        healthProblemsGenSymptomStiffness: "Joint Stiffness: Difficulty getting up or climbing stairs.", 
-        healthProblemsSpecificProblemsTitle: "Specific Problems:", 
-        healthProblemsSpecDiarrhea: "Diarrhea: It is quite common in puppies and can range from mild episodes that resolve quickly to severe gastric problems caused by serious illness or obstruction, with possible presence of blood or mucus and dehydration.", 
-        healthProblemsSpecVomiting: "Vomiting: It is a common problem with dozens of possible causes, such as infections, intestinal parasites, pancreatitis, kidney failure, heatstroke, foreign body in the stomach-intestine, and poisoning.", 
-        healthProblemsSpecHypoglycemia: "Hypoglycemia: Low blood glucose levels, more common in small breed puppies or in cases of improper feeding. Symptoms include anorexia, lethargy, trembling, behavioral changes, and seizures. If suspected, immediate application of honey to the gums or administration of sugar water is recommended, along with immediate contact with a veterinarian.", 
-        healthProblemsSpecCoccidiosis: "Coccidiosis: Caused by a parasite (coccidia) and is one of the most common causes of painful and often fatal diarrhea in young ages. Symptoms include severe diarrhea, lethargy, anorexia, and dehydration.", 
-        healthProblemsSpecGiardia: "Giardia (Giardiasis): A common intestinal parasite. Symptoms include soft, pale, foul-smelling stools, increased frequency of bowel movements, gas, abdominal discomfort, decreased appetite, and dehydration. It is transmitted through contaminated water or feces. Treatment includes fenbendazole and/or metronidazole, combined with strict hygiene.", 
-        healthProblemsSpecParvo: "Parvovirus: Highly contagious and dangerous, especially for puppies. Symptoms include loss of appetite, lethargy, persistent vomiting, and bloody diarrhea. Requires immediate veterinary care.", 
-        healthProblemsTableSystem: "System/Problem", 
-        healthProblemsTableSymptoms: "Common Symptoms", 
-        healthProblemsRow1Cat: "General Symptoms<br>Behavior", 
-        healthProblemsRow1Sym: "Lethargy, reduced activity, indifference, changes in sleep", 
-        healthProblemsRow2Cat: "Respiratory", 
-        healthProblemsRow2Sym: "Coughing, sneezing, panting, difficulty breathing", 
-        healthProblemsRow3Cat: "Skin/Coat", 
-        healthProblemsRow3Sym: "Dryness, redness, rashes, hair loss, intense itching", 
-        healthProblemsRow4Cat: "Digestive System<br>Diarrhea", 
-        healthProblemsRow4Sym: "Watery, with blood/mucus, increased frequency, dehydration", 
-        healthProblemsRow5Cat: "Vomiting", 
-        healthProblemsRow5Sym: "Persistent, with or without food/blood", 
-        healthProblemsRow6Cat: "Appetite/Weight", 
-        healthProblemsRow6Sym: "Decreased appetite, anorexia, weight loss", 
-        healthProblemsRow7Cat: "Specific Problems<br>Hypoglycemia", 
-        healthProblemsRow7Sym: "Trembling, weakness, seizures, behavioral changes, fainting", 
-        healthProblemsRow8Cat: "Parvovirus", 
-        healthProblemsRow8Sym: "Vomiting, bloody diarrhea, lethargy, fever, dehydration", 
-        healthProblemsRow9Cat: "Coccidiosis", 
-        healthProblemsRow9Sym: "Severe diarrhea, lethargy, anorexia, dehydration", 
-        healthProblemsRow10Cat: "Giardia", 
-        healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration", 
-        healthAccordionProblemsP2: "Mild lethargy or swelling at the injection site is normal and subsides.", 
-        
-        nutritionTitle: "IV. Nutrition: The Foundation of Health and Development",
-        nutritionIntro: "Proper nutrition is fundamental for your puppy's development and well-being. This section covers choosing the right food, feeding schedules according to age, and foods that must be avoided for your little friend's safety.",
-        nutritionAccordionFood: "Choosing Appropriate Food and Feeding Schedule",
-        nutritionFoodSelectP1: "Choose high-quality, reputable puppy-specific food. For large breeds, foods specially formulated for their needs are recommended. Foods should be rich in nutrients like proteins (for muscle and tissue growth), fats (for energy and skin health), carbohydrates (for energy), vitamins, and minerals (like calcium, iron, zinc).",
-        nutritionFoodSelectP2: "A puppy's diet is not static but evolves rapidly with age and development. Providing the right balance of nutrients at each stage is crucial for optimal growth and preventing deficiencies or excesses that could affect long-term health.",
-        nutritionFoodSelectP3: "If the puppy is very young, the weaning process starts around 3-4 weeks and lasts up to 8 weeks. Initially, solid food can be mixed with water or puppy milk to soften it and make it more digestible.",
-        nutritionFeedingScheduleTitle: "Feeding Schedule:",
-        nutritionFeedList1: "8-12 weeks: 4 meals a day.",
-        nutritionFeedList2: "3-6 months: 3 meals a day.",
-        nutritionFeedList3: "6 months - 1 year: 2 meals a day.",
-        nutritionFeedList4: "After 1 year: Usually 1 meal a day is sufficient, although for larger breeds or dogs prone to bloating, 2 smaller meals are preferable.",
-        nutritionWaterBowls: "It is essential to always have clean, fresh water available. Food and water bowls should be washed frequently to maintain hygiene.",
-        
-        loadingText: "Loading...",
-    }
-};
+                trainingTitle: "VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς",
+                trainingIntro: "Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως \"έλα\", \"κάτσε\", \"μείνε\", \"κάτω\" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.",
+                
+                firstAidSecTitle: "\"Τι να κάνω αν...\" / Πρώτες Βοήθειες ✨",
+                firstAidSecDesc: "Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. \"το κουτάβι έφαγε σοκολάτα\", \"το κουτάβι κουτσαίνει ξαφνικά\"). Οι παρακάτω πληροφορίες είναι γενικές και δεν αντικαθιστούν την κτηνιατρική συμβουλή. Σε κάθε περίπτωση έκτακτης ανάγκης, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας.",
+                firstAidWarningTitle: "Σημαντική Προειδοποίηση!",
+                firstAidWarningContent: "Οι παρακάτω πληροφορίες είναι γενικές συμβουλές και ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία. Σε κάθε περίπτωση που ανησυχείτε για την υγεία του κουταβιού σας, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας ή μια κλινική έκτακτης ανάγκης.",
+
+                storiesSecTitle: "Δημιουργία \"Ιστοριών Κοινωνικοποίησης\" / Θετικών Εμπειριών ✨",
+                storiesSecDesc: "Εισάγετε ένα σενάριο κοινωνικοποίησης (π.χ. \"πρώτη συνάντηση με άλλο σκύλο\", \"επίσκεψη σε θορυβώδες μέρος\", \"γνωριμία με παιδιά\") για να λάβετε συμβουλές για το πώς να το χειριστείτε θετικά και με ασφάλεια. Η σωστή κοινωνικοποίηση είναι κλειδί για έναν ισορροπημένο σκύλο.",
+
+                longtermTitle: "VII. Μακροπρόθεσμες Ευθύνες του Κηδεμόνα",
+                longtermIntro: "Η φροντίδα ενός σκύλου είναι μια δέσμευση ζωής (10-15+ χρόνια). Περιλαμβάνει συνεχή κτηνιατρική φροντίδα (ετήσιοι έλεγχοι, εμβολιασμοί), προσαρμογή της διατροφής και της άσκησης καθώς μεγαλώνει, διαχείριση αλλαγών στη συμπεριφορά, και οικονομική ευθύνη για τροφή, περίθαλψη, και απρόοπτα έξοδα. Η αγάπη, η υπομονή και η συνέπεια είναι απαραίτητες σε όλη τη διάρκεια της ζωής του.",
+
+                conclusionTitle: "Συμπέρασμα: Η Ανταμοιβή μιας Υπεύθυνης Φροντίδας",
+                conclusionContent: "Η υιοθεσία ενός κουταβιού είναι μια δέσμευση που φέρνει τεράστια χαρά και συντροφικότητα. Με την κατάλληλη προετοιμασία, γνώση και αφοσίωση, θα χτίσετε έναν ισχυρό δεσμό με τον νέο σας φίλο, προσφέροντάς του μια υγιή, ευτυχισμένη και γεμάτη αγάπη ζωή. Αυτός ο οδηγός είναι ένα σημείο εκκίνησης. Συνεχίστε να μαθαίνετε, να παρατηρείτε το κουτάβι σας και να προσαρμόζετε τη φροντίδα σας στις ανάγκες του. Η ανταμοιβή θα είναι ένας πιστός σύντροφος για πολλά χρόνια.",
+
+                loadingText: "Φόρτωση...", 
+            },
+            en: { 
+                logoAltText: "The Happy Leash - Puppy Care Guide Logo",
+                mainTitle: "🐾 Puppy Care Guide 🐾",
+                subTitle: "Everything you need to know for your new friend!",
+                tabIntro: "Introduction",
+                tabPreparation: "Preparation ✨",
+                tabFirstDays: "First Days ✨",
+                tabHealth: "Health",
+                tabNutrition: "Nutrition ✨",
+                tabExercise: "Exercise ✨",
+                tabTraining: "Training ✨",
+                tabFirstAid: "First Aid ✨",
+                tabStories: "Socialization Stories ✨",
+                tabLongterm: "Long-term",
+                tabConclusion: "Conclusion",
+
+                introTitle: "Welcoming the New Family Member",
+                introContent: "The arrival of a puppy at home is an exciting moment, full of joy and anticipation. However, it also comes with significant responsibilities that require preparation and knowledge. This interactive application is designed to provide the necessary information and practical advice to ensure a smooth transition and a healthy, happy life for the new four-legged member of the family. Explore the sections below to learn everything from preparing the space and initial adjustment, to health, nutrition, exercise, training, and long-term responsibilities.",
+                
+                prepTabTitle: "I. Preparing for the Puppy's Arrival",
+                prepTabIntro: "Even before the puppy arrives home, preparing its space is vital. This includes creating a safe and comfortable environment where the puppy will feel protected and can adjust smoothly. Also, gathering the necessary equipment is crucial for a smooth transition. This section guides you in creating a safe environment and selecting basic supplies.",
+                prepAccordionEnvTitle: "Creating a Safe and Comfortable Environment",
+                prepAccordionEnvContent: "Space preparation is vital. Dog-proof the area by removing hazardous items like rugs, chemicals, cables, and expensive furniture. Protect the puppy from falls (e.g., stairs). Maintain appropriate temperature (10-26.6°C / 50-80°F), humidity (30-70%), and ventilation. Regular cleaning is essential.",
+                prepAccordionEquipTitle: "Essential Equipment (Checklist) ✨",
+                equipItemBed: "Comfortable bed/basket (washable)",
+                equipItemBowls: "Stainless steel bowls for water and food",
+                equipItemLeash: "Collar, harness, and leash",
+                equipItemIdTag: "ID tag with contact details",
+                equipItemPoopBags: "Poop bags",
+                equipItemPadsWipes: "Puppy pads, cleaning wipes",
+                equipItemToothbrush: "Dog toothpaste & toothbrush",
+                equipItemParasiteControl: "Parasite control (spot-on/spray)",
+                equipItemGrooming: "Brush, shampoo, nail clippers",
+                equipItemToys: "Variety of toys (chew, puzzle)",
+                equipItemCarrier: "Carrier/transport bag",
+                equipItemCrate: "Crate (training kennel)",
+                prepCrateHeading: "The Crate: A Misunderstood Tool",
+                prepCratePara1: "The crate (training kennel) is an important tool for puppy training and safety, but it is often misunderstood as a 'jail'. In reality, when used correctly, the crate can be a safe, personal haven for your puppy, as well as an excellent aid for house training and behavior management.",
+                prepCrateBenefitsTitle: "Benefits of the Crate:",
+                prepCrateBenefit1: "House Training: Dogs naturally don't want to soil their sleeping area. The crate leverages this instinct, helping the puppy learn to hold it until taken outside.",
+                prepCrateBenefit2: "Safety: Protects the puppy from chewing hazardous items or getting into accidents when you cannot directly supervise.",
+                prepCrateBenefit3: "Personal Space: Becomes a safe and comfortable 'den' for the puppy, where it can rest and relax without disturbances.",
+                prepCrateBenefit4: "Travel and Visits: Facilitates safe transport and adjustment of the puppy to new environments, like friends' homes or hotels.",
+                prepCrateBenefit5: "Behavior Management: Helps in managing issues like separation anxiety (when trained correctly) or destructive chewing.",
+                prepCrateMisconceptionsTitle: "What the guardian should not think (and why it's misunderstood):",
+                prepCrateMisconception1: "It's not punishment: The crate should never be used as a means of punishment. If the puppy associates the crate with negative experiences, it will fear it and refuse to enter.",
+                prepCrateMisconception2: "It's not jail: The crate is not for 'locking up' the puppy for many hours. It must have sufficient time outside the crate for play, exercise, and potty breaks. The duration of stay should be appropriate for its age (e.g., an 8-week-old puppy can be crated for about 3-4 hours).",
+                prepCrateMisconception3: "It's not an answer to all problems: The crate is a training tool, not a magic solution for all behavior problems. It must be combined with consistent training, socialization, and exercise.",
+                prepCrateMisconception4: "It's not inhumane: For dogs, the crate can be a natural extension of their denning instinct. Many dogs love their crate and seek it out as a safe place.",
+                prepCrateConclusion: "Proper introduction and training with the crate are crucial. It must be a positive experience, with treats, toys, and a comfortable bed, so the puppy sees it as its own safe haven.",
+                
+                firstDaysTabTitle: "II. The First Days in the New Home",
+                firstDaysTabIntro: "The first few days are crucial for the puppy's adjustment. Establishing a routine and proper early socialization lay the foundation for a well-balanced adult dog. Here you will find tips to help your puppy feel safe and explore the world with confidence.",
+                firstDaysAccordionRoutineTitle: "Adjustment and Routine Establishment ✨",
+                firstDaysAccordionRoutineContent: "Give the puppy time to get used to its new home. Create a consistent routine for feeding, potty breaks, playtime, and 'quiet time'. Start 'Home Alone' training from day one, leaving the puppy alone for short periods to prevent separation anxiety. Do not return when it's crying to avoid reinforcing unwanted behavior.",
+                firstDaysAccordionSocialTitle: "Early Socialization: Its Importance",
+                firstDaysAccordionSocialContent: "Socialization (3-16 weeks) is crucial. Expose the puppy to various environments, sounds, smells, strangers, children, and other healthy, vaccinated dogs. Experiences should be positive. Before vaccinations are complete, socialization can be done safely by carrying the puppy in your arms/bag or inviting vaccinated friends (people/dogs) to your home. Mental stimulation with interactive toys is also important.",
+                
+                healthTitle: "III. Health and Veterinary Care",
+                healthIntro: "Your puppy's health is paramount. From the first visit to the vet to regular vaccinations and deworming, preventive care is key. Learn how to keep your puppy healthy and when to seek veterinary help.",
+                healthAccordionVetTitle: "The First Visit to the Vet",
+                healthAccordionVetContent: "Usually at 6-8 weeks. The vet will perform a physical examination (eyes, ears, nose, skin, heart, lungs, etc.) and will inform you about vaccinations, dental care, grooming, exercise, socialization, microchipping, neutering, travel, safety, and zoonoses.",
+                healthAccordionVaccTitle: "Vaccination Schedule",
+                healthAccordionVaccP1: "Vaccinations are vital for preventing contagious and sometimes fatal diseases. They stimulate the puppy's immune system to develop specific antibodies against viruses and bacteria.",
+                healthAccordionVaccP2: "Core vaccines include those for distemper, infectious hepatitis, parvovirus, and rabies. Other recommended vaccines are for infectious tracheobronchitis (kennel cough) and leptospirosis.",
+                healthVaccTableAge: "Age",
+                healthVaccTableVaccine: "Vaccine",
+                healthVaccRow1Age: "6-8 weeks",
+                healthVaccRow1Vaccine: "Distemper, Hepatitis, Parvovirus",
+                healthVaccRow2Age: "11-13 weeks",
+                healthVaccRow2Vaccine: "Distemper, Hepatitis, Parvovirus (booster) + Rabies, Leptospirosis",
+                healthVaccRow3Age: "15-17 weeks",
+                healthVaccRow3Vaccine: "Rabies, Leptospirosis (booster)",
+                healthVaccRow4Age: "15 months",
+                healthVaccRow4Vaccine: "Boosters for all of the above",
+                healthVaccRow5Age: "Annual",
+                healthVaccRow5Vaccine: "Distemper, Hepatitis, Parvovirus (boosters)",
+                healthAccordionVaccP3: "Mild lethargy or swelling at the injection site is normal and subsides.",
+                healthAccordionDewormTitle: "Deworming Schedule",
+                healthAccordionDewormP1: "Proper and complete deworming is essential both for the dog's health and for preventing the transmission of parasites to humans, as many of them are zoonotic. Guardians have the responsibility to protect their household and community from potential zoonoses, making parasite prevention a dual act of care.",
+                healthDewormInternalTitle: "Internal Parasites (Endoparasites):",
+                healthDewormInternalP1: "Common Types: Include roundworms (such as Toxocara canis, Toxascaris leonina), tapeworms (such as Dipylidium caninum, Echinococcus granulosus), hookworms (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), and lungworms/heartworms (Angiostrongylus vasorum).",
+                healthDewormInternalP2: "Schedule: Deworming for endoparasites starts from a very young age, always according to the veterinarian's instructions. Usually, it continues with a pill every three months for the animal's entire life. For pregnant bitches, deworming with fenbendazole is recommended around the 40th day of gestation to prevent transmission of parasites to the puppies.",
+                healthDewormInternalP3: "Forms: Antiparasitics for endoparasites are available in pill, paste, or oral suspension form.",
+                healthDewormExternalTitle: "External Parasites (Ectoparasites):",
+                healthDewormExternalP1: "Common Types: This category includes ticks, fleas, mites (which cause mange), and lice. These parasites are vectors of serious, sometimes fatal, diseases and can also be transmitted to humans.",
+                healthDewormExternalP2: "Schedule: Treatment options include spot-ons, collars, and pills.",
+                healthDewormExternalListItem1: "Spot-ons: Can be used from the age of eight months and older, applied to the animal's back.",
+                healthDewormExternalListItem2: "Pills: Provide quarterly or monthly protection.",
+                healthDewormExternalListItem3: "Collars: Can be worn from the age of 4 months and older, offering coverage for fleas, ticks, and sandflies.",
+                healthDewormExternalP3: "Combinations: Combinations of products (e.g., spot-on, collar, and citronella spray) are often used to achieve the optimal result in protecting the dog.",
+                healthAccordionProblemsTitle: "Common Health Problems & Symptoms",    
+                healthAccordionProblemsP1: "It is important for guardians to recognize common signs of illness for immediate veterinary intervention. Due to their vulnerability, puppies require constant monitoring for subtle changes in their health. Prompt recognition of symptoms and communication with the veterinarian are paramount, as rapid health deterioration can occur, making timely intervention life-saving.",    
+                healthProblemsGeneralSymptomsTitle: "General Symptoms of Illness:",    
+                healthProblemsGenSymptomEyes: "Eyes, Mouth, Nose: Coughing, sneezing, heavy panting, difficulty breathing, bad breath, excessive drooling, dry, cloudy, or red eyes.",    
+                healthProblemsGenSymptomBehavior: "Behavior: Decreased activity, less interest in play, more hours of sleep, or other behavioral changes.",    
+                healthProblemsGenSymptomSkin: "Skin Changes: Dryness, lesions, redness, hair loss, scaly skin, intense itching.",    
+                healthProblemsGenSymptomDigestion: "Food Consumption and Digestion: Decreased appetite, weight loss, stomach upsets, feces containing blood, mucus, worms, or undigested food, excessive water consumption, or excessive urination.",    
+                healthProblemsGenSymptomStiffness: "Joint Stiffness: Difficulty getting up or climbing stairs.",    
+                healthProblemsSpecificProblemsTitle: "Specific Problems:",    
+                healthProblemsSpecDiarrhea: "Diarrhea: It is quite common in puppies and can range from mild episodes that resolve quickly to severe gastric problems caused by serious illness or obstruction, with possible presence of blood or mucus and dehydration.",    
+                healthProblemsSpecVomiting: "Vomiting: It is a common problem with dozens of possible causes, such as infections, intestinal parasites, pancreatitis, kidney failure, heatstroke, foreign body in the stomach-intestine, and poisoning.",    
+                healthProblemsSpecHypoglycemia: "Hypoglycemia: Low blood glucose levels, more common in small breed puppies or in cases of improper feeding. Symptoms include anorexia, lethargy, trembling, behavioral changes, and seizures. If suspected, immediate application of honey to the gums or administration of sugar water is recommended, along with immediate contact with a veterinarian.",    
+                healthProblemsSpecCoccidiosis: "Coccidiosis: Caused by a parasite (coccidia) and is one of the most common causes of painful and often fatal diarrhea in young ages. Symptoms include severe diarrhea, lethargy, anorexia, and dehydration.",    
+                healthProblemsSpecGiardia: "Giardia (Giardiasis): A common intestinal parasite. Symptoms include soft, pale, foul-smelling stools, increased frequency of bowel movements, gas, abdominal discomfort, decreased appetite, and dehydration. It is transmitted through contaminated water or feces. Treatment includes fenbendazole and/or metronidazole, combined with strict hygiene.",    
+                healthProblemsSpecParvo: "Parvovirus: Highly contagious and dangerous, especially for puppies. Symptoms include loss of appetite, lethargy, persistent vomiting, and bloody diarrhea. Requires immediate veterinary care.",    
+                healthProblemsTableSystem: "System/Problem",    
+                healthProblemsTableSymptoms: "Common Symptoms",    
+                healthProblemsRow1Cat: "General Symptoms<br>Behavior",    
+                healthProblemsRow1Sym: "Lethargy, reduced activity, indifference, changes in sleep",    
+                healthProblemsRow2Cat: "Respiratory",    
+                healthProblemsRow2Sym: "Coughing, sneezing, panting, difficulty breathing",    
+                healthProblemsRow3Cat: "Skin/Coat",    
+                healthProblemsRow3Sym: "Dryness, redness, rashes, hair loss, intense itching",    
+                healthProblemsRow4Cat: "Digestive System<br>Diarrhea",    
+                healthProblemsRow4Sym: "Watery, with blood/mucus, increased frequency, dehydration",    
+                healthProblemsRow5Cat: "Vomiting",    
+                healthProblemsRow5Sym: "Persistent, with or without food/blood",    
+                healthProblemsRow6Cat: "Appetite/Weight",    
+                healthProblemsRow6Sym: "Decreased appetite, anorexia, weight loss",    
+                healthProblemsRow7Cat: "Specific Problems<br>Hypoglycemia",    
+                healthProblemsRow7Sym: "Trembling, weakness, seizures, behavioral changes, fainting",    
+                healthProblemsRow8Cat: "Parvovirus",    
+                healthProblemsRow8Sym: "Vomiting, bloody diarrhea, lethargy, fever, dehydration",    
+                healthProblemsRow9Cat: "Coccidiosis",    
+                healthProblemsRow9Sym: "Severe diarrhea, lethargy, anorexia, dehydration",    
+                healthProblemsRow10Cat: "Giardia",    
+                healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration",    
+                healthAccordionProblemsP2: "Mild lethargy or swelling at the injection site is normal and subsides.",
+                
+                nutritionTitle: "IV. Nutrition: The Foundation of Health and Development",
+                nutritionIntro: "Proper nutrition is fundamental for your puppy's development and well-being. This section covers choosing the right food, feeding schedules according to age, and foods that must be avoided for your little friend's safety.",
+                nutritionAccordionFood: "Choosing Appropriate Food and Feeding Schedule",
+                nutritionFoodSelectP1: "Choose high-quality, reputable puppy-specific food. For large breeds, foods specially formulated for their needs are recommended. Foods should be rich in nutrients like proteins (for muscle and tissue growth), fats (for energy and skin health), carbohydrates (for energy), vitamins, and minerals (like calcium, iron, zinc).",
+                nutritionFoodSelectP2: "A puppy's diet is not static but evolves rapidly with age and development. Providing the right balance of nutrients at each stage is crucial for optimal growth and preventing deficiencies or excesses that could affect long-term health.",
+                nutritionFoodSelectP3: "If the puppy is very young, the weaning process starts around 3-4 weeks and lasts up to 8 weeks. Initially, solid food can be mixed with water or puppy milk to soften it and make it more digestible.",
+                nutritionFeedingScheduleTitle: "Feeding Schedule:",
+                nutritionFeedList1: "8-12 weeks: 4 meals a day.",
+                nutritionFeedList2: "3-6 months: 3 meals a day.",
+                nutritionFeedList3: "6 months - 1 year: 2 meals a day.",
+                nutritionFeedList4: "After 1 year: Usually 1 meal a day is sufficient, although for larger breeds or dogs prone to bloating, 2 smaller meals are preferable.",
+                nutritionWaterBowls: "It is essential to always have clean, fresh water available. Food and water bowls should be washed frequently to maintain hygiene.",
+                nutritionAccordionDangerousFoodTitle: "Dangerous Foods to Avoid",
+                nutritionAccordionDangerousFoodContent: "Many human foods are toxic to dogs. Some of the most dangerous include: chocolate (especially dark), onions, garlic, grapes and raisins, avocado, alcohol, caffeine, xylitol (sweetener), cooked bones, and dairy products in large amounts. Always consult your veterinarian if you are unsure about a food.",
+
+                exerciseTitle: "V. Exercise and Mental Stimulation",
+                exerciseIntro: "Exercise and mental stimulation are vital for your puppy's healthy development and happiness. A puppy that gets enough exercise and mental engagement is less likely to develop behavioral problems.",
+                exerciseNeedsTitle: "Exercise Needs",
+                exerciseNeedsPuppies: "Puppies: Careful exercise to protect developing joints. Rule of thumb: 5 minutes of exercise per month of age, twice a day. E.g., a 3-month-old puppy needs about 15 minutes of exercise twice a day. Avoid running on hard surfaces and too much jumping.",
+                exerciseNeedsAdults: "Adult Dogs (Indicative):",
+                exerciseNeedsAdultHigh: "High-energy (e.g., Border Collie, Jack Russell): 1.5-2+ hours of vigorous exercise (running, playing).",
+                exerciseNeedsAdultMed: "Medium-energy (e.g., Labrador, Beagle): 1-1.5 hours of moderate exercise (brisk walking, playing).",
+                exerciseNeedsAdultLow: "Low-energy (e.g., Pug, Basset Hound): 30 minutes - 1 hour of mild exercise (walking).",
+                exerciseNeedsSeniors: "Senior Dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
+                exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
+                dogTypePuppy: "Puppy (<1 year)", dogTypeAdultLow: "Adult - Low Energy", dogTypeAdultMedium: "Adult - Medium Energy", dogTypeAdultHigh: "Adult - High Energy", dogTypeSenior: "Senior Dog",
+                exerciseDefaultReco: "Select to see suggestions.",
+                exercisePlayTitle: "Play and Activities for Physical and Mental Outlet ✨",
+                exercisePlayContent: "Mental stimulation is just as important as physical. Try: interactive toys (e.g., hidden treats), training games (learning new commands), nose work games (scent detection), and safe chew toys. Rotating toys keeps their interest alive.",
+
+                trainingTitle: "VI. Basic Training and Behavior Management",
+                trainingIntro: "As a dog trainer, I emphasize that training is the cornerstone of a harmonious coexistence. Start early with positive reinforcement (treats, praise). Basic commands like 'come', 'sit', 'stay', 'down' are fundamental. Toilet training requires patience and consistency. Preventing unwanted behaviors (chewing, barking) is easier than correcting them. Consider professional help if you face difficulties.",
+
+                firstAidSecTitle: "\"What to do if...\" / First Aid ✨",
+                firstAidSecDesc: "Describe a sudden situation or symptom that worries you (e.g., 'puppy ate chocolate', 'puppy is suddenly limping'). The following information is general and does not replace veterinary advice. In any emergency, contact your veterinarian IMMEDIATELY.",
+                firstAidWarningTitle: "Important Warning!",
+                firstAidWarningContent: "The following information is general advice and DOES NOT replace professional veterinary diagnosis and treatment. In any case where you are concerned about your puppy's health, contact your veterinarian or an emergency clinic IMMEDIATELY.",
+
+                storiesSecTitle: "Creating \"Socialization Stories\" / Positive Experiences ✨",
+                storiesSecDesc: "Enter a socialization scenario (e.g., 'first meeting with another dog', 'visit to a noisy place', 'meeting children') to get advice on how to handle it positively and safely. Proper socialization is key to a well-balanced dog.",
+                
+                longtermTitle: "VII. Long-term Guardian Responsibilities",
+                longtermIntro: "Caring for a dog is a lifelong commitment (10-15+ years). It includes ongoing veterinary care (annual check-ups, vaccinations), adjusting diet and exercise as they age, managing behavioral changes, and financial responsibility for food, healthcare, and unexpected expenses. Love, patience, and consistency are essential throughout their life.",
+
+                conclusionTitle: "Conclusion: The Reward of Responsible Care",
+                conclusionContent: "Adopting a puppy is a commitment that brings immense joy and companionship. With proper preparation, knowledge, and dedication, you will build a strong bond with your new friend, offering them a healthy, happy, and love-filled life. This guide is a starting point. Continue to learn, observe your puppy, and adapt your care to their needs. The reward will be a faithful companion for many years.",
+                
+                loadingText: "Loading...",
+            }
+        };
 
         function switchLanguage(lang) {
             localStorage.setItem('language', lang);
@@ -754,7 +849,10 @@ const translations = {
                 if (translations[lang] && translations[lang][key]) {
                     if (element.hasAttribute('data-i18n-target-placeholder')) {
                         element.placeholder = translations[lang][key];
-                    } else {
+                    } else if (element.hasAttribute('data-i18n-target-alt')) { // Handle alt attribute
+                        element.alt = translations[lang][key];
+                    }
+                     else {
                         element.innerHTML = translations[lang][key];
                     }
                 } else {
@@ -762,6 +860,7 @@ const translations = {
                 }
             });
             
+            // Re-initialize components that depend on language
             if (typeof initializeFeedingChart === 'function') initializeFeedingChart(lang);
             if (typeof initializeExerciseReco === 'function') initializeExerciseReco(lang);
         }
@@ -787,7 +886,7 @@ const translations = {
                             pane.classList.remove('active');
                         }
                     });
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on tab change
                 });
             });
         }
@@ -811,7 +910,7 @@ const translations = {
             });
         }
         
-        let feedingChart; 
+        let feedingChart; // Keep track of the chart instance
         function initializeFeedingChart(lang) {
             const feedingCtx = document.getElementById('feedingScheduleChart');
             if (!feedingCtx) return;
@@ -820,10 +919,10 @@ const translations = {
                 el: { chartYAxisTitle: "Αριθμός Γευμάτων", chartXAxisTitle: "Ηλικία Κουταβιού", chartLabelMealsPerDay: "Γεύματα ανά Ημέρα", Wks: "εβδ.", Mths: "μηνών", Year: "έτους"},
                 en: { chartYAxisTitle: "Number of Meals", chartXAxisTitle: "Puppy Age", chartLabelMealsPerDay: "Meals per Day", Wks: "wks", Mths: "mths", Year: "year"}
             };
-            const currentChartTexts = chartTextData[lang] || chartTextData.el;
+            const currentChartTexts = chartTextData[lang] || chartTextData.el; // Default to Greek if lang not found
 
             if (feedingChart) {
-                feedingChart.destroy(); 
+                feedingChart.destroy(); // Destroy previous chart instance before creating a new one
             }
             feedingChart = new Chart(feedingCtx, {
                 type: 'bar',
@@ -831,7 +930,7 @@ const translations = {
                     labels: ['8-12 ' + currentChartTexts.Wks, '3-6 ' + currentChartTexts.Mths, '6-12 ' + currentChartTexts.Mths, '>1 ' + currentChartTexts.Year],
                     datasets: [{
                         label: currentChartTexts.chartLabelMealsPerDay,
-                        data: [4, 3, 2, 1.5],
+                        data: [4, 3, 2, 1.5], // Using 1.5 to represent 1-2 meals, tooltip will clarify
                         backgroundColor: ['rgba(54, 162, 235, 0.6)','rgba(75, 192, 192, 0.6)','rgba(255, 206, 86, 0.6)','rgba(153, 102, 255, 0.6)'],
                         borderColor: ['rgba(54, 162, 235, 1)','rgba(75, 192, 192, 1)','rgba(255, 206, 86, 1)','rgba(153, 102, 255, 1)'],
                         borderWidth: 1
@@ -857,38 +956,41 @@ const translations = {
 
             const exerciseTextData = { 
                  el: { 
-                    exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
-                    dogTypePuppy: "Κουτάβι (<1 έτους)", dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", dogTypeSenior: "Ηλικιωμένος Σκύλος",
-                    exerciseRecoPuppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
-                    exerciseRecoAdultLow: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
-                    exerciseRecoAdultMedium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα. ",
-                    exerciseRecoAdultHigh: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα. ",
-                    exerciseRecoSenior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
-                    exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις."
-                },
-                en: {
-                    exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
-                    dogTypePuppy: "Puppy (<1 year)", dogTypeAdultLow: "Adult - Low Energy", dogTypeAdultMedium: "Adult - Medium Energy", dogTypeAdultHigh: "Adult - High Energy", dogTypeSenior: "Senior Dog",
-                    exerciseRecoPuppy: "For puppies: Short, frequent play sessions (5-10 minutes). Avoid excessive exercise, running on hard surfaces, and too much jumping to protect developing bones.",
-                    exerciseRecoAdultLow: "For low-energy adults (e.g., Pug, Basset Hound): 30 minutes to 1 hour of mild exercise/day.",
-                    exerciseRecoAdultMedium: "For medium-energy adults (e.g., Labrador, Beagle): 1 to 1.5 hours of exercise/day.",
-                    exerciseRecoAdultHigh: "For high-energy adults (e.g., Border Collie, Jack Russell): 1.5 to 2+ hours of vigorous exercise/day.",
-                    exerciseRecoSenior: "For senior dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
-                    exerciseDefaultReco: "Select to see suggestions."
-                }
+                     exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
+                     dogTypePuppy: "Κουτάβι (<1 έτους)", dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", dogTypeSenior: "Ηλικιωμένος Σκύλος",
+                     exerciseRecoPuppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
+                     exerciseRecoAdultLow: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
+                     exerciseRecoAdultMedium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα. ",
+                     exerciseRecoAdultHigh: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα. ",
+                     exerciseRecoSenior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
+                     exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις."
+                 },
+                 en: {
+                     exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
+                     dogTypePuppy: "Puppy (<1 year)", dogTypeAdultLow: "Adult - Low Energy", dogTypeAdultMedium: "Adult - Medium Energy", dogTypeAdultHigh: "Adult - High Energy", dogTypeSenior: "Senior Dog",
+                     exerciseRecoPuppy: "For puppies: Short, frequent play sessions (5-10 minutes). Avoid excessive exercise, running on hard surfaces, and too much jumping to protect developing bones.",
+                     exerciseRecoAdultLow: "For low-energy adults (e.g., Pug, Basset Hound): 30 minutes to 1 hour of mild exercise/day.",
+                     exerciseRecoAdultMedium: "For medium-energy adults (e.g., Labrador, Beagle): 1 to 1.5 hours of exercise/day.",
+                     exerciseRecoAdultHigh: "For high-energy adults (e.g., Border Collie, Jack Russell): 1.5 to 2+ hours of vigorous exercise/day.",
+                     exerciseRecoSenior: "For senior dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
+                     exerciseDefaultReco: "Select to see suggestions."
+                 }
             };
             const currentExerciseTexts = exerciseTextData[lang] || exerciseTextData.el;
 
+            // Update the label for the selector
             const selectorLabel = document.querySelector('label[for="dog-type-selector"]');
             if (selectorLabel) selectorLabel.textContent = currentExerciseTexts.exerciseDogTypeLabel;
             
-            if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) {
+            // Update options text
+            if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) { // Check if options exist
                 dogTypeSelector.options[0].textContent = currentExerciseTexts.dogTypePuppy;
                 dogTypeSelector.options[1].textContent = currentExerciseTexts.dogTypeAdultLow;
                 dogTypeSelector.options[2].textContent = currentExerciseTexts.dogTypeAdultMedium;
                 dogTypeSelector.options[3].textContent = currentExerciseTexts.dogTypeAdultHigh;
                 dogTypeSelector.options[4].textContent = currentExerciseTexts.dogTypeSenior;
             }
+
 
             const recommendations = {
                 puppy: currentExerciseTexts.exerciseRecoPuppy,
@@ -898,17 +1000,20 @@ const translations = {
                 senior: currentExerciseTexts.exerciseRecoSenior
             };
 
+            // Function to update recommendation text
             function updateRecommendation() {
                 const selectedType = dogTypeSelector.value;
                 exerciseRecommendationDiv.textContent = recommendations[selectedType] || currentExerciseTexts.exerciseDefaultReco;
             }
             
+            // Remove old listener before adding new one to prevent multiple listeners
             dogTypeSelector.removeEventListener('change', updateRecommendation); 
             dogTypeSelector.addEventListener('change', updateRecommendation);
-            updateRecommendation(); 
+            updateRecommendation(); // Initial call to set text based on current selection and language
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Assign to globally declared variables
             langElButton = document.getElementById('lang-el'); 
             langEnButton = document.getElementById('lang-en');   
 
@@ -917,14 +1022,25 @@ const translations = {
                 langEnButton.addEventListener('click', () => switchLanguage('en'));
             }
 
-            const currentLang = localStorage.getItem('language') || 'el';
-            switchLanguage(currentLang); 
+            const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
+            switchLanguage(currentLang); // Apply initial language
 
             initializeTabs();
             initializeAccordions();
-            initializeFeedingChart(currentLang);
-            initializeExerciseReco(currentLang); 
+            // initializeFeedingChart and initializeExerciseReco are called within switchLanguage
+            // so they will be initialized with the currentLang.
             
+            // Ensure the first tab's content is visible if it's the active one
+            const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
+            if (activeTabButton) {
+                const activeTabPaneId = activeTabButton.dataset.tab;
+                const activeTabPane = document.getElementById(activeTabPaneId);
+                if (activeTabPane) {
+                    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+                    activeTabPane.classList.remove('hidden');
+                    activeTabPane.classList.add('active');
+                }
+            }
         });
 
         /*
