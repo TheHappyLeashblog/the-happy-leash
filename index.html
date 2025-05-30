@@ -132,11 +132,17 @@
         }
 
         /* Language specific classes */
-        .lang-en { display: none; } /* Default hide English content */
-        .lang-el { display: block; } /* Default show Greek content */
-        body[lang="en"] .lang-en { display: block; } /* When body lang is English, show English */
-        body[lang="en"] .lang-el { display: none; } /* When body lang is English, hide Greek */
-    </style>
+       <style>
+    /* ... Όλα τα αρχικά σου CSS στυλ (body, .tab-button, .content-section, h1, h2, κλπ.) ... */
+
+    /* Language specific classes */
+    .lang-en { display: none; }
+    .lang-el { display: block; }
+    body[lang="en"] .lang-en { display: block; }
+    body[lang="en"] .lang-el { display: none; }
+      
+</style>
+  
 </head>
 <body class="text-gray-800" lang="el">
 
