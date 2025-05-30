@@ -356,44 +356,88 @@
                     </div>
                 </div>
             </div> <div id="tab-nutrition" class="tab-pane hidden content-section">
-                 <h2 data-i18n-key="nutritionTitle">IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης</h2>
-                 <p class="mb-4 text-justify" data-i18n-key="nutritionIntro">Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη...</p>
-                 </div>
-
-            <div id="tab-exercise" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="nutritionTitle">IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης</h2>
+                <p class="mb-4 text-justify" data-i18n-key="nutritionIntro">Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.</p>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionFood">Επιλογή Κατάλληλης Τροφής και Πρόγραμμα Σίτισης</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="nutritionFoodSelectP1">Επιλέξτε υψηλής ποιότητας, επώνυμη τροφή ειδικά σχεδιασμένη για κουτάβια. Για μεγαλόσωμες φυλές, συνιστάται η επιλογή τροφών ειδικά διαμορφωμένων για τις ανάγκες τους. Οι τροφές πρέπει να είναι πλούσιες σε θρεπτικά συστατικά, όπως πρωτεΐνες (για την ανάπτυξη μυών και ιστών), λίπη (για ενέργεια και υγεία του δέρματος), υδατάνθρακες (για ενέργεια), βιταμίνες και μέταλλα (όπως ασβέστιο, σίδηρος, ψευδάργυρος).</p>
+                        <p class="mt-2" data-i18n-key="nutritionFoodSelectP2">Η διατροφή του κουταβιού δεν είναι στατική, αλλά εξελίσσεται ραγδαία με την ηλικία και την ανάπτυξη. Η παροχή της σωστής ισορροπίας θρεπτικών συστατικών σε κάθε στάδιο είναι κρίσιμη για τη βέλτιστη ανάπτυξη και την πρόληψη ελλείψεων ή υπερβολών που θα μπορούσαν να επηρεάσουν τη μακροπρόθεσμη υγεία.</p>
+                        <p class="mt-2" data-i18n-key="nutritionFoodSelectP3">Εάν το κουτάβι είναι πολύ μικρό, η διαδικασία του απογαλακτισμού ξεκινά γύρω στις 3-4 εβδομάδες και διαρκεί έως τις 8 εβδομάδες. Αρχικά, η στερεά τροφή μπορεί να ανακατευτεί με νερό ή γάλα για κουτάβια για να μαλακώσει και να γίνει πιο εύπεπτη.</p>
+                        <h4 class="font-semibold mt-3 mb-2" data-i18n-key="nutritionFeedingScheduleTitle">Πρόγραμμα Σίτισης:</h4>
+                        <div class="chart-container my-4">
+                            <canvas id="feedingScheduleChart"></canvas>
+                        </div>
+                        <ul class="list-disc list-inside">
+                            <li data-i18n-key="nutritionFeedList1">8-12 εβδομάδων: 4 γεύματα την ημέρα.</li>
+                            <li data-i18n-key="nutritionFeedList2">3-6 μηνών: 3 γεύματα την ημέρα.</li>
+                            <li data-i18n-key="nutritionFeedList3">6 μηνών - 1 έτους: 2 γεύματα την ημέρα.</li>
+                            <li data-i18n-key="nutritionFeedList4">Μετά τον 1ο χρόνο: Συνήθως 1 γεύμα την ημέρα είναι επαρκές, αν και για μεγαλύτερες φυλές ή σκύλους επιρρεπείς σε φούσκωμα, 2 μικρότερα γεύματα είναι προτιμότερα.</li>
+                        </ul>
+                        <p class="mt-2" data-i18n-key="nutritionWaterBowls">Είναι απαραίτητο να υπάρχει πάντα διαθέσιμο καθαρό, φρέσκο νερό. Τα μπολ φαγητού και νερού πρέπει να πλένονται συχνά για τη διατήρηση της υγιεινής.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Επικίνδυνες Τροφές προς Αποφυγή</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους...</p>
+                        </div>
+                </div>
+                </div> <div id="tab-exercise" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="exerciseTitle">V. Άσκηση και Ψυχική διέγερση</h2>
                 <p class="mb-4 text-justify" data-i18n-key="exerciseIntro">Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας...</p>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="exerciseNeedsTitle">Ανάγκες Άσκησης</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="exerciseNeedsPuppies">Κουτάβια: Προσεκτική άσκηση...</p>
+                        <p class="mt-2" data-i18n-key="exerciseNeedsAdults">Ενήλικοι Σκύλοι (Ενδεικτικά):</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li data-i18n-key="exerciseNeedsAdultHigh">Υψηλής ενέργειας (π.χ. Border Collie): 1.5-2 ώρες...</li>
+                            <li data-i18n-key="exerciseNeedsAdultMed">Μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1-1.5 ώρες...</li>
+                            <li data-i18n-key="exerciseNeedsAdultLow">Χαμηλής ενέργειας (π.χ. Pug): 30 λεπτά - 1 ώρα...</li>
+                        </ul>
+                        <p class="mt-2" data-i18n-key="exerciseNeedsSeniors">Ηλικιωμένοι Σκύλοι: Η ανάγκη για άσκηση μειώνεται...</p>
+                        <div class="mt-4">
+                            <label for="dog-type-selector" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="exerciseDogTypeLabel">Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:</label>
+                            <select id="dog-type-selector" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="puppy" data-i18n-key="dogTypePuppy">Κουτάβι (&lt;1 έτους)</option>
+                                <option value="adult_low" data-i18n-key="dogTypeAdultLow">Ενήλικος - Χαμηλή Ενέργεια</option>
+                                <option value="adult_medium" data-i18n-key="dogTypeAdultMedium">Ενήλικος - Μεσαία Ενέργεια</option>
+                                <option value="adult_high" data-i18n-key="dogTypeAdultHigh">Ενήλικος - Υψηλή Ενέργεια</option>
+                                <option value="senior" data-i18n-key="dogTypeSenior">Ηλικιωμένος Σκύλος</option>
+                            </select>
+                            <div id="exercise-recommendation" class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm text-blue-700" data-i18n-key="exerciseDefaultReco">
+                                Επιλέξτε για να δείτε προτάσεις.
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-            <div id="tab-training" class="tab-pane hidden content-section">
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                       <p>Η ψυχική διέγερση είναι εξίσου σημαντική...</p>
+                       </div>
+                </div>
+                </div> <div id="tab-training" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="trainingTitle">VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς</h2>
                 <p class="mb-4 text-justify" data-i18n-key="trainingIntro">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος...</p>
-                 </div>
-
-            <div id="tab-first-aid" class="tab-pane hidden content-section">
+                 </div> <div id="tab-first-aid" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="firstAidSecTitle">"Τι να κάνω αν..." / Πρώτες Βοήθειες ✨</h2>
                 <p class="mb-4 text-justify" data-i18n-key="firstAidSecDesc">Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί...</p>
                 <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
                     <p class="font-bold" data-i18n-key="firstAidWarningTitle">Σημαντική Προειδοποίηση!</p>
                     <p data-i18n-key="firstAidWarningContent">Οι παρακάτω πληροφορίες είναι γενικές συμβουλές...</p>
                 </div>
-                 </div>
-
-            <div id="tab-stories" class="tab-pane hidden content-section">
+                 </div> <div id="tab-stories" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="storiesSecTitle">Δημιουργία "Ιστοριών Κοινωνικοποίησης" / Θετικών Εμπειριών ✨</h2>
                 <p class="mb-4 text-justify" data-i18n-key="storiesSecDesc">Εισάγετε ένα σενάριο κοινωνικοποίησης...</p>
-                </div>
-
-            <div id="tab-longterm" class="tab-pane hidden content-section">
+                 </div> <div id="tab-longterm" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="longtermTitle">VII. Μακροπρόθεσμες Ευθύνες του Κηδεμόνα</h2>
                 <p class="mb-4 text-justify" data-i18n-key="longtermIntro">Η φροντίδα ενός σκύλου είναι μια δέσμευση...</p>
-                </div>
-            
-            <div id="tab-conclusion" class="tab-pane hidden content-section">
+                </div> <div id="tab-conclusion" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="conclusionTitle">Συμπέρασμα: Η Ανταμοιβή μιας Υπεύθυνης Φροντίδας</h2>
                 <p class="text-justify" data-i18n-key="conclusionContent">Η υιοθεσία ενός κουταβιού είναι μια δέσμευση...</p>
-            </div>
-        </div> </div> <script>
+            </div> </div> </div> <script>
         // --- I18N (Internationalization) ---
         let langElButton, langEnButton; 
 
@@ -484,45 +528,45 @@
                 healthDewormExternalListItem2: "Χάπια: Παρέχουν τριμηνιαία ή μηνιαία προστασία.",
                 healthDewormExternalListItem3: "Κολάρα: Μπορούν να φορεθούν από την ηλικία των 4 μηνών και άνω, προσφέροντας κάλυψη για ψύλλους, τσιμπούρια και σκνίπα.",
                 healthDewormExternalP3: "Συνδυασμοί: Συχνά χρησιμοποιούνται συνδυασμοί προϊόντων (π.χ., αμπούλα, κολάρο και σπρέι σιτρονέλας) για την επίτευξη του βέλτιστου αποτελέσματος στην προστασία του σκύλου.",
-                healthAccordionProblemsTitle: "Συχνά Προβλήματα Υγείας & Συμπτώματα", // ΝΕΟ
-                healthAccordionProblemsP1: "Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.", // ΝΕΟ
-                healthProblemsGeneralSymptomsTitle: "Γενικά Συμπτώματα Ασθένειας:", // ΝΕΟ
-                healthProblemsGenSymptomEyes: "Μάτια, Στόμα, Μύτη: Βήχας, φτέρνισμα, έντονο λαχάνιασμα, δυσκολία στην αναπνοή, άσχημη αναπνοή, πολλά σάλια, ξηρά, θολά ή κόκκινα μάτια.", // ΝΕΟ
-                healthProblemsGenSymptomBehavior: "Συμπεριφορά: Μειωμένη δραστηριότητα, μικρότερο ενδιαφέρον για παιχνίδι, περισσότερες ώρες ύπνου, ή άλλες αλλαγές στη συμπεριφορά.", // ΝΕΟ
-                healthProblemsGenSymptomSkin: "Δερματικές Αλλαγές: Ξηρότητα, αλλοιώσεις, ερυθρότητα, απώλεια τριχών, φλοιώδες δέρμα, έντονος κνησμός.", // ΝΕΟ
-                healthProblemsGenSymptomDigestion: "Κατανάλωση Τροφής και Πέψη: Μειωμένη όρεξη, απώλεια βάρους, στομαχικές διαταραχές, περιττώματα που περιέχουν αίμα, βλέννα, σκουλήκια ή αχώνευτες τροφές, υπερβολική κατανάλωση νερού ή υπερβολική ούρηση.", // ΝΕΟ
-                healthProblemsGenSymptomStiffness: "Δυσκαμψία Αρθρώσεων: Δυσκολία στο σήκωμα ή στην ανάβαση σκαλοπατιών.", // ΝΕΟ
-                healthProblemsSpecificProblemsTitle: "Ειδικά Προβλήματα:", // ΝΕΟ
-                healthProblemsSpecDiarrhea: "Διάρροια: Είναι αρκετά συνηθισμένη στα κουτάβια και μπορεί να κυμαίνεται από ήπια επεισόδια που υποχωρούν γρήγορα έως σοβαρά γαστρικά προβλήματα που προκαλούνται από σοβαρή ασθένεια ή απόφραξη, με πιθανή παρουσία αίματος ή βλέννας και αφυδάτωση.", // ΝΕΟ
-                healthProblemsSpecVomiting: "Εμετός: Αποτελεί ένα κοινό πρόβλημα με δεκάδες πιθανές αιτίες, όπως λοιμώξεις, εντερικά παράσιτα, παγκρεατίτιδα, νεφρική ανεπάρκεια, θερμοπληξία, ξένο σώμα στο στομάχι-έντερο και δηλητηρίαση.", // ΝΕΟ
-                healthProblemsSpecHypoglycemia: "Υπογλυκαιμία: Χαμηλά επίπεδα γλυκόζης στο αίμα, συχνότερα σε μικρόσωμα κουτάβια ή σε περίπτωση ακατάλληλης σίτισης. Συμπτώματα περιλαμβάνουν ανορεξία, λήθαργο, τρόμο (τρέμουλο), αλλαγές συμπεριφοράς και σπασμούς. Σε περίπτωση υποψίας, συνιστάται η άμεση επάλειψη με μέλι στα ούλα ή η χορήγηση νερού με ζάχαρη, και άμεση επικοινωνία με κτηνίατρο.", // ΝΕΟ
-                healthProblemsSpecCoccidiosis: "Κοκκιδίωση: Προκαλείται από ένα παράσιτο (κοκκίδια) και είναι μια από τις πιο συχνές αιτίες επώδυνης και συχνά θανατηφόρου διάρροιας σε νεαρές ηλικίες. Τα συμπτώματα περιλαμβάνουν σοβαρή διάρροια, ληθαργικότητα, ανορεξία και αφυδάτωση.", // ΝΕΟ
-                healthProblemsSpecGiardia: "Giardia (Λαμβλίαση): Ένα κοινό εντερικό παράσιτο. Τα συμπτώματα περιλαμβάνουν μαλακά, χλωμά, δύσοσμα κόπρανα, αυξημένη συχνότητα κενώσεων, αέρια, κοιλιακή δυσφορία, μειωμένη όρεξη και αφυδάτωση. Μεταδίδεται μέσω μολυσμένου νερού ή κοπράνων. Η θεραπεία περιλαμβάνει φαινβενδαζόλη και/ή μετρονιδαζόλη, σε συνδυασμό με αυστηρή υγιεινή.", // ΝΕΟ
-                healthProblemsSpecParvo: "Παρβοϊός: Εξαιρετικά μεταδοτικός και επικίνδυνος, ειδικά για κουτάβια. Τα συμπτώματα περιλαμβάνουν απώλεια όρεξης, λήθαργο, επίμονο εμετό και αιμορραγική διάρροια. Απαιτεί άμεση κτηνιατρική φροντίδα.", // ΝΕΟ
-                healthProblemsTableSystem: "Σύστημα/Πρόβλημα", // ΝΕΟ
-                healthProblemsTableSymptoms: "Κοινά Συμπτώματα", // ΝΕΟ
-                healthProblemsRow1Cat: "Γενικά Συμπτώματα<br>Συμπεριφορά", // ΝΕΟ
-                healthProblemsRow1Sym: "Λήθαργος, μειωμένη δραστηριότητα, αδιαφορία, αλλαγές στον ύπνο", // ΝΕΟ
-                healthProblemsRow2Cat: "Αναπνευστικό", // ΝΕΟ
-                healthProblemsRow2Sym: "Βήχας, φτέρνισμα, λαχάνιασμα, δυσκολία στην αναπνοή", // ΝΕΟ
-                healthProblemsRow3Cat: "Δέρμα/Τρίχωμα", // ΝΕΟ
-                healthProblemsRow3Sym: "Ξηρότητα, ερυθρότητα, εξανθήματα, τριχόπτωση, έντονος κνησμός", // ΝΕΟ
-                healthProblemsRow4Cat: "Πεπτικό Σύστημα<br>Διάρροια", // ΝΕΟ
-                healthProblemsRow4Sym: "Υδαρή, με αίμα/βλέννα, αυξημένη συχνότητα, αφυδάτωση", // ΝΕΟ
-                healthProblemsRow5Cat: "Εμετός", // ΝΕΟ
-                healthProblemsRow5Sym: "Επίμονος, με ή χωρίς τροφή/αίμα", // ΝΕΟ
-                healthProblemsRow6Cat: "Όρεξη/Βάρος", // ΝΕΟ
-                healthProblemsRow6Sym: "Μειωμένη όρεξη, ανορεξία, απώλεια βάρους", // ΝΕΟ
-                healthProblemsRow7Cat: "Ειδικά Προβλήματα<br>Υπογλυκαιμία", // ΝΕΟ
-                healthProblemsRow7Sym: "Τρέμουλο, αδυναμία, σπασμοί, αλλαγές συμπεριφοράς, λιποθυμία", // ΝΕΟ
-                healthProblemsRow8Cat: "Παρβοϊός", // ΝΕΟ
-                healthProblemsRow8Sym: "Εμετός, αιμομορραγική διάρροια, λήθαργος, πυρετός, αφυδάτωση", // ΝΕΟ
-                healthProblemsRow9Cat: "Κοκκιδίωση", // ΝΕΟ
-                healthProblemsRow9Sym: "Σοβαρή διάρροια, λήθαργος, ανορεξία, αφυδάτωση", // ΝΕΟ
-                healthProblemsRow10Cat: "Giardia", // ΝΕΟ
-                healthProblemsRow10Sym: "Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση", // ΝΕΟ
-                healthAccordionProblemsP2: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.", // ΝΕΟ
-                loadingText: "Φορτώνει...",
+                healthAccordionProblemsTitle: "Συχνά Προβλήματα Υγείας & Συμπτώματα",
+                healthAccordionProblemsP1: "Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.",
+                healthProblemsGeneralSymptomsTitle: "Γενικά Συμπτώματα Ασθένειας:",
+                healthProblemsGenSymptomEyes: "Μάτια, Στόμα, Μύτη: Βήχας, φτέρνισμα, έντονο λαχάνιασμα, δυσκολία στην αναπνοή, άσχημη αναπνοή, πολλά σάλια, ξηρά, θολά ή κόκκινα μάτια.",
+                healthProblemsGenSymptomBehavior: "Συμπεριφορά: Μειωμένη δραστηριότητα, μικρότερο ενδιαφέρον για παιχνίδι, περισσότερες ώρες ύπνου, ή άλλες αλλαγές στη συμπεριφορά.",
+                healthProblemsGenSymptomSkin: "Δερματικές Αλλαγές: Ξηρότητα, αλλοιώσεις, ερυθρότητα, απώλεια τριχών, φλοιώδες δέρμα, έντονος κνησμός.",
+                healthProblemsGenSymptomDigestion: "Κατανάλωση Τροφής και Πέψη: Μειωμένη όρεξη, απώλεια βάρους, στομαχικές διαταραχές, περιττώματα που περιέχουν αίμα, βλέννα, σκουλήκια ή αχώνευτες τροφές, υπερβολική κατανάλωση νερού ή υπερβολική ούρηση.",
+                healthProblemsGenSymptomStiffness: "Δυσκαμψία Αρθρώσεων: Δυσκολία στο σήκωμα ή στην ανάβαση σκαλοπατιών.",
+                healthProblemsSpecificProblemsTitle: "Ειδικά Προβλήματα:",
+                healthProblemsSpecDiarrhea: "Διάρροια: Είναι αρκετά συνηθισμένη στα κουτάβια και μπορεί να κυμαίνεται από ήπια επεισόδια που υποχωρούν γρήγορα έως σοβαρά γαστρικά προβλήματα που προκαλούνται από σοβαρή ασθένεια ή απόφραξη, με πιθανή παρουσία αίματος ή βλέννας και αφυδάτωση.",
+                healthProblemsSpecVomiting: "Εμετός: Αποτελεί ένα κοινό πρόβλημα με δεκάδες πιθανές αιτίες, όπως λοιμώξεις, εντερικά παράσιτα, παγκρεατίτιδα, νεφρική ανεπάρκεια, θερμοπληξία, ξένο σώμα στο στομάχι-έντερο και δηλητηρίαση.",
+                healthProblemsSpecHypoglycemia: "Υπογλυκαιμία: Χαμηλά επίπεδα γλυκόζης στο αίμα, συχνότερα σε μικρόσωμα κουτάβια ή σε περίπτωση ακατάλληλης σίτισης. Συμπτώματα περιλαμβάνουν ανορεξία, λήθαργο, τρόμο (τρέμουλο), αλλαγές συμπεριφοράς και σπασμούς. Σε περίπτωση υποψίας, συνιστάται η άμεση επάλειψη με μέλι στα ούλα ή η χορήγηση νερού με ζάχαρη, και άμεση επικοινωνία με κτηνίατρο.",
+                healthProblemsSpecCoccidiosis: "Κοκκιδίωση: Προκαλείται από ένα παράσιτο (κοκκίδια) και είναι μια από τις πιο συχνές αιτίες επώδυνης και συχνά θανατηφόρου διάρροιας σε νεαρές ηλικίες. Τα συμπτώματα περιλαμβάνουν σοβαρή διάρροια, ληθαργικότητα, ανορεξία και αφυδάτωση.",
+                healthProblemsSpecGiardia: "Giardia (Λαμβλίαση): Ένα κοινό εντερικό παράσιτο. Τα συμπτώματα περιλαμβάνουν μαλακά, χλωμά, δύσοσμα κόπρανα, αυξημένη συχνότητα κενώσεων, αέρια, κοιλιακή δυσφορία, μειωμένη όρεξη και αφυδάτωση. Μεταδίδεται μέσω μολυσμένου νερού ή κοπράνων. Η θεραπεία περιλαμβάνει φαινβενδαζόλη και/ή μετρονιδαζόλη, σε συνδυασμό με αυστηρή υγιεινή.",
+                healthProblemsSpecParvo: "Παρβοϊός: Εξαιρετικά μεταδοτικός και επικίνδυνος, ειδικά για κουτάβια. Τα συμπτώματα περιλαμβάνουν απώλεια όρεξης, λήθαργο, επίμονο εμετό και αιμορραγική διάρροια. Απαιτεί άμεση κτηνιατρική φροντίδα.",
+                healthProblemsTableSystem: "Σύστημα/Πρόβλημα",
+                healthProblemsTableSymptoms: "Κοινά Συμπτώματα",
+                healthProblemsRow1Cat: "Γενικά Συμπτώματα<br>Συμπεριφορά",
+                healthProblemsRow1Sym: "Λήθαργος, μειωμένη δραστηριότητα, αδιαφορία, αλλαγές στον ύπνο",
+                healthProblemsRow2Cat: "Αναπνευστικό",
+                healthProblemsRow2Sym: "Βήχας, φτέρνισμα, λαχάνιασμα, δυσκολία στην αναπνοή",
+                healthProblemsRow3Cat: "Δέρμα/Τρίχωμα",
+                healthProblemsRow3Sym: "Ξηρότητα, ερυθρότητα, εξανθήματα, τριχόπτωση, έντονος κνησμός",
+                healthProblemsRow4Cat: "Πεπτικό Σύστημα<br>Διάρροια",
+                healthProblemsRow4Sym: "Υδαρή, με αίμα/βλέννα, αυξημένη συχνότητα, αφυδάτωση",
+                healthProblemsRow5Cat: "Εμετός",
+                healthProblemsRow5Sym: "Επίμονος, με ή χωρίς τροφή/αίμα",
+                healthProblemsRow6Cat: "Όρεξη/Βάρος",
+                healthProblemsRow6Sym: "Μειωμένη όρεξη, ανορεξία, απώλεια βάρους",
+                healthProblemsRow7Cat: "Ειδικά Προβλήματα<br>Υπογλυκαιμία",
+                healthProblemsRow7Sym: "Τρέμουλο, αδυναμία, σπασμοί, αλλαγές συμπεριφοράς, λιποθυμία",
+                healthProblemsRow8Cat: "Παρβοϊός",
+                healthProblemsRow8Sym: "Εμετός, αιμομορραγική διάρροια, λήθαργος, πυρετός, αφυδάτωση",
+                healthProblemsRow9Cat: "Κοκκιδίωση",
+                healthProblemsRow9Sym: "Σοβαρή διάρροια, λήθαργος, ανορεξία, αφυδάτωση",
+                healthProblemsRow10Cat: "Giardia",
+                healthProblemsRow10Sym: "Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση",
+                healthAccordionProblemsP2: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.",
+                loadingText: "Φορτώνει...", // Generic loading text
             },
             en: {
                 mainTitle: "🐾 Puppy Care Guide 🐾",
@@ -610,44 +654,44 @@
                 healthDewormExternalListItem2: "Pills: Provide quarterly or monthly protection.",
                 healthDewormExternalListItem3: "Collars: Can be worn from the age of 4 months and older, offering coverage for fleas, ticks, and sandflies.",
                 healthDewormExternalP3: "Combinations: Combinations of products (e.g., spot-on, collar, and citronella spray) are often used to achieve the optimal result in protecting the dog.",
-                healthAccordionProblemsTitle: "Common Health Problems & Symptoms", // NEW
-                healthAccordionProblemsP1: "It is important for guardians to recognize common signs of illness for immediate veterinary intervention. Due to their vulnerability, puppies require constant monitoring for subtle changes in their health. Prompt recognition of symptoms and communication with the veterinarian are paramount, as rapid health deterioration can occur, making timely intervention life-saving.", // NEW
-                healthProblemsGeneralSymptomsTitle: "General Symptoms of Illness:", // NEW
-                healthProblemsGenSymptomEyes: "Eyes, Mouth, Nose: Coughing, sneezing, heavy panting, difficulty breathing, bad breath, excessive drooling, dry, cloudy, or red eyes.", // NEW
-                healthProblemsGenSymptomBehavior: "Behavior: Decreased activity, less interest in play, more hours of sleep, or other behavioral changes.", // NEW
-                healthProblemsGenSymptomSkin: "Skin Changes: Dryness, lesions, redness, hair loss, scaly skin, intense itching.", // NEW
-                healthProblemsGenSymptomDigestion: "Food Consumption and Digestion: Decreased appetite, weight loss, stomach upsets, feces containing blood, mucus, worms, or undigested food, excessive water consumption, or excessive urination.", // NEW
-                healthProblemsGenSymptomStiffness: "Joint Stiffness: Difficulty getting up or climbing stairs.", // NEW
-                healthProblemsSpecificProblemsTitle: "Specific Problems:", // NEW
-                healthProblemsSpecDiarrhea: "Diarrhea: It is quite common in puppies and can range from mild episodes that resolve quickly to severe gastric problems caused by serious illness or obstruction, with possible presence of blood or mucus and dehydration.", // NEW
-                healthProblemsSpecVomiting: "Vomiting: It is a common problem with dozens of possible causes, such as infections, intestinal parasites, pancreatitis, kidney failure, heatstroke, foreign body in the stomach-intestine, and poisoning.", // NEW
-                healthProblemsSpecHypoglycemia: "Hypoglycemia: Low blood glucose levels, more common in small breed puppies or in cases of improper feeding. Symptoms include anorexia, lethargy, trembling, behavioral changes, and seizures. If suspected, immediate application of honey to the gums or administration of sugar water is recommended, along with immediate contact with a veterinarian.", // NEW
-                healthProblemsSpecCoccidiosis: "Coccidiosis: Caused by a parasite (coccidia) and is one of the most common causes of painful and often fatal diarrhea in young ages. Symptoms include severe diarrhea, lethargy, anorexia, and dehydration.", // NEW
-                healthProblemsSpecGiardia: "Giardia (Giardiasis): A common intestinal parasite. Symptoms include soft, pale, foul-smelling stools, increased frequency of bowel movements, gas, abdominal discomfort, decreased appetite, and dehydration. It is transmitted through contaminated water or feces. Treatment includes fenbendazole and/or metronidazole, combined with strict hygiene.", // NEW
-                healthProblemsSpecParvo: "Parvovirus: Highly contagious and dangerous, especially for puppies. Symptoms include loss of appetite, lethargy, persistent vomiting, and bloody diarrhea. Requires immediate veterinary care.", // NEW
-                healthProblemsTableSystem: "System/Problem", // NEW
-                healthProblemsTableSymptoms: "Common Symptoms", // NEW
-                healthProblemsRow1Cat: "General Symptoms<br>Behavior", // NEW
-                healthProblemsRow1Sym: "Lethargy, reduced activity, indifference, changes in sleep", // NEW
-                healthProblemsRow2Cat: "Respiratory", // NEW
-                healthProblemsRow2Sym: "Coughing, sneezing, panting, difficulty breathing", // NEW
-                healthProblemsRow3Cat: "Skin/Coat", // NEW
-                healthProblemsRow3Sym: "Dryness, redness, rashes, hair loss, intense itching", // NEW
-                healthProblemsRow4Cat: "Digestive System<br>Diarrhea", // NEW
-                healthProblemsRow4Sym: "Watery, with blood/mucus, increased frequency, dehydration", // NEW
-                healthProblemsRow5Cat: "Vomiting", // NEW
-                healthProblemsRow5Sym: "Persistent, with or without food/blood", // NEW
-                healthProblemsRow6Cat: "Appetite/Weight", // NEW
-                healthProblemsRow6Sym: "Decreased appetite, anorexia, weight loss", // NEW
-                healthProblemsRow7Cat: "Specific Problems<br>Hypoglycemia", // NEW
-                healthProblemsRow7Sym: "Trembling, weakness, seizures, behavioral changes, fainting", // NEW
-                healthProblemsRow8Cat: "Parvovirus", // NEW
-                healthProblemsRow8Sym: "Vomiting, bloody diarrhea, lethargy, fever, dehydration", // NEW
-                healthProblemsRow9Cat: "Coccidiosis", // NEW
-                healthProblemsRow9Sym: "Severe diarrhea, lethargy, anorexia, dehydration", // NEW
-                healthProblemsRow10Cat: "Giardia", // NEW
-                healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration", // NEW
-                healthAccordionProblemsP2: "Mild lethargy or swelling at the injection site is normal and subsides.", // NEW
+                healthAccordionProblemsTitle: "Common Health Problems & Symptoms", 
+                healthAccordionProblemsP1: "It is important for guardians to recognize common signs of illness for immediate veterinary intervention. Due to their vulnerability, puppies require constant monitoring for subtle changes in their health. Prompt recognition of symptoms and communication with the veterinarian are paramount, as rapid health deterioration can occur, making timely intervention life-saving.", 
+                healthProblemsGeneralSymptomsTitle: "General Symptoms of Illness:", 
+                healthProblemsGenSymptomEyes: "Eyes, Mouth, Nose: Coughing, sneezing, heavy panting, difficulty breathing, bad breath, excessive drooling, dry, cloudy, or red eyes.", 
+                healthProblemsGenSymptomBehavior: "Behavior: Decreased activity, less interest in play, more hours of sleep, or other behavioral changes.", 
+                healthProblemsGenSymptomSkin: "Skin Changes: Dryness, lesions, redness, hair loss, scaly skin, intense itching.", 
+                healthProblemsGenSymptomDigestion: "Food Consumption and Digestion: Decreased appetite, weight loss, stomach upsets, feces containing blood, mucus, worms, or undigested food, excessive water consumption, or excessive urination.", 
+                healthProblemsGenSymptomStiffness: "Joint Stiffness: Difficulty getting up or climbing stairs.", 
+                healthProblemsSpecificProblemsTitle: "Specific Problems:", 
+                healthProblemsSpecDiarrhea: "Diarrhea: It is quite common in puppies and can range from mild episodes that resolve quickly to severe gastric problems caused by serious illness or obstruction, with possible presence of blood or mucus and dehydration.", 
+                healthProblemsSpecVomiting: "Vomiting: It is a common problem with dozens of possible causes, such as infections, intestinal parasites, pancreatitis, kidney failure, heatstroke, foreign body in the stomach-intestine, and poisoning.", 
+                healthProblemsSpecHypoglycemia: "Hypoglycemia: Low blood glucose levels, more common in small breed puppies or in cases of improper feeding. Symptoms include anorexia, lethargy, trembling, behavioral changes, and seizures. If suspected, immediate application of honey to the gums or administration of sugar water is recommended, along with immediate contact with a veterinarian.", 
+                healthProblemsSpecCoccidiosis: "Coccidiosis: Caused by a parasite (coccidia) and is one of the most common causes of painful and often fatal diarrhea in young ages. Symptoms include severe diarrhea, lethargy, anorexia, and dehydration.", 
+                healthProblemsSpecGiardia: "Giardia (Giardiasis): A common intestinal parasite. Symptoms include soft, pale, foul-smelling stools, increased frequency of bowel movements, gas, abdominal discomfort, decreased appetite, and dehydration. It is transmitted through contaminated water or feces. Treatment includes fenbendazole and/or metronidazole, combined with strict hygiene.", 
+                healthProblemsSpecParvo: "Parvovirus: Highly contagious and dangerous, especially for puppies. Symptoms include loss of appetite, lethargy, persistent vomiting, and bloody diarrhea. Requires immediate veterinary care.", 
+                healthProblemsTableSystem: "System/Problem", 
+                healthProblemsTableSymptoms: "Common Symptoms", 
+                healthProblemsRow1Cat: "General Symptoms<br>Behavior", 
+                healthProblemsRow1Sym: "Lethargy, reduced activity, indifference, changes in sleep", 
+                healthProblemsRow2Cat: "Respiratory", 
+                healthProblemsRow2Sym: "Coughing, sneezing, panting, difficulty breathing", 
+                healthProblemsRow3Cat: "Skin/Coat", 
+                healthProblemsRow3Sym: "Dryness, redness, rashes, hair loss, intense itching", 
+                healthProblemsRow4Cat: "Digestive System<br>Diarrhea", 
+                healthProblemsRow4Sym: "Watery, with blood/mucus, increased frequency, dehydration", 
+                healthProblemsRow5Cat: "Vomiting", 
+                healthProblemsRow5Sym: "Persistent, with or without food/blood", 
+                healthProblemsRow6Cat: "Appetite/Weight", 
+                healthProblemsRow6Sym: "Decreased appetite, anorexia, weight loss", 
+                healthProblemsRow7Cat: "Specific Problems<br>Hypoglycemia", 
+                healthProblemsRow7Sym: "Trembling, weakness, seizures, behavioral changes, fainting", 
+                healthProblemsRow8Cat: "Parvovirus", 
+                healthProblemsRow8Sym: "Vomiting, bloody diarrhea, lethargy, fever, dehydration", 
+                healthProblemsRow9Cat: "Coccidiosis", 
+                healthProblemsRow9Sym: "Severe diarrhea, lethargy, anorexia, dehydration", 
+                healthProblemsRow10Cat: "Giardia", 
+                healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration", 
+                healthAccordionProblemsP2: "Mild lethargy or swelling at the injection site is normal and subsides.", 
                 loadingText: "Loading...",
             }
         };
@@ -837,38 +881,16 @@
             initializeAccordions();
             initializeFeedingChart(currentLang);
             initializeExerciseReco(currentLang); 
+            
+            // Σχολίασε τις παρακάτω γραμμές αν δεν έχεις ακόμα τις HTML ενότητες για LLM ή αν δεν είναι έτοιμες
+            /*
+            const generateActivityIdeasButton = document.getElementById('generate-activity-ideas');
+            if (generateActivityIdeasButton) {
+                // ... το υπόλοιπο LLM script σου
+            }
+            // Κάνε το ίδιο για όλες τις LLM λειτουργίες
+            */
         });
-
-        // Οι σχολιασμένες LLM λειτουργίες από τον αρχικό σου κώδικα μπορούν να μπουν εδώ όταν τις ενεργοποιήσεις ξανά 
-        // (ΠΡΟΣΟΧΗ: ο κώδικας τους δεν έχει προσαρμοστεί ακόμα για πολυγλωσσία)
-        /*
-        const generateActivityIdeasButton = document.getElementById('generate-activity-ideas');
-        // ... (και ούτω καθεξής για όλες τις LLM, όπως ήταν στον αρχικό σου κώδικα) ...
-        // ... φρόντισε να είναι ΟΛΑ σχολιασμένα ΠΡΟΣ ΤΟ ΠΑΡΟΝ ...
-        // LLM Integration for Behavior Advice
-        // const getBehaviorAdviceButton = document.getElementById('get-behavior-advice');
-        // ...
-        // LLM Integration for Name Suggestions
-        // const generateNameIdeasButton = document.getElementById('generate-name-ideas');
-        // ...
-        // LLM Integration for Daily Routine
-        // const generateRoutineButton = document.getElementById('generate-routine');
-        // ...
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΕΞΑΤΟΜΙΚΕΥΜΕΝΑ ΣΧΕΔΙΑ ΕΚΠΑΙΔΕΥΣΗΣ ---
-        // const generateTrainingPlanButton = document.getElementById('generate-training-plan');
-        // ...
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΠΡΩΤΕΣ ΒΟΗΘΕΙΕΣ ---
-        // const getFirstAidAdviceButton = document.getElementById('get-first-aid-advice');
-        // ...
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΠΡΟΤΑΣΕΙΣ ΔΙΑΤΡΟΦΗΣ ---
-        // const generateNutritionSuggestionsButton = document.getElementById('generate-nutrition-suggestions');
-        // ...
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΙΣΤΟΡΙΕΣ ΚΟΙΝΩΝΙΚΟΠΟΙΗΣΗΣ ---
-        // const generateSocializationStoryButton = document.getElementById('generate-socialization-story');
-        // if (generateSocializationStoryButton) {
-            // ...
-        // }
-        */
     </script>
 </body>
 </html>
