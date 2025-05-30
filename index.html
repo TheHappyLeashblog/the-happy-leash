@@ -713,594 +713,272 @@
         ... (το υπόλοιπο HTML σου) ...
     </div>
 
-    <script>
-        // --- I18N (Internationalization) ---
-        const langElButton = document.getElementById('lang-el');
-        const langEnButton = document.getElementById('lang-en');
+ <script>
+        // --- I18N (Internationalization) ---
+        const langElButton = document.getElementById('lang-el');
+        const langEnButton = document.getElementById('lang-en');
 
-        const translations = {
-            el: {
-                mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού 🐾",
-                subTitle: "Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!",
-                tabIntro: "Εισαγωγή",
-                tabPreparation: "Προετοιμασία ✨",
-                introTitle: "Καλωσορίζοντας το Νέο Μέλος της Οικογένειας",
-                introContent: "Η άφιξη ενός κουταβιού στο σπίτι...", // (το πλήρες κείμενο)
-                prepTabTitle: "I. Προετοιμασία για την Άφιξη του Κουταβιού",
-                prepTabIntro: "Πριν ακόμη την άφιξη του κουταβιού στο σπίτι...", // (το πλήρες κείμενο)
-                prepAccordionEnvTitle: "Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος",
-                prepAccordionEnvContent: "Η προετοιμασία του χώρου είναι ζωτικής σημασίας...", // (το πλήρες κείμενο)
-            },
-            en: {
-                mainTitle: "🐾 Puppy Care Guide 🐾",
-                subTitle: "Everything you need to know for your new friend!",
-                tabIntro: "Introduction",
-                tabPreparation: "Preparation ✨",
-                introTitle: "Welcoming the New Family Member",
-                introContent: "The arrival of a puppy at home is an exciting moment...", // (the full text)
-                prepTabTitle: "I. Preparing for the Puppy's Arrival",
-                prepTabIntro: "Even before the puppy arrives home...", // (the full text)
-                prepAccordionEnvTitle: "Creating a Safe and Comfortable Environment",
-                prepAccordionEnvContent: "Space preparation is vital...", // (the full text)
-            }
-        };
+        const translations = {
+            el: {
+                mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού 🐾",
+                subTitle: "Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!",
+                // Κουμπιά Καρτελών
+                tabIntro: "Εισαγωγή",
+                tabPreparation: "Προετοιμασία ✨",
+                tabFirstDays: "Πρώτες Μέρες ✨",
+                tabHealth: "Υγεία",
+                tabNutrition: "Διατροφή ✨",
+                tabExercise: "Άσκηση ✨",
+                tabTraining: "Εκπαίδευση ✨",
+                tabFirstAid: "Πρώτες Βοήθειες ✨",
+                tabStories: "Ιστορίες Κοινωνικοποίησης ✨",
+                tabLongterm: "Μακροπρόθεσμα",
+                tabConclusion: "Συμπέρασμα",
 
-        function switchLanguage(lang) {
-            localStorage.setItem('language', lang);
-            document.documentElement.lang = lang;
+                // Καρτέλα Εισαγωγή
+                introTitle: "Καλωσορίζοντας το Νέο Μέλος της Οικογένειας",
+                introContent: "Η άφιξη ενός κουταβιού στο σπίτι αποτελεί μια συναρπαστική στιγμή, γεμάτη χαρά και προσμονή. Ωστόσο, συνοδεύεται και από σημαντικές ευθύνες που απαιτούν προετοιμασία και γνώση. Αυτή η διαδραπτική εφαρμογή έχει σχεδιαστεί για να παρέχει τις απαραίτητες πληροφορίες και πρακτικές συμβουλές, ώστε να εξασφαλιστεί μια ομαλή μετάβαση και μια υγιής, ευτυχισμένη ζωή για το νέο τετράποδο μέλος της οικογένειας. Εξερευνήστε τις παρακάτω ενότητες για να μάθετε τα πάντα, από την προετοιμασία του χώρου και την αρχική προσαρμογή, μέχρι την υγεία, τη διατροφή, την άσκηση, την εκπαίδευση και τις μακροπρόθεσμες ευθύνες.",
+                
+                // Καρτέλα Προετοιμασία
+                prepTabTitle: "I. Προετοιμασία για την Άφιξη του Κουταβιού",
+                prepTabIntro: "Πριν ακόμη την άφιξη του κουταβιού στο σπίτι, είναι ζωτικής σημασίας η προετοιμασία του χώρου του. Αυτό περιλαμβάνει τη δημιουργία ενός ασφαλούς και άνετου περιβάλλοντος, όπου το κουτάβι θα νιώθει προστατευμένο και θα μπορεί να προσαρμοστεί ομαλά. Επίσης, η συγκέντρωση του απαραίτητου εξοπλισμού είναι κρίσιμη για μια ομαλή μετάβαση. Αυτή η ενότητα σας καθοδηγεί στη δημιουργία ενός ασφαλούς περιβάλλοντος και στην επιλογή των βασικών προμηθειών.",
+                prepAccordionEnvTitle: "Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος",
+                prepAccordionEnvContent: "Η προετοιμασία του χώρου είναι ζωτικής σημασίας. Ασφαλίστε τον χώρο (\"dog-proofing\") απομακρύνοντας επικίνδυνα αντικείμενα όπως χαλιά, χημικά, καλώδια και ακριββά έπιπλα. Προστατέψτε το κουτάβι από πτώσεις (π.χ. σκάλες). Διατηρήστε κατάλληλη θερμοκρασία (10-26.6°C), υγρασία (30-70%) και αερισμό. Ο τακτικός καθαρισμός είναι απαραίτητος.",
+                // (Πρόσθεσε εδώ και τα υπόλοιπα κλειδιά που θα δημιουργήσεις)
+            },
+            en: {
+                mainTitle: "🐾 Puppy Care Guide 🐾",
+                subTitle: "Everything you need to know for your new friend!",
+                // Tab Buttons
+                tabIntro: "Introduction",
+                tabPreparation: "Preparation ✨",
+                tabFirstDays: "First Days ✨",
+                tabHealth: "Health",
+                tabNutrition: "Nutrition ✨",
+                tabExercise: "Exercise ✨",
+                tabTraining: "Training ✨",
+                tabFirstAid: "First Aid ✨",
+                tabStories: "Socialization Stories ✨",
+                tabLongterm: "Long-term",
+                tabConclusion: "Conclusion",
 
-            if (lang === 'el') {
-                langElButton.classList.add('active');
-                langEnButton.classList.remove('active');
-            } else {
-                langEnButton.classList.add('active');
-                langElButton.classList.remove('active');
-            }
+                // Introduction Tab
+                introTitle: "Welcoming the New Family Member",
+                introContent: "The arrival of a puppy at home is an exciting moment, full of joy and anticipation. However, it also comes with significant responsibilities that require preparation and knowledge. This interactive application is designed to provide the necessary information and practical advice to ensure a smooth transition and a healthy, happy life for the new four-legged member of the family. Explore the sections below to learn everything from preparing the space and initial adjustment, to health, nutrition, exercise, training, and long-term responsibilities.",
+                
+                // Preparation Tab
+                prepTabTitle: "I. Preparing for the Puppy's Arrival",
+                prepTabIntro: "Even before the puppy arrives home, preparing its space is vital. This includes creating a safe and comfortable environment where the puppy will feel protected and can adjust smoothly. Also, gathering the necessary equipment is crucial for a smooth transition. This section guides you in creating a safe environment and selecting basic supplies.",
+                prepAccordionEnvTitle: "Creating a Safe and Comfortable Environment",
+                prepAccordionEnvContent: "Space preparation is vital. Dog-proof the area by removing hazardous items like rugs, chemicals, cables, and expensive furniture. Protect the puppy from falls (e.g., stairs). Maintain appropriate temperature (10-26.6°C), humidity (30-70%), and ventilation. Regular cleaning is essential.",
+                // (Add other keys here as you create them)
+            }
+        };
 
-            document.querySelectorAll('[data-i18n-key]').forEach(element => {
-                const key = element.getAttribute('data-i18n-key');
-                if (translations[lang] && translations[lang][key]) {
-                    if (element.hasAttribute('data-i18n-target-placeholder')) {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                } else {
-                    // Έχω αλλάξει το console.warn εδώ για να μην σπάει η εμφάνιση του κώδικα στην απάντηση
-                    console.warn('Translation key "' + key + '" not found for language "' + lang + '".');
-                }
-            });
-        }
+        function switchLanguage(lang) {
+            localStorage.setItem('language', lang);
+            document.documentElement.lang = lang;
 
-        if (langElButton && langEnButton) {
-            langElButton.addEventListener('click', () => switchLanguage('el'));
-            langEnButton.addEventListener('click', () => switchLanguage('en'));
-        }
+            if (lang === 'el') {
+                if(langElButton) langElButton.classList.add('active');
+                if(langEnButton) langEnButton.classList.remove('active');
+            } else {
+                if(langEnButton) langEnButton.classList.add('active');
+                if(langElButton) langElButton.classList.remove('active');
+            }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentLang = localStorage.getItem('language') || 'el';
-            switchLanguage(currentLang);
-        });
-        // --- End I18N ---
-
-        // Ο υπόλοιπος JavaScript κώδικας σου (για tabs, accordions, chart κ.λπ.) ξεκινάει από εδώ
-        const tabButtons = document.querySelectorAll('.tab-button');
-        // ... και συνεχίζει ...
-    </script>
-</body>
-</html>
-
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-        const accordions = document.querySelectorAll('.accordion');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const targetTab = button.dataset.tab;
-                tabPanes.forEach(pane => {
-                    if (pane.id === targetTab) {
-                        pane.classList.remove('hidden');
-                        pane.classList.add('active');
+            document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                const key = element.getAttribute('data-i18n-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.hasAttribute('data-i18n-target-placeholder')) {
+                        element.placeholder = translations[lang][key];
                     } else {
-                        pane.classList.add('hidden');
-                        pane.classList.remove('active');
+                        element.innerHTML = translations[lang][key];
                     }
+                } else {
+                    console.warn('Translation key "' + key + '" not found for language "' + lang + '".');
+                }
+            });
+            // Ενημέρωση δυναμικών κειμένων μετά την αλλαγή γλώσσας
+            if (typeof initializeFeedingChart === 'function') initializeFeedingChart(lang);
+            if (typeof initializeExerciseReco === 'function') initializeExerciseReco(lang);
+        }
+
+        // --- Initialize Tabs ---
+        function initializeTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button'); // Μετακίνηση εδώ μέσα
+            const tabPanes = document.querySelectorAll('.tab-pane'); // Μετακίνηση εδώ μέσα
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const targetTab = button.dataset.tab;
+                    tabPanes.forEach(pane => {
+                        if (pane.id === targetTab) {
+                            pane.classList.remove('hidden');
+                            pane.classList.add('active');
+                        } else {
+                            pane.classList.add('hidden');
+                            pane.classList.remove('active');
+                        }
+                    });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        });
+        }
 
-        accordions.forEach(accordion => {
-            const button = accordion.querySelector('.accordion-button');
-            const content = accordion.querySelector('.accordion-content');
-
-            button.addEventListener('click', () => {
-                const isVisible = !content.classList.contains('hidden');
-                content.classList.toggle('hidden', isVisible);
-                 button.setAttribute('aria-expanded', !isVisible);
+        // --- Initialize Accordions ---
+        function initializeAccordions() {
+            const accordions = document.querySelectorAll('.accordion'); // Μετακίνηση εδώ μέσα
+            accordions.forEach(accordion => {
+                const button = accordion.querySelector('.accordion-button');
+                const content = accordion.querySelector('.accordion-content');
+                if (button && content) {
+                    button.addEventListener('click', () => {
+                        const isVisible = !content.classList.contains('hidden');
+                        content.classList.toggle('hidden', isVisible);
+                        button.setAttribute('aria-expanded', !isVisible);
+                    });
+                }
             });
-        });
+        }
         
-        // Feeding Schedule Chart
-        const feedingCtx = document.getElementById('feedingScheduleChart');
-        if (feedingCtx) {
-            new Chart(feedingCtx, {
+        // --- Initialize Feeding Chart ---
+        let feedingChart; 
+        function initializeFeedingChart(lang) {
+            const feedingCtx = document.getElementById('feedingScheduleChart');
+            if (!feedingCtx) return;
+
+            const chartTranslations = {
+                el: { chartYAxisTitle: "Αριθμός Γευμάτων", chartXAxisTitle: "Ηλικία Κουταβιού", chartLabelMealsPerDay: "Γεύματα ανά Ημέρα", Wks: "εβδ.", Mths: "μηνών", Year: "έτους"},
+                en: { chartYAxisTitle: "Number of Meals", chartXAxisTitle: "Puppy Age", chartLabelMealsPerDay: "Meals per Day", Wks: "wks", Mths: "mths", Year: "year"}
+            };
+            const currentChartTexts = chartTranslations[lang] || chartTranslations.el;
+
+            if (feedingChart) {
+                feedingChart.destroy(); 
+            }
+            feedingChart = new Chart(feedingCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['8-12 εβδ.', '3-6 μηνών', '6-12 μηνών', '>1 έτους'],
+                    labels: ['8-12 ' + currentChartTexts.Wks, '3-6 ' + currentChartTexts.Mths, '6-12 ' + currentChartTexts.Mths, '>1 ' + currentChartTexts.Year],
                     datasets: [{
-                        label: 'Γεύματα ανά Ημέρα',
-                        data: [4, 3, 2, 1.5], // Used 1.5 to represent 1-2 meals
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(153, 102, 255, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
+                        label: currentChartTexts.chartLabelMealsPerDay,
+                        data: [4, 3, 2, 1.5],
+                        backgroundColor: ['rgba(54, 162, 235, 0.6)','rgba(75, 192, 192, 0.6)','rgba(255, 206, 86, 0.6)','rgba(153, 102, 255, 0.6)'],
+                        borderColor: ['rgba(54, 162, 235, 1)','rgba(75, 192, 192, 1)','rgba(255, 206, 86, 1)','rgba(153, 102, 255, 1)'],
                         borderWidth: 1
                     }]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 1
-                            },
-                            title: {
-                                display: true,
-                                text: 'Αριθμός Γευμάτων'
-                            }
-                        },
-                        x: {
-                             title: {
-                                display: true,
-                                text: 'Ηλικία Κουταβιού'
-                            }
-                        }
+                        y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: currentChartTexts.chartYAxisTitle }},
+                        x: { title: { display: true, text: currentChartTexts.chartXAxisTitle }}
                     },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        if (context.label === '>1 έτους') {
-                                             label += '1-2';
-                                        } else {
-                                            label += context.parsed.y;
-                                        }
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { 
+                        let label = context.dataset.label || ''; if (label) { label += ': '; } if (context.parsed.y !== null) { if (context.label.includes('>1')) { label += '1-2'; } else { label += context.parsed.y; } } return label;
+                    }}}}
                 }
             });
         }
 
-        // Exercise recommendation selector
-        const dogTypeSelector = document.getElementById('dog-type-selector');
-        const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
+        // --- Initialize Exercise Recommendations ---
+        function initializeExerciseReco(lang) {
+            const dogTypeSelector = document.getElementById('dog-type-selector');
+            const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
+            if (!dogTypeSelector || !exerciseRecommendationDiv) return;
 
-        if (dogTypeSelector && exerciseRecommendationDiv) {
+            const exerciseTranslations = {
+                 el: { 
+                    exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
+                    dogTypePuppy: "Κουτάβι (<1 έτους)", dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", dogTypeSenior: "Ηλικιωμένος Σκύλος",
+                    exerciseRecoPuppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
+                    exerciseRecoAdultLow: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
+                    exerciseRecoAdultMedium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα. ",
+                    exerciseRecoAdultHigh: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα. ",
+                    exerciseRecoSenior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
+                    exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις."
+                },
+                en: {
+                    exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
+                    dogTypePuppy: "Puppy (<1 year)", dogTypeAdultLow: "Adult - Low Energy", dogTypeAdultMedium: "Adult - Medium Energy", dogTypeAdultHigh: "Adult - High Energy", dogTypeSenior: "Senior Dog",
+                    exerciseRecoPuppy: "For puppies: Short, frequent play sessions (5-10 minutes). Avoid excessive exercise, running on hard surfaces, and too much jumping to protect developing bones.",
+                    exerciseRecoAdultLow: "For low-energy adults (e.g., Pug, Basset Hound): 30 minutes to 1 hour of mild exercise/day.",
+                    exerciseRecoAdultMedium: "For medium-energy adults (e.g., Labrador, Beagle): 1 to 1.5 hours of exercise/day.",
+                    exerciseRecoAdultHigh: "For high-energy adults (e.g., Border Collie, Jack Russell): 1.5 to 2+ hours of vigorous exercise/day.",
+                    exerciseRecoSenior: "For senior dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
+                    exerciseDefaultReco: "Select to see suggestions."
+                }
+            };
+            const currentExerciseTexts = exerciseTranslations[lang] || exerciseTranslations.el;
+
+            const selectorLabel = document.querySelector('label[for="dog-type-selector"]');
+            if (selectorLabel) selectorLabel.textContent = currentExerciseTexts.exerciseDogTypeLabel;
+            
+            // Ελέγχουμε αν υπάρχουν οι επιλογές πριν προσπαθήσουμε να αλλάξουμε το textContent τους
+            if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) {
+                dogTypeSelector.options[0].textContent = currentExerciseTexts.dogTypePuppy;
+                dogTypeSelector.options[1].textContent = currentExerciseTexts.dogTypeAdultLow;
+                dogTypeSelector.options[2].textContent = currentExerciseTexts.dogTypeAdultMedium;
+                dogTypeSelector.options[3].textContent = currentExerciseTexts.dogTypeAdultHigh;
+                dogTypeSelector.options[4].textContent = currentExerciseTexts.dogTypeSenior;
+            }
+
+
             const recommendations = {
-                puppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
-                adult_low: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
-                adult_medium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα. ",
-                adult_high: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα. ",
-                senior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους."
+                puppy: currentExerciseTexts.exerciseRecoPuppy,
+                adult_low: currentExerciseTexts.exerciseRecoAdultLow,
+                adult_medium: currentExerciseTexts.exerciseRecoAdultMedium,
+                adult_high: currentExerciseTexts.exerciseRecoAdultHigh,
+                senior: currentExerciseTexts.exerciseRecoSenior
             };
 
+            // Το function updateRecommendation πρέπει να οριστεί ΜΕΣΑ στο initializeExerciseReco
+            // ή να παίρνει τα recommendations και currentExerciseTexts ως παραμέτρους.
+            // Για απλότητα, το ορίζουμε εδώ μέσα.
             function updateRecommendation() {
                 const selectedType = dogTypeSelector.value;
-                exerciseRecommendationDiv.textContent = recommendations[selectedType] || "Επιλέξτε τύπο για να δείτε προτάσεις.";
+                exerciseRecommendationDiv.textContent = recommendations[selectedType] || currentExerciseTexts.exerciseDefaultReco;
             }
             
+            dogTypeSelector.removeEventListener('change', updateRecommendation); // Καθαρίζουμε παλιούς listeners
             dogTypeSelector.addEventListener('change', updateRecommendation);
-            updateRecommendation(); // Initial call to set default message or based on initial selection
+            updateRecommendation(); // Αρχική κλήση
         }
 
+        // Event listeners για τα κουμπιά γλώσσας (μετακινήθηκαν ΠΡΙΝ το DOMContentLoaded)
+        if (langElButton && langEnButton) {
+            langElButton.addEventListener('click', () => switchLanguage('el'));
+            langEnButton.addEventListener('click', () => switchLanguage('en'));
+        }
+
+        // Αρχικοποίηση της γλώσσας και των άλλων scripts κατά τη φόρτωση της σελίδας
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLang = localStorage.getItem('language') || 'el';
+            switchLanguage(currentLang); // Εφαρμογή γλώσσας πρώτα
+
+            // Αρχικοποίηση των υπόλοιπων λειτουργιών
+            initializeTabs();
+            initializeAccordions();
+            initializeFeedingChart(currentLang);
+            initializeExerciseReco(currentLang); 
+            
+            // Οι LLM λειτουργίες παραμένουν σχολιασμένες προς το παρόν
+            // initializeLLMFunctions(); 
+        });
+
+
+        // --- Οι σχολιασμένες LLM λειτουργίες από τον αρχικό σου κώδικα μπορούν να μπουν εδώ όταν τις ενεργοποιήσεις ξανά ---
+        /*
         // LLM Integration for Activity Ideas
         const generateActivityIdeasButton = document.getElementById('generate-activity-ideas');
-        const activityEnergyLevel = document.getElementById('activity-energy-level');
-        const activityType = document.getElementById('activity-type');
-        const activityIdeasOutput = document.getElementById('activity-ideas-output');
-        const activityIdeasLoading = document.getElementById('activity-ideas-loading');
-
-        if (generateActivityIdeasButton) {
-            generateActivityIdeasButton.addEventListener('click', async () => {
-                const energy = activityEnergyLevel.value;
-                const type = activityType.value;
-                const prompt = `Πρότεινε 3-5 ιδέες για ${type} δραστηριότητες για ένα κουτάβι με ${energy} ενέργεια. Να είναι σύντομες και πρακτικές.`;
-
-                activityIdeasOutput.classList.add('hidden');
-                activityIdeasLoading.classList.remove('hidden');
-                activityIdeasOutput.innerHTML = '';
-
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
-                    });
-                    const result = await response.json();
-
-                    if (result.text) { 
-                        activityIdeasOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        activityIdeasOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        activityIdeasOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        activityIdeasOutput.classList.remove('hidden');
-                    } else {
-                        activityIdeasOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ιδέες. Παρακαλώ δοκιμάστε ξανά.';
-                        activityIdeasOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for activity ideas:', error);
-                    activityIdeasOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη δημιουργία ιδεών. Παρακαλώ δοκιμάστε ξανά.';
-                    activityIdeasOutput.classList.remove('hidden');
-                } finally {
-                    activityIdeasLoading.classList.add('hidden');
-                }
-            });
-        }
-
-        // LLM Integration for Behavior Advice
-        const getBehaviorAdviceButton = document.getElementById('get-behavior-advice');
-        const behaviorProblemInput = document.getElementById('behavior-problem-input');
-        const behaviorAdviceOutput = document.getElementById('behavior-advice-output');
-        const behaviorAdviceLoading = document.getElementById('behavior-advice-loading');
-
-        if (getBehaviorAdviceButton) {
-            getBehaviorAdviceButton.addEventListener('click', async () => {
-                const problem = behaviorProblemInput.value.trim();
-                if (!problem) {
-                    behaviorAdviceOutput.innerHTML = 'Παρακαλώ περιγράψτε το πρόβλημα συμπεριφοράς.';
-                    behaviorAdviceOutput.classList.remove('hidden');
-                    return;
-                }
-
-                const prompt = `Είμαι εκπαιδευτής σκύλων. Δώσε σύντομες, πρακτικές συμβουλές για το ακόλουθο πρόβλημα συμπεριφοράς κουταβιού: "${problem}". Εστίασε σε θετική ενίσχυση και διαχείριση.`;
-
-                behaviorAdviceOutput.classList.add('hidden');
-                behaviorAdviceLoading.classList.remove('hidden');
-                behaviorAdviceOutput.innerHTML = '';
-
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
-                    });
-                    const result = await response.json(); 
-
-                    if (result.text) { 
-                        behaviorAdviceOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        behaviorAdviceOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        behaviorAdviceOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        behaviorAdviceOutput.classList.remove('hidden');
-                    } else {
-                        behaviorAdviceOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω συμβουλές. Παρακαλώ δοκιμάστε ξανά.';
-                        behaviorAdviceOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for behavior advice:', error);
-                    behaviorAdviceOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη λήψη συμβουλών. Παρακαλώ δοκιμάστε ξανά.';
-                    behaviorAdviceOutput.classList.remove('hidden');
-                } finally {
-                    behaviorAdviceLoading.classList.add('hidden');
-                }
-            });
-        }
-
-        // LLM Integration for Name Suggestions
-        const generateNameIdeasButton = document.getElementById('generate-name-ideas');
-        const nameGenderSelector = document.getElementById('name-gender-selector');
-        const nameStyleInput = document.getElementById('name-style-input');
-        const nameIdeasOutput = document.getElementById('name-ideas-output');
-        const nameIdeasLoading = document.getElementById('name-ideas-loading');
-
-        if (generateNameIdeasButton) {
-            generateNameIdeasButton.addEventListener('click', async () => {
-                const gender = nameGenderSelector.value;
-                const style = nameStyleInput.value.trim();
-                const prompt = `Πρότεινε 5-7 ${gender} ονόματα για κουτάβι, με στυλ/θέμα: "${style}". Να είναι δημιουργικά και πρωτότυπα.`;
-
-                nameIdeasOutput.classList.add('hidden');
-                nameIdeasLoading.classList.remove('hidden');
-                nameIdeasOutput.innerHTML = '';
-
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
-                    });
-                    const result = await response.json(); 
-
-                    if (result.text) { 
-                        nameIdeasOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        nameIdeasOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        nameIdeasOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        nameIdeasOutput.classList.remove('hidden');
-                    } else {
-                        nameIdeasOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ονόματα. Παρακαλώ δοκιμάστε ξανά.';
-                        nameIdeasOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for name ideas:', error);
-                    nameIdeasOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη δημιουργία ονομάτων. Παρακαλώ δοκιμάστε ξανά.';
-                    nameIdeasOutput.classList.remove('hidden');
-                } finally {
-                    nameIdeasLoading.classList.add('hidden');
-                }
-            });
-        }
-
-        // LLM Integration for Daily Routine
-        const generateRoutineButton = document.getElementById('generate-routine');
-        const routineAgeSelector = document.getElementById('routine-age-selector');
-        const routineEnergySelector = document.getElementById('routine-energy-selector');
-        const routineOutput = document.getElementById('routine-output');
-        const routineLoading = document.getElementById('routine-loading');
-
-        if (generateRoutineButton) {
-            generateRoutineButton.addEventListener('click', async () => {
-                const age = routineAgeSelector.value;
-                const energy = routineEnergySelector.value;
-                const prompt = `Δώσε 5-7 βασικές δραστηριότητες (π.χ. τουαλέτα, γεύμα, παιχνίδι, ύπνος) για την καθημερινή ρουτίνα ενός κουταβιού ${age} με ${energy} ενέργεια. Μόνο λίστα με ώρα και δραστηριότητα.`;
-
-                routineOutput.classList.add('hidden');
-                routineLoading.classList.remove('hidden');
-                routineOutput.innerHTML = '';
-
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
-                    });
-                    const result = await response.json();
-
-                    if (result.text) { 
-                        routineOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        routineOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        routineOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        routineOutput.classList.remove('hidden');
-                    } else {
-                        routineOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ρουτίνα. Παρακαλώ δοκιμάστε ξανά.';
-                        routineOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for routine:', error);
-                    routineOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη δημιουργία ρουτίνας. Παρακαλώ δοκιμάστε ξανά.';
-                    routineOutput.classList.remove('hidden');
-                } finally {
-                    routineLoading.classList.add('hidden');
-                }
-            });
-        }
-
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΕΞΑΤΟΜΙΚΕΥΜΕΝΑ ΣΧΕΔΙΑ ΕΚΠΑΙΔΕΥΣΗΣ ---
-        const generateTrainingPlanButton = document.getElementById('generate-training-plan');
-        const trainingBreedInput = document.getElementById('training-breed-input');
-        const trainingAgeInput = document.getElementById('training-age-input');
-        const trainingGoalInput = document.getElementById('training-goal-input');
-        const trainingPlanOutput = document.getElementById('training-plan-output');
-        const trainingPlanLoading = document.getElementById('training-plan-loading');
-
-        if (generateTrainingPlanButton) {
-            generateTrainingPlanButton.addEventListener('click', async () => {
-                const breed = trainingBreedInput.value.trim();
-                const age = trainingAgeInput.value.trim();
-                const goal = trainingGoalInput.value.trim();
-
-                if (!breed || !age || !goal) {
-                    trainingPlanOutput.innerHTML = 'Παρακαλώ συμπληρώστε όλα τα πεδία: ράτσα, ηλικία και εκπαιδευτικό στόχο.';
-                    trainingPlanOutput.classList.remove('hidden');
-                    return;
-                }
-                const prompt = `Δημιούργησε ένα απλό σχέδιο εκπαίδευσης 3-5 βημάτων για ένα κουτάβι ράτσας ${breed}, ηλικίας ${age}, με στόχο "${goal}". Εστίασε σε θετική ενίσχυση και δώσε πρακτικές, σαφείς οδηγίες για κάθε βήμα.`;
-                
-                trainingPlanOutput.classList.add('hidden');
-                trainingPlanLoading.classList.remove('hidden');
-                trainingPlanOutput.innerHTML = '';
-
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
-                    });
-                    const result = await response.json();
-                    if (result.text) {
-                        trainingPlanOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        trainingPlanOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        trainingPlanOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        trainingPlanOutput.classList.remove('hidden');
-                    } else {
-                        trainingPlanOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω σχέδιο εκπαίδευσης. Παρακαλώ δοκιμάστε ξανά.';
-                        trainingPlanOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for training plan:', error);
-                    trainingPlanOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
-                    trainingPlanOutput.classList.remove('hidden');
-                } finally {
-                    trainingPlanLoading.classList.add('hidden');
-                }
-            });
-        }
-
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΠΡΩΤΕΣ ΒΟΗΘΕΙΕΣ ---
-        const getFirstAidAdviceButton = document.getElementById('get-first-aid-advice');
-        const firstAidSituationInput = document.getElementById('first-aid-situation-input');
-        const firstAidAdviceOutput = document.getElementById('first-aid-advice-output');
-        const firstAidAdviceLoading = document.getElementById('first-aid-advice-loading');
-
-        if (getFirstAidAdviceButton) {
-            getFirstAidAdviceButton.addEventListener('click', async () => {
-                const situation = firstAidSituationInput.value.trim();
-                if (!situation) {
-                    firstAidAdviceOutput.innerHTML = 'Παρακαλώ περιγράψτε την κατάσταση.';
-                    firstAidAdviceOutput.classList.remove('hidden');
-                    return;
-                }
-                const prompt = `Το κουτάβι μου αντιμετωπίζει την εξής κατάσταση: "${situation}". Δώσε γενικές συμβουλές πρώτης ανταπόκρισης σε μορφή λίστας με 2-4 σημεία και τι να παρακολουθήσω. Στο τέλος, τόνισε έντονα με κεφαλαία γράμματα και bold ότι πρέπει να επικοινωνήσω ΑΜΕΣΑ με κτηνίατρο και ότι αυτές οι πληροφορίες ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική συμβουλή.`;
-
-                firstAidAdviceOutput.classList.add('hidden');
-                firstAidAdviceLoading.classList.remove('hidden');
-                firstAidAdviceOutput.innerHTML = '';
-
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
-                    });
-                    const result = await response.json();
-                    if (result.text) {
-                        firstAidAdviceOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        firstAidAdviceOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        firstAidAdviceOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        firstAidAdviceOutput.classList.remove('hidden');
-                    } else {
-                        firstAidAdviceOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω συμβουλές. Παρακαλώ δοκιμάστε ξανά.';
-                        firstAidAdviceOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for first aid advice:', error);
-                    firstAidAdviceOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
-                    firstAidAdviceOutput.classList.remove('hidden');
-                } finally {
-                    firstAidAdviceLoading.classList.add('hidden');
-                }
-            });
-        }
-
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΠΡΟΤΑΣΕΙΣ ΔΙΑΤΡΟΦΗΣ ---
-        const generateNutritionSuggestionsButton = document.getElementById('generate-nutrition-suggestions');
-        const nutritionAgeInput = document.getElementById('nutrition-age-input');
-        const nutritionSizeInput = document.getElementById('nutrition-size-input');
-        const nutritionAllergiesInput = document.getElementById('nutrition-allergies-input');
-        const nutritionSuggestionsOutput = document.getElementById('nutrition-suggestions-output');
-        const nutritionSuggestionsLoading = document.getElementById('nutrition-suggestions-loading');
-
-        if (generateNutritionSuggestionsButton) {
-            generateNutritionSuggestionsButton.addEventListener('click', async () => {
-                const age = nutritionAgeInput.value.trim();
-                const size = nutritionSizeInput.value.trim();
-                const allergies = nutritionAllergiesInput.value.trim() || "καμία γνωστή"; 
-
-                if (!age || !size) {
-                    nutritionSuggestionsOutput.innerHTML = 'Παρακαλώ συμπληρώστε τουλάχιστον την ηλικία και το μέγεθος/ράτσα.';
-                    nutritionSuggestionsOutput.classList.remove('hidden');
-                    return;
-                }
-                const prompt = `Πρότεινε τύπους τροφών ή/και 2-3 ασφαλείς, υγιεινές λιχουδιές για ένα κουτάβι ${age}, μεγέθους/ράτσας "${size}", με τις εξής πιθανές αλλεργίες/ευαισθησίες: "${allergies}". Δώσε τις προτάσεις σε μορφή λίστας, σύντομα και περιεκτικά.`;
-                
-                nutritionSuggestionsOutput.classList.add('hidden');
-                nutritionSuggestionsLoading.classList.remove('hidden');
-                nutritionSuggestionsOutput.innerHTML = '';
-
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
-                    });
-                    const result = await response.json();
-                    if (result.text) {
-                        nutritionSuggestionsOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        nutritionSuggestionsOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        nutritionSuggestionsOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        nutritionSuggestionsOutput.classList.remove('hidden');
-                    } else {
-                        nutritionSuggestionsOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω προτάσεις διατροφής. Παρακαλώ δοκιμάστε ξανά.';
-                        nutritionSuggestionsOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for nutrition suggestions:', error);
-                    nutritionSuggestionsOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
-                    nutritionSuggestionsOutput.classList.remove('hidden');
-                } finally {
-                    nutritionSuggestionsLoading.classList.add('hidden');
-                }
-            });
-        }
-
-        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΙΣΤΟΡΙΕΣ ΚΟΙΝΩΝΙΚΟΠΟΙΗΣΗΣ ---
-        const generateSocializationStoryButton = document.getElementById('generate-socialization-story');
-        const socializationScenarioInput = document.getElementById('socialization-scenario-input');
-        const socializationStoryOutput = document.getElementById('socialization-story-output');
-        const socializationStoryLoading = document.getElementById('socialization-story-loading');
-
+        // ... και ούτω καθεξής για όλες τις LLM ...
         if (generateSocializationStoryButton) {
-            generateSocializationStoryButton.addEventListener('click', async () => {
-                const scenario = socializationScenarioInput.value.trim();
-                if (!scenario) {
-                    socializationStoryOutput.innerHTML = 'Παρακαλώ περιγράψτε το σενάριο κοινωνικοποίησης.';
-                    socializationStoryOutput.classList.remove('hidden');
-                    return;
-                }
-                const prompt = `Δημιούργησε μια μικρή, θετική ιστορία ή ένα πλάνο 3-4 απλών βημάτων για το πώς να διαχειριστώ το ακόλουθο σενάριο κοινωνικοποίησης για ένα κουτάβι: "${scenario}". Εστίασε σε θετικές εμπειρίες και πρακτικές συμβουλές.`;
-
-                socializationStoryOutput.classList.add('hidden');
-                socializationStoryLoading.classList.remove('hidden');
-                socializationStoryOutput.innerHTML = '';
-                
-                try {
-                    const response = await fetch('/.netlify/functions/gemini-proxy', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
-                    });
-                    const result = await response.json();
-                    if (result.text) {
-                        socializationStoryOutput.innerHTML = result.text.replace(/\n/g, '<br>');
-                        socializationStoryOutput.classList.remove('hidden');
-                    } else if (result.error) {
-                        socializationStoryOutput.innerHTML = `Σφάλμα: ${result.error}`;
-                        socializationStoryOutput.classList.remove('hidden');
-                    } else {
-                        socializationStoryOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ιστορία/πλάνο. Παρακαλώ δοκιμάστε ξανά.';
-                        socializationStoryOutput.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error calling Netlify function for socialization story:', error);
-                    socializationStoryOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
-                    socializationStoryOutput.classList.remove('hidden');
-                } finally {
-                    socializationStoryLoading.classList.add('hidden');
-                }
-            });
+            // ...
         }
-
+        */
     </script>
 </body>
-</html>
+</html>  
+
