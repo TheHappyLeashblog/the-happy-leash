@@ -245,12 +245,15 @@
         </div>
 </div>
 
-            <div id="tab-health" class="tab-pane hidden content-section">
-                <h2 data-i18n-key="healthTitle">III. Υγεία και Κτηνιατρική Φροντίδα</h2>
-                <p class="mb-4 text-justify" data-i18n-key="healthIntro">Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.</p>
-                </div>
+  <div class="accordion">
+    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAccordionVetTitle">Η Πρώτη Επίσκεψη στον Κτηνίατρο</button>
+    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+        <p data-i18n-key="healthAccordionVetContent">Συνήθως στις 6-8 εβδομάδες. Ο κτηνίατρος θα κάνει φυσική εξέταση (μάτια, αυτιά, μύτη, δέρμα, καρδιά, πνεύμονες κ.ά.) και θα σας ενημερώσει για εμβολιασμούς, οδοντική φροντίδα, grooming, άσκηση, κοινωνικοποίηση, microchipping, στείρωση, ταξίδια, ασφάλεια και ζωονόσους.</p>
+    </div>
+</div>
 
-            <div id="tab-nutrition" class="tab-pane hidden content-section">
+
+           <div id="tab-nutrition" class="tab-pane hidden content-section">
                  <h2 data-i18n-key="nutritionTitle">IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης</h2>
                  <p class="mb-4 text-justify" data-i18n-key="nutritionIntro">Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.</p>
                 <div class="accordion">
@@ -389,7 +392,8 @@
                 firstDaysTabIntro: "Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.",
                 firstDaysAccordionRoutineTitle: "Προσαρμογή και Καθιέρωση Ρουτίνας ✨",
                 firstDaysAccordionRoutineContent: "Δώστε χρόνο στο κουτάβι να συνηθίσει. Δημιουργήστε σταθερή ρουτίνα για σίτιση, τουαλέτα, παιχνίδι και \"ήσυχο χρόνο\". Ξεκινήστε την εκπαίδευση \"Home Alone\" από την πρώτη μέρα, αφήνοντας το κουτάβι μόνο του για μικρά διαστήματα, για να αποφύγετε το άγχος αποχωρισμού. Μην επιστρέψετε όταν κλαίει για να μην επιβραβεύσετε την ανεπιθύμητη συμπεριφορά.",
-                
+                healthAccordionVetTitle: "Η Πρώτη Επίσκεψη στον Κτηνίατρο",
+                healthAccordionVetContent: "Συνήθως στις 6-8 εβδομάδες. Ο κτηνίατρος θα κάνει φυσική εξέταση (μάτια, αυτιά, μύτη, δέρμα, καρδιά, πνεύμονες κ.ά.) και θα σας ενημερώσει για εμβολιασμούς, οδοντική φροντίδα, grooming, άσκηση, κοινωνικοποίηση, microchipping, στείρωση, ταξίδια, ασφάλεια και ζωονόσους.",
                 // Placeholder for LLM related texts, if you re-enable them
                 loadingText: "Φορτώνει...",
             },
@@ -444,6 +448,8 @@
                 firstDaysTabIntro: "The first few days are crucial for the puppy's adjustment. Establishing a routine and proper early socialization lay the foundation for a well-balanced adult dog. Here you will find tips to help your puppy feel safe and explore the world with confidence.",
                 firstDaysAccordionRoutineTitle: "Adjustment and Routine Establishment ✨",
                 firstDaysAccordionRoutineContent: "Give the puppy time to get used to its new home. Create a consistent routine for feeding, potty breaks, playtime, and 'quiet time'. Start 'Home Alone' training from day one, leaving the puppy alone for short periods to prevent separation anxiety. Do not return when it's crying to avoid reinforcing unwanted behavior.",
+                healthAccordionVetTitle: "The First Visit to the Vet",
+                healthAccordionVetContent: "Usually at 6-8 weeks. The vet will perform a physical examination (eyes, ears, nose, skin, heart, lungs, etc.) and will inform you about vaccinations, dental care, grooming, exercise, socialization, microchipping, neutering, travel, safety, and zoonoses.",
                 loadingText: "Loading...",
             }
         };
