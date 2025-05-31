@@ -842,7 +842,7 @@
                 langElButton.addEventListener('click', () => switchLanguage('el'));
                 langEnButton.addEventListener('click', () => switchLanguage('en'));
             }
-
+/* // START OF BLOCK TO COMMENT OUT FOR TESTING
             const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
             switchLanguage(currentLang); // Apply initial language
 
@@ -852,7 +852,7 @@
             // so they will be initialized with the currentLang.
             
             // Ensure the first tab's content is visible if it's the active one
-            /* // START OF BLOCK TO COMMENT OUT FOR TESTING
+  */ // END OF BLOCK TO COMMENT OUT FOR TESTING          
             const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
             if (activeTabButton) {
                 const activeTabPaneId = activeTabButton.dataset.tab;
@@ -863,7 +863,7 @@
                     activeTabPane.classList.add('active');
                 }
             }
-            */ // END OF BLOCK TO COMMENT OUT FOR TESTING
+            
             console.log("Puppy care guide script initialized successfully."); // For debugging
         });
 
