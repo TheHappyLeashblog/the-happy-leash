@@ -96,6 +96,13 @@
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
         }
+        .accordion-content ul { /* Styling for the new list */
+            /* list-style-position: outside; */ /* Replaced by list-inside */
+            /* padding-left: 1.5rem; */ /* Replaced by pl-5 Tailwind */
+        }
+        .accordion-content li {
+            margin-bottom: 0.25rem; /* Space between list items */
+        }
         .nav-container {
             position: sticky;
             top: 0;
@@ -392,7 +399,20 @@
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionDangerousFoodTitle">Επικίνδυνες Τροφές προς Αποφυγή</button>
                     <div class="accordion-content hidden p-3 rounded-b-md">
-                        <p data-i18n-key="nutritionAccordionDangerousFoodContent">Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν: σοκολάτα (ειδικά η μαύρη), κρεμμύδια, σκόρδο, σταφύλια και σταφίδες, αβοκάντο, αλκοόλ, καφεΐνη, ξυλιτόλη (γλυκαντικό), κόκαλα μαγειρεμένα, και γαλακτοκομικά σε μεγάλες ποσότητες. Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.</p>
+                        <p data-i18n-key="nutritionAccordionDangerousFoodContent">Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν (συνοπτική λίστα):<br><br>
+<ul class="list-disc list-inside pl-5 mb-2">
+    <li>Σοκολάτα (ειδικά η μαύρη)</li>
+    <li>Κρεμμύδια</li>
+    <li>Σκόρδο</li>
+    <li>Σταφύλια και σταφίδες</li>
+    <li>Αβοκάντο</li>
+    <li>Αλκοόλ</li>
+    <li>Καφεΐνη</li>
+    <li>Ξυλιτόλη (γλυκαντικό)</li>
+    <li>Μαγειρεμένα κόκαλα</li>
+    <li>Γαλακτοκομικά (σε μεγάλες ποσότητες)</li>
+</ul>
+Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.</p>
                     </div>
                 </div>
             </div>
@@ -470,7 +490,7 @@
         const translations = {
             el: {
                 logoAltText: "The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού",
-                mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού 🐾",
+                mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού �",
                 subTitle: "Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!",
                 tabIntro: "Εισαγωγή",
                 tabPreparation: "Προετοιμασία ✨",
@@ -611,7 +631,7 @@
                 nutritionFeedList4: "Μετά τον 1ο χρόνο: Συνήθως 1 γεύμα την ημέρα είναι επαρκές, αν και για μεγαλύτερες φυλές ή σκύλους επιρρεπείς σε φούσκωμα, 2 μικρότερα γεύματα είναι προτιμότερα.",
                 nutritionWaterBowls: "Είναι απαραίτητο να υπάρχει πάντα διαθέσιμο καθαρό, φρέσκο νερό. Τα μπολ φαγητού και νερού πρέπει να πλένονται συχνά για τη διατήρηση της υγιεινής.",
                 nutritionAccordionDangerousFoodTitle: "Επικίνδυνες Τροφές προς Αποφυγή",
-                nutritionAccordionDangerousFoodContent: "Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν: σοκολάτα (ειδικά η μαύρη), κρεμμύδια, σκόρδο, σταφύλια και σταφίδες, αβοκάντο, αλκοόλ, καφεΐνη, ξυλιτόλη (γλυκαντικό), κόκαλα μαγειρεμένα, και γαλακτοκομικά σε μεγάλες ποσότητες. Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.",
+                nutritionAccordionDangerousFoodContent: "Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν (συνοπτική λίστα):<br><br><ul class=\"list-disc list-inside pl-5 mb-2\"><li>Σοκολάτα (ειδικά η μαύρη)</li><li>Κρεμμύδια</li><li>Σκόρδο</li><li>Σταφύλια και σταφίδες</li><li>Αβοκάντο</li><li>Αλκοόλ</li><li>Καφεΐνη</li><li>Ξυλιτόλη (γλυκαντικό)</li><li>Μαγειρεμένα κόκαλα</li><li>Γαλακτοκομικά (σε μεγάλες ποσότητες)</li></ul>Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.",
 
                 exerciseTitle: "V. Άσκηση και Ψυχική διέγερση",
                 exerciseIntro: "Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.",
@@ -790,7 +810,7 @@
                 nutritionFeedList4: "After 1 year: Usually 1 meal a day is sufficient, although for larger breeds or dogs prone to bloating, 2 smaller meals are preferable.",
                 nutritionWaterBowls: "It is essential to always have clean, fresh water available. Food and water bowls should be washed frequently to maintain hygiene.",
                 nutritionAccordionDangerousFoodTitle: "Dangerous Foods to Avoid",
-                nutritionAccordionDangerousFoodContent: "Many human foods are toxic to dogs. Some of the most dangerous include: chocolate (especially dark), onions, garlic, grapes and raisins, avocado, alcohol, caffeine, xylitol (sweetener), cooked bones, and dairy products in large amounts. Always consult your veterinarian if you are unsure about a food.",
+                nutritionAccordionDangerousFoodContent: "Many human foods are toxic to dogs. Some of the most dangerous include (summary list):<br><br><ul class=\"list-disc list-inside pl-5 mb-2\"><li>Chocolate (especially dark)</li><li>Onions</li><li>Garlic</li><li>Grapes and raisins</li><li>Avocado</li><li>Alcohol</li><li>Caffeine</li><li>Xylitol (sweetener)</li><li>Cooked bones</li><li>Dairy products (in large quantities)</li></ul>Always consult your veterinarian if you are unsure about a food.",
 
                 exerciseTitle: "V. Exercise and Mental Stimulation",
                 exerciseIntro: "Exercise and mental stimulation are vital for your puppy's healthy development and happiness. A puppy that gets enough exercise and mental engagement is less likely to develop behavioral problems.",
@@ -1076,71 +1096,4 @@
             // Update options text
             if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) {
                 dogTypeSelector.options[0].textContent = currentExerciseTexts.dogTypePuppy;
-                dogTypeSelector.options[1].textContent = currentExerciseTexts.dogTypeAdultLow;
-                dogTypeSelector.options[2].textContent = currentExerciseTexts.dogTypeAdultMedium;
-                dogTypeSelector.options[3].textContent = currentExerciseTexts.dogTypeAdultHigh;
-                dogTypeSelector.options[4].textContent = currentExerciseTexts.dogTypeSenior;
-            }
-            
-            const recommendations = {
-                puppy: currentExerciseTexts.exerciseRecoPuppy,
-                adult_low: currentExerciseTexts.exerciseRecoAdultLow,
-                adult_medium: currentExerciseTexts.exerciseRecoAdultMedium,
-                adult_high: currentExerciseTexts.exerciseRecoAdultHigh,
-                senior: currentExerciseTexts.exerciseRecoSenior
-            };
-            
-            // Remove old listener if it exists
-            if (currentUpdateFunction) {
-                dogTypeSelector.removeEventListener('change', currentUpdateFunction);
-            }
-            
-            // Create new function and store reference
-            currentUpdateFunction = function() {
-                const selectedType = dogTypeSelector.value;
-                exerciseRecommendationDiv.textContent = recommendations[selectedType] || currentExerciseTexts.exerciseDefaultReco;
-            };
-            
-            dogTypeSelector.addEventListener('change', currentUpdateFunction);
-            currentUpdateFunction(); // Initial call to set text based on current selection and language
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                // Assign to globally declared variables
-                langElButton = document.getElementById('lang-el');
-                langEnButton = document.getElementById('lang-en');
-                
-                if (langElButton && langEnButton) {
-                    langElButton.addEventListener('click', () => switchLanguage('el'));
-                    langEnButton.addEventListener('click', () => switchLanguage('en'));
-                }
-                
-                const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
-                switchLanguage(currentLang); // Apply initial language
-                
-                initializeTabs();
-                initializeAccordions();
-                
-                // Ensure the first tab's content is visible if it's the active one
-                const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
-                if (activeTabButton) {
-                    const activeTabPaneId = activeTabButton.dataset.tab;
-                    const activeTabPane = document.getElementById(activeTabPaneId);
-                    if (activeTabPane) {
-                        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
-                        activeTabPane.classList.remove('hidden');
-                        activeTabPane.classList.add('active');
-                    }
-                }
-                
-                console.log("Puppy care guide script initialized successfully.");
-                
-            } catch (error) {
-                console.error('Error initializing application:', error); // Corrected this line
-            }
-        });
-       
-    </script>
-</body>
-</html>
+                dogTypeSelector.options[�
