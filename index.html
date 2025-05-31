@@ -842,7 +842,7 @@
                 langElButton.addEventListener('click', () => switchLanguage('el'));
                 langEnButton.addEventListener('click', () => switchLanguage('en'));
             }
-/*
+
             const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
             switchLanguage(currentLang); // Apply initial language
 
@@ -852,7 +852,7 @@
             // so they will be initialized with the currentLang.
             
             // Ensure the first tab's content is visible if it's the active one
-*/
+
             const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
             if (activeTabButton) {
                 const activeTabPaneId = activeTabButton.dataset.tab;
@@ -863,10 +863,10 @@
                     activeTabPane.classList.add('active');
                 }
             }
-            
+ /*          
             console.log("Puppy care guide script initialized successfully."); // For debugging
         });
-
+*/
         /*
         // LLM JAVASCRIPT FUNCTIONS - KEEP COMMENTED OUT FOR NOW
         // Ensure all these getElementById calls are for elements that EXIST in your HTML
