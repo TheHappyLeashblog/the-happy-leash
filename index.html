@@ -104,25 +104,26 @@
             padding-bottom: 1rem; /* Space for shadow */
             box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow for sticky nav */
         }
-        /* Styles for LLM output and tips - currently not used in visible HTML but defined */
-        .llm-output {
-            background-color: #FBE9E7; /* Light reddish-brown */
-            border-left: 4px solid #BF360C; /* Stronger accent for LLM */
+        .llm-output { /* General style for AI/dynamic content output boxes */
+            background-color: #FBE9E7;
+            border-left: 4px solid #BF360C;
             padding: 1.2rem;
             border-radius: 0.6rem;
             margin-top: 1.5rem;
-            color: #3E2723; /* Dark brown text */
+            color: #3E2723;
             font-size: 1rem;
+            white-space: pre-wrap; /* Preserve line breaks from API response */
         }
-        .tip-box {
-            background-color: #FFF3E0; /* Light orange */
-            border-left: 5px solid #FF9800; /* Orange accent */
+        .tip-box { /* Specific style for socialization tips */
+            background-color: #FFF3E0;
+            border-left: 5px solid #FF9800;
             padding: 1.2rem;
             border-radius: 0.6rem;
             margin-top: 1.5rem;
-            font-style: italic;
-            color: #E65100; /* Darker orange text */
+            /* font-style: italic; REMOVED for better readability of AI content */
+            color: #E65100;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            white-space: pre-wrap; /* Preserve line breaks from API response */
         }
         .footer-copyright {
             margin-top: 4rem;
@@ -150,15 +151,48 @@
             background-color: #5D4037; /* Darkest brown for active language */
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+        .ai-input-area { /* General class for textareas in AI features */
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1C4E9;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
+            min-height: 80px;
+            background-color: #FBFBFB;
+        }
+        .ai-submit-button { /* General class for submit buttons in AI features */
+            background-color: #795548;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .ai-submit-button:hover {
+            background-color: #5D4037;
+        }
+        .ai-submit-button:disabled {
+            background-color: #BDBDBD; /* Grey out button when loading */
+            cursor: not-allowed;
+        }
+        .loading-message {
+            color: #757575;
+            font-style: italic;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <div class="container mx-auto p-4 max-w-5xl">
         <header class="text-center mb-8">
-            <img src="https://raw.githubusercontent.com/TheHappyLeashblog/the-happy-leash/main/images/the-happy-leash-logo.png" 
-                 alt="The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού" 
-                 class="w-full mb-4 object-contain" 
+            <img src="https://raw.githubusercontent.com/TheHappyLeashblog/the-happy-leash/main/images/the-happy-leash-logo.png"
+                 alt="The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού"
+                 class="w-full mb-4 object-contain"
                  style="max-height: 400px;"
                  data-i18n-key="logoAltText"
                  data-i18n-target-alt="true">
@@ -195,7 +229,7 @@
             <div id="tab-preparation" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="prepTabTitle">I. Προετοιμασία για την Άφιξη του Κουταβιού</h2>
                 <p class="mb-4 text-justify" data-i18n-key="prepTabIntro">Πριν ακόμη την άφιξη του κουταβιού στο σπίτι, είναι ζωτικής σημασίας η προετοιμασία του χώρου του. Αυτό περιλαμβάνει τη δημιουργία ενός ασφαλούς και άνετου περιβάλλοντος, όπου το κουτάβι θα νιώθει προστατευμένο και θα μπορεί να προσαρμοστεί ομαλά. Επίσης, η συγκέντρωση του απαραίτητου εξοπλισμού είναι κρίσιμη για μια ομαλή μετάβαση. Αυτή η ενότητα σας καθοδηγεί στη δημιουργία ενός ασφαλούς περιβάλλοντος και στην επιλογή των βασικών προμηθειών.</p>
-                
+
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="prepAccordionEnvTitle">Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος</button>
                     <div class="accordion-content hidden p-3 rounded-b-md mb-3">
@@ -205,7 +239,7 @@
 
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="prepAccordionEquipTitle">Απαραίτητος Εξοπλισμός (Λίστα Ελέγχου) ✨</button>
-                    <div class="accordion-content hidden p-3 rounded-b-md">
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
                         <ul class="list-none space-y-2 equipment-list">
                             <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemBed">Άνετο κρεβατάκι/καλάθι (πλένεται συχνά)</span></label></li>
                             <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemBowls">Ανοξείδωτα μπολ για νερό και τροφή</span></label></li>
@@ -238,15 +272,56 @@
                             <li data-i18n-key="prepCrateMisconception4">Δεν είναι απάνθρωπο: Για τα σκυλιά, το crate μπορεί να είναι μια φυσική επέκταση του ενστίκτου τους για ένα "κρησφύγετο" ή μια "φωλιά". Πολλά σκυλιά το αγαπούν και το αναζητούν ως ασφαλές μέρος.</li>
                         </ul>
                         <p class="text-justify mt-2" data-i18n-key="prepCrateConclusion">Η σωστή εισαγωγή και εκπαίδευση με το crate είναι κρίσιμη. Πρέπει να είναι μια θετική εμπειρία, με λιχουδιές, παιχνίδια και άνετο κρεβάτι, ώστε το κουτάβι να το βλέσει ως το δικό του, ασφαλές καταφύγιο.</p>
-                        
                     </div>
                 </div>
-            </div>
+
+                <div class="accordion mt-6"> <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nameFinderTitle">
+                        Βρες Όνομα για το Κουτάβι σου ✨
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="nameFinderDescription">
+                            Περιέγραψε κάποια χαρακτηριστικά του κουταβιού σου και πάρε προτάσεις!
+                        </p>
+
+                        <div class="mb-4">
+                            <label for="puppyGender" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="nameFinderGenderLabel">Φύλο:</label>
+                            <select id="puppyGender" name="puppyGender" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="any" data-i18n-key="nameFinderGenderAny">Δεν έχει σημασία</option>
+                                <option value="male" data-i18n-key="nameFinderGenderMale">Αρσενικό</option>
+                                <option value="female" data-i18n-key="nameFinderGenderFemale">Θηλυκό</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="puppyTraits" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="nameFinderTraitsLabel">Κύρια Χαρακτηριστικά (π.χ. παιχνιδιάρης, ήρεμη, θαρραλέος):</label>
+                            <textarea id="puppyTraits" name="puppyTraits" rows="3"
+                                      class="ai-input-area w-full p-2 border rounded mt-1"
+                                      data-i18n-key="nameFinderTraitsPlaceholder"
+                                      data-i18n-target-placeholder="true"
+                                      placeholder="Γράψτε 1-3 λέξεις κλειδιά..."></textarea>
+                        </div>
+
+                        <button id="suggestNameButton" class="ai-submit-button" data-i18n-key="nameFinderSuggestButton">
+                           ✨ Πρότεινε Ονόματα (AI)
+                        </button>
+
+                        <div id="nameFinderLoading" class="loading-message hidden mt-3" data-i18n-key="loadingMessage">
+                            Επεξεργασία...
+                        </div>
+
+                        <div id="nameSuggestionsOutput" class="hidden mt-4">
+                            <h4 class="font-semibold text-md mb-2" data-i18n-key="nameFinderOutputTitle">Προτάσεις Ονομάτων:</h4>
+                            <div id="nameList" class="llm-output" style="background-color: #E8F5E9; border-left-color: #4CAF50;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
 
             <div id="tab-first-days" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="firstDaysTabTitle">II. Οι Πρώτες Ημέρες στο Νέο Σπίτι</h2>
                 <p class="mb-4 text-justify" data-i18n-key="firstDaysTabIntro">Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.</p>
-                
+
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="firstDaysAccordionRoutineTitle">Προσαρμογή και Καθιέρωση Ρουτίνας ✨</button>
                     <div class="accordion-content hidden p-3 rounded-b-md mb-3">
@@ -261,7 +336,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="tab-health" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="healthTitle">III. Υγεία και Κτηνιατρική Φροντίδα</h2>
                 <p class="mb-4 text-justify" data-i18n-key="healthIntro">Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.</p>
@@ -298,7 +373,7 @@
                         <p class="mt-2 text-sm text-gray-600" data-i18n-key="healthAccordionVaccP3">Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.</p>
                     </div>
                 </div>
-                
+
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAccordionDewormTitle">Πρόγραμμα Αποπαρασίτωσης</button>
                     <div class="accordion-content hidden p-3 rounded-b-md mb-3">
@@ -366,7 +441,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="tab-nutrition" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="nutritionTitle">IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης</h2>
                 <p class="mb-4 text-justify" data-i18n-key="nutritionIntro">Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.</p>
@@ -389,13 +464,15 @@
                         <p class="mt-2" data-i18n-key="nutritionWaterBowls">Είναι απαραίτητο να υπάρχει πάντα διαθέσιμο καθαρό, φρέσκο νερό. Τα μπολ φαγητού και νερού πρέπει να πλένονται συχνά για τη διατήρηση της υγιεινής.</p>
                     </div>
                 </div>
-                <div class="accordion-content hidden p-3 rounded-b-md">
-    <p data-i18n-key="nutritionAccordionDangerousFoodContent"></p> 
-    <div data-i18n-key="dangerousFoodsTableHtml"></div> 
-</div>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionDangerousFoodTitle">Επικίνδυνες Τροφές προς Αποφυγή</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p data-i18n-key="nutritionAccordionDangerousFoodContent"></p>
+                        <div data-i18n-key="dangerousFoodsTableHtml"></div>
+                    </div>
                 </div>
             </div>
-            
+
             <div id="tab-exercise" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="exerciseTitle">V. Άσκηση και Ψυχική διέγερση</h2>
                 <p class="mb-4 text-justify" data-i18n-key="exerciseIntro">Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.</p>
@@ -432,31 +509,40 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="tab-training" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="trainingTitle">VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς</h2>
                 <p class="mb-4 text-justify" data-i18n-key="trainingIntro">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως "έλα", "κάτσε", "μείνε", "κάτω" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.</p>
             </div>
-            
+
             <div id="tab-first-aid" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="firstAidSecTitle">"Τι να κάνω αν..." / Πρώτες Βοήθειες ✨</h2>
-                <p class="mb-4 text-justify" data-i18n-key="firstAidSecDesc">Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. "το κουτάβι έφαγε σοκολάτα", "το κουτάβι κουτσαίνει ξαφνικά"). Οι παρακάτω πληροφορίες είναι γενικές και δεν αντικαθιστούν την κτηνιατρική συμβουλή. Σε κάθε περίπτωση έκτακτης ανάγκης, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας.</p>
-                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                <p class="mb-3" data-i18n-key="firstAidSecDesc">Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. "το κουτάβι έφαγε σοκολάτα", "το κουτάβι κουτσαίνει ξαφνικά").</p>
+                <textarea id="firstAidQuery" class="ai-input-area" rows="4" data-i18n-key="firstAidPlaceholder" data-i18n-target-placeholder="true" placeholder="Περιγράψτε την κατάσταση εδώ..."></textarea>
+                <button id="getFirstAidButton" class="ai-submit-button" data-i18n-key="firstAidButtonText">✨ Λήψη Συμβουλών Πρώτων Βοηθειών (AI)</button>
+                <div id="firstAidLoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
+                <div id="firstAidOutput" class="llm-output hidden"></div>
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mt-6 mb-4" role="alert">
                     <p class="font-bold" data-i18n-key="firstAidWarningTitle">Σημαντική Προειδοποίηση!</p>
                     <p data-i18n-key="firstAidWarningContent">Οι παρακάτω πληροφορίες είναι γενικές συμβουλές και ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία. Σε κάθε περίπτωση που ανησυχείτε για την υγεία του κουταβιού σας, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας ή μια κλινική έκτακτης ανάγκης.</p>
                 </div>
             </div>
-            
+
             <div id="tab-stories" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="storiesSecTitle">Δημιουργία "Ιστοριών Κοινωνικοποίησης" / Θετικών Εμπειριών ✨</h2>
-                <p class="mb-4 text-justify" data-i18n-key="storiesSecDesc">Εισάγετε ένα σενάριο κοινωνικοποίησης (π.χ. "πρώτη συνάντηση με άλλο σκύλο", "επίσκεψη σε θορυβώδες μέρος", "γνωριμία με παιδιά") για να λάβετε συμβουλές για το πώς να το χειριστείτε θετικά και με ασφάλεια. Η σωστή κοινωνικοποίηση είναι κλειδί για έναν ισορροπημένο σκύλο.</p>
+                <p class="mb-3" data-i18n-key="storiesSecDesc">Εισάγετε ένα σενάριο κοινωνικοποίησης (π.χ. "πρώτη συνάντηση με άλλο σκύλο", "επίσκεψη σε θορυβώδες μέρος", "γνωριμία με παιδιά") για να λάβετε συμβουλές για το πώς να το χειριστείτε θετικά και με ασφάλεια.</p>
+                <textarea id="socializationQuery" class="ai-input-area" rows="4" data-i18n-key="storiesPlaceholder" data-i18n-target-placeholder="true" placeholder="Περιγράψτε το σενάριο κοινωνικοποίησης εδώ..."></textarea>
+                <button id="getSocializationTipsButton" class="ai-submit-button" data-i18n-key="storiesButtonText">✨ Λήψη Συμβουλών Κοινωνικοποίησης (AI)</button>
+                <div id="socializationLoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
+                <div id="socializationOutput" class="tip-box hidden"></div>
+                 <p class="mt-4 text-sm text-gray-600" data-i18n-key="storiesDisclaimer">Η σωστή κοινωνικοποίηση είναι κλειδί για έναν ισορροπημένο σκύλο. Οι παρακάτω συμβουλές είναι γενικές προτάσεις.</p>
             </div>
-            
+
             <div id="tab-longterm" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="longtermTitle">VII. Μακροπρόθεσμες Ευθύνες του Κηδεμόνα</h2>
                 <p class="mb-4 text-justify" data-i18n-key="longtermIntro">Η φροντίδα ενός σκύλου είναι μια δέσμευση ζωής (10-15+ χρόνια). Περιλαμβάνει συνεχή κτηνιατρική φροντίδα (ετήσιοι έλεγχοι, εμβολιασμοί), προσαρμογή της διατροφής και της άσκησης καθώς μεγαλώνει, διαχείριση αλλαγών στη συμπεριφορά, και οικονομική ευθύνη για τροφή, περίθαλψη, και απρόοπτα έξοδα. Η αγάπη, η υπομονή και η συνέπεια είναι απαραίτητες σε όλη τη διάρκεια της ζωής του.</p>
             </div>
-            
+
             <div id="tab-conclusion" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="conclusionTitle">Συμπέρασμα: Η Ανταμοιβή μιας Υπεύθυνης Φροντίδας</h2>
                 <p class="text-justify" data-i18n-key="conclusionContent">Η υιοθεσία ενός κουταβιού είναι μια δέσμευση που φέρνει τεράστια χαρά και συντροφικότητα. Με την κατάλληλη προετοιμασία, γνώση και αφοσίωση, θα χτίσετε έναν ισχυρό δεσμό με τον νέο σας φίλο, προσφέροντάς του μια υγιή, ευτυχισμένη και γεμάτη αγάπη ζωή. Αυτός ο οδηγός είναι ένα σημείο εκκίνησης. Συνεχίστε να μαθαίνετε, να παρατηρείτε το κουτάβι σας και να προσαρμόζετε τη φροντίδα σας στις ανάγκες του. Η ανταμοιβή θα είναι ένας πιστός σύντροφος για πολλά χρόνια.</p>
@@ -485,7 +571,7 @@
 
                 introTitle: "Καλωσορίζοντας το Νέο Μέλος της Οικογένειας",
                 introContent: "Η άφιξη ενός κουταβιού στο σπίτι αποτελεί μια συναρπαστική στιγμή, γεμάτη χαρά και προσμονή. Ωστόσο, συνοδεύεται και από σημαντικές ευθύνες που απαιτούν προετοιμασία και γνώση. Αυτή η διαδραπτική εφαρμογή έχει σχεδιαστεί για να παρέχει τις απαραίτητες πληροφορίες και πρακτικές συμβουλές, ώστε να εξασφαλιστεί μια ομαλή μετάβαση και μια υγιής, ευτυχισμένη ζωή για το νέο τετράποδο μέλος της οικογένειας. Εξερευνήστε τις παρακάτω ενότητες για να μάθετε τα πάντα, από την προετοιμασία του χώρου και την αρχική προσαρμογή, μέχρι την υγεία, τη διατροφή, την άσκηση, την εκπαίδευση και τις μακροπρόθεσμες ευθύνες.",
-                
+
                 prepTabTitle: "I. Προετοιμασία για την Άφιξη του Κουταβιού",
                 prepTabIntro: "Πριν ακόμη την άφιξη του κουταβιού στο σπίτι, είναι ζωτικής σημασίας η προετοιμασία του χώρου του. Αυτό περιλαμβάνει τη δημιουργία ενός ασφαλούς και άνετου περιβάλλοντος, όπου το κουτάβι θα νιώθει προστατευμένο και θα μπορεί να προσαρμοστεί ομαλά. Επίσης, η συγκέντρωση του απαραίτητου εξοπλισμού είναι κρίσιμη για μια ομαλή μετάβαση. Αυτή η ενότητα σας καθοδηγεί στη δημιουργία ενός ασφαλούς περιβάλλοντος και στην επιλογή των βασικών προμηθειών.",
                 prepAccordionEnvTitle: "Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος",
@@ -517,14 +603,27 @@
                 prepCrateMisconception3: "Δεν είναι απάντηση σε όλα τα προβλήματα: Το crate είναι ένα εργαλείο εκπαίδευσης, όχι μια μαγική λύση για όλα τα προβλήματα συμπεριφοράς. Πρέπει να συνδυάζεται με συνεπή εκπαίδευση, κοινωνικοποίηση και άσκηση.",
                 prepCrateMisconception4: "Δεν είναι απάνθρωπο: Για τα σκυλιά, το crate μπορεί να είναι μια φυσική επέκταση του ενστίκτου τους για ένα \"κρησφύγετο\" ή μια \"φωλιά\". Πολλά σκυλιά το αγαπούν και το αναζητούν ως ασφαλές μέρος.",
                 prepCrateConclusion: "Η σωστή εισαγωγή και εκπαίδευση με το crate είναι κρίσιμη. Πρέπει να είναι μια θετική εμπειρία, με λιχουδιές, παιχνίδια και άνετο κρεβάτι, ώστε το κουτάβι να το βλέσει ως το δικό του, ασφαλές καταφύγιο.",
-                
+                nameFinderTitle: "Βρες Όνομα για το Κουτάβι σου ✨",
+                nameFinderDescription: "Περιέγραψε κάποια χαρακτηριστικά του κουταβιού σου και πάρε προτάσεις!",
+                nameFinderGenderLabel: "Φύλο:",
+                nameFinderGenderAny: "Δεν έχει σημασία",
+                nameFinderGenderMale: "Αρσενικό",
+                nameFinderGenderFemale: "Θηλυκό",
+                nameFinderTraitsLabel: "Κύρια Χαρακτηριστικά (π.χ. παιχνιδιάρης, ήρεμη, θαρραλέος):",
+                nameFinderTraitsPlaceholder: "Π.χ. παιχνιδιάρης, έξυπνος, πιστή, αφράτο",
+                nameFinderSuggestButton: "✨ Πρότεινε Ονόματα (AI)",
+                nameFinderOutputTitle: "Προτάσεις Ονομάτων:",
+                nameSuggestionIntro: "Με βάση τα χαρακτηριστικά που έδωσες ({gender}, {traits}), ορίστε μερικές ιδέες:",
+                noNamesFound: "Δεν βρέθηκαν προτάσεις για αυτά τα χαρακτηριστικά. Δοκιμάστε κάτι πιο γενικό!",
+                loadingMessage: "Επεξεργασία...",
+
                 firstDaysTabTitle: "II. Οι Πρώτες Ημέρες στο Νέο Σπίτι",
                 firstDaysTabIntro: "Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.",
                 firstDaysAccordionRoutineTitle: "Προσαρμογή και Καθιέρωση Ρουτίνας ✨",
                 firstDaysAccordionRoutineContent: "Δώστε χρόνο στο κουτάβι να συνηθίσει. Δημιουργήστε σταθερή ρουτίνα για σίτιση, τουαλέτα, παιχνίδι και \"ήσυχο χρόνο\". Ξεκινήστε την εκπαίδευση \"Home Alone\" από την πρώτη μέρα, αφήνοντας το κουτάβι μόνο του για μικρά διαστήματα, για να αποφύγετε το άγχος αποχωρισμού. Μην επιστρέψετε όταν κλαίει για να μην επιβραβεύσετε την ανεπιθύμητη συμπεριφορά.",
                 firstDaysAccordionSocialTitle: "Πρώιμη Κοινωνικοποίηση: Η Σημασία της",
                 firstDaysAccordionSocialContent: "Η κοινωνικοποίηση (3-16 εβδομάδες) είναι κρίσιμη. Εκθέστε το κουτάβι σε διάφορα περιβάλλοντα, ήχους, οσμές, ξένους ανθρώπους, παιδιά και άλλα υγιή, εμβολιασμένα σκυλιά. Οι εμπειρίες πρέπει να είναι θετικές. Πριν την ολοκλήρωση των εμβολιασμών, η κοινωνικοποίηση μπορεί να γίνει με ασφάλεια μεταφέροντας το κουτάβι στην αγκαλιά/τσάντα ή προσκαλώντας εμβολιασμένους φίλους (ανθρώπους/σκύλους) στο σπίτι. Η ψυχική διέγερση με διαδραστικά παιχνίδια είναι επίσης σημαντική.",
-                
+
                 healthTitle: "III. Υγεία και Κτηνιατρική Φροντίδα",
                 healthIntro: "Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.",
                 healthAccordionVetTitle: "Η Πρώτη Επίσκεψη στον Κτηνίατρο",
@@ -558,45 +657,45 @@
                 healthDewormExternalListItem2: "Χάπια: Παρέχουν τριμηνιαία ή μηνιαία προστασία.",
                 healthDewormExternalListItem3: "Κολάρα: Μπορούν να φορεθούν από την ηλικία των 4 μηνών και άνω, προσφέροντας κάλυψη για ψύλλους, τσιμπούρια και σκνίπα.",
                 healthDewormExternalP3: "Συνδυασμοί: Συχνά χρησιμοποιούνται συνδυασμοί προϊόντων (π.χ., αμπούλα, κολάρο και σπρέι σιτρονέλας) για την επίτευξη του βέλτιστου αποτελέσματος στην προστασία του σκύλου.",
-                healthAccordionProblemsTitle: "Συχνά Προβλήματα Υγείας & Συμπτώματα",    
-                healthAccordionProblemsP1: "Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.",    
-                healthProblemsGeneralSymptomsTitle: "Γενικά Συμπτώματα Ασθένειας:",    
-                healthProblemsGenSymptomEyes: "Μάτια, Στόμα, Μύτη: Βήχας, φτέρνισμα, έντονο λαχάνιασμα, δυσκολία στην αναπνοή, άσχημη αναπνοή, πολλά σάλια, ξηρά, θολά ή κόκκινα μάτια.",    
-                healthProblemsGenSymptomBehavior: "Συμπεριφορά: Μειωμένη δραστηριότητα, μικρότερο ενδιαφέρον για παιχνίδι, περισσότερες ώρες ύπνου, ή άλλες αλλαγές στη συμπεριφορά.",    
-                healthProblemsGenSymptomSkin: "Δερματικές Αλλαγές: Ξηρότητα, αλλοιώσεις, ερυθρότητα, απώλεια τριχών, φλοιώδες δέρμα, έντονος κνησμός.",    
-                healthProblemsGenSymptomDigestion: "Κατανάλωση Τροφής και Πέψη: Μειωμένη όρεξη, απώλεια βάρους, στομαχικές διαταραχές, περιττώματα που περιέχουν αίμα, βλέννα, σκουλήκια ή αχώνευτες τροφές, υπερβολική κατανάλωση νερού ή υπερβολική ούρηση.",    
-                healthProblemsGenSymptomStiffness: "Δυσκαμψία Αρθρώσεων: Δυσκολία στο σήκωμα ή στην ανάβαση σκαλοπατιών.",    
-                healthProblemsSpecificProblemsTitle: "Ειδικά Προβλήματα:",    
-                healthProblemsSpecDiarrhea: "Διάρροια: Είναι αρκετά συνηθισμένη στα κουτάβια και μπορεί να κυμαίνεται από ήπια επεισόδια που υποχωρούν γρήγορα έως σοβαρά γαστρικά προβλήματα που προκαλούνται από σοβαρή ασθένεια ή απόφραξη, με πιθανή παρουσία αίματος ή βλέννας και αφυδάτωση.",    
-                healthProblemsSpecVomiting: "Εμετός: Αποτελεί ένα κοινό πρόβλημα με δεκάδες πιθανές αιτίες, όπως λοιμώξεις, εντερικά παράσιτα, παγκρεατίτιδα, νεφρική ανεπάρκεια, θερμοπληξία, ξένο σώμα στο στομάχι-έντερο και δηλητηρίαση.",    
-                healthProblemsSpecHypoglycemia: "Υπογλυκαιμία: Χαμηλά επίπεδα γλυκόζης στο αίμα, συχνότερα σε μικρόσωμα κουτάβια ή σε περίπτωση ακατάλληλης σίτισης. Συμπτώματα περιλαμβάνουν ανορεξία, λήθαργο, τρόμο (τρέμουλο), αλλαγές συμπεριφοράς και σπασμούς. Σε περίπτωση υποψίας, συνιστάται η άμεση επάλειψη με μέλι στα ούλα ή η χορήγηση νερού με ζάχαρη, και άμεση επικοινωνία με κτηνίατρο.",    
-                healthProblemsSpecCoccidiosis: "Κοκκιδίωση: Προκαλείται από ένα παράσιτο (κοκκίδια) και είναι μια από τις πιο συχνές αιτίες επώδυνης και συχνά θανατηφόρου διάρροιας σε νεαρές ηλικίες. Τα συμπτώματα περιλαμβάνουν σοβαρή διάρροια, ληθαργικότητα, ανορεξία και αφυδάτωση.",    
-                healthProblemsSpecGiardia: "Giardia (Λαμβλίαση): Ένα κοινό εντερικό παράσιτο. Τα συμπτώματα περιλαμβάνουν μαλακά, χλωμά, δύσοσμα κόπρανα, αυξημένη συχνότητα κενώσεων, αέρια, κοιλιακή δυσφορία, μειωμένη όρεξη και αφυδάτωση. Μεταδίδεται μέσω μολυσμένου νερού ή κοπράνων. Η θεραπεία περιλαμβάνει φαινβενδαζόλη και/ή μετρονιδαζόλη, σε συνδυασμό με αυστηρή υγιεινή.",    
-                healthProblemsSpecParvo: "Παρβοϊός: Εξαιρετικά μεταδοτικός και επικίνδυνος, ειδικά για κουτάβια. Τα συμπτώματα περιλαμβάνουν απώλεια όρεξης, λήθαργο, επίμονο εμετό και αιμορραγική διάρροια. Απαιτεί άμεση κτηνιατρική φροντίδα.",    
-                healthProblemsTableSystem: "Σύστημα/Πρόβλημα",    
-                healthProblemsTableSymptoms: "Κοινά Συμπτώματα",    
-                healthProblemsRow1Cat: "Γενικά Συμπτώματα<br>Συμπεριφορά",    
-                healthProblemsRow1Sym: "Λήθαργος, μειωμένη δραστηριότητα, αδιαφορία, αλλαγές στον ύπνο",    
-                healthProblemsRow2Cat: "Αναπνευστικό",    
-                healthProblemsRow2Sym: "Βήχας, φτέρνισμα, λαχάνιασμα, δυσκολία στην αναπνοή",    
-                healthProblemsRow3Cat: "Δέρμα/Τρίχωμα",    
-                healthProblemsRow3Sym: "Ξηρότητα, ερυθρότητα, εξανθήματα, τριχόπτωση, έντονος κνησμός",    
-                healthProblemsRow4Cat: "Πεπτικό Σύστημα<br>Διάρροια",    
-                healthProblemsRow4Sym: "Υδαρή, με αίμα/βλέννα, αυξημένη συχνότητα, αφυδάτωση",    
-                healthProblemsRow5Cat: "Εμετός",    
-                healthProblemsRow5Sym: "Επίμονος, με ή χωρίς τροφή/αίμα",    
-                healthProblemsRow6Cat: "Όρεξη/Βάρος",    
-                healthProblemsRow6Sym: "Μειωμένη όρεξη, ανορεξία, απώλεια βάρους",    
-                healthProblemsRow7Cat: "Ειδικά Προβλήματα<br>Υπογλυκαιμία",    
-                healthProblemsRow7Sym: "Τρέμουλο, αδυναμία, σπασμοί, αλλαγές συμπεριφοράς, λιποθυμία",    
-                healthProblemsRow8Cat: "Παρβοϊός",    
-                healthProblemsRow8Sym: "Εμετός, αιμομορραγική διάρροια, λήθαργος, πυρετός, αφυδάτωση",    
-                healthProblemsRow9Cat: "Κοκκιδίωση",    
-                healthProblemsRow9Sym: "Σοβαρή διάρροια, λήθαργος, ανορεξία, αφυδάτωση",    
-                healthProblemsRow10Cat: "Giardia",    
-                healthProblemsRow10Sym: "Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση",    
+                healthAccordionProblemsTitle: "Συχνά Προβλήματα Υγείας & Συμπτώματα",
+                healthAccordionProblemsP1: "Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.",
+                healthProblemsGeneralSymptomsTitle: "Γενικά Συμπτώματα Ασθένειας:",
+                healthProblemsGenSymptomEyes: "Μάτια, Στόμα, Μύτη: Βήχας, φτέρνισμα, έντονο λαχάνιασμα, δυσκολία στην αναπνοή, άσχημη αναπνοή, πολλά σάλια, ξηρά, θολά ή κόκκινα μάτια.",
+                healthProblemsGenSymptomBehavior: "Συμπεριφορά: Μειωμένη δραστηριότητα, μικρότερο ενδιαφέρον για παιχνίδι, περισσότερες ώρες ύπνου, ή άλλες αλλαγές στη συμπεριφορά.",
+                healthProblemsGenSymptomSkin: "Δερματικές Αλλαγές: Ξηρότητα, αλλοιώσεις, ερυθρότητα, απώλεια τριχών, φλοιώδες δέρμα, έντονος κνησμός.",
+                healthProblemsGenSymptomDigestion: "Κατανάλωση Τροφής και Πέψη: Μειωμένη όρεξη, απώλεια βάρους, στομαχικές διαταραχές, περιττώματα που περιέχουν αίμα, βλέννα, σκουλήκια ή αχώνευτες τροφές, υπερβολική κατανάλωση νερού ή υπερβολική ούρηση.",
+                healthProblemsGenSymptomStiffness: "Δυσκαμψία Αρθρώσεων: Δυσκολία στο σήκωμα ή στην ανάβαση σκαλοπατιών.",
+                healthProblemsSpecificProblemsTitle: "Ειδικά Προβλήματα:",
+                healthProblemsSpecDiarrhea: "Διάρροια: Είναι αρκετά συνηθισμένη στα κουτάβια και μπορεί να κυμαίνεται από ήπια επεισόδια που υποχωρούν γρήγορα έως σοβαρά γαστρικά προβλήματα που προκαλούνται από σοβαρή ασθένεια ή απόφραξη, με πιθανή παρουσία αίματος ή βλέννας και αφυδάτωση.",
+                healthProblemsSpecVomiting: "Εμετός: Αποτελεί ένα κοινό πρόβλημα με δεκάδες πιθανές αιτίες, όπως λοιμώξεις, εντερικά παράσιτα, παγκρεατίτιδα, νεφρική ανεπάρκεια, θερμοπληξία, ξένο σώμα στο στομάχι-έντερο και δηλητηρίαση.",
+                healthProblemsSpecHypoglycemia: "Υπογλυκαιμία: Χαμηλά επίπεδα γλυκόζης στο αίμα, συχνότερα σε μικρόσωμα κουτάβια ή σε περίπτωση ακατάλληλης σίτισης. Συμπτώματα περιλαμβάνουν ανορεξία, λήθαργο, τρόμο (τρέμουλο), αλλαγές συμπεριφοράς και σπασμούς. Σε περίπτωση υποψίας, συνιστάται η άμεση επάλειψη με μέλι στα ούλα ή η χορήγηση νερού με ζάχαρη, και άμεση επικοινωνία με κτηνίατρο.",
+                healthProblemsSpecCoccidiosis: "Κοκκιδίωση: Προκαλείται από ένα παράσιτο (κοκκίδια) και είναι μια από τις πιο συχνές αιτίες επώδυνης και συχνά θανατηφόρου διάρροιας σε νεαρές ηλικίες. Τα συμπτώματα περιλαμβάνουν σοβαρή διάρροια, ληθαργικότητα, ανορεξία και αφυδάτωση.",
+                healthProblemsSpecGiardia: "Giardia (Λαμβλίαση): Ένα κοινό εντερικό παράσιτο. Τα συμπτώματα περιλαμβάνουν μαλακά, χλωμά, δύσοσμα κόπρανα, αυξημένη συχνότητα κενώσεων, αέρια, κοιλιακή δυσφορία, μειωμένη όρεξη και αφυδάτωση. Μεταδίδεται μέσω μολυσμένου νερού ή κοπράνων. Η θεραπεία περιλαμβάνει φαινβενδαζόλη και/ή μετρονιδαζόλη, σε συνδυασμό με αυστηρή υγιεινή.",
+                healthProblemsSpecParvo: "Παρβοϊός: Εξαιρετικά μεταδοτικός και επικίνδυνος, ειδικά για κουτάβια. Τα συμπτώματα περιλαμβάνουν απώλεια όρεξης, λήθαργο, επίμονο εμετό και αιμορραγική διάρροια. Απαιτεί άμεση κτηνιατρική φροντίδα.",
+                healthProblemsTableSystem: "Σύστημα/Πρόβλημα",
+                healthProblemsTableSymptoms: "Κοινά Συμπτώματα",
+                healthProblemsRow1Cat: "Γενικά Συμπτώματα<br>Συμπεριφορά",
+                healthProblemsRow1Sym: "Λήθαργος, μειωμένη δραστηριότητα, αδιαφορία, αλλαγές στον ύπνο",
+                healthProblemsRow2Cat: "Αναπνευστικό",
+                healthProblemsRow2Sym: "Βήχας, φτέρνισμα, λαχάνιασμα, δυσκολία στην αναπνοή",
+                healthProblemsRow3Cat: "Δέρμα/Τρίχωμα",
+                healthProblemsRow3Sym: "Ξηρότητα, ερυθρότητα, εξανθήματα, τριχόπτωση, έντονος κνησμός",
+                healthProblemsRow4Cat: "Πεπτικό Σύστημα<br>Διάρροια",
+                healthProblemsRow4Sym: "Υδαρή, με αίμα/βλέννα, αυξημένη συχνότητα, αφυδάτωση",
+                healthProblemsRow5Cat: "Εμετός",
+                healthProblemsRow5Sym: "Επίμονος, με ή χωρίς τροφή/αίμα",
+                healthProblemsRow6Cat: "Όρεξη/Βάρος",
+                healthProblemsRow6Sym: "Μειωμένη όρεξη, ανορεξία, απώλεια βάρους",
+                healthProblemsRow7Cat: "Ειδικά Προβλήματα<br>Υπογλυκαιμία",
+                healthProblemsRow7Sym: "Τρέμουλο, αδυναμία, σπασμοί, αλλαγές συμπεριφοράς, λιποθυμία",
+                healthProblemsRow8Cat: "Παρβοϊός",
+                healthProblemsRow8Sym: "Εμετός, αιμομορραγική διάρροια, λήθαργος, πυρετός, αφυδάτωση",
+                healthProblemsRow9Cat: "Κοκκιδίωση",
+                healthProblemsRow9Sym: "Σοβαρή διάρροια, λήθαργος, ανορεξία, αφυδάτωση",
+                healthProblemsRow10Cat: "Giardia",
+                healthProblemsRow10Sym: "Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση",
                 healthAccordionProblemsP2: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.",
-                
+
                 nutritionTitle: "IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης",
                 nutritionIntro: "Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.",
                 nutritionAccordionFood: "Επιλογή Κατάλληλης Τροφής και Πρόγραμμα Σίτισης",
@@ -612,30 +711,31 @@
                 nutritionAccordionDangerousFoodTitle: "Επικίνδυνες Τροφές προς Αποφυγή",
                 nutritionAccordionDangerousFoodContent: "Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Παρακάτω ακολουθεί ένας συνοπτικός πίνακας με μερικές από τις πιο κοινές. <br><strong>Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.</strong>",
                 dangerousFoodsTableHtml: `
-    <h4 class="font-semibold mt-4 mb-2">Πίνακας Επικίνδυνων Τροφών:</h4>
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="text-left py-2 px-3 border-b">Τροφή</th>
-                    <th class="text-left py-2 px-3 border-b">Πιθανές Επιπτώσεις</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td class="py-2 px-3 border-b">Σοκολάτα (ειδικά μαύρη)</td><td class="py-2 px-3 border-b">Εμετός, διάρροια, τρόμος, αρρυθμίες, σπασμοί, θάνατος</td></tr>
-                <tr><td class="py-2 px-3 border-b">Ξυλιτόλη (γλυκαντικό)</td><td class="py-2 px-3 border-b">Υπογλυκαιμία, ηπατική ανεπάρκεια, σπασμοί</td></tr>
-                <tr><td class="py-2 px-3 border-b">Κρεμμύδια & Σκόρδο</td><td class="py-2 px-3 border-b">Βλάβη ερυθρών αιμοσφαιρίων (αιμολυτική αναιμία), γαστρεντερικές διαταραχές</td></tr>
-                <tr><td class="py-2 px-3 border-b">Σταφύλια & Σταφίδες</td><td class="py-2 px-3 border-b">Νεφρική ανεπάρκεια</td></tr>
-                <tr><td class="py-2 px-3 border-b">Αλκοόλ</td><td class="py-2 px-3 border-b">Εμετός, διάρροια, έλλειψη συντονισμού, καταστολή ΚΝΣ, δυσκολία αναπνοής, θάνατος</td></tr>
-                <tr><td class="py-2 px-3 border-b">Καφεΐνη</td><td class="py-2 px-3 border-b">Υπερδιέγερση, γρήγορος καρδιακός παλμός, τρόμος, σπασμοί</td></tr>
-                <tr><td class="py-2 px-3 border-b">Μαγειρεμένα Κόκαλα</td><td class="py-2 px-3 border-b">Κίνδυνος πνιγμού, εσωτερικοί τραυματισμοί, εντερική απόφραξη</td></tr>
-                <tr><td class="py-2 px-3 border-b">Αβοκάντο (φλοιός, κουκούτσι)</td><td class="py-2 px-3 border-b">Εμετός, διάρροια (λόγω περσίνης)</td></tr>
-                <tr><td class="py-2 px-3 border-b">Καρύδια Μακαντάμια</td><td class="py-2 px-3 border-b">Αδυναμία, εμετός, τρόμος, υπερθερμία</td></tr>
-                <tr><td class="py-2 px-3 border-b">Γαλακτοκομικά (μεγάλες ποσότητες/δυσανεξία)</td><td class="py-2 px-3 border-b">Πεπτικές διαταραχές, διάρροια</td></tr>
-            </tbody>
-        </table>
-    </div>
-`, 
+                    <h4 class="font-semibold mt-4 mb-2">Πίνακας Επικίνδυνων Τροφών:</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="text-left py-2 px-3 border-b">Τροφή</th>
+                                    <th class="text-left py-2 px-3 border-b">Πιθανές Επιπτώσεις</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="py-2 px-3 border-b">Σοκολάτα (ειδικά μαύρη)</td><td class="py-2 px-3 border-b">Εμετός, διάρροια, τρόμος, αρρυθμίες, σπασμοί, θάνατος</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Ξυλιτόλη (γλυκαντικό)</td><td class="py-2 px-3 border-b">Υπογλυκαιμία, ηπατική ανεπάρκεια, σπασμοί</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Κρεμμύδια & Σκόρδο</td><td class="py-2 px-3 border-b">Βλάβη ερυθρών αιμοσφαιρίων (αιμολυτική αναιμία), γαστρεντερικές διαταραχές</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Σταφύλια & Σταφίδες</td><td class="py-2 px-3 border-b">Νεφρική ανεπάρκεια</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Αλκοόλ</td><td class="py-2 px-3 border-b">Εμετός, διάρροια, έλλειψη συντονισμού, καταστολή ΚΝΣ, δυσκολία αναπνοής, θάνατος</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Καφεΐνη</td><td class="py-2 px-3 border-b">Υπερδιέγερση, γρήγορος καρδιακός παλμός, τρόμος, σπασμοί</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Μαγειρεμένα Κόκαλα</td><td class="py-2 px-3 border-b">Κίνδυνος πνιγμού, εσωτερικοί τραυματισμοί, εντερική απόφραξη</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Αβοκάντο (φλοιός, κουκούτσι)</td><td class="py-2 px-3 border-b">Εμετός, διάρροια (λόγω περσίνης)</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Καρύδια Μακαντάμια</td><td class="py-2 px-3 border-b">Αδυναμία, εμετός, τρόμος, υπερθερμία</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Γαλακτοκομικά (μεγάλες ποσότητες/δυσανεξία)</td><td class="py-2 px-3 border-b">Πεπτικές διαταραχές, διάρροια</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `,
+
                 exerciseTitle: "V. Άσκηση και Ψυχική διέγερση",
                 exerciseIntro: "Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.",
                 exerciseNeedsTitle: "Ανάγκες Άσκησης",
@@ -653,24 +753,30 @@
 
                 trainingTitle: "VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς",
                 trainingIntro: "Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως \"έλα\", \"κάτσε\", \"μείνε\", \"κάτω\" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.",
-                
+
                 firstAidSecTitle: "\"Τι να κάνω αν...\" / Πρώτες Βοήθειες ✨",
-                firstAidSecDesc: "Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. \"το κουτάβι έφαγε σοκολάτα\", \"το κουτάβι κουτσαίνει ξαφνικά\"). Οι παρακάτω πληροφορίες είναι γενικές και δεν αντικαθιστούν την κτηνιατρική συμβουλή. Σε κάθε περίπτωση έκτακτης ανάγκης, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας.",
+                firstAidSecDesc: "Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. \"το κουτάβι έφαγε σοκολάτα\", \"το κουτάβι κουτσαίνει ξαφνικά\").",
+                firstAidPlaceholder: "Περιγράψτε την κατάσταση εδώ...",
+                firstAidButtonText: "✨ Λήψη Συμβουλών Πρώτων Βοηθειών (AI)",
                 firstAidWarningTitle: "Σημαντική Προειδοποίηση!",
                 firstAidWarningContent: "Οι παρακάτω πληροφορίες είναι γενικές συμβουλές και ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία. Σε κάθε περίπτωση που ανησυχείτε για την υγεία του κουταβιού σας, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας ή μια κλινική έκτακτης ανάγκης.",
+                firstAidAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI. Παρακαλώ δοκιμάστε ξανά αργότερα.",
+
 
                 storiesSecTitle: "Δημιουργία \"Ιστοριών Κοινωνικοποίησης\" / Θετικών Εμπειριών ✨",
-                storiesSecDesc: "Εισάγετε ένα σενάριο κοινωνικοποίησης (π.χ. \"πρώτη συνάντηση με άλλο σκύλο\", \"επίσκεψη σε θορυβώδες μέρος\", \"γνωριμία με παιδιά\") για να λάβετε συμβουλές για το πώς να το χειριστείτε θετικά και με ασφάλεια. Η σωστή κοινωνικοποίηση είναι κλειδί για έναν ισορροπημένο σκύλο.",
-                
+                storiesSecDesc: "Εισάγετε ένα σενάριο κοινωνικοποίησης (π.χ. \"πρώτη συνάντηση με άλλο σκύλο\", \"επίσκεψη σε θορυβώδες μέρος\", \"γνωριμία με παιδιά\") για να λάβετε συμβουλές για το πώς να το χειριστείτε θετικά και με ασφάλεια.",
+                storiesPlaceholder: "Περιγράψτε το σενάριο κοινωνικοποίησης εδώ...",
+                storiesButtonText: "✨ Λήψη Συμβουλών Κοινωνικοποίησης (AI)",
+                storiesDisclaimer: "Η σωστή κοινωνικοποίηση είναι κλειδί για έναν ισορροπημένο σκύλο. Οι παρακάτω συμβουλές είναι γενικές προτάσεις.",
+                socializationAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI. Παρακαλώ δοκιμάστε ξανά αργότερα.",
+
                 longtermTitle: "VII. Μακροπρόθεσμες Ευθύνες του Κηδεμόνα",
                 longtermIntro: "Η φροντίδα ενός σκύλου είναι μια δέσμευση ζωής (10-15+ χρόνια). Περιλαμβάνει συνεχή κτηνιατρική φροντίδα (ετήσιοι έλεγχοι, εμβολιασμοί), προσαρμογή της διατροφής και της άσκησης καθώς μεγαλώνει, διαχείριση αλλαγών στη συμπεριφορά, και οικονομική ευθύνη για τροφή, περίθαλψη, και απρόοπτα έξοδα. Η αγάπη, η υπομονή και η συνέπεια είναι απαραίτητες σε όλη τη διάρκεια της ζωής του.",
 
                 conclusionTitle: "Συμπέρασμα: Η Ανταμοιβή μιας Υπεύθυνης Φροντίδας",
                 conclusionContent: "Η υιοθεσία ενός κουταβιού είναι μια δέσμευση που φέρνει τεράστια χαρά και συντροφικότητα. Με την κατάλληλη προετοιμασία, γνώση και αφοσίωση, θα χτίσετε έναν ισχυρό δεσμό με τον νέο σας φίλο, προσφέροντάς του μια υγιή, ευτυχισμένη και γεμάτη αγάπη ζωή. Αυτός ο οδηγός είναι ένα σημείο εκκίνησης. Συνεχίστε να μαθαίνετε, να παρατηρείτε το κουτάβι σας και να προσαρμόζετε τη φροντίδα σας στις ανάγκες του. Η ανταμοιβή θα είναι ένας πιστός σύντροφος για πολλά χρόνια.",
-
-                loadingText: "Φόρτωση...", 
             },
-            en: { 
+            en: { // English translations for new AI features
                 logoAltText: "The Happy Leash - Puppy Care Guide Logo",
                 mainTitle: "🐾 Puppy Care Guide 🐾",
                 subTitle: "Everything you need to know for your new friend!",
@@ -688,7 +794,7 @@
 
                 introTitle: "Welcoming the New Family Member",
                 introContent: "The arrival of a puppy at home is an exciting moment, full of joy and anticipation. However, it also comes with significant responsibilities that require preparation and knowledge. This interactive application is designed to provide the necessary information and practical advice to ensure a smooth transition and a healthy, happy life for the new four-legged member of the family. Explore the sections below to learn everything from preparing the space and initial adjustment, to health, nutrition, exercise, training, and long-term responsibilities.",
-                
+
                 prepTabTitle: "I. Preparing for the Puppy's Arrival",
                 prepTabIntro: "Even before the puppy arrives home, preparing its space is vital. This includes creating a safe and comfortable environment where the puppy will feel protected and can adjust smoothly. Also, gathering the necessary equipment is crucial for a smooth transition. This section guides you in creating a safe environment and selecting basic supplies.",
                 prepAccordionEnvTitle: "Creating a Safe and Comfortable Environment",
@@ -720,14 +826,27 @@
                 prepCrateMisconception3: "It's not an answer to all problems: The crate is a training tool, not a magic solution for all behavior problems. It must be combined with consistent training, socialization, and exercise.",
                 prepCrateMisconception4: "It's not inhumane: For dogs, the crate can be a natural extension of their denning instinct. Many dogs love their crate and seek it out as a safe place.",
                 prepCrateConclusion: "Proper introduction and training with the crate are crucial. It must be a positive experience, with treats, toys, and a comfortable bed, so the puppy sees it as its own safe haven.",
-                
+                nameFinderTitle: "Find a Name for Your Puppy ✨",
+                nameFinderDescription: "Describe some characteristics of your puppy and get name suggestions!",
+                nameFinderGenderLabel: "Gender:",
+                nameFinderGenderAny: "Doesn't Matter",
+                nameFinderGenderMale: "Male",
+                nameFinderGenderFemale: "Female",
+                nameFinderTraitsLabel: "Main Characteristics (e.g., playful, calm, brave):",
+                nameFinderTraitsPlaceholder: "E.g. playful, smart, loyal, fluffy",
+                nameFinderSuggestButton: "✨ Suggest Names (AI)",
+                nameFinderOutputTitle: "Name Suggestions:",
+                nameSuggestionIntro: "Based on the characteristics you provided ({gender}, {traits}), here are some ideas:",
+                noNamesFound: "No suggestions found for these characteristics. Try something more general!",
+                loadingMessage: "Processing...",
+
                 firstDaysTabTitle: "II. The First Days in the New Home",
                 firstDaysTabIntro: "The first few days are crucial for the puppy's adjustment. Establishing a routine and proper early socialization lay the foundation for a well-balanced adult dog. Here you will find tips to help your puppy feel safe and explore the world with confidence.",
                 firstDaysAccordionRoutineTitle: "Adjustment and Routine Establishment ✨",
                 firstDaysAccordionRoutineContent: "Give the puppy time to get used to its new home. Create a consistent routine for feeding, potty breaks, playtime, and 'quiet time'. Start 'Home Alone' training from day one, leaving the puppy alone for short periods to prevent separation anxiety. Do not return when it's crying to avoid reinforcing unwanted behavior.",
                 firstDaysAccordionSocialTitle: "Early Socialization: Its Importance",
                 firstDaysAccordionSocialContent: "Socialization (3-16 weeks) is crucial. Expose the puppy to various environments, sounds, smells, strangers, children, and other healthy, vaccinated dogs. Experiences should be positive. Before vaccinations are complete, socialization can be done safely by carrying the puppy in your arms/bag or inviting vaccinated friends (people/dogs) to your home. Mental stimulation with interactive toys is also important.",
-                
+
                 healthTitle: "III. Health and Veterinary Care",
                 healthIntro: "Your puppy's health is paramount. From the first visit to the vet to regular vaccinations and deworming, preventive care is key. Learn how to keep your puppy healthy and when to seek veterinary help.",
                 healthAccordionVetTitle: "The First Visit to the Vet",
@@ -761,45 +880,45 @@
                 healthDewormExternalListItem2: "Pills: Provide quarterly or monthly protection.",
                 healthDewormExternalListItem3: "Collars: Can be worn from the age of 4 months and older, offering coverage for fleas, ticks, and sandflies.",
                 healthDewormExternalP3: "Combinations: Combinations of products (e.g., spot-on, collar, and citronella spray) are often used to achieve the optimal result in protecting the dog.",
-                healthAccordionProblemsTitle: "Common Health Problems & Symptoms",    
-                healthAccordionProblemsP1: "It is important for guardians to recognize common signs of illness for immediate veterinary intervention. Due to their vulnerability, puppies require constant monitoring for subtle changes in their health. Prompt recognition of symptoms and communication with the veterinarian are paramount, as rapid health deterioration can occur, making timely intervention life-saving.",    
-                healthProblemsGeneralSymptomsTitle: "General Symptoms of Illness:",    
-                healthProblemsGenSymptomEyes: "Eyes, Mouth, Nose: Coughing, sneezing, heavy panting, difficulty breathing, bad breath, excessive drooling, dry, cloudy, or red eyes.",    
-                healthProblemsGenSymptomBehavior: "Behavior: Decreased activity, less interest in play, more hours of sleep, or other behavioral changes.",    
-                healthProblemsGenSymptomSkin: "Skin Changes: Dryness, lesions, redness, hair loss, scaly skin, intense itching.",    
-                healthProblemsGenSymptomDigestion: "Food Consumption and Digestion: Decreased appetite, weight loss, stomach upsets, feces containing blood, mucus, worms, or undigested food, excessive water consumption, or excessive urination.",    
-                healthProblemsGenSymptomStiffness: "Joint Stiffness: Difficulty getting up or climbing stairs.",    
-                healthProblemsSpecificProblemsTitle: "Specific Problems:",    
-                healthProblemsSpecDiarrhea: "Diarrhea: It is quite common in puppies and can range from mild episodes that resolve quickly to severe gastric problems caused by serious illness or obstruction, with possible presence of blood or mucus and dehydration.",    
-                healthProblemsSpecVomiting: "Vomiting: It is a common problem with dozens of possible causes, such as infections, intestinal parasites, pancreatitis, kidney failure, heatstroke, foreign body in the stomach-intestine, and poisoning.",    
-                healthProblemsSpecHypoglycemia: "Hypoglycemia: Low blood glucose levels, more common in small breed puppies or in cases of improper feeding. Symptoms include anorexia, lethargy, trembling, behavioral changes, and seizures. If suspected, immediate application of honey to the gums or administration of sugar water is recommended, along with immediate contact with a veterinarian.",    
-                healthProblemsSpecCoccidiosis: "Coccidiosis: Caused by a parasite (coccidia) and is one of the most common causes of painful and often fatal diarrhea in young ages. Symptoms include severe diarrhea, lethargy, anorexia, and dehydration.",    
-                healthProblemsSpecGiardia: "Giardia (Giardiasis): A common intestinal parasite. Symptoms include soft, pale, foul-smelling stools, increased frequency of bowel movements, gas, abdominal discomfort, decreased appetite, and dehydration. It is transmitted through contaminated water or feces. Treatment includes fenbendazole and/or metronidazole, combined with strict hygiene.",    
-                healthProblemsSpecParvo: "Parvovirus: Highly contagious and dangerous, especially for puppies. Symptoms include loss of appetite, lethargy, persistent vomiting, and bloody diarrhea. Requires immediate veterinary care.",    
-                healthProblemsTableSystem: "System/Problem",    
-                healthProblemsTableSymptoms: "Common Symptoms",    
-                healthProblemsRow1Cat: "General Symptoms<br>Behavior",    
-                healthProblemsRow1Sym: "Lethargy, reduced activity, indifference, changes in sleep",    
-                healthProblemsRow2Cat: "Respiratory",    
-                healthProblemsRow2Sym: "Coughing, sneezing, panting, difficulty breathing",    
-                healthProblemsRow3Cat: "Skin/Coat",    
-                healthProblemsRow3Sym: "Dryness, redness, rashes, hair loss, intense itching",    
-                healthProblemsRow4Cat: "Digestive System<br>Diarrhea",    
-                healthProblemsRow4Sym: "Watery, with blood/mucus, increased frequency, dehydration",    
-                healthProblemsRow5Cat: "Vomiting",    
-                healthProblemsRow5Sym: "Persistent, with or without food/blood",    
-                healthProblemsRow6Cat: "Appetite/Weight",    
-                healthProblemsRow6Sym: "Decreased appetite, anorexia, weight loss",    
-                healthProblemsRow7Cat: "Specific Problems<br>Hypoglycemia",    
-                healthProblemsRow7Sym: "Trembling, weakness, seizures, behavioral changes, fainting",    
-                healthProblemsRow8Cat: "Parvovirus",    
-                healthProblemsRow8Sym: "Vomiting, bloody diarrhea, lethargy, fever, dehydration",    
-                healthProblemsRow9Cat: "Coccidiosis",    
-                healthProblemsRow9Sym: "Severe diarrhea, lethargy, anorexia, dehydration",    
-                healthProblemsRow10Cat: "Giardia",    
-                healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration",    
+                healthAccordionProblemsTitle: "Common Health Problems & Symptoms",
+                healthAccordionProblemsP1: "It is important for guardians to recognize common signs of illness for immediate veterinary intervention. Due to their vulnerability, puppies require constant monitoring for subtle changes in their health. Prompt recognition of symptoms and communication with the veterinarian are paramount, as rapid health deterioration can occur, making timely intervention life-saving.",
+                healthProblemsGeneralSymptomsTitle: "General Symptoms of Illness:",
+                healthProblemsGenSymptomEyes: "Eyes, Mouth, Nose: Coughing, sneezing, heavy panting, difficulty breathing, bad breath, excessive drooling, dry, cloudy, or red eyes.",
+                healthProblemsGenSymptomBehavior: "Behavior: Decreased activity, less interest in play, more hours of sleep, or other behavioral changes.",
+                healthProblemsGenSymptomSkin: "Skin Changes: Dryness, lesions, redness, hair loss, scaly skin, intense itching.",
+                healthProblemsGenSymptomDigestion: "Food Consumption and Digestion: Decreased appetite, weight loss, stomach upsets, feces containing blood, mucus, worms, or undigested food, excessive water consumption, or excessive urination.",
+                healthProblemsGenSymptomStiffness: "Joint Stiffness: Difficulty getting up or climbing stairs.",
+                healthProblemsSpecificProblemsTitle: "Specific Problems:",
+                healthProblemsSpecDiarrhea: "Diarrhea: It is quite common in puppies and can range from mild episodes that resolve quickly to severe gastric problems caused by serious illness or obstruction, with possible presence of blood or mucus and dehydration.",
+                healthProblemsSpecVomiting: "Vomiting: It is a common problem with dozens of possible causes, such as infections, intestinal parasites, pancreatitis, kidney failure, heatstroke, foreign body in the stomach-intestine, and poisoning.",
+                healthProblemsSpecHypoglycemia: "Hypoglycemia: Low blood glucose levels, more common in small breed puppies or in cases of improper feeding. Symptoms include anorexia, lethargy, trembling, behavioral changes, and seizures. If suspected, immediate application of honey to the gums or administration of sugar water is recommended, along with immediate contact with a veterinarian.",
+                healthProblemsSpecCoccidiosis: "Coccidiosis: Caused by a parasite (coccidia) and is one of the most common causes of painful and often fatal diarrhea in young ages. Symptoms include severe diarrhea, lethargy, anorexia, and dehydration.",
+                healthProblemsSpecGiardia: "Giardia (Giardiasis): A common intestinal parasite. Symptoms include soft, pale, foul-smelling stools, increased frequency of bowel movements, gas, abdominal discomfort, decreased appetite, and dehydration. It is transmitted through contaminated water or feces. Treatment includes fenbendazole and/or metronidazole, combined with strict hygiene.",
+                healthProblemsSpecParvo: "Parvovirus: Highly contagious and dangerous, especially for puppies. Symptoms include loss of appetite, lethargy, persistent vomiting, and bloody diarrhea. Requires immediate veterinary care.",
+                healthProblemsTableSystem: "System/Problem",
+                healthProblemsTableSymptoms: "Common Symptoms",
+                healthProblemsRow1Cat: "General Symptoms<br>Behavior",
+                healthProblemsRow1Sym: "Lethargy, reduced activity, indifference, changes in sleep",
+                healthProblemsRow2Cat: "Respiratory",
+                healthProblemsRow2Sym: "Coughing, sneezing, panting, difficulty breathing",
+                healthProblemsRow3Cat: "Skin/Coat",
+                healthProblemsRow3Sym: "Dryness, redness, rashes, hair loss, intense itching",
+                healthProblemsRow4Cat: "Digestive System<br>Diarrhea",
+                healthProblemsRow4Sym: "Watery, with blood/mucus, increased frequency, dehydration",
+                healthProblemsRow5Cat: "Vomiting",
+                healthProblemsRow5Sym: "Persistent, with or without food/blood",
+                healthProblemsRow6Cat: "Appetite/Weight",
+                healthProblemsRow6Sym: "Decreased appetite, anorexia, weight loss",
+                healthProblemsRow7Cat: "Specific Problems<br>Hypoglycemia",
+                healthProblemsRow7Sym: "Trembling, weakness, seizures, behavioral changes, fainting",
+                healthProblemsRow8Cat: "Parvovirus",
+                healthProblemsRow8Sym: "Vomiting, bloody diarrhea, lethargy, fever, dehydration",
+                healthProblemsRow9Cat: "Coccidiosis",
+                healthProblemsRow9Sym: "Severe diarrhea, lethargy, anorexia, dehydration",
+                healthProblemsRow10Cat: "Giardia",
+                healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration",
                 healthAccordionProblemsP2: "Mild lethargy or swelling at the injection site is normal and subsides.",
-                
+
                 nutritionTitle: "IV. Nutrition: The Foundation of Health and Development",
                 nutritionIntro: "Proper nutrition is fundamental for your puppy's development and well-being. This section covers choosing the right food, feeding schedules according to age, and foods that must be avoided for your little friend's safety.",
                 nutritionAccordionFood: "Choosing Appropriate Food and Feeding Schedule",
@@ -815,30 +934,31 @@
                 nutritionAccordionDangerousFoodTitle: "Dangerous Foods to Avoid",
                 nutritionAccordionDangerousFoodContent: "Many human foods are toxic to dogs. Below is a summary table of some of the most common ones. <br><strong>Always consult your veterinarian if you are unsure about a food.</strong>",
                 dangerousFoodsTableHtml: `
-    <h4 class="font-semibold mt-4 mb-2">Dangerous Foods Table:</h4>
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="text-left py-2 px-3 border-b">Food</th>
-                    <th class="text-left py-2 px-3 border-b">Potential Harm</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td class="py-2 px-3 border-b">Chocolate (especially dark)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, tremors, abnormal heart rhythm, seizures, death</td></tr>
-                <tr><td class="py-2 px-3 border-b">Xylitol (sweetener)</td><td class="py-2 px-3 border-b">Hypoglycemia, liver failure, seizures</td></tr>
-                <tr><td class="py-2 px-3 border-b">Onions & Garlic</td><td class="py-2 px-3 border-b">Red blood cell damage (hemolytic anemia), gastrointestinal upset</td></tr>
-                <tr><td class="py-2 px-3 border-b">Grapes & Raisins</td><td class="py-2 px-3 border-b">Kidney failure</td></tr>
-                <tr><td class="py-2 px-3 border-b">Alcohol</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, incoordination, CNS depression, difficulty breathing, death</td></tr>
-                <tr><td class="py-2 px-3 border-b">Caffeine</td><td class="py-2 px-3 border-b">Hyperactivity, rapid heartbeat, tremors, seizures</td></tr>
-                <tr><td class="py-2 px-3 border-b">Cooked Bones</td><td class="py-2 px-3 border-b">Choking hazard, internal injuries, intestinal obstruction</td></tr>
-                <tr><td class="py-2 px-3 border-b">Avocado (pit, skin)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea (due to persin)</td></tr>
-                <tr><td class="py-2 px-3 border-b">Macadamia Nuts</td><td class="py-2 px-3 border-b">Weakness, vomiting, tremors, hyperthermia</td></tr>
-                <tr><td class="py-2 px-3 border-b">Dairy Products (large amounts/intolerance)</td><td class="py-2 px-3 border-b">Digestive upset, diarrhea</td></tr>
-            </tbody>
-        </table>
-    </div>
-`,
+                    <h4 class="font-semibold mt-4 mb-2">Dangerous Foods Table:</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="text-left py-2 px-3 border-b">Food</th>
+                                    <th class="text-left py-2 px-3 border-b">Potential Harm</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="py-2 px-3 border-b">Chocolate (especially dark)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, tremors, abnormal heart rhythm, seizures, death</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Xylitol (sweetener)</td><td class="py-2 px-3 border-b">Hypoglycemia, liver failure, seizures</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Onions & Garlic</td><td class="py-2 px-3 border-b">Red blood cell damage (hemolytic anemia), gastrointestinal upset</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Grapes & Raisins</td><td class="py-2 px-3 border-b">Kidney failure</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Alcohol</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, incoordination, CNS depression, difficulty breathing, death</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Caffeine</td><td class="py-2 px-3 border-b">Hyperactivity, rapid heartbeat, tremors, seizures</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Cooked Bones</td><td class="py-2 px-3 border-b">Choking hazard, internal injuries, intestinal obstruction</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Avocado (pit, skin)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea (due to persin)</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Macadamia Nuts</td><td class="py-2 px-3 border-b">Weakness, vomiting, tremors, hyperthermia</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Dairy Products (large amounts/intolerance)</td><td class="py-2 px-3 border-b">Digestive upset, diarrhea</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `,
+
                 exerciseTitle: "V. Exercise and Mental Stimulation",
                 exerciseIntro: "Exercise and mental stimulation are vital for your puppy's healthy development and happiness. A puppy that gets enough exercise and mental engagement is less likely to develop behavioral problems.",
                 exerciseNeedsTitle: "Exercise Needs",
@@ -858,20 +978,27 @@
                 trainingIntro: "As a dog trainer, I emphasize that training is the cornerstone of a harmonious coexistence. Start early with positive reinforcement (treats, praise). Basic commands like 'come', 'sit', 'stay', 'down' are fundamental. Toilet training requires patience and consistency. Preventing unwanted behaviors (chewing, barking) is easier than correcting them. Consider professional help if you face difficulties.",
 
                 firstAidSecTitle: "\"What to do if...\" / First Aid ✨",
-                firstAidSecDesc: "Describe a sudden situation or symptom that worries you (e.g., 'puppy ate chocolate', 'puppy is suddenly limping'). The following information is general and does not replace veterinary advice. In any emergency, contact your veterinarian IMMEDIATELY.",
+                firstAidSecDesc: "Describe a sudden situation or symptom that worries you (e.g., 'puppy ate chocolate', 'puppy is suddenly limping').",
+                firstAidPlaceholder: "Describe the situation here...",
+                firstAidButtonText: "✨ Get First Aid Advice (AI)",
                 firstAidWarningTitle: "Important Warning!",
                 firstAidWarningContent: "The following information is general advice and DOES NOT replace professional veterinary diagnosis and treatment. In any case where you are concerned about your puppy's health, contact your veterinarian or an emergency clinic IMMEDIATELY.",
+                firstAidAIError: "An error occurred while contacting the AI. Please try again later.",
+
 
                 storiesSecTitle: "Creating \"Socialization Stories\" / Positive Experiences ✨",
-                storiesSecDesc: "Enter a socialization scenario (e.g., 'first meeting with another dog', 'visit to a noisy place', 'meeting children') to get advice on how to handle it positively and safely. Proper socialization is key to a well-balanced dog.",
-                
+                storiesSecDesc: "Enter a socialization scenario (e.g., 'first meeting with another dog', 'visit to a noisy place', 'meeting children') to get advice on how to handle it positively and safely.",
+                storiesPlaceholder: "Describe the socialization scenario here...",
+                storiesButtonText: "✨ Get Socialization Tips (AI)",
+                storiesDisclaimer: "Proper socialization is key to a well-balanced dog. The following tips are general suggestions.",
+                socializationAIError: "An error occurred while contacting the AI. Please try again later.",
+
+
                 longtermTitle: "VII. Long-term Guardian Responsibilities",
                 longtermIntro: "Caring for a dog is a lifelong commitment (10-15+ years). It includes ongoing veterinary care (annual check-ups, vaccinations), adjusting diet and exercise as they age, managing behavioral changes, and financial responsibility for food, healthcare, and unexpected expenses. Love, patience, and consistency are essential throughout their life.",
 
                 conclusionTitle: "Conclusion: The Reward of Responsible Care",
                 conclusionContent: "Adopting a puppy is a commitment that brings immense joy and companionship. With proper preparation, knowledge, and dedication, you will build a strong bond with your new friend, offering them a healthy, happy, and love-filled life. This guide is a starting point. Continue to learn, observe your puppy, and adapt your care to their needs. The reward will be a faithful companion for many years.",
-                
-                loadingText: "Loading...",
             }
         };
 
@@ -883,17 +1010,65 @@
 
         // Helper function for translations with fallback
         function getTranslation(lang, key) {
-            return translations[lang] && translations[lang][key] 
-                ? translations[lang][key] 
+            return translations[lang] && translations[lang][key]
+                ? translations[lang][key]
                 : translations['el'][key] || key; // Fallback to Greek, then key itself
         }
+
+        // --- Gemini API Call Helper ---
+        async function callGeminiAPI(prompt, outputElement, loadingElement, buttonElement, errorKey) {
+            const currentLang = localStorage.getItem('language') || 'el';
+            loadingElement.classList.remove('hidden');
+            loadingElement.textContent = getTranslation(currentLang, 'loadingMessage');
+            outputElement.classList.add('hidden');
+            outputElement.textContent = '';
+            if (buttonElement) buttonElement.disabled = true;
+
+            const apiKey = ""; // API key will be injected by the environment if needed
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = { contents: chatHistory };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.textContent = text;
+                } else {
+                    console.error('Unexpected API response structure:', result);
+                    outputElement.textContent = getTranslation(currentLang, errorKey) + ' (No content found)';
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                outputElement.textContent = getTranslation(currentLang, errorKey) + ` (${error.message})`;
+            } finally {
+                loadingElement.classList.add('hidden');
+                outputElement.classList.remove('hidden');
+                 if (buttonElement) buttonElement.disabled = false;
+            }
+        }
+
 
         function switchLanguage(lang) {
             try {
                 localStorage.setItem('language', lang);
                 document.documentElement.lang = lang;
-                
-                if (langElButton && langEnButton) { 
+
+                if (langElButton && langEnButton) {
                     if (lang === 'el') {
                         langElButton.classList.add('active');
                         langEnButton.classList.remove('active');
@@ -902,28 +1077,30 @@
                         langElButton.classList.remove('active');
                     }
                 }
-                
+
                 document.querySelectorAll('[data-i18n-key]').forEach(element => {
                     const key = element.getAttribute('data-i18n-key');
                     const translation = getTranslation(lang, key);
-                    
+
                     if (translation) {
                         if (element.hasAttribute('data-i18n-target-placeholder')) {
                             element.placeholder = translation;
                         } else if (element.hasAttribute('data-i18n-target-alt')) {
                             element.alt = translation;
                         } else {
-                            element.innerHTML = translation;
+                            if (key === "dangerousFoodsTableHtml" && typeof translation === 'string' && translation.trim().startsWith('<')) {
+                                element.innerHTML = translation;
+                            } else {
+                                element.textContent = translation;
+                            }
                         }
                     } else {
                         console.warn('Translation key "' + key + '" not found for language "' + lang + '".');
                     }
                 });
-                
-                // Re-initialize components that depend on language
                 if (typeof initializeFeedingChart === 'function') initializeFeedingChart(lang);
                 if (typeof initializeExerciseReco === 'function') initializeExerciseReco(lang);
-                
+
             } catch (error) {
                 console.error('Error switching language:', error);
             }
@@ -932,16 +1109,16 @@
         function initializeTabs() {
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabPanes = document.querySelectorAll('.tab-pane');
-            
+
             if (tabButtons.length === 0 && tabPanes.length === 0) {
                 return;
             }
-            
+
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-                    
+
                     const targetTab = button.dataset.tab;
                     tabPanes.forEach(pane => {
                         if (pane.id === targetTab) {
@@ -952,23 +1129,17 @@
                             pane.classList.remove('active');
                         }
                     });
-                    
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on tab change
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
         }
 
         function initializeAccordions() {
             const accordions = document.querySelectorAll('.accordion');
-            
-            if (accordions.length === 0) {
-                return;
-            }
-            
+            if (accordions.length === 0) return;
             accordions.forEach(accordion => {
                 const button = accordion.querySelector('.accordion-button');
                 const content = accordion.querySelector('.accordion-content');
-                
                 if (button && content) {
                     button.addEventListener('click', () => {
                         const isVisible = !content.classList.contains('hidden');
@@ -982,145 +1153,58 @@
         function initializeFeedingChart(lang) {
             const feedingCtx = document.getElementById('feedingScheduleChart');
             if (!feedingCtx) return;
-            
-            const chartTextData = {
-                el: { 
-                    chartYAxisTitle: "Αριθμός Γευμάτων", 
-                    chartXAxisTitle: "Ηλικία Κουταβιού", 
-                    chartLabelMealsPerDay: "Γεύματα ανά Ημέρα", 
-                    Wks: "εβδ.", 
-                    Mths: "μηνών", 
-                    Year: "έτους"
-                },
-                en: { 
-                    chartYAxisTitle: "Number of Meals", 
-                    chartXAxisTitle: "Puppy Age", 
-                    chartLabelMealsPerDay: "Meals per Day", 
-                    Wks: "wks", 
-                    Mths: "mths", 
-                    Year: "year"
-                }
-            };
-            
-            const currentChartTexts = chartTextData[lang] || chartTextData.el; // Default to Greek if lang not found
-            
-            // Better chart cleanup
+            const chartTextData = { /* ... (as before) ... */ };
+             const currentChartTexts = translations[lang] || translations.el;
+
+
             if (feedingChart && typeof feedingChart.destroy === 'function') {
                 feedingChart.destroy();
                 feedingChart = null;
             }
-            
             try {
                 feedingChart = new Chart(feedingCtx, {
                     type: 'bar',
                     data: {
                         labels: [
-                            '8-12 ' + currentChartTexts.Wks, 
-                            '3-6 ' + currentChartTexts.Mths, 
-                            '6-12 ' + currentChartTexts.Mths, 
+                            '8-12 ' + currentChartTexts.Wks,
+                            '3-6 ' + currentChartTexts.Mths,
+                            '6-12 ' + currentChartTexts.Mths,
                             '>1 ' + currentChartTexts.Year
                         ],
                         datasets: [{
-                            label: currentChartTexts.chartLabelMealsPerDay,
-                            data: [4, 3, 2, 1.5], // Using 1.5 to represent 1-2 meals, tooltip will clarify
-                            backgroundColor: [
-                                'rgba(54, 162, 235, 0.6)',
-                                'rgba(75, 192, 192, 0.6)',
-                                'rgba(255, 206, 86, 0.6)',
-                                'rgba(153, 102, 255, 0.6)'
-                            ],
-                            borderColor: [
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(153, 102, 255, 1)'
-                            ],
+                            label: currentChartTexts.chartLabelMealsPerDay || "Γεύματα ανά Ημέρα",
+                            data: [4, 3, 2, 1.5],
+                            backgroundColor: ['rgba(54, 162, 235, 0.6)','rgba(75, 192, 192, 0.6)','rgba(255, 206, 86, 0.6)','rgba(153, 102, 255, 0.6)'],
+                            borderColor: ['rgba(54, 162, 235, 1)','rgba(75, 192, 192, 1)','rgba(255, 206, 86, 1)','rgba(153, 102, 255, 1)'],
                             borderWidth: 1
                         }]
                     },
                     options: {
-                        responsive: true, 
-                        maintainAspectRatio: false,
+                        responsive: true, maintainAspectRatio: false,
                         scales: {
-                            y: { 
-                                beginAtZero: true, 
-                                ticks: { stepSize: 1 }, 
-                                title: { display: true, text: currentChartTexts.chartYAxisTitle }
-                            },
-                            x: { 
-                                title: { display: true, text: currentChartTexts.chartXAxisTitle }
-                            }
+                            y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: currentChartTexts.chartYAxisTitle || "Αριθμός Γευμάτων"} },
+                            x: { title: { display: true, text: currentChartTexts.chartXAxisTitle || "Ηλικία Κουταβιού" } }
                         },
-                        plugins: { 
-                            legend: { display: false }, 
-                            tooltip: { 
-                                callbacks: { 
-                                    label: function(context) {
-                                        let label = context.dataset.label || '';
-                                        if (label) { label += ': '; }
-                                        if (context.parsed.y !== null) {
-                                            if (context.label.includes('>1')) {
-                                                label += '1-2';
-                                            } else {
-                                                label += context.parsed.y;
-                                            }
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        }
+                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) {
+                            let label = context.dataset.label || ''; if (label) { label += ': '; }
+                            if (context.parsed.y !== null) { label += context.label.includes('>1') ? '1-2' : context.parsed.y; }
+                            return label;
+                        }}}}
                     }
                 });
-            } catch (error) {
-                console.error('Error initializing feeding chart:', error);
-            }
+            } catch (e) { console.error('Error initializing feeding chart:', e); }
         }
 
         function initializeExerciseReco(lang) {
             const dogTypeSelector = document.getElementById('dog-type-selector');
             const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
-            
             if (!dogTypeSelector || !exerciseRecommendationDiv) return;
             
-            const exerciseTextData = {
-                el: {
-                    exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
-                    dogTypePuppy: "Κουτάβι (<1 έτους)", 
-                    dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", 
-                    dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", 
-                    dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", 
-                    dogTypeSenior: "Ηλικιωμένος Σκύλος",
-                    exerciseRecoPuppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
-                    exerciseRecoAdultLow: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
-                    exerciseRecoAdultMedium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα.",
-                    exerciseRecoAdultHigh: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα.",
-                    exerciseRecoSenior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
-                    exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις."
-                },
-                en: {
-                    exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
-                    dogTypePuppy: "Puppy (<1 year)", 
-                    dogTypeAdultLow: "Adult - Low Energy", 
-                    dogTypeAdultMedium: "Adult - Medium Energy", 
-                    dogTypeAdultHigh: "Adult - High Energy", 
-                    dogTypeSenior: "Senior Dog",
-                    exerciseRecoPuppy: "For puppies: Short, frequent play sessions (5-10 minutes). Avoid excessive exercise, running on hard surfaces, and too much jumping to protect developing bones.",
-                    exerciseRecoAdultLow: "For low-energy adults (e.g., Pug, Basset Hound): 30 minutes to 1 hour of mild exercise/day.",
-                    exerciseRecoAdultMedium: "For medium-energy adults (e.g., Labrador, Beagle): 1 to 1.5 hours of exercise/day.",
-                    exerciseRecoAdultHigh: "For high-energy adults (e.g., Border Collie, Jack Russell): 1.5 to 2+ hours of vigorous exercise/day.",
-                    exerciseRecoSenior: "For senior dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
-                    exerciseDefaultReco: "Select to see suggestions."
-                }
-            };
-            
-            const currentExerciseTexts = exerciseTextData[lang] || exerciseTextData.el;
-            
-            // Update the label for the selector
+            const currentExerciseTexts = translations[lang] || translations.el;
+
             const selectorLabel = document.querySelector('label[for="dog-type-selector"]');
             if (selectorLabel) selectorLabel.textContent = currentExerciseTexts.exerciseDogTypeLabel;
-            
-            // Update options text
+
             if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) {
                 dogTypeSelector.options[0].textContent = currentExerciseTexts.dogTypePuppy;
                 dogTypeSelector.options[1].textContent = currentExerciseTexts.dogTypeAdultLow;
@@ -1128,7 +1212,7 @@
                 dogTypeSelector.options[3].textContent = currentExerciseTexts.dogTypeAdultHigh;
                 dogTypeSelector.options[4].textContent = currentExerciseTexts.dogTypeSenior;
             }
-            
+
             const recommendations = {
                 puppy: currentExerciseTexts.exerciseRecoPuppy,
                 adult_low: currentExerciseTexts.exerciseRecoAdultLow,
@@ -1136,40 +1220,146 @@
                 adult_high: currentExerciseTexts.exerciseRecoAdultHigh,
                 senior: currentExerciseTexts.exerciseRecoSenior
             };
-            
-            // Remove old listener if it exists
             if (currentUpdateFunction) {
                 dogTypeSelector.removeEventListener('change', currentUpdateFunction);
             }
-            
-            // Create new function and store reference
             currentUpdateFunction = function() {
                 const selectedType = dogTypeSelector.value;
                 exerciseRecommendationDiv.textContent = recommendations[selectedType] || currentExerciseTexts.exerciseDefaultReco;
             };
-            
             dogTypeSelector.addEventListener('change', currentUpdateFunction);
-            currentUpdateFunction(); // Initial call to set text based on current selection and language
+            currentUpdateFunction();
         }
+
+        function initializeNameFinder() {
+            const genderSelect = document.getElementById('puppyGender');
+            const traitsInput = document.getElementById('puppyTraits');
+            const suggestButton = document.getElementById('suggestNameButton');
+            const loadingDiv = document.getElementById('nameFinderLoading');
+            const outputDiv = document.getElementById('nameSuggestionsOutput');
+            const nameListDiv = document.getElementById('nameList');
+
+            if (!genderSelect || !traitsInput || !suggestButton || !loadingDiv || !outputDiv || !nameListDiv) {
+                return;
+            }
+
+            suggestButton.addEventListener('click', () => {
+                const selectedGender = genderSelect.value;
+                const traitsText = traitsInput.value.trim();
+                const currentLang = localStorage.getItem('language') || 'el';
+                let genderPromptText = "";
+                if (selectedGender === "male") genderPromptText = currentLang === "el" ? "αρσενικό" : "male";
+                else if (selectedGender === "female") genderPromptText = currentLang === "el" ? "θηλυκό" : "female";
+                else genderPromptText = currentLang === "el" ? "οποιουδήποτε φύλου" : "any gender";
+
+                const prompt = `Πρότεινε 5-7 μοναδικά ονόματα για ένα κουτάβι. Φύλο: ${genderPromptText}. Κύρια χαρακτηριστικά: ${traitsText || (currentLang === "el" ? "γενικά" : "general")}. Τα ονόματα να είναι κατάλληλα για την ελληνική γλώσσα, αλλά μπορούν να περιλαμβάνουν και διεθνή ονόματα που χρησιμοποιούνται στην Ελλάδα. Παρουσίασε τα ονόματα ως μια απλή λίστα με κουκκίδες (bullets), το καθένα σε νέα γραμμή. Για παράδειγμα: \n- Όνομα1\n- Όνομα2`;
+                
+                const genderDisplayVal = genderSelect.options[genderSelect.selectedIndex].text; 
+                const traitsDisplay = traitsText || (currentLang === 'el' ? "γενικά χαρακτηριστικά" : "general traits");
+                let introText = getTranslation(currentLang, 'nameSuggestionIntro');
+                introText = introText.replace('{gender}', genderDisplayVal).replace('{traits}', traitsDisplay);
+                
+                // Store intro text to prepend it to Gemini's response
+                nameListDiv.dataset.introText = introText;
+
+
+                callGeminiAPI(prompt, nameListDiv, loadingDiv, suggestButton, 'noNamesFound')
+                    .then(() => {
+                        // Prepend the intro text if names were found
+                        if (nameListDiv.textContent !== getTranslation(currentLang, 'noNamesFound') && nameListDiv.dataset.introText) {
+                             const currentNames = nameListDiv.textContent;
+                             nameListDiv.innerHTML = ""; // Clear before adding intro + names
+                             const pIntro = document.createElement('p');
+                             pIntro.className = 'mb-2';
+                             pIntro.textContent = nameListDiv.dataset.introText;
+                             nameListDiv.appendChild(pIntro);
+                             
+                             // Assuming Gemini returns a list with hyphens or bullets
+                             const namesArray = currentNames.split(/[\n-•]+/).map(name => name.trim()).filter(name => name);
+                             if (namesArray.length > 0) {
+                                 const ul = document.createElement('ul');
+                                 ul.className = 'list-disc list-inside pl-4';
+                                 namesArray.forEach(name => {
+                                     const li = document.createElement('li');
+                                     li.textContent = name;
+                                     ul.appendChild(li);
+                                 });
+                                 nameListDiv.appendChild(ul);
+                             } else {
+                                nameListDiv.textContent = currentNames; // Fallback if parsing fails
+                             }
+                        }
+                    });
+            });
+        }
+
+        function initializeFirstAidAI() {
+            const queryInput = document.getElementById('firstAidQuery');
+            const getAdviceButton = document.getElementById('getFirstAidButton');
+            const loadingDiv = document.getElementById('firstAidLoading');
+            const outputDiv = document.getElementById('firstAidOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) return;
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'firstAidPlaceholder'); // Or a specific error message for empty query
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+                const prompt = `Είμαι ιδιοκτήτης κουταβιού. Το κουτάβι μου ${userQuery}. Παρακαλώ δώσε μου γενικές συμβουλές πρώτων βοηθειών σε απλή, κατανοητή γλώσσα. Τόνισε εμφατικά στο τέλος ότι αυτές οι συμβουλές ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία, και ότι πρέπει να επικοινωνήσω ΑΜΕΣΑ με τον κτηνίατρό μου ή μια κλινική έκτακτης ανάγκης. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'firstAidAIError');
+            });
+        }
+
+        function initializeSocializationAI() {
+            const queryInput = document.getElementById('socializationQuery');
+            const getTipsButton = document.getElementById('getSocializationTipsButton');
+            const loadingDiv = document.getElementById('socializationLoading');
+            const outputDiv = document.getElementById('socializationOutput');
+
+            if (!queryInput || !getTipsButton || !loadingDiv || !outputDiv) return;
+
+            getTipsButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                 if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'storiesPlaceholder'); // Or a specific error message
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+                const prompt = `Είμαι ιδιοκτήτης κουταβιού. Θέλω συμβουλές για το πώς να χειριστώ την κοινωνικοποίηση του κουταβιού μου στο εξής σενάριο: "${userQuery}". Δώσε πρακτικές συμβουλές για θετική και ασφαλή προσέγγιση, σε μορφή λίστας με κουκκίδες. Η απάντηση να είναι σε απλή, κατανοητή γλώσσα. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getTipsButton, 'socializationAIError');
+            });
+        }
+
 
         document.addEventListener('DOMContentLoaded', () => {
             try {
-                // Assign to globally declared variables
                 langElButton = document.getElementById('lang-el');
                 langEnButton = document.getElementById('lang-en');
-                
+
                 if (langElButton && langEnButton) {
                     langElButton.addEventListener('click', () => switchLanguage('el'));
                     langEnButton.addEventListener('click', () => switchLanguage('en'));
                 }
-                
-                const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
-                switchLanguage(currentLang); // Apply initial language
-                
+
+                const currentLang = localStorage.getItem('language') || 'el';
+                switchLanguage(currentLang);
+
                 initializeTabs();
                 initializeAccordions();
-                
-                // Ensure the first tab's content is visible if it's the active one
+                initializeNameFinder();
+                initializeFirstAidAI();
+                initializeSocializationAI();
+
+
                 const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
                 if (activeTabButton) {
                     const activeTabPaneId = activeTabButton.dataset.tab;
@@ -1180,14 +1370,11 @@
                         activeTabPane.classList.add('active');
                     }
                 }
-                
-                console.log("Puppy care guide script initialized successfully.");
-                
+                console.log("Puppy care guide script initialized successfully with AI features.");
             } catch (error) {
-                console.error('Error initializing application:', error); // Corrected this line
+                console.error('Error initializing application:', error);
             }
         });
-       
     </script>
 </body>
 </html>
