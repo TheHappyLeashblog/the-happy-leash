@@ -120,7 +120,6 @@
             padding: 1.2rem;
             border-radius: 0.6rem;
             margin-top: 1.5rem;
-            /* font-style: italic; REMOVED for better readability of AI content */
             color: #E65100;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             white-space: pre-wrap; /* Preserve line breaks from API response */
@@ -513,6 +512,16 @@
             <div id="tab-training" class="tab-pane hidden content-section">
                 <h2 data-i18n-key="trainingTitle">VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς</h2>
                 <p class="mb-4 text-justify" data-i18n-key="trainingIntro">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως "έλα", "κάτσε", "μείνε", "κάτω" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.</p>
+                
+                <div class="mt-6">
+                    <h3 data-i18n-key="trainingAITitle" class="text-xl font-semibold mb-2">✨ Βοηθός Εκπαίδευσης AI</h3>
+                    <p class="mb-3 text-sm" data-i18n-key="trainingAIDescription">Αντιμετωπίζετε κάποια συγκεκριμένη πρόκληση στην εκπαίδευση του κουταβιού σας; Περιγράψτε την παρακάτω για να λάβετε εξατομικευμένες συμβουλές.</p>
+                    <textarea id="trainingQuery" class="ai-input-area" rows="4" data-i18n-key="trainingAIPlaceholder" data-i18n-target-placeholder="true" placeholder="Π.χ. 'Το κουτάβι μου πηδάει πάνω στους ανθρώπους', 'Δεν έρχεται όταν το καλώ'..."></textarea>
+                    <button id="getTrainingAdviceButton" class="ai-submit-button" data-i18n-key="trainingAIButtonText">✨ Λήψη Συμβουλών Εκπαίδευσης (AI)</button>
+                    <div id="trainingAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
+                    <div id="trainingAIOutput" class="llm-output hidden mt-3"></div>
+                    <p class="mt-4 text-xs text-gray-500" data-i18n-key="trainingAIDisclaimer">Οι συμβουλές παρέχονται για γενική καθοδήγηση. Για σοβαρά προβλήματα συμπεριφοράς, συμβουλευτείτε έναν επαγγελματία εκπαιδευτή.</p>
+                </div>
             </div>
 
             <div id="tab-first-aid" class="tab-pane hidden content-section">
@@ -753,6 +762,13 @@
 
                 trainingTitle: "VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς",
                 trainingIntro: "Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως \"έλα\", \"κάτσε\", \"μείνε\", \"κάτω\" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.",
+                trainingAITitle: "✨ Βοηθός Εκπαίδευσης AI",
+                trainingAIDescription: "Αντιμετωπίζετε κάποια συγκεκριμένη πρόκληση στην εκπαίδευση του κουταβιού σας; Περιγράψτε την παρακάτω για να λάβετε εξατομικευμένες συμβουλές.",
+                trainingAIPlaceholder: "Π.χ. 'Το κουτάβι μου πηδάει πάνω στους ανθρώπους', 'Δεν έρχεται όταν το καλώ'...",
+                trainingAIButtonText: "✨ Λήψη Συμβουλών Εκπαίδευσης (AI)",
+                trainingAIDisclaimer: "Οι συμβουλές παρέχονται για γενική καθοδήγηση. Για σοβαρά προβλήματα συμπεριφοράς, συμβουλευτείτε έναν επαγγελματία εκπαιδευτή.",
+                trainingAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για την εκπαίδευση. Παρακαλώ δοκιμάστε ξανά αργότερα.",
+
 
                 firstAidSecTitle: "\"Τι να κάνω αν...\" / Πρώτες Βοήθειες ✨",
                 firstAidSecDesc: "Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. \"το κουτάβι έφαγε σοκολάτα\", \"το κουτάβι κουτσαίνει ξαφνικά\").",
@@ -976,6 +992,13 @@
 
                 trainingTitle: "VI. Basic Training and Behavior Management",
                 trainingIntro: "As a dog trainer, I emphasize that training is the cornerstone of a harmonious coexistence. Start early with positive reinforcement (treats, praise). Basic commands like 'come', 'sit', 'stay', 'down' are fundamental. Toilet training requires patience and consistency. Preventing unwanted behaviors (chewing, barking) is easier than correcting them. Consider professional help if you face difficulties.",
+                trainingAITitle: "✨ AI Training Assistant",
+                trainingAIDescription: "Are you facing a specific challenge in training your puppy? Describe it below to get personalized advice.",
+                trainingAIPlaceholder: "E.g., 'My puppy jumps on people', 'Doesn't come when called'...",
+                trainingAIButtonText: "✨ Get Training Advice (AI)",
+                trainingAIDisclaimer: "The advice provided is for general guidance. For serious behavioral problems, consult a professional trainer.",
+                trainingAIError: "An error occurred while contacting the AI for training advice. Please try again later.",
+
 
                 firstAidSecTitle: "\"What to do if...\" / First Aid ✨",
                 firstAidSecDesc: "Describe a sudden situation or symptom that worries you (e.g., 'puppy ate chocolate', 'puppy is suddenly limping').",
@@ -992,7 +1015,6 @@
                 storiesButtonText: "✨ Get Socialization Tips (AI)",
                 storiesDisclaimer: "Proper socialization is key to a well-balanced dog. The following tips are general suggestions.",
                 socializationAIError: "An error occurred while contacting the AI. Please try again later.",
-
 
                 longtermTitle: "VII. Long-term Guardian Responsibilities",
                 longtermIntro: "Caring for a dog is a lifelong commitment (10-15+ years). It includes ongoing veterinary care (annual check-ups, vaccinations), adjusting diet and exercise as they age, managing behavioral changes, and financial responsibility for food, healthcare, and unexpected expenses. Love, patience, and consistency are essential throughout their life.",
@@ -1153,9 +1175,8 @@
         function initializeFeedingChart(lang) {
             const feedingCtx = document.getElementById('feedingScheduleChart');
             if (!feedingCtx) return;
-            const chartTextData = { /* ... (as before) ... */ };
-             const currentChartTexts = translations[lang] || translations.el;
-
+            
+            const currentChartTexts = translations[lang] || translations.el; // Use main translations object
 
             if (feedingChart && typeof feedingChart.destroy === 'function') {
                 feedingChart.destroy();
@@ -1165,14 +1186,14 @@
                 feedingChart = new Chart(feedingCtx, {
                     type: 'bar',
                     data: {
-                        labels: [
-                            '8-12 ' + currentChartTexts.Wks,
-                            '3-6 ' + currentChartTexts.Mths,
-                            '6-12 ' + currentChartTexts.Mths,
-                            '>1 ' + currentChartTexts.Year
+                        labels: [ // Construct labels using potentially missing keys with fallbacks
+                            `8-12 ${getTranslation(lang, 'Wks') || 'εβδ.'}`,
+                            `3-6 ${getTranslation(lang, 'Mths') || 'μηνών'}`,
+                            `6-12 ${getTranslation(lang, 'Mths') || 'μηνών'}`,
+                            `>1 ${getTranslation(lang, 'Year') || 'έτους'}`
                         ],
                         datasets: [{
-                            label: currentChartTexts.chartLabelMealsPerDay || "Γεύματα ανά Ημέρα",
+                            label: getTranslation(lang, 'chartLabelMealsPerDay') || "Γεύματα ανά Ημέρα",
                             data: [4, 3, 2, 1.5],
                             backgroundColor: ['rgba(54, 162, 235, 0.6)','rgba(75, 192, 192, 0.6)','rgba(255, 206, 86, 0.6)','rgba(153, 102, 255, 0.6)'],
                             borderColor: ['rgba(54, 162, 235, 1)','rgba(75, 192, 192, 1)','rgba(255, 206, 86, 1)','rgba(153, 102, 255, 1)'],
@@ -1182,8 +1203,8 @@
                     options: {
                         responsive: true, maintainAspectRatio: false,
                         scales: {
-                            y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: currentChartTexts.chartYAxisTitle || "Αριθμός Γευμάτων"} },
-                            x: { title: { display: true, text: currentChartTexts.chartXAxisTitle || "Ηλικία Κουταβιού" } }
+                            y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: getTranslation(lang, 'chartYAxisTitle') || "Αριθμός Γευμάτων"} },
+                            x: { title: { display: true, text: getTranslation(lang, 'chartXAxisTitle') || "Ηλικία Κουταβιού" } }
                         },
                         plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) {
                             let label = context.dataset.label || ''; if (label) { label += ': '; }
@@ -1251,32 +1272,32 @@
                 if (selectedGender === "male") genderPromptText = currentLang === "el" ? "αρσενικό" : "male";
                 else if (selectedGender === "female") genderPromptText = currentLang === "el" ? "θηλυκό" : "female";
                 else genderPromptText = currentLang === "el" ? "οποιουδήποτε φύλου" : "any gender";
-
-                const prompt = `Πρότεινε 5-7 μοναδικά ονόματα για ένα κουτάβι. Φύλο: ${genderPromptText}. Κύρια χαρακτηριστικά: ${traitsText || (currentLang === "el" ? "γενικά" : "general")}. Τα ονόματα να είναι κατάλληλα για την ελληνική γλώσσα, αλλά μπορούν να περιλαμβάνουν και διεθνή ονόματα που χρησιμοποιούνται στην Ελλάδα. Παρουσίασε τα ονόματα ως μια απλή λίστα με κουκκίδες (bullets), το καθένα σε νέα γραμμή. Για παράδειγμα: \n- Όνομα1\n- Όνομα2`;
+                
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+                const prompt = `Πρότεινε 5-7 μοναδικά ονόματα για ένα κουτάβι. Φύλο: ${genderPromptText}. Κύρια χαρακτηριστικά: ${traitsText || (currentLang === "el" ? "γενικά" : "general")}. Τα ονόματα να είναι κατάλληλα για την ελληνική γλώσσα, αλλά μπορούν να περιλαμβάνουν και διεθνή ονόματα που χρησιμοποιούνται στην Ελλάδα. Παρουσίασε τα ονόματα ως μια απλή λίστα με κουκκίδες (bullets), το καθένα σε νέα γραμμή. Για παράδειγμα: \n- Όνομα1\n- Όνομα2. ${langInstruction}`;
                 
                 const genderDisplayVal = genderSelect.options[genderSelect.selectedIndex].text; 
                 const traitsDisplay = traitsText || (currentLang === 'el' ? "γενικά χαρακτηριστικά" : "general traits");
                 let introText = getTranslation(currentLang, 'nameSuggestionIntro');
                 introText = introText.replace('{gender}', genderDisplayVal).replace('{traits}', traitsDisplay);
                 
-                // Store intro text to prepend it to Gemini's response
-                nameListDiv.dataset.introText = introText;
-
+                nameListDiv.dataset.introText = introText; // Store intro text
 
                 callGeminiAPI(prompt, nameListDiv, loadingDiv, suggestButton, 'noNamesFound')
                     .then(() => {
-                        // Prepend the intro text if names were found
                         if (nameListDiv.textContent !== getTranslation(currentLang, 'noNamesFound') && nameListDiv.dataset.introText) {
-                             const currentNames = nameListDiv.textContent;
+                             const rawNamesText = nameListDiv.textContent; // Get raw text from Gemini
                              nameListDiv.innerHTML = ""; // Clear before adding intro + names
+                             
                              const pIntro = document.createElement('p');
                              pIntro.className = 'mb-2';
                              pIntro.textContent = nameListDiv.dataset.introText;
                              nameListDiv.appendChild(pIntro);
                              
-                             // Assuming Gemini returns a list with hyphens or bullets
-                             const namesArray = currentNames.split(/[\n-•]+/).map(name => name.trim()).filter(name => name);
-                             if (namesArray.length > 0) {
+                             // Attempt to parse names if they are bulleted or hyphenated
+                             const namesArray = rawNamesText.split(/[\n-•]+/).map(name => name.trim()).filter(name => name);
+                             
+                             if (namesArray.length > 0 && namesArray.some(name => name.length > 0)) { // Check if array has actual names
                                  const ul = document.createElement('ul');
                                  ul.className = 'list-disc list-inside pl-4';
                                  namesArray.forEach(name => {
@@ -1286,7 +1307,8 @@
                                  });
                                  nameListDiv.appendChild(ul);
                              } else {
-                                nameListDiv.textContent = currentNames; // Fallback if parsing fails
+                                // If parsing fails or returns empty, just show the raw text (already set by callGeminiAPI)
+                                nameListDiv.textContent = rawNamesText; 
                              }
                         }
                     });
@@ -1305,13 +1327,13 @@
                 const userQuery = queryInput.value.trim();
                 if (!userQuery) {
                     const currentLang = localStorage.getItem('language') || 'el';
-                    outputDiv.textContent = getTranslation(currentLang, 'firstAidPlaceholder'); // Or a specific error message for empty query
+                    outputDiv.textContent = getTranslation(currentLang, 'firstAidPlaceholder'); 
                     outputDiv.classList.remove('hidden');
                     return;
                 }
                 const currentLang = localStorage.getItem('language') || 'el';
                 const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
-                const prompt = `Είμαι ιδιοκτήτης κουταβιού. Το κουτάβι μου ${userQuery}. Παρακαλώ δώσε μου γενικές συμβουλές πρώτων βοηθειών σε απλή, κατανοητή γλώσσα. Τόνισε εμφατικά στο τέλος ότι αυτές οι συμβουλές ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία, και ότι πρέπει να επικοινωνήσω ΑΜΕΣΑ με τον κτηνίατρό μου ή μια κλινική έκτακτης ανάγκης. ${langInstruction}`;
+                const prompt = `Είμαι ιδιοκτήτης κουταβιού. Το κουτάβι μου ${userQuery}. Παρακαλώ δώσε μου γενικές συμβουλές πρώτων βοηθειών σε απλή, κατανοητή γλώσσα, σε μορφή λίστας με κουκκίδες αν είναι δυνατόν. Τόνισε εμφατικά στο τέλος ότι αυτές οι συμβουλές ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία, και ότι πρέπει να επικοινωνήσω ΑΜΕΣΑ με τον κτηνίατρό μου ή μια κλινική έκτακτης ανάγκης. ${langInstruction}`;
                 callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'firstAidAIError');
             });
         }
@@ -1328,7 +1350,7 @@
                 const userQuery = queryInput.value.trim();
                  if (!userQuery) {
                     const currentLang = localStorage.getItem('language') || 'el';
-                    outputDiv.textContent = getTranslation(currentLang, 'storiesPlaceholder'); // Or a specific error message
+                    outputDiv.textContent = getTranslation(currentLang, 'storiesPlaceholder'); 
                     outputDiv.classList.remove('hidden');
                     return;
                 }
@@ -1336,6 +1358,29 @@
                 const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
                 const prompt = `Είμαι ιδιοκτήτης κουταβιού. Θέλω συμβουλές για το πώς να χειριστώ την κοινωνικοποίηση του κουταβιού μου στο εξής σενάριο: "${userQuery}". Δώσε πρακτικές συμβουλές για θετική και ασφαλή προσέγγιση, σε μορφή λίστας με κουκκίδες. Η απάντηση να είναι σε απλή, κατανοητή γλώσσα. ${langInstruction}`;
                 callGeminiAPI(prompt, outputDiv, loadingDiv, getTipsButton, 'socializationAIError');
+            });
+        }
+
+        function initializeTrainingAI() {
+            const queryInput = document.getElementById('trainingQuery');
+            const getAdviceButton = document.getElementById('getTrainingAdviceButton');
+            const loadingDiv = document.getElementById('trainingAILoading');
+            const outputDiv = document.getElementById('trainingAIOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) return;
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'trainingAIPlaceholder');
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+                const prompt = `Είμαι ιδιοκτήτης κουταβιού. Το κουτάβι μου αντιμετωπίζει το εξής πρόβλημα εκπαίδευσης: '${userQuery}'. Παρακαλώ δώσε μου συγκεκριμένες, πρακτικές συμβουλές και βήματα εκπαίδευσης με θετική ενίσχυση για να το αντιμετωπίσω. Η απάντηση να είναι σε απλή, κατανοητή γλώσσα και, αν είναι δυνατόν, σε μορφή λίστας με βήματα. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'trainingAIError');
             });
         }
 
@@ -1358,6 +1403,7 @@
                 initializeNameFinder();
                 initializeFirstAidAI();
                 initializeSocializationAI();
+                initializeTrainingAI(); // Initialize the new training AI feature
 
 
                 const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
