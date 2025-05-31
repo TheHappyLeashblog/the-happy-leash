@@ -464,7 +464,8 @@
             </div>
         </div>
     </div>
-<script>
+
+    <script>
         // --- I18N (Internationalization) ---
         let langElButton, langEnButton; // Declared once at the top of the script's scope
 
@@ -604,7 +605,7 @@
                 nutritionAccordionFood: "Επιλογή Κατάλληλης Τροφής και Πρόγραμμα Σίτισης",
                 nutritionFoodSelectP1: "Επιλέξτε υψηλής ποιότητας, επώνυμη τροφή ειδικά σχεδιασμένη για κουτάβια. Για μεγαλόσωμες φυλές, συνιστάται η επιλογή τροφών ειδικά διαμορφωμένων για τις ανάγκες τους. Οι τροφές πρέπει να είναι πλούσιες σε θρεπτικά συστατικά, όπως πρωτεΐνες (για την ανάπτυξη μυών και ιστών), λίπη (για ενέργεια και υγεία του δέρματος), υδατάνθρακες (για ενέργεια), βιταμίνες και μέταλλα (όπως ασβέστιο, σίδηρος, ψευδάργυρος).",
                 nutritionFoodSelectP2: "Η διατροφή του κουταβιού δεν είναι στατική, αλλά εξελίσσεται ραγδαία με την ηλικία και την ανάπτυξη. Η παροχή της σωστής ισορροπίας θρεπτικών συστατικών σε κάθε στάδιο είναι κρίσιμη για τη βέλτιστη ανάπτυξη και την πρόληψη ελλείψεων ή υπερβολών που θα μπορούσαν να επηρεάσουν τη μακροπρόθεσμη υγεία.",
-                nutritionFoodSelectP3: "Εάν το κουτάβي είναι πολύ μικρό, η διαδικασία του απογαλακτισμού ξεκινά γύρω στις 3-4 εβδομάδες και διαρκεί έως τις 8 εβδομάδες. Αρχικά, η στερεά τροφή μπορεί να ανακατευτεί με νερό ή γάλα για κουτάβια για να μαλακώσει και να γίνει πιο εύπεπτη.",
+                nutritionFoodSelectP3: "Εάν το κουτάβι είναι πολύ μικρό, η διαδικασία του απογαλακτισμού ξεκινά γύρω στις 3-4 εβδομάδες και διαρκεί έως τις 8 εβδομάδες. Αρχικά, η στερεά τροφή μπορεί να ανακατευτεί με νερό ή γάλα για κουτάβια για να μαλακώσει και να γίνει πιο εύπεπτη.",
                 nutritionFeedingScheduleTitle: "Πρόγραμμα Σίτισης:",
                 nutritionFeedList1: "8-12 εβδομάδων: 4 γεύματα την ημέρα.",
                 nutritionFeedList2: "3-6 μηνών: 3 γεύματα την ημέρα.",
@@ -851,6 +852,7 @@
             // so they will be initialized with the currentLang.
             
             // Ensure the first tab's content is visible if it's the active one
+            /* // START OF BLOCK TO COMMENT OUT FOR TESTING
             const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
             if (activeTabButton) {
                 const activeTabPaneId = activeTabButton.dataset.tab;
@@ -861,6 +863,7 @@
                     activeTabPane.classList.add('active');
                 }
             }
+            */ // END OF BLOCK TO COMMENT OUT FOR TESTING
             console.log("Puppy care guide script initialized successfully."); // For debugging
         });
 
@@ -874,6 +877,5 @@
         // ... (repeat for all other LLM function blocks)
         */
     </script>
-    
 </body>
 </html>
