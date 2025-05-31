@@ -467,7 +467,6 @@
 
     <script>
         // --- I18N (Internationalization) ---
-        /*
         let langElButton, langEnButton; // Declared once at the top of the script's scope
 
         const translations = {
@@ -651,222 +650,318 @@
                 loadingText: "Loading...",
             }
         };
-*/
-        function switchLanguage(lang) {
-            localStorage.setItem('language', lang);
-            document.documentElement.lang = lang;
 
-            if (langElButton && langEnButton) { 
-                if (lang === 'el') {
-                    langElButton.classList.add('active');
-                    langEnButton.classList.remove('active');
-                } else {
-                    langEnButton.classList.add('active');
-                    langElButton.classList.remove('active');
-                }
+       // Global variable declarations
+let langElButton;
+let langEnButton;
+let feedingChart; // Keep track of the chart instance
+let currentUpdateFunction = null; // For exercise recommendation event listener
+
+// Helper function for translations with fallback
+function getTranslation(lang, key) {
+    return translations[lang] && translations[lang][key] 
+        ? translations[lang][key] 
+        : translations['el'][key] || key; // Fallback to Greek, then key itself
+}
+
+function switchLanguage(lang) {
+    try {
+        localStorage.setItem('language', lang);
+        document.documentElement.lang = lang;
+        
+        if (langElButton && langEnButton) { // Fixed typo here
+            if (lang === 'el') {
+                langElButton.classList.add('active');
+                langEnButton.classList.remove('active');
+            } else {
+                langEnButton.classList.add('active');
+                langElButton.classList.remove('active');
             }
-
-            document.querySelectorAll('[data-i18n-key]').forEach(element => {
-                const key = element.getAttribute('data-i18n-key');
-                if (translations[lang] && translations[lang][key]) {
-                    if (element.hasAttribute('data-i18n-target-placeholder')) {
-                        element.placeholder = translations[lang][key];
-                    } else if (element.hasAttribute('data-i18n-target-alt')) { // Handle alt attribute
-                        element.alt = translations[lang][key];
-                    }
-                     else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                } else {
-                     console.warn('Translation key "' + key + '" not found for language "' + lang + '".');
-                }
-            });
-            
-            // Re-initialize components that depend on language
-            if (typeof initializeFeedingChart === 'function') initializeFeedingChart(lang);
-            if (typeof initializeExerciseReco === 'function') initializeExerciseReco(lang);
         }
         
-        function initializeTabs() {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            if (tabButtons.length === 0 && tabPanes.length === 0) {
-                 return; 
-            }
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    const targetTab = button.dataset.tab;
-                    tabPanes.forEach(pane => {
-                        if (pane.id === targetTab) {
-                            pane.classList.remove('hidden');
-                            pane.classList.add('active');
-                        } else {
-                            pane.classList.add('hidden');
-                            pane.classList.remove('active');
-                        }
-                    });
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on tab change
-                });
-            });
-        }
-
-        function initializeAccordions() {
-            const accordions = document.querySelectorAll('.accordion');
-            if (accordions.length === 0) {
-                return;
-            }
-
-            accordions.forEach(accordion => {
-                const button = accordion.querySelector('.accordion-button');
-                const content = accordion.querySelector('.accordion-content');
-                if (button && content) {
-                    button.addEventListener('click', () => {
-                        const isVisible = !content.classList.contains('hidden');
-                        content.classList.toggle('hidden', isVisible);
-                        button.setAttribute('aria-expanded', String(!isVisible));
-                    });
-                }
-            });
-        }
-        
-        let feedingChart; // Keep track of the chart instance
-        function initializeFeedingChart(lang) {
-            const feedingCtx = document.getElementById('feedingScheduleChart');
-            if (!feedingCtx) return;
-
-            const chartTextData = { 
-                el: { chartYAxisTitle: "Αριθμός Γευμάτων", chartXAxisTitle: "Ηλικία Κουταβιού", chartLabelMealsPerDay: "Γεύματα ανά Ημέρα", Wks: "εβδ.", Mths: "μηνών", Year: "έτους"},
-                en: { chartYAxisTitle: "Number of Meals", chartXAxisTitle: "Puppy Age", chartLabelMealsPerDay: "Meals per Day", Wks: "wks", Mths: "mths", Year: "year"}
-            };
-            const currentChartTexts = chartTextData[lang] || chartTextData.el; // Default to Greek if lang not found
-
-            if (feedingChart) {
-                feedingChart.destroy(); // Destroy previous chart instance before creating a new one
-            }
-            feedingChart = new Chart(feedingCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['8-12 ' + currentChartTexts.Wks, '3-6 ' + currentChartTexts.Mths, '6-12 ' + currentChartTexts.Mths, '>1 ' + currentChartTexts.Year],
-                    datasets: [{
-                        label: currentChartTexts.chartLabelMealsPerDay,
-                        data: [4, 3, 2, 1.5], // Using 1.5 to represent 1-2 meals, tooltip will clarify
-                        backgroundColor: ['rgba(54, 162, 235, 0.6)','rgba(75, 192, 192, 0.6)','rgba(255, 206, 86, 0.6)','rgba(153, 102, 255, 0.6)'],
-                        borderColor: ['rgba(54, 162, 235, 1)','rgba(75, 192, 192, 1)','rgba(255, 206, 86, 1)','rgba(153, 102, 255, 1)'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    scales: {
-                        y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: currentChartTexts.chartYAxisTitle }},
-                        x: { title: { display: true, text: currentChartTexts.chartXAxisTitle }}
-                    },
-                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { 
-                        let label = context.dataset.label || ''; if (label) { label += ': '; } if (context.parsed.y !== null) { if (context.label.includes('>1')) { label += '1-2'; } else { label += context.parsed.y; } } return label;
-                    }}}}
-                }
-            });
-        }
-
-        function initializeExerciseReco(lang) {
-            const dogTypeSelector = document.getElementById('dog-type-selector');
-            const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
-            if (!dogTypeSelector || !exerciseRecommendationDiv) return;
-
-            const exerciseTextData = { 
-                 el: { 
-                     exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
-                     dogTypePuppy: "Κουτάβι (<1 έτους)", dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", dogTypeSenior: "Ηλικιωμένος Σκύλος",
-                     exerciseRecoPuppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
-                     exerciseRecoAdultLow: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
-                     exerciseRecoAdultMedium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα. ",
-                     exerciseRecoAdultHigh: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα. ",
-                     exerciseRecoSenior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
-                     exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις."
-                 },
-                 en: {
-                     exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
-                     dogTypePuppy: "Puppy (<1 year)", dogTypeAdultLow: "Adult - Low Energy", dogTypeAdultMedium: "Adult - Medium Energy", dogTypeAdultHigh: "Adult - High Energy", dogTypeSenior: "Senior Dog",
-                     exerciseRecoPuppy: "For puppies: Short, frequent play sessions (5-10 minutes). Avoid excessive exercise, running on hard surfaces, and too much jumping to protect developing bones.",
-                     exerciseRecoAdultLow: "For low-energy adults (e.g., Pug, Basset Hound): 30 minutes to 1 hour of mild exercise/day.",
-                     exerciseRecoAdultMedium: "For medium-energy adults (e.g., Labrador, Beagle): 1 to 1.5 hours of exercise/day.",
-                     exerciseRecoAdultHigh: "For high-energy adults (e.g., Border Collie, Jack Russell): 1.5 to 2+ hours of vigorous exercise/day.",
-                     exerciseRecoSenior: "For senior dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
-                     exerciseDefaultReco: "Select to see suggestions."
-                 }
-            };
-            const currentExerciseTexts = exerciseTextData[lang] || exerciseTextData.el;
-
-            // Update the label for the selector
-            const selectorLabel = document.querySelector('label[for="dog-type-selector"]');
-            if (selectorLabel) selectorLabel.textContent = currentExerciseTexts.exerciseDogTypeLabel;
+        document.querySelectorAll('[data-i18n-key]').forEach(element => {
+            const key = element.getAttribute('data-i18n-key');
+            const translation = getTranslation(lang, key);
             
-            // Update options text
-            if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) { // Check if options exist
-                dogTypeSelector.options[0].textContent = currentExerciseTexts.dogTypePuppy;
-                dogTypeSelector.options[1].textContent = currentExerciseTexts.dogTypeAdultLow;
-                dogTypeSelector.options[2].textContent = currentExerciseTexts.dogTypeAdultMedium;
-                dogTypeSelector.options[3].textContent = currentExerciseTexts.dogTypeAdultHigh;
-                dogTypeSelector.options[4].textContent = currentExerciseTexts.dogTypeSenior;
-            }
-
-
-            const recommendations = {
-                puppy: currentExerciseTexts.exerciseRecoPuppy,
-                adult_low: currentExerciseTexts.exerciseRecoAdultLow,
-                adult_medium: currentExerciseTexts.exerciseRecoAdultMedium,
-                adult_high: currentExerciseTexts.exerciseRecoAdultHigh,
-                senior: currentExerciseTexts.exerciseRecoSenior
-            };
-
-            // Function to update recommendation text
-            function updateRecommendation() {
-                const selectedType = dogTypeSelector.value;
-                exerciseRecommendationDiv.textContent = recommendations[selectedType] || currentExerciseTexts.exerciseDefaultReco;
-            }
-            
-            // Remove old listener before adding new one to prevent multiple listeners
-            dogTypeSelector.removeEventListener('change', updateRecommendation); 
-            dogTypeSelector.addEventListener('change', updateRecommendation);
-            updateRecommendation(); // Initial call to set text based on current selection and language
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Assign to globally declared variables
-            langElButton = document.getElementById('lang-el'); 
-            langEnButton = document.getElementById('lang-en');   
-
-            if (langElButton && langEnButton) {
-                langElButton.addEventListener('click', () => switchLanguage('el'));
-                langEnButton.addEventListener('click', () => switchLanguage('en'));
-            }
-
-            const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
-            switchLanguage(currentLang); // Apply initial language
-
-            initializeTabs();
-            initializeAccordions();
-            // initializeFeedingChart and initializeExerciseReco are called within switchLanguage
-            // so they will be initialized with the currentLang.
-            
-            // Ensure the first tab's content is visible if it's the active one
-
-            const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
-            if (activeTabButton) {
-                const activeTabPaneId = activeTabButton.dataset.tab;
-                const activeTabPane = document.getElementById(activeTabPaneId);
-                if (activeTabPane) {
-                    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
-                    activeTabPane.classList.remove('hidden');
-                    activeTabPane.classList.add('active');
+            if (translation) {
+                if (element.hasAttribute('data-i18n-target-placeholder')) {
+                    element.placeholder = translation;
+                } else if (element.hasAttribute('data-i18n-target-alt')) {
+                    element.alt = translation;
+                } else {
+                    element.innerHTML = translation;
                 }
+            } else {
+                console.warn('Translation key "' + key + '" not found for language "' + lang + '".');
             }
-           
-            console.log("Puppy care guide script initialized successfully."); // For debugging
         });
+        
+        // Re-initialize components that depend on language
+        if (typeof initializeFeedingChart === 'function') initializeFeedingChart(lang);
+        if (typeof initializeExerciseReco === 'function') initializeExerciseReco(lang);
+        
+    } catch (error) {
+        console.error('Error switching language:', error);
+    }
+}
+
+function initializeTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    if (tabButtons.length === 0 && tabPanes.length === 0) {
+        return;
+    }
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const targetTab = button.dataset.tab;
+            tabPanes.forEach(pane => {
+                if (pane.id === targetTab) {
+                    pane.classList.remove('hidden');
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.add('hidden');
+                    pane.classList.remove('active');
+                }
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on tab change
+        });
+    });
+}
+
+function initializeAccordions() {
+    const accordions = document.querySelectorAll('.accordion');
+    
+    if (accordions.length === 0) {
+        return;
+    }
+    
+    accordions.forEach(accordion => {
+        const button = accordion.querySelector('.accordion-button');
+        const content = accordion.querySelector('.accordion-content');
+        
+        if (button && content) {
+            button.addEventListener('click', () => {
+                const isVisible = !content.classList.contains('hidden');
+                content.classList.toggle('hidden', isVisible);
+                button.setAttribute('aria-expanded', String(!isVisible));
+            });
+        }
+    });
+}
+
+function initializeFeedingChart(lang) {
+    const feedingCtx = document.getElementById('feedingScheduleChart');
+    if (!feedingCtx) return;
+    
+    const chartTextData = {
+        el: { 
+            chartYAxisTitle: "Αριθμός Γευμάτων", 
+            chartXAxisTitle: "Ηλικία Κουταβιού", 
+            chartLabelMealsPerDay: "Γεύματα ανά Ημέρα", 
+            Wks: "εβδ.", 
+            Mths: "μηνών", 
+            Year: "έτους"
+        },
+        en: { 
+            chartYAxisTitle: "Number of Meals", 
+            chartXAxisTitle: "Puppy Age", 
+            chartLabelMealsPerDay: "Meals per Day", 
+            Wks: "wks", 
+            Mths: "mths", 
+            Year: "year"
+        }
+    };
+    
+    const currentChartTexts = chartTextData[lang] || chartTextData.el; // Default to Greek if lang not found
+    
+    // Better chart cleanup
+    if (feedingChart && typeof feedingChart.destroy === 'function') {
+        feedingChart.destroy();
+        feedingChart = null;
+    }
+    
+    try {
+        feedingChart = new Chart(feedingCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '8-12 ' + currentChartTexts.Wks, 
+                    '3-6 ' + currentChartTexts.Mths, 
+                    '6-12 ' + currentChartTexts.Mths, 
+                    '>1 ' + currentChartTexts.Year
+                ],
+                datasets: [{
+                    label: currentChartTexts.chartLabelMealsPerDay,
+                    data: [4, 3, 2, 1.5], // Using 1.5 to represent 1-2 meals, tooltip will clarify
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(153, 102, 255, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true, 
+                maintainAspectRatio: false,
+                scales: {
+                    y: { 
+                        beginAtZero: true, 
+                        ticks: { stepSize: 1 }, 
+                        title: { display: true, text: currentChartTexts.chartYAxisTitle }
+                    },
+                    x: { 
+                        title: { display: true, text: currentChartTexts.chartXAxisTitle }
+                    }
+                },
+                plugins: { 
+                    legend: { display: false }, 
+                    tooltip: { 
+                        callbacks: { 
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) {
+                                    if (context.label.includes('>1')) {
+                                        label += '1-2';
+                                    } else {
+                                        label += context.parsed.y;
+                                    }
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error initializing feeding chart:', error);
+    }
+}
+
+function initializeExerciseReco(lang) {
+    const dogTypeSelector = document.getElementById('dog-type-selector');
+    const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
+    
+    if (!dogTypeSelector || !exerciseRecommendationDiv) return;
+    
+    const exerciseTextData = {
+        el: {
+            exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
+            dogTypePuppy: "Κουτάβι (<1 έτους)", 
+            dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", 
+            dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", 
+            dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", 
+            dogTypeSenior: "Ηλικιωμένος Σκύλος",
+            exerciseRecoPuppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
+            exerciseRecoAdultLow: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
+            exerciseRecoAdultMedium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα.",
+            exerciseRecoAdultHigh: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα.",
+            exerciseRecoSenior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
+            exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις."
+        },
+        en: {
+            exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
+            dogTypePuppy: "Puppy (<1 year)", 
+            dogTypeAdultLow: "Adult - Low Energy", 
+            dogTypeAdultMedium: "Adult - Medium Energy", 
+            dogTypeAdultHigh: "Adult - High Energy", 
+            dogTypeSenior: "Senior Dog",
+            exerciseRecoPuppy: "For puppies: Short, frequent play sessions (5-10 minutes). Avoid excessive exercise, running on hard surfaces, and too much jumping to protect developing bones.",
+            exerciseRecoAdultLow: "For low-energy adults (e.g., Pug, Basset Hound): 30 minutes to 1 hour of mild exercise/day.",
+            exerciseRecoAdultMedium: "For medium-energy adults (e.g., Labrador, Beagle): 1 to 1.5 hours of exercise/day.",
+            exerciseRecoAdultHigh: "For high-energy adults (e.g., Border Collie, Jack Russell): 1.5 to 2+ hours of vigorous exercise/day.",
+            exerciseRecoSenior: "For senior dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
+            exerciseDefaultReco: "Select to see suggestions."
+        }
+    };
+    
+    const currentExerciseTexts = exerciseTextData[lang] || exerciseTextData.el;
+    
+    // Update the label for the selector
+    const selectorLabel = document.querySelector('label[for="dog-type-selector"]');
+    if (selectorLabel) selectorLabel.textContent = currentExerciseTexts.exerciseDogTypeLabel;
+    
+    // Update options text
+    if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) {
+        dogTypeSelector.options[0].textContent = currentExerciseTexts.dogTypePuppy;
+        dogTypeSelector.options[1].textContent = currentExerciseTexts.dogTypeAdultLow;
+        dogTypeSelector.options[2].textContent = currentExerciseTexts.dogTypeAdultMedium;
+        dogTypeSelector.options[3].textContent = currentExerciseTexts.dogTypeAdultHigh;
+        dogTypeSelector.options[4].textContent = currentExerciseTexts.dogTypeSenior;
+    }
+    
+    const recommendations = {
+        puppy: currentExerciseTexts.exerciseRecoPuppy,
+        adult_low: currentExerciseTexts.exerciseRecoAdultLow,
+        adult_medium: currentExerciseTexts.exerciseRecoAdultMedium,
+        adult_high: currentExerciseTexts.exerciseRecoAdultHigh,
+        senior: currentExerciseTexts.exerciseRecoSenior
+    };
+    
+    // Remove old listener if it exists
+    if (currentUpdateFunction) {
+        dogTypeSelector.removeEventListener('change', currentUpdateFunction);
+    }
+    
+    // Create new function and store reference
+    currentUpdateFunction = function() {
+        const selectedType = dogTypeSelector.value;
+        exerciseRecommendationDiv.textContent = recommendations[selectedType] || currentExerciseTexts.exerciseDefaultReco;
+    };
+    
+    dogTypeSelector.addEventListener('change', currentUpdateFunction);
+    currentUpdateFunction(); // Initial call to set text based on current selection and language
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        // Assign to globally declared variables
+        langElButton = document.getElementById('lang-el');
+        langEnButton = document.getElementById('lang-en');
+        
+        if (langElButton && langEnButton) {
+            langElButton.addEventListener('click', () => switchLanguage('el'));
+            langEnButton.addEventListener('click', () => switchLanguage('en'));
+        }
+        
+        const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
+        switchLanguage(currentLang); // Apply initial language
+        
+        initializeTabs();
+        initializeAccordions();
+        
+        // Ensure the first tab's content is visible if it's the active one
+        const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
+        if (activeTabButton) {
+            const activeTabPaneId = activeTabButton.dataset.tab;
+            const activeTabPane = document.getElementById(activeTabPaneId);
+            if (activeTabPane) {
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+                activeTabPane.classList.remove('hidden');
+                activeTabPane.classList.add('active');
+            }
+        }
+        
+        console.log("Puppy care guide script initialized successfully.");
+        
+    } catch (error) {
+        console.error('Error initializing application
+
 
         /*
         // LLM JAVASCRIPT FUNCTIONS - KEEP COMMENTED OUT FOR NOW
