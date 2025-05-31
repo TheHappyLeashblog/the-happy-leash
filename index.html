@@ -389,11 +389,10 @@
                         <p class="mt-2" data-i18n-key="nutritionWaterBowls">Είναι απαραίτητο να υπάρχει πάντα διαθέσιμο καθαρό, φρέσκο νερό. Τα μπολ φαγητού και νερού πρέπει να πλένονται συχνά για τη διατήρηση της υγιεινής.</p>
                     </div>
                 </div>
-                <div class="accordion">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionDangerousFoodTitle">Επικίνδυνες Τροφές προς Αποφυγή</button>
-                    <div class="accordion-content hidden p-3 rounded-b-md">
-                        <p data-i18n-key="nutritionAccordionDangerousFoodContent">Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν: σοκολάτα (ειδικά η μαύρη), κρεμμύδια, σκόρδο, σταφύλια και σταφίδες, αβοκάντο, αλκοόλ, καφεΐνη, ξυλιτόλη (γλυκαντικό), κόκαλα μαγειρεμένα, και γαλακτοκομικά σε μεγάλες ποσότητες. Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.</p>
-                    </div>
+                <div class="accordion-content hidden p-3 rounded-b-md">
+    <p data-i18n-key="nutritionAccordionDangerousFoodContent"></p> 
+    <div data-i18n-key="dangerousFoodsTableHtml"></div> 
+</div>
                 </div>
             </div>
             
@@ -611,8 +610,35 @@
                 nutritionFeedList4: "Μετά τον 1ο χρόνο: Συνήθως 1 γεύμα την ημέρα είναι επαρκές, αν και για μεγαλύτερες φυλές ή σκύλους επιρρεπείς σε φούσκωμα, 2 μικρότερα γεύματα είναι προτιμότερα.",
                 nutritionWaterBowls: "Είναι απαραίτητο να υπάρχει πάντα διαθέσιμο καθαρό, φρέσκο νερό. Τα μπολ φαγητού και νερού πρέπει να πλένονται συχνά για τη διατήρηση της υγιεινής.",
                 nutritionAccordionDangerousFoodTitle: "Επικίνδυνες Τροφές προς Αποφυγή",
-                nutritionAccordionDangerousFoodContent: "Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Μερικές από τις πιο επικίνδυνες περιλαμβάνουν: σοκολάτα (ειδικά η μαύρη), κρεμμύδια, σκόρδο, σταφύλια και σταφίδες, αβοκάντο, αλκοόλ, καφεΐνη, ξυλιτόλη (γλυκαντικό), κόκαλα μαγειρεμένα, και γαλακτοκομικά σε μεγάλες ποσότητες. Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.",
-
+                nutritionAccordionDangerousFoodContent: "Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους. Παρακάτω ακολουθεί ένας συνοπτικός πίνακας με μερικές από τις πιο κοινές. <br><strong>Πάντα συμβουλευτείτε τον κτηνίατρό σας αν δεν είστε σίγουροι για μια τροφή.</strong>",
+                dangerousFoodsTableHtml: `
+    <h4 class="font-semibold mt-4 mb-2">Πίνακας Επικίνδυνων Τροφών:</h4>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="text-left py-2 px-3 border-b">Τροφή</th>
+                    <th class="text-left py-2 px-3 border-b">Πιθανές Επιπτώσεις</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="py-2 px-3 border-b">Σοκολάτα (ειδικά μαύρη)</td><td class="py-2 px-3 border-b">Εμετός, διάρροια, τρόμος, αρρυθμίες, σπασμοί, θάνατος</td></tr>
+                <tr><td class="py-2 px-3 border-b">Ξυλιτόλη (γλυκαντικό)</td><td class="py-2 px-3 border-b">Υπογλυκαιμία, ηπατική ανεπάρκεια, σπασμοί</td></tr>
+                <tr><td class="py-2 px-3 border-b">Κρεμμύδια & Σκόρδο</td><td class="py-2 px-3 border-b">Βλάβη ερυθρών αιμοσφαιρίων (αιμολυτική αναιμία), γαστρεντερικές διαταραχές</td></tr>
+                <tr><td class="py-2 px-3 border-b">Σταφύλια & Σταφίδες</td><td class="py-2 px-3 border-b">Νεφρική ανεπάρκεια</td></tr>
+                <tr><td class="py-2 px-3 border-b">Αλκοόλ</td><td class="py-2 px-3 border-b">Εμετός, διάρροια, έλλειψη συντονισμού, καταστολή ΚΝΣ, δυσκολία αναπνοής, θάνατος</td></tr>
+                <tr><td class="py-2 px-3 border-b">Καφεΐνη</td><td class="py-2 px-3 border-b">Υπερδιέγερση, γρήγορος καρδιακός παλμός, τρόμος, σπασμοί</td></tr>
+                <tr><td class="py-2 px-3 border-b">Μαγειρεμένα Κόκαλα</td><td class="py-2 px-3 border-b">Κίνδυνος πνιγμού, εσωτερικοί τραυματισμοί, εντερική απόφραξη</td></tr>
+                <tr><td class="py-2 px-3 border-b">Αβοκάντο (φλοιός, κουκούτσι)</td><td class="py-2 px-3 border-b">Εμετός, διάρροια (λόγω περσίνης)</td></tr>
+                <tr><td class="py-2 px-3 border-b">Καρύδια Μακαντάμια</td><td class="py-2 px-3 border-b">Αδυναμία, εμετός, τρόμος, υπερθερμία</td></tr>
+                <tr><td class="py-2 px-3 border-b">Γαλακτοκομικά (μεγάλες ποσότητες/δυσανεξία)</td><td class="py-2 px-3 border-b">Πεπτικές διαταραχές, διάρροια</td></tr>
+            </tbody>
+        </table>
+    </div>
+`,
+            
+                
+                
                 exerciseTitle: "V. Άσκηση και Ψυχική διέγερση",
                 exerciseIntro: "Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.",
                 exerciseNeedsTitle: "Ανάγκες Άσκησης",
@@ -790,8 +816,34 @@
                 nutritionFeedList4: "After 1 year: Usually 1 meal a day is sufficient, although for larger breeds or dogs prone to bloating, 2 smaller meals are preferable.",
                 nutritionWaterBowls: "It is essential to always have clean, fresh water available. Food and water bowls should be washed frequently to maintain hygiene.",
                 nutritionAccordionDangerousFoodTitle: "Dangerous Foods to Avoid",
-                nutritionAccordionDangerousFoodContent: "Many human foods are toxic to dogs. Some of the most dangerous include: chocolate (especially dark), onions, garlic, grapes and raisins, avocado, alcohol, caffeine, xylitol (sweetener), cooked bones, and dairy products in large amounts. Always consult your veterinarian if you are unsure about a food.",
-
+                nutritionAccordionDangerousFoodContent: "Many human foods are toxic to dogs. Below is a summary table of some of the most common ones. <br><strong>Always consult your veterinarian if you are unsure about a food.</strong>",
+                dangerousFoodsTableHtml: `
+    <h4 class="font-semibold mt-4 mb-2">Dangerous Foods Table:</h4>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="text-left py-2 px-3 border-b">Food</th>
+                    <th class="text-left py-2 px-3 border-b">Potential Harm</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="py-2 px-3 border-b">Chocolate (especially dark)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, tremors, abnormal heart rhythm, seizures, death</td></tr>
+                <tr><td class="py-2 px-3 border-b">Xylitol (sweetener)</td><td class="py-2 px-3 border-b">Hypoglycemia, liver failure, seizures</td></tr>
+                <tr><td class="py-2 px-3 border-b">Onions & Garlic</td><td class="py-2 px-3 border-b">Red blood cell damage (hemolytic anemia), gastrointestinal upset</td></tr>
+                <tr><td class="py-2 px-3 border-b">Grapes & Raisins</td><td class="py-2 px-3 border-b">Kidney failure</td></tr>
+                <tr><td class="py-2 px-3 border-b">Alcohol</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, incoordination, CNS depression, difficulty breathing, death</td></tr>
+                <tr><td class="py-2 px-3 border-b">Caffeine</td><td class="py-2 px-3 border-b">Hyperactivity, rapid heartbeat, tremors, seizures</td></tr>
+                <tr><td class="py-2 px-3 border-b">Cooked Bones</td><td class="py-2 px-3 border-b">Choking hazard, internal injuries, intestinal obstruction</td></tr>
+                <tr><td class="py-2 px-3 border-b">Avocado (pit, skin)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea (due to persin)</td></tr>
+                <tr><td class="py-2 px-3 border-b">Macadamia Nuts</td><td class="py-2 px-3 border-b">Weakness, vomiting, tremors, hyperthermia</td></tr>
+                <tr><td class="py-2 px-3 border-b">Dairy Products (large amounts/intolerance)</td><td class="py-2 px-3 border-b">Digestive upset, diarrhea</td></tr>
+            </tbody>
+        </table>
+    </div>
+`,
+        
+                
                 exerciseTitle: "V. Exercise and Mental Stimulation",
                 exerciseIntro: "Exercise and mental stimulation are vital for your puppy's healthy development and happiness. A puppy that gets enough exercise and mental engagement is less likely to develop behavioral problems.",
                 exerciseNeedsTitle: "Exercise Needs",
