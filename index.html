@@ -1113,12 +1113,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const currentLang = localStorage.getItem('language') || 'el'; // Default to Greek
         switchLanguage(currentLang); // Apply initial language
-        
+ /* // START OF BLOCK TO COMMENT OUT FOR TESTING     
         initializeTabs();
         initializeAccordions();
-        
+      
         // Ensure the first tab's content is visible if it's the active one
-        /* // START OF BLOCK TO COMMENT OUT FOR TESTING
+        
         const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
         if (activeTabButton) {
             const activeTabPaneId = activeTabButton.dataset.tab;
