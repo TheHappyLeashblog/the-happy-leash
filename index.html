@@ -124,6 +124,15 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             white-space: pre-wrap; /* Preserve line breaks from API response */
         }
+        .ai-suggestion-box { /* Style for positive AI suggestions like games/names/food */
+            background-color: #E8F5E9; /* Light green background */
+            border-left: 4px solid #4CAF50; /* Green accent */
+            padding: 1.2rem;
+            border-radius: 0.6rem;
+            margin-top: 1.5rem;
+            color: #2E7D32; /* Darker green text */
+            white-space: pre-wrap;
+        }
         .footer-copyright {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -158,6 +167,15 @@
             margin-top: 0.5rem;
             margin-bottom: 0.75rem;
             min-height: 80px;
+            background-color: #FBFBFB;
+        }
+        .ai-select { /* General class for select dropdowns in AI features */
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #D1C4E9;
+            border-radius: 0.375rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.75rem;
             background-color: #FBFBFB;
         }
         .ai-submit-button { /* General class for submit buttons in AI features */
@@ -208,7 +226,7 @@
                 <button class="tab-button active py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-intro" data-i18n-key="tabIntro">Εισαγωγή</button>
                 <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-preparation" data-i18n-key="tabPreparation">Προετοιμασία ✨</button>
                 <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-days" data-i18n-key="tabFirstDays">Πρώτες Μέρες ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-health" data-i18n-key="tabHealth">Υγεία</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-health" data-i18n-key="tabHealth">Υγεία ✨</button>
                 <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-nutrition" data-i18n-key="tabNutrition">Διατροφή ✨</button>
                 <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-exercise" data-i18n-key="tabExercise">Άσκηση ✨</button>
                 <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-training" data-i18n-key="tabTraining">Εκπαίδευση ✨</button>
@@ -310,8 +328,7 @@
 
                         <div id="nameSuggestionsOutput" class="hidden mt-4">
                             <h4 class="font-semibold text-md mb-2" data-i18n-key="nameFinderOutputTitle">Προτάσεις Ονομάτων:</h4>
-                            <div id="nameList" class="llm-output" style="background-color: #E8F5E9; border-left-color: #4CAF50;">
-                                </div>
+                            <div id="nameList" class="ai-suggestion-box"> </div>
                         </div>
                     </div>
                 </div>
@@ -330,14 +347,29 @@
 
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="firstDaysAccordionSocialTitle">Πρώιμη Κοινωνικοποίηση: Η Σημασία της</button>
-                    <div class="accordion-content hidden p-3 rounded-b-md">
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
                         <p data-i18n-key="firstDaysAccordionSocialContent">Η κοινωνικοποίηση (3-16 εβδομάδες) είναι κρίσιμη. Εκθέστε το κουτάβι σε διάφορα περιβάλλοντα, ήχους, οσμές, ξένους ανθρώπους, παιδιά και άλλα υγιή, εμβολιασμένα σκυλιά. Οι εμπειρίες πρέπει να είναι θετικές. Πριν την ολοκλήρωση των εμβολιασμών, η κοινωνικοποίηση μπορεί να γίνει με ασφάλεια μεταφέροντας το κουτάβι στην αγκαλιά/τσάντα ή προσκαλώντας εμβολιασμένους φίλους (ανθρώπους/σκύλους) στο σπίτι. Η ψυχική διέγερση με διαδραστικά παιχνίδια είναι επίσης σημαντική.</p>
+                    </div>
+                </div>
+                 <div class="accordion mt-6">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="firstDaysAITitle">
+                        ✨ AI Βοηθός Πρώτων Ημερών
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="firstDaysAIDescription">
+                            Έχετε κάποια απορία ή ανησυχία για τις πρώτες μέρες του κουταβιού στο σπίτι; Περιγράψτε την εδώ.
+                        </p>
+                        <textarea id="firstDaysQuery" class="ai-input-area" rows="4" data-i18n-key="firstDaysAIPlaceholder" data-i18n-target-placeholder="true" placeholder="Π.χ. 'Το κουτάβι κλαίει τη νύχτα', 'Πώς να το γνωρίσω στη γάτα μου;'..."></textarea>
+                        <button id="getFirstDaysAdviceButton" class="ai-submit-button" data-i18n-key="firstDaysAIButtonText">✨ Λήψη Συμβουλών (AI)</button>
+                        <div id="firstDaysAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
+                        <div id="firstDaysAIOutput" class="ai-suggestion-box hidden mt-3"></div>
+                        <p class="mt-4 text-xs text-gray-500" data-i18n-key="firstDaysAIDisclaimer">Οι συμβουλές παρέχονται για γενική καθοδήγηση. Η υπομονή και η συνέπεια είναι το κλειδί.</p>
                     </div>
                 </div>
             </div>
 
             <div id="tab-health" class="tab-pane hidden content-section">
-                <h2 data-i18n-key="healthTitle">III. Υγεία και Κτηνιατρική Φροντίδα</h2>
+                <h2 data-i18n-key="healthTitle">III. Υγεία και Κτηνιατρική Φροντίδα ✨</h2>
                 <p class="mb-4 text-justify" data-i18n-key="healthIntro">Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.</p>
 
                 <div class="accordion">
@@ -395,7 +427,7 @@
 
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAccordionProblemsTitle">Συχνά Προβλήματα Υγείας & Συμπτώματα</button>
-                    <div class="accordion-content hidden p-3 rounded-b-md">
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
                         <p data-i18n-key="healthAccordionProblemsP1">Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.</p>
                         <h4 class="font-semibold mt-2" data-i18n-key="healthProblemsGeneralSymptomsTitle">Γενικά Συμπτώματα Ασθένειας:</h4>
                         <ul class="list-disc list-inside ml-4">
@@ -439,6 +471,21 @@
                         <p class="mt-2 text-sm text-gray-600" data-i18n-key="healthAccordionProblemsP2">Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.</p>
                     </div>
                 </div>
+                <div class="accordion mt-6">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAITitle">
+                        ✨ AI Βοηθός Ερωτήσεων Υγείας
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="healthAIDescription">
+                            Έχετε μια γενική ερώτηση για την υγεία του κουταβιού σας (μη επείγουσα); Ρωτήστε μας!
+                        </p>
+                        <textarea id="healthAIQuery" class="ai-input-area" rows="3" data-i18n-key="healthAIPlaceholder" data-i18n-target-placeholder="true" placeholder="Π.χ. Γιατί το κουτάβι μου τρώει χόρτο; Είναι φυσιολογικό να κοιμάται τόσο πολύ;"></textarea>
+                        <button id="getHealthAIAdviceButton" class="ai-submit-button" data-i18n-key="healthAIButtonText">✨ Λήψη Πληροφοριών (AI)</button>
+                        <div id="healthAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
+                        <div id="healthAIOutput" class="llm-output hidden mt-3"></div>
+                        <p class="mt-4 text-xs text-red-700 font-semibold" data-i18n-key="healthAIDisclaimer">ΣΗΜΑΝΤΙΚΟ: Αυτές οι πληροφορίες είναι γενικές και ΔΕΝ αντικαθιστούν την κτηνιατρική συμβουλή. Για οποιοδήποτε πρόβλημα υγείας, συμβουλευτείτε ΑΜΕΣΑ τον κτηνίατρό σας.</p>
+                    </div>
+                </div>
             </div>
 
             <div id="tab-nutrition" class="tab-pane hidden content-section">
@@ -465,9 +512,45 @@
                 </div>
                 <div class="accordion">
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionDangerousFoodTitle">Επικίνδυνες Τροφές προς Αποφυγή</button>
-                    <div class="accordion-content hidden p-3 rounded-b-md">
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
                         <p data-i18n-key="nutritionAccordionDangerousFoodContent"></p>
                         <div data-i18n-key="dangerousFoodsTableHtml"></div>
+                    </div>
+                </div>
+                 <div class="accordion mt-6">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAISuggestionTitle">
+                        ✨ AI Σύμβουλος Γευμάτων & Λιχουδιών
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="nutritionAIDescription">
+                            Δώστε μας μερικές πληροφορίες για το κουτάβι σας για εξατομικευμένες προτάσεις!
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="nutritionAIPuppyAge" class="block text-sm font-medium text-gray-700" data-i18n-key="nutritionAIAgeLabel">Ηλικία Κουταβιού:</label>
+                                <select id="nutritionAIPuppyAge" class="ai-select">
+                                    <option value="under3" data-i18n-key="nutritionAIAgeUnder3">&lt; 3 μηνών</option>
+                                    <option value="3-6" data-i18n-key="nutritionAIAge3_6">3-6 μηνών</option>
+                                    <option value="6-12" data-i18n-key="nutritionAIAge6_12">6-12 μηνών</option>
+                                    <option value="over12" data-i18n-key="nutritionAIAgeOver12">&gt; 1 έτους</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="nutritionAISuggestionType" class="block text-sm font-medium text-gray-700" data-i18n-key="nutritionAISuggestionTypeLabel">Τύπος Πρότασης:</label>
+                                <select id="nutritionAISuggestionType" class="ai-select">
+                                    <option value="meal" data-i18n-key="nutritionAISuggestionMeal">Ιδέα Σπιτικού Γεύματος</option>
+                                    <option value="treat" data-i18n-key="nutritionAISuggestionTreat">Ιδέα Υγιεινής Λιχουδιάς</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="nutritionAIPreferences" class="block text-sm font-medium text-gray-700" data-i18n-key="nutritionAIPreferencesLabel">Αλλεργίες / Προτιμήσεις / Σημειώσεις (προαιρετικά):</label>
+                            <textarea id="nutritionAIPreferences" class="ai-input-area" rows="3" data-i18n-key="nutritionAIPreferencesPlaceholder" data-i18n-target-placeholder="true" placeholder="Π.χ. αλλεργία στο κοτόπουλο, προτιμά ψάρι..."></textarea>
+                        </div>
+                        <button id="getNutritionSuggestionsButton" class="ai-submit-button" data-i18n-key="nutritionAIButtonText">✨ Λήψη Προτάσεων Διατροφής (AI)</button>
+                        <div id="nutritionAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
+                        <div id="nutritionAIOutput" class="ai-suggestion-box hidden mt-3"></div>
+                        <p class="mt-4 text-xs text-gray-500" data-i18n-key="nutritionAIDisclaimer">Οι προτάσεις είναι γενικές. Πάντα να συμβουλεύεστε τον κτηνίατρό σας για τις συγκεκριμένες διατροφικές ανάγκες του κουταβιού σας.</p>
                     </div>
                 </div>
             </div>
@@ -505,6 +588,43 @@
                     <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="exercisePlayTitle">Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨</button>
                     <div class="accordion-content hidden p-3 rounded-b-md">
                        <p data-i18n-key="exercisePlayContent">Η ψυχική διέγερση είναι εξίσου σημαντική με τη σωματική. Δοκιμάστε: διαδραστικά παιχνίδια (π.χ. κρυμμένες λιχουδιές), παιχνίδια εκπαίδευσης (εκμάθηση νέων εντολών), παιχνίδια μύτης (ανίχνευση οσμών), και ασφαλή παιχνίδια μάσησης. Η εναλλαγή παιχνιδιών κρατά το ενδιαφέρον ζωντανό.</p>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-lg mb-2" data-i18n-key="exerciseAISuggestionTitle">✨ AI Προτάσεις Παιχνιδιών/Δραστηριοτήτων</h4>
+                            <p class="mb-3 text-sm" data-i18n-key="exerciseAIDescription">Πείτε μας για το κουτάβι σας και θα σας προτείνουμε ιδέες!</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <label for="exerciseAIPuppyAge" class="block text-sm font-medium text-gray-700" data-i18n-key="exerciseAIAgeLabel">Ηλικία Κουταβιού:</label>
+                                    <select id="exerciseAIPuppyAge" class="ai-select">
+                                        <option value="2-4" data-i18n-key="exerciseAIAge2_4">2-4 μηνών</option>
+                                        <option value="5-8" data-i18n-key="exerciseAIAge5_8">5-8 μηνών</option>
+                                        <option value="9-12" data-i18n-key="exerciseAIAge9_12">9-12 μηνών</option>
+                                        <option value="over12" data-i18n-key="exerciseAIAgeOver12">Πάνω από 1 έτους</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="exerciseAIActivityType" class="block text-sm font-medium text-gray-700" data-i18n-key="exerciseAIActivityTypeLabel">Εστίαση Δραστηριότητας:</label>
+                                    <select id="exerciseAIActivityType" class="ai-select">
+                                        <option value="mental" data-i18n-key="exerciseAIActivityMental">Πνευματική Διέγερση</option>
+                                        <option value="physical_gentle" data-i18n-key="exerciseAIActivityGentle">Ήπια Σωματική Άσκηση</option>
+                                        <option value="physical_active" data-i18n-key="exerciseAIActivityActive">Ενεργή Σωματική Άσκηση</option>
+                                        <option value="any" data-i18n-key="exerciseAIActivityAny">Οποιαδήποτε</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="exerciseAIAvailableTime" class="block text-sm font-medium text-gray-700" data-i18n-key="exerciseAITimeLabel">Διαθέσιμος Χρόνος:</label>
+                                    <select id="exerciseAIAvailableTime" class="ai-select">
+                                        <option value="10-15" data-i18n-key="exerciseAITime10_15">10-15 λεπτά</option>
+                                        <option value="20-30" data-i18n-key="exerciseAITime20_30">20-30 λεπτά</option>
+                                        <option value="30+" data-i18n-key="exerciseAITime30plus">30+ λεπτά</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button id="getExerciseSuggestionsButton" class="ai-submit-button" data-i18n-key="exerciseAIButtonText">✨ Λήψη Προτάσεων (AI)</button>
+                            <div id="exerciseAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
+                            <div id="exerciseAIOutput" class="ai-suggestion-box hidden mt-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -569,7 +689,7 @@
                 tabIntro: "Εισαγωγή",
                 tabPreparation: "Προετοιμασία ✨",
                 tabFirstDays: "Πρώτες Μέρες ✨",
-                tabHealth: "Υγεία",
+                tabHealth: "Υγεία ✨", // Added sparkle
                 tabNutrition: "Διατροφή ✨",
                 tabExercise: "Άσκηση ✨",
                 tabTraining: "Εκπαίδευση ✨",
@@ -632,8 +752,15 @@
                 firstDaysAccordionRoutineContent: "Δώστε χρόνο στο κουτάβι να συνηθίσει. Δημιουργήστε σταθερή ρουτίνα για σίτιση, τουαλέτα, παιχνίδι και \"ήσυχο χρόνο\". Ξεκινήστε την εκπαίδευση \"Home Alone\" από την πρώτη μέρα, αφήνοντας το κουτάβι μόνο του για μικρά διαστήματα, για να αποφύγετε το άγχος αποχωρισμού. Μην επιστρέψετε όταν κλαίει για να μην επιβραβεύσετε την ανεπιθύμητη συμπεριφορά.",
                 firstDaysAccordionSocialTitle: "Πρώιμη Κοινωνικοποίηση: Η Σημασία της",
                 firstDaysAccordionSocialContent: "Η κοινωνικοποίηση (3-16 εβδομάδες) είναι κρίσιμη. Εκθέστε το κουτάβι σε διάφορα περιβάλλοντα, ήχους, οσμές, ξένους ανθρώπους, παιδιά και άλλα υγιή, εμβολιασμένα σκυλιά. Οι εμπειρίες πρέπει να είναι θετικές. Πριν την ολοκλήρωση των εμβολιασμών, η κοινωνικοποίηση μπορεί να γίνει με ασφάλεια μεταφέροντας το κουτάβι στην αγκαλιά/τσάντα ή προσκαλώντας εμβολιασμένους φίλους (ανθρώπους/σκύλους) στο σπίτι. Η ψυχική διέγερση με διαδραστικά παιχνίδια είναι επίσης σημαντική.",
+                firstDaysAITitle: "✨ AI Βοηθός Πρώτων Ημερών",
+                firstDaysAIDescription: "Έχετε κάποια απορία ή ανησυχία για τις πρώτες μέρες του κουταβιού στο σπίτι; Περιγράψτε την εδώ.",
+                firstDaysAIPlaceholder: "Π.χ. 'Το κουτάβι κλαίει τη νύχτα', 'Πώς να το γνωρίσω στη γάτα μου;'...",
+                firstDaysAIButtonText: "✨ Λήψη Συμβουλών (AI)",
+                firstDaysAIDisclaimer: "Οι συμβουλές παρέχονται για γενική καθοδήγηση. Η υπομονή και η συνέπεια είναι το κλειδί.",
+                firstDaysAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για τις πρώτες μέρες. Παρακαλώ δοκιμάστε ξανά αργότερα.",
 
-                healthTitle: "III. Υγεία και Κτηνιατρική Φροντίδα",
+
+                healthTitle: "III. Υγεία και Κτηνιατρική Φροντίδα ✨",
                 healthIntro: "Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.",
                 healthAccordionVetTitle: "Η Πρώτη Επίσκεψη στον Κτηνίατρο",
                 healthAccordionVetContent: "Συνήθως στις 6-8 εβδομάδες. Ο κτηνίατρος θα κάνει φυσική εξέταση (μάτια, αυτιά, μύτη, δέρμα, καρδιά, πνεύμονες κ.ά.) και θα σας ενημερώσει για εμβολιασμούς, οδοντική φροντίδα, grooming, άσκηση, κοινωνικοποίηση, microchipping, στείρωση, ταξίδια, ασφάλεια και ζωονόσους.",
@@ -704,6 +831,12 @@
                 healthProblemsRow10Cat: "Giardia",
                 healthProblemsRow10Sym: "Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση",
                 healthAccordionProblemsP2: "Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.",
+                healthAITitle: "✨ AI Βοηθός Ερωτήσεων Υγείας",
+                healthAIDescription: "Έχετε μια γενική ερώτηση για την υγεία του κουταβιού σας (μη επείγουσα); Ρωτήστε μας!",
+                healthAIPlaceholder: "Π.χ. Γιατί το κουτάβι μου τρώει χόρτο; Είναι φυσιολογικό να κοιμάται τόσο πολύ;",
+                healthAIButtonText: "✨ Λήψη Πληροφοριών (AI)",
+                healthAIDisclaimer: "ΣΗΜΑΝΤΙΚΟ: Αυτές οι πληροφορίες είναι γενικές και ΔΕΝ αντικαθιστούν την κτηνιατρική συμβουλή. Για οποιοδήποτε πρόβλημα υγείας, συμβουλευτείτε ΑΜΕΣΑ τον κτηνίατρό σας.",
+                healthAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για θέματα υγείας. Παρακαλώ δοκιμάστε ξανά αργότερα.",
 
                 nutritionTitle: "IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης",
                 nutritionIntro: "Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.",
@@ -744,6 +877,21 @@
                         </table>
                     </div>
                 `,
+                nutritionAISuggestionTitle: "✨ AI Σύμβουλος Γευμάτων & Λιχουδιών",
+                nutritionAIDescription: "Δώστε μας μερικές πληροφορίες για το κουτάβι σας για εξατομικευμένες προτάσεις!",
+                nutritionAIAgeLabel: "Ηλικία Κουταβιού:",
+                nutritionAIAgeUnder3: "&lt; 3 μηνών",
+                nutritionAIAge3_6: "3-6 μηνών",
+                nutritionAIAge6_12: "6-12 μηνών",
+                nutritionAIAgeOver12: "&gt; 1 έτους",
+                nutritionAISuggestionTypeLabel: "Τύπος Πρότασης:",
+                nutritionAISuggestionMeal: "Ιδέα Σπιτικού Γεύματος",
+                nutritionAISuggestionTreat: "Ιδέα Υγιεινής Λιχουδιάς",
+                nutritionAIPreferencesLabel: "Αλλεργίες / Προτιμήσεις / Σημειώσεις (προαιρετικά):",
+                nutritionAIPreferencesPlaceholder: "Π.χ. αλλεργία στο κοτόπουλο, προτιμά ψάρι...",
+                nutritionAIButtonText: "✨ Λήψη Προτάσεων Διατροφής (AI)",
+                nutritionAIDisclaimer: "Οι προτάσεις είναι γενικές. Πάντα να συμβουλεύεστε τον κτηνίατρό σας για τις συγκεκριμένες διατροφικές ανάγκες του κουταβιού σας.",
+                nutritionAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για προτάσεις διατροφής. Παρακαλώ δοκιμάστε ξανά αργότερα.",
 
                 exerciseTitle: "V. Άσκηση και Ψυχική διέγερση",
                 exerciseIntro: "Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.",
@@ -759,6 +907,25 @@
                 exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις.",
                 exercisePlayTitle: "Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨",
                 exercisePlayContent: "Η ψυχική διέγερση είναι εξίσου σημαντική με τη σωματική. Δοκιμάστε: διαδραστικά παιχνίδια (π.χ. κρυμμένες λιχουδιές), παιχνίδια εκπαίδευσης (εκμάθηση νέων εντολών), παιχνίδια μύτης (ανίχνευση οσμών), και ασφαλή παιχνίδια μάσησης. Η εναλλαγή παιχνιδιών κρατά το ενδιαφέρον ζωντανό.",
+                exerciseAISuggestionTitle: "✨ AI Προτάσεις Παιχνιδιών/Δραστηριοτήτων",
+                exerciseAIDescription: "Πείτε μας για το κουτάβι σας και θα σας προτείνουμε ιδέες!",
+                exerciseAIAgeLabel: "Ηλικία Κουταβιού:",
+                exerciseAIAge2_4: "2-4 μηνών",
+                exerciseAIAge5_8: "5-8 μηνών",
+                exerciseAIAge9_12: "9-12 μηνών",
+                exerciseAIAgeOver12: "Πάνω από 1 έτους",
+                exerciseAIActivityTypeLabel: "Εστίαση Δραστηριότητας:",
+                exerciseAIActivityMental: "Πνευματική Διέγερση",
+                exerciseAIActivityGentle: "Ήπια Σωματική Άσκηση",
+                exerciseAIActivityActive: "Ενεργή Σωματική Άσκηση",
+                exerciseAIActivityAny: "Οποιαδήποτε",
+                exerciseAITimeLabel: "Διαθέσιμος Χρόνος:",
+                exerciseAITime10_15: "10-15 λεπτά",
+                exerciseAITime20_30: "20-30 λεπτά",
+                exerciseAITime30plus: "30+ λεπτά",
+                exerciseAIButtonText: "✨ Λήψη Προτάσεων (AI)",
+                exerciseAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για προτάσεις άσκησης. Παρακαλώ δοκιμάστε ξανά αργότερα.",
+
 
                 trainingTitle: "VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς",
                 trainingIntro: "Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως \"έλα\", \"κάτσε\", \"μείνε\", \"κάτω\" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.",
@@ -799,7 +966,7 @@
                 tabIntro: "Introduction",
                 tabPreparation: "Preparation ✨",
                 tabFirstDays: "First Days ✨",
-                tabHealth: "Health",
+                tabHealth: "Health ✨", // Added sparkle
                 tabNutrition: "Nutrition ✨",
                 tabExercise: "Exercise ✨",
                 tabTraining: "Training ✨",
@@ -862,8 +1029,15 @@
                 firstDaysAccordionRoutineContent: "Give the puppy time to get used to its new home. Create a consistent routine for feeding, potty breaks, playtime, and 'quiet time'. Start 'Home Alone' training from day one, leaving the puppy alone for short periods to prevent separation anxiety. Do not return when it's crying to avoid reinforcing unwanted behavior.",
                 firstDaysAccordionSocialTitle: "Early Socialization: Its Importance",
                 firstDaysAccordionSocialContent: "Socialization (3-16 weeks) is crucial. Expose the puppy to various environments, sounds, smells, strangers, children, and other healthy, vaccinated dogs. Experiences should be positive. Before vaccinations are complete, socialization can be done safely by carrying the puppy in your arms/bag or inviting vaccinated friends (people/dogs) to your home. Mental stimulation with interactive toys is also important.",
+                firstDaysAITitle: "✨ AI First Days Assistant",
+                firstDaysAIDescription: "Do you have any questions or concerns about your puppy's first days at home? Describe them here.",
+                firstDaysAIPlaceholder: "E.g., 'My puppy cries at night', 'How do I introduce it to my cat?'...",
+                firstDaysAIButtonText: "✨ Get Advice (AI)",
+                firstDaysAIDisclaimer: "The advice provided is for general guidance. Patience and consistency are key.",
+                firstDaysAIError: "An error occurred while contacting the AI for first days' advice. Please try again later.",
 
-                healthTitle: "III. Health and Veterinary Care",
+
+                healthTitle: "III. Health and Veterinary Care ✨",
                 healthIntro: "Your puppy's health is paramount. From the first visit to the vet to regular vaccinations and deworming, preventive care is key. Learn how to keep your puppy healthy and when to seek veterinary help.",
                 healthAccordionVetTitle: "The First Visit to the Vet",
                 healthAccordionVetContent: "Usually at 6-8 weeks. The vet will perform a physical examination (eyes, ears, nose, skin, heart, lungs, etc.) and will inform you about vaccinations, dental care, grooming, exercise, socialization, microchipping, neutering, travel, safety, and zoonoses.",
@@ -934,6 +1108,13 @@
                 healthProblemsRow10Cat: "Giardia",
                 healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration",
                 healthAccordionProblemsP2: "Mild lethargy or swelling at the injection site is normal and subsides.",
+                healthAITitle: "✨ AI Health Question Assistant",
+                healthAIDescription: "Have a general (non-urgent) question about your puppy's health? Ask us!",
+                healthAIPlaceholder: "E.g., Why does my puppy eat grass? Is it normal for them to sleep so much?",
+                healthAIButtonText: "✨ Get Health Info (AI)",
+                healthAIDisclaimer: "IMPORTANT: This information is general and DOES NOT replace veterinary advice. For any health problem, consult your veterinarian IMMEDIATELY.",
+                healthAIError: "An error occurred while contacting the AI for health information. Please try again later.",
+
 
                 nutritionTitle: "IV. Nutrition: The Foundation of Health and Development",
                 nutritionIntro: "Proper nutrition is fundamental for your puppy's development and well-being. This section covers choosing the right food, feeding schedules according to age, and foods that must be avoided for your little friend's safety.",
@@ -974,6 +1155,21 @@
                         </table>
                     </div>
                 `,
+                nutritionAISuggestionTitle: "✨ AI Meal & Treat Advisor",
+                nutritionAIDescription: "Tell us a bit about your puppy for personalized suggestions!",
+                nutritionAIAgeLabel: "Puppy Age:",
+                nutritionAIAgeUnder3: "< 3 months",
+                nutritionAIAge3_6: "3-6 months",
+                nutritionAIAge6_12: "6-12 months",
+                nutritionAIAgeOver12: "> 1 year",
+                nutritionAISuggestionTypeLabel: "Suggestion Type:",
+                nutritionAISuggestionMeal: "Homemade Meal Idea",
+                nutritionAISuggestionTreat: "Healthy Treat Idea",
+                nutritionAIPreferencesLabel: "Allergies / Preferences / Notes (optional):",
+                nutritionAIPreferencesPlaceholder: "E.g., chicken allergy, prefers fish...",
+                nutritionAIButtonText: "✨ Get Nutrition Suggestions (AI)",
+                nutritionAIDisclaimer: "Suggestions are general. Always consult your vet for your puppy's specific dietary needs.",
+                nutritionAIError: "An error occurred while contacting the AI for nutrition suggestions. Please try again later.",
 
                 exerciseTitle: "V. Exercise and Mental Stimulation",
                 exerciseIntro: "Exercise and mental stimulation are vital for your puppy's healthy development and happiness. A puppy that gets enough exercise and mental engagement is less likely to develop behavioral problems.",
@@ -989,6 +1185,25 @@
                 exerciseDefaultReco: "Select to see suggestions.",
                 exercisePlayTitle: "Play and Activities for Physical and Mental Outlet ✨",
                 exercisePlayContent: "Mental stimulation is just as important as physical. Try: interactive toys (e.g., hidden treats), training games (learning new commands), nose work games (scent detection), and safe chew toys. Rotating toys keeps their interest alive.",
+                exerciseAISuggestionTitle: "✨ AI Game/Activity Suggestions",
+                exerciseAIDescription: "Tell us about your puppy and we'll suggest some ideas!",
+                exerciseAIAgeLabel: "Puppy Age:",
+                exerciseAIAge2_4: "2-4 months",
+                exerciseAIAge5_8: "5-8 months",
+                exerciseAIAge9_12: "9-12 months",
+                exerciseAIAgeOver12: "Over 1 year",
+                exerciseAIActivityTypeLabel: "Activity Focus:",
+                exerciseAIActivityMental: "Mental Stimulation",
+                exerciseAIActivityGentle: "Gentle Physical Exercise",
+                exerciseAIActivityActive: "Active Physical Exercise",
+                exerciseAIActivityAny: "Any",
+                exerciseAITimeLabel: "Available Time:",
+                exerciseAITime10_15: "10-15 minutes",
+                exerciseAITime20_30: "20-30 minutes",
+                exerciseAITime30plus: "30+ minutes",
+                exerciseAIButtonText: "✨ Get Suggestions (AI)",
+                exerciseAIError: "An error occurred while contacting the AI for exercise suggestions. Please try again later.",
+
 
                 trainingTitle: "VI. Basic Training and Behavior Management",
                 trainingIntro: "As a dog trainer, I emphasize that training is the cornerstone of a harmonious coexistence. Start early with positive reinforcement (treats, praise). Basic commands like 'come', 'sit', 'stay', 'down' are fundamental. Toilet training requires patience and consistency. Preventing unwanted behaviors (chewing, barking) is easier than correcting them. Consider professional help if you face difficulties.",
@@ -1043,7 +1258,7 @@
             loadingElement.classList.remove('hidden');
             loadingElement.textContent = getTranslation(currentLang, 'loadingMessage');
             outputElement.classList.add('hidden');
-            outputElement.textContent = '';
+            outputElement.textContent = ''; // Clear previous content
             if (buttonElement) buttonElement.disabled = true;
 
             const apiKey = ""; // API key will be injected by the environment if needed
@@ -1069,7 +1284,7 @@
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
                     const text = result.candidates[0].content.parts[0].text;
-                    outputElement.textContent = text;
+                    outputElement.textContent = text; // Set text content directly
                 } else {
                     console.error('Unexpected API response structure:', result);
                     outputElement.textContent = getTranslation(currentLang, errorKey) + ' (No content found)';
@@ -1176,7 +1391,7 @@
             const feedingCtx = document.getElementById('feedingScheduleChart');
             if (!feedingCtx) return;
             
-            const currentChartTexts = translations[lang] || translations.el; // Use main translations object
+            const currentChartTexts = translations[lang] || translations.el; 
 
             if (feedingChart && typeof feedingChart.destroy === 'function') {
                 feedingChart.destroy();
@@ -1186,7 +1401,7 @@
                 feedingChart = new Chart(feedingCtx, {
                     type: 'bar',
                     data: {
-                        labels: [ // Construct labels using potentially missing keys with fallbacks
+                        labels: [ 
                             `8-12 ${getTranslation(lang, 'Wks') || 'εβδ.'}`,
                             `3-6 ${getTranslation(lang, 'Mths') || 'μηνών'}`,
                             `6-12 ${getTranslation(lang, 'Mths') || 'μηνών'}`,
@@ -1281,23 +1496,22 @@
                 let introText = getTranslation(currentLang, 'nameSuggestionIntro');
                 introText = introText.replace('{gender}', genderDisplayVal).replace('{traits}', traitsDisplay);
                 
-                nameListDiv.dataset.introText = introText; // Store intro text
+                nameListDiv.dataset.introText = introText; 
 
                 callGeminiAPI(prompt, nameListDiv, loadingDiv, suggestButton, 'noNamesFound')
                     .then(() => {
                         if (nameListDiv.textContent !== getTranslation(currentLang, 'noNamesFound') && nameListDiv.dataset.introText) {
-                             const rawNamesText = nameListDiv.textContent; // Get raw text from Gemini
-                             nameListDiv.innerHTML = ""; // Clear before adding intro + names
+                             const rawNamesText = nameListDiv.textContent; 
+                             nameListDiv.innerHTML = ""; 
                              
                              const pIntro = document.createElement('p');
                              pIntro.className = 'mb-2';
                              pIntro.textContent = nameListDiv.dataset.introText;
                              nameListDiv.appendChild(pIntro);
                              
-                             // Attempt to parse names if they are bulleted or hyphenated
                              const namesArray = rawNamesText.split(/[\n-•]+/).map(name => name.trim()).filter(name => name);
                              
-                             if (namesArray.length > 0 && namesArray.some(name => name.length > 0)) { // Check if array has actual names
+                             if (namesArray.length > 0 && namesArray.some(name => name.length > 0)) { 
                                  const ul = document.createElement('ul');
                                  ul.className = 'list-disc list-inside pl-4';
                                  namesArray.forEach(name => {
@@ -1307,7 +1521,6 @@
                                  });
                                  nameListDiv.appendChild(ul);
                              } else {
-                                // If parsing fails or returns empty, just show the raw text (already set by callGeminiAPI)
                                 nameListDiv.textContent = rawNamesText; 
                              }
                         }
@@ -1384,6 +1597,112 @@
             });
         }
 
+        function initializeExerciseAISuggestions() {
+            const ageSelect = document.getElementById('exerciseAIPuppyAge');
+            const activityTypeSelect = document.getElementById('exerciseAIActivityType');
+            const timeSelect = document.getElementById('exerciseAIAvailableTime');
+            const getSuggestionsButton = document.getElementById('getExerciseSuggestionsButton');
+            const loadingDiv = document.getElementById('exerciseAILoading');
+            const outputDiv = document.getElementById('exerciseAIOutput');
+
+            if (!ageSelect || !activityTypeSelect || !timeSelect || !getSuggestionsButton || !loadingDiv || !outputDiv) {
+                console.warn("Exercise AI suggestion elements not all found.");
+                return;
+            }
+
+            getSuggestionsButton.addEventListener('click', () => {
+                const ageValue = ageSelect.options[ageSelect.selectedIndex].text; 
+                const activityTypeValue = activityTypeSelect.options[activityTypeSelect.selectedIndex].text;
+                const timeValue = timeSelect.options[timeSelect.selectedIndex].text;
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+
+                const prompt = `Πρότεινε 2-3 δημιουργικά και ασφαλή παιχνίδια ή δραστηριότητες για ένα κουτάβι ηλικίας περίπου ${ageValue}. Η εστίαση της δραστηριότητας είναι: ${activityTypeValue}. Έχω διαθέσιμο χρόνο περίπου ${timeValue}. Οι προτάσεις να είναι σε μορφή λίστας με κουκκίδες, με σύντομη περιγραφή για κάθε μία. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getSuggestionsButton, 'exerciseAIError');
+            });
+        }
+
+        function initializeNutritionAISuggestions() {
+            const ageSelect = document.getElementById('nutritionAIPuppyAge');
+            const suggestionTypeSelect = document.getElementById('nutritionAISuggestionType');
+            const preferencesInput = document.getElementById('nutritionAIPreferences');
+            const getSuggestionsButton = document.getElementById('getNutritionSuggestionsButton');
+            const loadingDiv = document.getElementById('nutritionAILoading');
+            const outputDiv = document.getElementById('nutritionAIOutput');
+
+            if (!ageSelect || !suggestionTypeSelect || !preferencesInput || !getSuggestionsButton || !loadingDiv || !outputDiv) {
+                console.warn("Nutrition AI suggestion elements not all found.");
+                return;
+            }
+
+            getSuggestionsButton.addEventListener('click', () => {
+                const ageValue = ageSelect.options[ageSelect.selectedIndex].text;
+                const suggestionTypeValue = suggestionTypeSelect.options[suggestionTypeSelect.selectedIndex].text;
+                const preferencesValue = preferencesInput.value.trim();
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+
+                let prompt = `Πρότεινε 1-2 ιδέες για "${suggestionTypeValue}" για ένα κουτάβι ηλικίας περίπου ${ageValue}. `;
+                if (preferencesValue) {
+                    prompt += `Λάβε υπόψη τις εξής σημειώσεις/αλλεργίες/προτιμήσεις: "${preferencesValue}". `;
+                }
+                prompt += `Οι προτάσεις να είναι πρακτικές, με απλά υλικά αν πρόκειται για συνταγή, και να τονίζουν τη σημασία της ισορροπημένης διατροφής. Πάντα να περιλαμβάνεται η συμβουλή να συμβουλευτεί ο χρήστης τον κτηνίατρό του. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getSuggestionsButton, 'nutritionAIError');
+            });
+        }
+
+        function initializeFirstDaysAI() {
+            const queryInput = document.getElementById('firstDaysQuery');
+            const getAdviceButton = document.getElementById('getFirstDaysAdviceButton');
+            const loadingDiv = document.getElementById('firstDaysAILoading');
+            const outputDiv = document.getElementById('firstDaysAIOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) {
+                console.warn("First Days AI elements not all found.");
+                return;
+            }
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'firstDaysAIPlaceholder'); 
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+                const prompt = `Είμαι νέος ιδιοκτήτης κουταβιού. Αντιμετωπίζω το εξής θέμα τις πρώτες μέρες: "${userQuery}". Παρακαλώ δώσε μου πρακτικές συμβουλές για το πώς να το χειριστώ, με έμφαση στην υπομονή, τη θετική ενίσχυση και τη δημιουργία ενός αισθήματος ασφάλειας για το κουτάβι. Η απάντηση να είναι σε απλή, κατανοητή γλώσσα. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'firstDaysAIError');
+            });
+        }
+
+        function initializeHealthAI() {
+            const queryInput = document.getElementById('healthAIQuery');
+            const getAdviceButton = document.getElementById('getHealthAIAdviceButton');
+            const loadingDiv = document.getElementById('healthAILoading');
+            const outputDiv = document.getElementById('healthAIOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) {
+                console.warn("Health AI elements not all found.");
+                return;
+            }
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'healthAIPlaceholder'); 
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Η απάντηση να είναι στα Ελληνικά." : "The answer should be in English.";
+                const prompt = `Έχω μια γενική ερώτηση για την υγεία του κουταβιού μου (όχι επείγουσα): "${userQuery}". Μπορείς να μου δώσεις κάποιες γενικές πληροφορίες ή πιθανές εξηγήσεις; Η απάντηση να είναι σε απλή, κατανοητή γλώσσα. Υπενθύμισε μου στο τέλος ότι αυτή η πληροφορία δεν αντικαθιστά την κτηνιατρική συμβουλή και ότι για οποιοδήποτε πρόβλημα υγείας πρέπει να συμβουλευτώ τον κτηνίατρό μου. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'healthAIError');
+            });
+        }
+
 
         document.addEventListener('DOMContentLoaded', () => {
             try {
@@ -1403,7 +1722,11 @@
                 initializeNameFinder();
                 initializeFirstAidAI();
                 initializeSocializationAI();
-                initializeTrainingAI(); // Initialize the new training AI feature
+                initializeTrainingAI(); 
+                initializeExerciseAISuggestions(); 
+                initializeNutritionAISuggestions(); 
+                initializeFirstDaysAI(); 
+                initializeHealthAI(); // Initialize the new health AI feature
 
 
                 const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
