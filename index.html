@@ -1261,8 +1261,8 @@
             outputElement.textContent = ''; // Clear previous content
             if (buttonElement) buttonElement.disabled = true;
 
-            const apiKey = "AIzaSyC7751PxaP2XWKees2VCSqRINztqrsYEHs"; // API key will be injected by the environment if needed
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            const apiKey = "AIzaSyC7751PxaP2XWKees2VCSqRINztqrsYEHs"; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
             
             const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
             const payload = { contents: chatHistory };
