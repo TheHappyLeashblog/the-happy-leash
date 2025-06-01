@@ -328,8 +328,7 @@
 
                         <div id="nameSuggestionsOutput" class="hidden mt-4">
                             <h4 class="font-semibold text-md mb-2" data-i18n-key="nameFinderOutputTitle">Προτάσεις Ονομάτων:</h4>
-                            <div id="nameList" class="ai-suggestion-box"> </div>
-                        </div>
+                            <div id="nameList" class="ai-suggestion-box"> </div> </div>
                     </div>
                 </div>
                 </div>
@@ -877,284 +876,6 @@
                         </table>
                     </div>
                 `,
-                nutritionAISuggestionTitle: "✨ AI Σύμβουλος Γευμάτων & Λιχουδιών",
-                nutritionAIDescription: "Δώστε μας μερικές πληροφορίες για το κουτάβι σας για εξατομικευμένες προτάσεις!",
-                nutritionAIAgeLabel: "Ηλικία Κουταβιού:",
-                nutritionAIAgeUnder3: "&lt; 3 μηνών",
-                nutritionAIAge3_6: "3-6 μηνών",
-                nutritionAIAge6_12: "6-12 μηνών",
-                nutritionAIAgeOver12: "&gt; 1 έτους",
-                nutritionAISuggestionTypeLabel: "Τύπος Πρότασης:",
-                nutritionAISuggestionMeal: "Ιδέα Σπιτικού Γεύματος",
-                nutritionAISuggestionTreat: "Ιδέα Υγιεινής Λιχουδιάς",
-                nutritionAIPreferencesLabel: "Αλλεργίες / Προτιμήσεις / Σημειώσεις (προαιρετικά):",
-                nutritionAIPreferencesPlaceholder: "Π.χ. αλλεργία στο κοτόπουλο, προτιμά ψάρι...",
-                nutritionAIButtonText: "✨ Λήψη Προτάσεων Διατροφής (AI)",
-                nutritionAIDisclaimer: "Οι προτάσεις είναι γενικές. Πάντα να συμβουλεύεστε τον κτηνίατρό σας για τις συγκεκριμένες διατροφικές ανάγκες του κουταβιού σας.",
-                nutritionAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για προτάσεις διατροφής. Παρακαλώ δοκιμάστε ξανά αργότερα.",
-
-                exerciseTitle: "V. Άσκηση και Ψυχική διέγερση",
-                exerciseIntro: "Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την υγιή ανάπτυξη και την ευτυχία του κουταβιού σας. Ένα κουτάβι που ασκείται επαρκώς και απασχολείται πνευματικά είναι λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφοράς.",
-                exerciseNeedsTitle: "Ανάγκες Άσκησης",
-                exerciseNeedsPuppies: "Κουτάβια: Προσεκτική άσκηση για την προστασία των αναπτυσσόμενων αρθρώσεων. Κανόνας: 5 λεπτά άσκησης ανά μήνα ηλικίας, δύο φορές την ημέρα. Π.χ. ένα κουτάβι 3 μηνών χρειάζεται περίπου 15 λεπτά άσκησης δύο φορές την ημέρα. Αποφύγετε το τρέξιμο σε σκληρές επιφάνειες και τα πολλά άλματα.",
-                exerciseNeedsAdults: "Ενήλικοι Σκύλοι (Ενδεικτικά):",
-                exerciseNeedsAdultHigh: "Υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5-2+ ώρες έντονης άσκησης (τρέξιμο, παιχνίδι).",
-                exerciseNeedsAdultMed: "Μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1-1.5 ώρα μέτριας άσκησης (γρήγορο περπάτημα, παιχνίδι).",
-                exerciseNeedsAdultLow: "Χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά - 1 ώρα ήπιας άσκησης (περπάτημα).",
-                exerciseNeedsSeniors: "Ηλικιωμένοι Σκύλοι: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.",
-                exerciseDogTypeLabel: "Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:",
-                dogTypePuppy: "Κουτάβι (<1 έτους)", dogTypeAdultLow: "Ενήλικος - Χαμηλή Ενέργεια", dogTypeAdultMedium: "Ενήλικος - Μεσαία Ενέργεια", dogTypeAdultHigh: "Ενήλικος - Υψηλή Ενέργεια", dogTypeSenior: "Ηλικιωμένος Σκύλος",
-                exerciseDefaultReco: "Επιλέξτε για να δείτε προτάσεις.",
-                exercisePlayTitle: "Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨",
-                exercisePlayContent: "Η ψυχική διέγερση είναι εξίσου σημαντική με τη σωματική. Δοκιμάστε: διαδραστικά παιχνίδια (π.χ. κρυμμένες λιχουδιές), παιχνίδια εκπαίδευσης (εκμάθηση νέων εντολών), παιχνίδια μύτης (ανίχνευση οσμών), και ασφαλή παιχνίδια μάσησης. Η εναλλαγή παιχνιδιών κρατά το ενδιαφέρον ζωντανό.",
-                exerciseAISuggestionTitle: "✨ AI Προτάσεις Παιχνιδιών/Δραστηριοτήτων",
-                exerciseAIDescription: "Πείτε μας για το κουτάβι σας και θα σας προτείνουμε ιδέες!",
-                exerciseAIAgeLabel: "Ηλικία Κουταβιού:",
-                exerciseAIAge2_4: "2-4 μηνών",
-                exerciseAIAge5_8: "5-8 μηνών",
-                exerciseAIAge9_12: "9-12 μηνών",
-                exerciseAIAgeOver12: "Πάνω από 1 έτους",
-                exerciseAIActivityTypeLabel: "Εστίαση Δραστηριότητας:",
-                exerciseAIActivityMental: "Πνευματική Διέγερση",
-                exerciseAIActivityGentle: "Ήπια Σωματική Άσκηση",
-                exerciseAIActivityActive: "Ενεργή Σωματική Άσκηση",
-                exerciseAIActivityAny: "Οποιαδήποτε",
-                exerciseAITimeLabel: "Διαθέσιμος Χρόνος:",
-                exerciseAITime10_15: "10-15 λεπτά",
-                exerciseAITime20_30: "20-30 λεπτά",
-                exerciseAITime30plus: "30+ λεπτά",
-                exerciseAIButtonText: "✨ Λήψη Προτάσεων (AI)",
-                exerciseAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για προτάσεις άσκησης. Παρακαλώ δοκιμάστε ξανά αργότερα.",
-
-
-                trainingTitle: "VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς",
-                trainingIntro: "Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος μιας αρμονικής συμβίωσης. Ξεκινήστε νωρίς με θετική ενίσχυση (λιχουδιές, έπαινος). Βασικές εντολές όπως \"έλα\", \"κάτσε\", \"μείνε\", \"κάτω\" είναι θεμελιώδεις. Η εκπαίδευση τουαλέτας απαιτεί υπομονή και συνέπεια. Η πρόληψη ανεπιθύμητων συμπεριφορών (μάσημα, γάβγισμα) είναι πιο εύκολη από τη διόρθωσή τους. Εξετάστε το ενδεχόμενο επαγγελματικής βοήθειας αν αντιμετωπίζετε δυσκολίες.",
-                trainingAITitle: "✨ Βοηθός Εκπαίδευσης AI",
-                trainingAIDescription: "Αντιμετωπίζετε κάποια συγκεκριμένη πρόκληση στην εκπαίδευση του κουταβιού σας; Περιγράψτε την παρακάτω για να λάβετε εξατομικευμένες συμβουλές.",
-                trainingAIPlaceholder: "Π.χ. 'Το κουτάβι μου πηδάει πάνω στους ανθρώπους', 'Δεν έρχεται όταν το καλώ'...",
-                trainingAIButtonText: "✨ Λήψη Συμβουλών Εκπαίδευσης (AI)",
-                trainingAIDisclaimer: "Οι συμβουλές παρέχονται για γενική καθοδήγηση. Για σοβαρά προβλήματα συμπεριφοράς, συμβουλευτείτε έναν επαγγελματία εκπαιδευτή.",
-                trainingAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για την εκπαίδευση. Παρακαλώ δοκιμάστε ξανά αργότερα.",
-
-
-                firstAidSecTitle: "\"Τι να κάνω αν...\" / Πρώτες Βοήθειες ✨",
-                firstAidSecDesc: "Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί (π.χ. \"το κουτάβι έφαγε σοκολάτα\", \"το κουτάβι κουτσαίνει ξαφνικά\").",
-                firstAidPlaceholder: "Περιγράψτε την κατάσταση εδώ...",
-                firstAidButtonText: "✨ Λήψη Συμβουλών Πρώτων Βοηθειών (AI)",
-                firstAidWarningTitle: "Σημαντική Προειδοποίηση!",
-                firstAidWarningContent: "Οι παρακάτω πληροφορίες είναι γενικές συμβουλές και ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική διάγνωση και θεραπεία. Σε κάθε περίπτωση που ανησυχείτε για την υγεία του κουταβιού σας, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας ή μια κλινική έκτακτης ανάγκης.",
-                firstAidAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI. Παρακαλώ δοκιμάστε ξανά αργότερα.",
-
-
-                storiesSecTitle: "Δημιουργία \"Ιστοριών Κοινωνικοποίησης\" / Θετικών Εμπειριών ✨",
-                storiesSecDesc: "Εισάγετε ένα σενάριο κοινωνικοποίησης (π.χ. \"πρώτη συνάντηση με άλλο σκύλο\", \"επίσκεψη σε θορυβώδες μέρος\", \"γνωριμία με παιδιά\") για να λάβετε συμβουλές για το πώς να το χειριστείτε θετικά και με ασφάλεια.",
-                storiesPlaceholder: "Περιγράψτε το σενάριο κοινωνικοποίησης εδώ...",
-                storiesButtonText: "✨ Λήψη Συμβουλών Κοινωνικοποίησης (AI)",
-                storiesDisclaimer: "Η σωστή κοινωνικοποίηση είναι κλειδί για έναν ισορροπημένο σκύλο. Οι παρακάτω συμβουλές είναι γενικές προτάσεις.",
-                socializationAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI. Παρακαλώ δοκιμάστε ξανά αργότερα.",
-
-                longtermTitle: "VII. Μακροπρόθεσμες Ευθύνες του Κηδεμόνα",
-                longtermIntro: "Η φροντίδα ενός σκύλου είναι μια δέσμευση ζωής (10-15+ χρόνια). Περιλαμβάνει συνεχή κτηνιατρική φροντίδα (ετήσιοι έλεγχοι, εμβολιασμοί), προσαρμογή της διατροφής και της άσκησης καθώς μεγαλώνει, διαχείριση αλλαγών στη συμπεριφορά, και οικονομική ευθύνη για τροφή, περίθαλψη, και απρόοπτα έξοδα. Η αγάπη, η υπομονή και η συνέπεια είναι απαραίτητες σε όλη τη διάρκεια της ζωής του.",
-
-                conclusionTitle: "Συμπέρασμα: Η Ανταμοιβή μιας Υπεύθυνης Φροντίδας",
-                conclusionContent: "Η υιοθεσία ενός κουταβιού είναι μια δέσμευση που φέρνει τεράστια χαρά και συντροφικότητα. Με την κατάλληλη προετοιμασία, γνώση και αφοσίωση, θα χτίσετε έναν ισχυρό δεσμό με τον νέο σας φίλο, προσφέροντάς του μια υγιή, ευτυχισμένη και γεμάτη αγάπη ζωή. Αυτός ο οδηγός είναι ένα σημείο εκκίνησης. Συνεχίστε να μαθαίνετε, να παρατηρείτε το κουτάβι σας και να προσαρμόζετε τη φροντίδα σας στις ανάγκες του. Η ανταμοιβή θα είναι ένας πιστός σύντροφος για πολλά χρόνια.",
-            },
-            en: { // English translations for new AI features
-                logoAltText: "The Happy Leash - Puppy Care Guide Logo",
-                mainTitle: "🐾 Puppy Care Guide 🐾",
-                subTitle: "Everything you need to know for your new friend!",
-                tabIntro: "Introduction",
-                tabPreparation: "Preparation ✨",
-                tabFirstDays: "First Days ✨",
-                tabHealth: "Health ✨", // Added sparkle
-                tabNutrition: "Nutrition ✨",
-                tabExercise: "Exercise ✨",
-                tabTraining: "Training ✨",
-                tabFirstAid: "First Aid ✨",
-                tabStories: "Socialization Stories ✨",
-                tabLongterm: "Long-term",
-                tabConclusion: "Conclusion",
-
-                introTitle: "Welcoming the New Family Member",
-                introContent: "The arrival of a puppy at home is an exciting moment, full of joy and anticipation. However, it also comes with significant responsibilities that require preparation and knowledge. This interactive application is designed to provide the necessary information and practical advice to ensure a smooth transition and a healthy, happy life for the new four-legged member of the family. Explore the sections below to learn everything from preparing the space and initial adjustment, to health, nutrition, exercise, training, and long-term responsibilities.",
-
-                prepTabTitle: "I. Preparing for the Puppy's Arrival",
-                prepTabIntro: "Even before the puppy arrives home, preparing its space is vital. This includes creating a safe and comfortable environment where the puppy will feel protected and can adjust smoothly. Also, gathering the necessary equipment is crucial for a smooth transition. This section guides you in creating a safe environment and selecting basic supplies.",
-                prepAccordionEnvTitle: "Creating a Safe and Comfortable Environment",
-                prepAccordionEnvContent: "Space preparation is vital. Dog-proof the area by removing hazardous items like rugs, chemicals, cables, and expensive furniture. Protect the puppy from falls (e.g., stairs). Maintain appropriate temperature (10-26.6°C / 50-80°F), humidity (30-70%), and ventilation. Regular cleaning is essential.",
-                prepAccordionEquipTitle: "Essential Equipment (Checklist) ✨",
-                equipItemBed: "Comfortable bed/basket (washable)",
-                equipItemBowls: "Stainless steel bowls for water and food",
-                equipItemLeash: "Collar, harness, and leash",
-                equipItemIdTag: "ID tag with contact details",
-                equipItemPoopBags: "Poop bags",
-                equipItemPadsWipes: "Puppy pads, cleaning wipes",
-                equipItemToothbrush: "Dog toothpaste & toothbrush",
-                equipItemParasiteControl: "Parasite control (spot-on/spray)",
-                equipItemGrooming: "Brush, shampoo, nail clippers",
-                equipItemToys: "Variety of toys (chew, puzzle)",
-                equipItemCarrier: "Carrier/transport bag",
-                equipItemCrate: "Crate (training kennel)",
-                prepCrateHeading: "The Crate: A Misunderstood Tool",
-                prepCratePara1: "The crate (training kennel) is an important tool for puppy training and safety, but it is often misunderstood as a 'jail'. In reality, when used correctly, the crate can be a safe, personal haven for your puppy, as well as an excellent aid for house training and behavior management.",
-                prepCrateBenefitsTitle: "Benefits of the Crate:",
-                prepCrateBenefit1: "House Training: Dogs naturally don't want to soil their sleeping area. The crate leverages this instinct, helping the puppy learn to hold it until taken outside.",
-                prepCrateBenefit2: "Safety: Protects the puppy from chewing hazardous items or getting into accidents when you cannot directly supervise.",
-                prepCrateBenefit3: "Personal Space: Becomes a safe and comfortable 'den' for the puppy, where it can rest and relax without disturbances.",
-                prepCrateBenefit4: "Travel and Visits: Facilitates safe transport and adjustment of the puppy to new environments, like friends' homes or hotels.",
-                prepCrateBenefit5: "Behavior Management: Helps in managing issues like separation anxiety (when trained correctly) or destructive chewing.",
-                prepCrateMisconceptionsTitle: "What the guardian should not think (and why it's misunderstood):",
-                prepCrateMisconception1: "It's not punishment: The crate should never be used as a means of punishment. If the puppy associates the crate with negative experiences, it will fear it and refuse to enter.",
-                prepCrateMisconception2: "It's not jail: The crate is not for 'locking up' the puppy for many hours. It must have sufficient time outside the crate for play, exercise, and potty breaks. The duration of stay should be appropriate for its age (e.g., an 8-week-old puppy can be crated for about 3-4 hours).",
-                prepCrateMisconception3: "It's not an answer to all problems: The crate is a training tool, not a magic solution for all behavior problems. It must be combined with consistent training, socialization, and exercise.",
-                prepCrateMisconception4: "It's not inhumane: For dogs, the crate can be a natural extension of their denning instinct. Many dogs love their crate and seek it out as a safe place.",
-                prepCrateConclusion: "Proper introduction and training with the crate are crucial. It must be a positive experience, with treats, toys, and a comfortable bed, so the puppy sees it as its own safe haven.",
-                nameFinderTitle: "Find a Name for Your Puppy ✨",
-                nameFinderDescription: "Describe some characteristics of your puppy and get name suggestions!",
-                nameFinderGenderLabel: "Gender:",
-                nameFinderGenderAny: "Doesn't Matter",
-                nameFinderGenderMale: "Male",
-                nameFinderGenderFemale: "Female",
-                nameFinderTraitsLabel: "Main Characteristics (e.g., playful, calm, brave):",
-                nameFinderTraitsPlaceholder: "E.g. playful, smart, loyal, fluffy",
-                nameFinderSuggestButton: "✨ Suggest Names (AI)",
-                nameFinderOutputTitle: "Name Suggestions:",
-                nameSuggestionIntro: "Based on the characteristics you provided ({gender}, {traits}), here are some ideas:",
-                noNamesFound: "No suggestions found for these characteristics. Try something more general!",
-                loadingMessage: "Processing...",
-
-                firstDaysTabTitle: "II. The First Days in the New Home",
-                firstDaysTabIntro: "The first few days are crucial for the puppy's adjustment. Establishing a routine and proper early socialization lay the foundation for a well-balanced adult dog. Here you will find tips to help your puppy feel safe and explore the world with confidence.",
-                firstDaysAccordionRoutineTitle: "Adjustment and Routine Establishment ✨",
-                firstDaysAccordionRoutineContent: "Give the puppy time to get used to its new home. Create a consistent routine for feeding, potty breaks, playtime, and 'quiet time'. Start 'Home Alone' training from day one, leaving the puppy alone for short periods to prevent separation anxiety. Do not return when it's crying to avoid reinforcing unwanted behavior.",
-                firstDaysAccordionSocialTitle: "Early Socialization: Its Importance",
-                firstDaysAccordionSocialContent: "Socialization (3-16 weeks) is crucial. Expose the puppy to various environments, sounds, smells, strangers, children, and other healthy, vaccinated dogs. Experiences should be positive. Before vaccinations are complete, socialization can be done safely by carrying the puppy in your arms/bag or inviting vaccinated friends (people/dogs) to your home. Mental stimulation with interactive toys is also important.",
-                firstDaysAITitle: "✨ AI First Days Assistant",
-                firstDaysAIDescription: "Do you have any questions or concerns about your puppy's first days at home? Describe them here.",
-                firstDaysAIPlaceholder: "E.g., 'My puppy cries at night', 'How do I introduce it to my cat?'...",
-                firstDaysAIButtonText: "✨ Get Advice (AI)",
-                firstDaysAIDisclaimer: "The advice provided is for general guidance. Patience and consistency are key.",
-                firstDaysAIError: "An error occurred while contacting the AI for first days' advice. Please try again later.",
-
-
-                healthTitle: "III. Health and Veterinary Care ✨",
-                healthIntro: "Your puppy's health is paramount. From the first visit to the vet to regular vaccinations and deworming, preventive care is key. Learn how to keep your puppy healthy and when to seek veterinary help.",
-                healthAccordionVetTitle: "The First Visit to the Vet",
-                healthAccordionVetContent: "Usually at 6-8 weeks. The vet will perform a physical examination (eyes, ears, nose, skin, heart, lungs, etc.) and will inform you about vaccinations, dental care, grooming, exercise, socialization, microchipping, neutering, travel, safety, and zoonoses.",
-                healthAccordionVaccTitle: "Vaccination Schedule",
-                healthAccordionVaccP1: "Vaccinations are vital for preventing contagious and sometimes fatal diseases. They stimulate the puppy's immune system to develop specific antibodies against viruses and bacteria.",
-                healthAccordionVaccP2: "Core vaccines include those for distemper, infectious hepatitis, parvovirus, and rabies. Other recommended vaccines are for infectious tracheobronchitis (kennel cough) and leptospirosis.",
-                healthVaccTableAge: "Age",
-                healthVaccTableVaccine: "Vaccine",
-                healthVaccRow1Age: "6-8 weeks",
-                healthVaccRow1Vaccine: "Distemper, Hepatitis, Parvovirus",
-                healthVaccRow2Age: "11-13 weeks",
-                healthVaccRow2Vaccine: "Distemper, Hepatitis, Parvovirus (booster) + Rabies, Leptospirosis",
-                healthVaccRow3Age: "15-17 weeks",
-                healthVaccRow3Vaccine: "Rabies, Leptospirosis (booster)",
-                healthVaccRow4Age: "15 months",
-                healthVaccRow4Vaccine: "Boosters for all of the above",
-                healthVaccRow5Age: "Annual",
-                healthVaccRow5Vaccine: "Distemper, Hepatitis, Parvovirus (boosters)",
-                healthAccordionVaccP3: "Mild lethargy or swelling at the injection site is normal and subsides.",
-                healthAccordionDewormTitle: "Deworming Schedule",
-                healthAccordionDewormP1: "Proper and complete deworming is essential both for the dog's health and for preventing the transmission of parasites to humans, as many of them are zoonotic. Guardians have the responsibility to protect their household and community from potential zoonoses, making parasite prevention a dual act of care.",
-                healthDewormInternalTitle: "Internal Parasites (Endoparasites):",
-                healthDewormInternalP1: "Common Types: Include roundworms (such as Toxocara canis, Toxascaris leonina), tapeworms (such as Dipylidium caninum, Echinococcus granulosus), hookworms (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), and lungworms/heartworms (Angiostrongylus vasorum).",
-                healthDewormInternalP2: "Schedule: Deworming for endoparasites starts from a very young age, always according to the veterinarian's instructions. Usually, it continues with a pill every three months for the animal's entire life. For pregnant bitches, deworming with fenbendazole is recommended around the 40th day of gestation to prevent transmission of parasites to the puppies.",
-                healthDewormInternalP3: "Forms: Antiparasitics for endoparasites are available in pill, paste, or oral suspension form.",
-                healthDewormExternalTitle: "External Parasites (Ectoparasites):",
-                healthDewormExternalP1: "Common Types: This category includes ticks, fleas, mites (which cause mange), and lice. These parasites are vectors of serious, sometimes fatal, diseases and can also be transmitted to humans.",
-                healthDewormExternalP2: "Schedule: Treatment options include spot-ons, collars, and pills.",
-                healthDewormExternalListItem1: "Spot-ons: Can be used from the age of eight months and older, applied to the animal's back.",
-                healthDewormExternalListItem2: "Pills: Provide quarterly or monthly protection.",
-                healthDewormExternalListItem3: "Collars: Can be worn from the age of 4 months and older, offering coverage for fleas, ticks, and sandflies.",
-                healthDewormExternalP3: "Combinations: Combinations of products (e.g., spot-on, collar, and citronella spray) are often used to achieve the optimal result in protecting the dog.",
-                healthAccordionProblemsTitle: "Common Health Problems & Symptoms",
-                healthAccordionProblemsP1: "It is important for guardians to recognize common signs of illness for immediate veterinary intervention. Due to their vulnerability, puppies require constant monitoring for subtle changes in their health. Prompt recognition of symptoms and communication with the veterinarian are paramount, as rapid health deterioration can occur, making timely intervention life-saving.",
-                healthProblemsGeneralSymptomsTitle: "General Symptoms of Illness:",
-                healthProblemsGenSymptomEyes: "Eyes, Mouth, Nose: Coughing, sneezing, heavy panting, difficulty breathing, bad breath, excessive drooling, dry, cloudy, or red eyes.",
-                healthProblemsGenSymptomBehavior: "Behavior: Decreased activity, less interest in play, more hours of sleep, or other behavioral changes.",
-                healthProblemsGenSymptomSkin: "Skin Changes: Dryness, lesions, redness, hair loss, scaly skin, intense itching.",
-                healthProblemsGenSymptomDigestion: "Food Consumption and Digestion: Decreased appetite, weight loss, stomach upsets, feces containing blood, mucus, worms, or undigested food, excessive water consumption, or excessive urination.",
-                healthProblemsGenSymptomStiffness: "Joint Stiffness: Difficulty getting up or climbing stairs.",
-                healthProblemsSpecificProblemsTitle: "Specific Problems:",
-                healthProblemsSpecDiarrhea: "Diarrhea: It is quite common in puppies and can range from mild episodes that resolve quickly to severe gastric problems caused by serious illness or obstruction, with possible presence of blood or mucus and dehydration.",
-                healthProblemsSpecVomiting: "Vomiting: It is a common problem with dozens of possible causes, such as infections, intestinal parasites, pancreatitis, kidney failure, heatstroke, foreign body in the stomach-intestine, and poisoning.",
-                healthProblemsSpecHypoglycemia: "Hypoglycemia: Low blood glucose levels, more common in small breed puppies or in cases of improper feeding. Symptoms include anorexia, lethargy, trembling, behavioral changes, and seizures. If suspected, immediate application of honey to the gums or administration of sugar water is recommended, along with immediate contact with a veterinarian.",
-                healthProblemsSpecCoccidiosis: "Coccidiosis: Caused by a parasite (coccidia) and is one of the most common causes of painful and often fatal diarrhea in young ages. Symptoms include severe diarrhea, lethargy, anorexia, and dehydration.",
-                healthProblemsSpecGiardia: "Giardia (Giardiasis): A common intestinal parasite. Symptoms include soft, pale, foul-smelling stools, increased frequency of bowel movements, gas, abdominal discomfort, decreased appetite, and dehydration. It is transmitted through contaminated water or feces. Treatment includes fenbendazole and/or metronidazole, combined with strict hygiene.",
-                healthProblemsSpecParvo: "Parvovirus: Highly contagious and dangerous, especially for puppies. Symptoms include loss of appetite, lethargy, persistent vomiting, and bloody diarrhea. Requires immediate veterinary care.",
-                healthProblemsTableSystem: "System/Problem",
-                healthProblemsTableSymptoms: "Common Symptoms",
-                healthProblemsRow1Cat: "General Symptoms<br>Behavior",
-                healthProblemsRow1Sym: "Lethargy, reduced activity, indifference, changes in sleep",
-                healthProblemsRow2Cat: "Respiratory",
-                healthProblemsRow2Sym: "Coughing, sneezing, panting, difficulty breathing",
-                healthProblemsRow3Cat: "Skin/Coat",
-                healthProblemsRow3Sym: "Dryness, redness, rashes, hair loss, intense itching",
-                healthProblemsRow4Cat: "Digestive System<br>Diarrhea",
-                healthProblemsRow4Sym: "Watery, with blood/mucus, increased frequency, dehydration",
-                healthProblemsRow5Cat: "Vomiting",
-                healthProblemsRow5Sym: "Persistent, with or without food/blood",
-                healthProblemsRow6Cat: "Appetite/Weight",
-                healthProblemsRow6Sym: "Decreased appetite, anorexia, weight loss",
-                healthProblemsRow7Cat: "Specific Problems<br>Hypoglycemia",
-                healthProblemsRow7Sym: "Trembling, weakness, seizures, behavioral changes, fainting",
-                healthProblemsRow8Cat: "Parvovirus",
-                healthProblemsRow8Sym: "Vomiting, bloody diarrhea, lethargy, fever, dehydration",
-                healthProblemsRow9Cat: "Coccidiosis",
-                healthProblemsRow9Sym: "Severe diarrhea, lethargy, anorexia, dehydration",
-                healthProblemsRow10Cat: "Giardia",
-                healthProblemsRow10Sym: "Soft, foul-smelling stools, gas, abdominal discomfort, dehydration",
-                healthAccordionProblemsP2: "Mild lethargy or swelling at the injection site is normal and subsides.",
-                healthAITitle: "✨ AI Health Question Assistant",
-                healthAIDescription: "Have a general (non-urgent) question about your puppy's health? Ask us!",
-                healthAIPlaceholder: "E.g., Why does my puppy eat grass? Is it normal for them to sleep so much?",
-                healthAIButtonText: "✨ Get Health Info (AI)",
-                healthAIDisclaimer: "IMPORTANT: This information is general and DOES NOT replace veterinary advice. For any health problem, consult your veterinarian IMMEDIATELY.",
-                healthAIError: "An error occurred while contacting the AI for health information. Please try again later.",
-
-
-                nutritionTitle: "IV. Nutrition: The Foundation of Health and Development",
-                nutritionIntro: "Proper nutrition is fundamental for your puppy's development and well-being. This section covers choosing the right food, feeding schedules according to age, and foods that must be avoided for your little friend's safety.",
-                nutritionAccordionFood: "Choosing Appropriate Food and Feeding Schedule",
-                nutritionFoodSelectP1: "Choose high-quality, reputable puppy-specific food. For large breeds, foods specially formulated for their needs are recommended. Foods should be rich in nutrients like proteins (for muscle and tissue growth), fats (for energy and skin health), carbohydrates (for energy), vitamins, and minerals (like calcium, iron, zinc).",
-                nutritionFoodSelectP2: "A puppy's diet is not static but evolves rapidly with age and development. Providing the right balance of nutrients at each stage is crucial for optimal growth and preventing deficiencies or excesses that could affect long-term health.",
-                nutritionFoodSelectP3: "If the puppy is very young, the weaning process starts around 3-4 weeks and lasts up to 8 weeks. Initially, solid food can be mixed with water or puppy milk to soften it and make it more digestible.",
-                nutritionFeedingScheduleTitle: "Feeding Schedule:",
-                nutritionFeedList1: "8-12 weeks: 4 meals a day.",
-                nutritionFeedList2: "3-6 months: 3 meals a day.",
-                nutritionFeedList3: "6 months - 1 year: 2 meals a day.",
-                nutritionFeedList4: "After 1 year: Usually 1 meal a day is sufficient, although for larger breeds or dogs prone to bloating, 2 smaller meals are preferable.",
-                nutritionWaterBowls: "It is essential to always have clean, fresh water available. Food and water bowls should be washed frequently to maintain hygiene.",
-                nutritionAccordionDangerousFoodTitle: "Dangerous Foods to Avoid",
-                nutritionAccordionDangerousFoodContent: "Many human foods are toxic to dogs. Below is a summary table of some of the most common ones. <br><strong>Always consult your veterinarian if you are unsure about a food.</strong>",
-                dangerousFoodsTableHtml: `
-                    <h4 class="font-semibold mt-4 mb-2">Dangerous Foods Table:</h4>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="text-left py-2 px-3 border-b">Food</th>
-                                    <th class="text-left py-2 px-3 border-b">Potential Harm</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td class="py-2 px-3 border-b">Chocolate (especially dark)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, tremors, abnormal heart rhythm, seizures, death</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Xylitol (sweetener)</td><td class="py-2 px-3 border-b">Hypoglycemia, liver failure, seizures</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Onions & Garlic</td><td class="py-2 px-3 border-b">Red blood cell damage (hemolytic anemia), gastrointestinal upset</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Grapes & Raisins</td><td class="py-2 px-3 border-b">Kidney failure</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Alcohol</td><td class="py-2 px-3 border-b">Vomiting, diarrhea, incoordination, CNS depression, difficulty breathing, death</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Caffeine</td><td class="py-2 px-3 border-b">Hyperactivity, rapid heartbeat, tremors, seizures</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Cooked Bones</td><td class="py-2 px-3 border-b">Choking hazard, internal injuries, intestinal obstruction</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Avocado (pit, skin)</td><td class="py-2 px-3 border-b">Vomiting, diarrhea (due to persin)</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Macadamia Nuts</td><td class="py-2 px-3 border-b">Weakness, vomiting, tremors, hyperthermia</td></tr>
-                                <tr><td class="py-2 px-3 border-b">Dairy Products (large amounts/intolerance)</td><td class="py-2 px-3 border-b">Digestive upset, diarrhea</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                `,
                 nutritionAISuggestionTitle: "✨ AI Meal & Treat Advisor",
                 nutritionAIDescription: "Tell us a bit about your puppy for personalized suggestions!",
                 nutritionAIAgeLabel: "Puppy Age:",
@@ -1261,7 +982,7 @@
             outputElement.textContent = ''; // Clear previous content
             if (buttonElement) buttonElement.disabled = true;
 
-            const apiKey = "AIzaSyC7751PxaP2XWKees2VCSqRINztqrsYEHs"; 
+            const apiKey = "AIzaSyC7751PxaP2XWKees2VCSqRINztqrsYEHs"; // Ensure this is your actual key for testing
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
             
             const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
@@ -1284,7 +1005,7 @@
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
                     const text = result.candidates[0].content.parts[0].text;
-                    outputElement.textContent = text; // Set text content directly
+                    outputElement.textContent = text; 
                 } else {
                     console.error('Unexpected API response structure:', result);
                     outputElement.textContent = getTranslation(currentLang, errorKey) + ' (No content found)';
@@ -1472,10 +1193,11 @@
             const traitsInput = document.getElementById('puppyTraits');
             const suggestButton = document.getElementById('suggestNameButton');
             const loadingDiv = document.getElementById('nameFinderLoading');
-            const outputDiv = document.getElementById('nameSuggestionsOutput');
-            const nameListDiv = document.getElementById('nameList');
+            const outputDiv = document.getElementById('nameSuggestionsOutput'); // This is the <h4> container
+            const nameListDiv = document.getElementById('nameList'); // This is the actual <div> for names
 
             if (!genderSelect || !traitsInput || !suggestButton || !loadingDiv || !outputDiv || !nameListDiv) {
+                console.warn("Name finder elements not all found. Feature might not work as expected.");
                 return;
             }
 
@@ -1496,34 +1218,54 @@
                 let introText = getTranslation(currentLang, 'nameSuggestionIntro');
                 introText = introText.replace('{gender}', genderDisplayVal).replace('{traits}', traitsDisplay);
                 
+                // Store intro text to be used after API call
                 nameListDiv.dataset.introText = introText; 
 
                 callGeminiAPI(prompt, nameListDiv, loadingDiv, suggestButton, 'noNamesFound')
                     .then(() => {
-                        if (nameListDiv.textContent !== getTranslation(currentLang, 'noNamesFound') && nameListDiv.dataset.introText) {
-                             const rawNamesText = nameListDiv.textContent; 
-                             nameListDiv.innerHTML = ""; 
-                             
-                             const pIntro = document.createElement('p');
-                             pIntro.className = 'mb-2';
-                             pIntro.textContent = nameListDiv.dataset.introText;
-                             nameListDiv.appendChild(pIntro);
-                             
-                             const namesArray = rawNamesText.split(/[\n-•]+/).map(name => name.trim()).filter(name => name);
-                             
-                             if (namesArray.length > 0 && namesArray.some(name => name.length > 0)) { 
-                                 const ul = document.createElement('ul');
-                                 ul.className = 'list-disc list-inside pl-4';
-                                 namesArray.forEach(name => {
-                                     const li = document.createElement('li');
-                                     li.textContent = name;
-                                     ul.appendChild(li);
-                                 });
-                                 nameListDiv.appendChild(ul);
-                             } else {
-                                nameListDiv.textContent = rawNamesText; 
-                             }
+                        // This block executes after callGeminiAPI has populated nameListDiv.textContent
+                        const apiResponseText = nameListDiv.textContent; // This is the raw response from Gemini
+                        const introForDisplay = nameListDiv.dataset.introText;
+                        const currentLanguage = localStorage.getItem('language') || 'el';
+
+                        nameListDiv.innerHTML = ''; // Clear the div to re-populate with intro + formatted list or raw text
+
+                        // Add the introductory paragraph
+                        if (introForDisplay) {
+                            const pIntro = document.createElement('p');
+                            pIntro.className = 'mb-2';
+                            pIntro.textContent = introForDisplay;
+                            nameListDiv.appendChild(pIntro);
                         }
+
+                        // Check if the API response is an error message we set
+                        if (apiResponseText.startsWith(getTranslation(currentLanguage, 'noNamesFound'))) {
+                            const errorP = document.createElement('p');
+                            errorP.textContent = apiResponseText; // Display the full error message
+                            nameListDiv.appendChild(errorP);
+                        } else {
+                            // Attempt to parse the API response as a list
+                            const namesArray = apiResponseText.split(/[\n-•]+/) 
+                                                            .map(name => name.trim())
+                                                            .filter(name => name && name.length > 0);
+
+                            if (namesArray.length > 0) {
+                                const ul = document.createElement('ul');
+                                ul.className = 'list-disc list-inside pl-4';
+                                namesArray.forEach(name => {
+                                    const li = document.createElement('li');
+                                    li.textContent = name;
+                                    ul.appendChild(li);
+                                });
+                                nameListDiv.appendChild(ul);
+                            } else {
+                                // If parsing fails or returns no names, display the raw API response after the intro
+                                const rawTextP = document.createElement('p');
+                                rawTextP.textContent = apiResponseText;
+                                nameListDiv.appendChild(rawTextP);
+                            }
+                        }
+                        outputDiv.classList.remove('hidden'); // Ensure the main output container is visible
                     });
             });
         }
