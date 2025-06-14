@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÎŸÎ´Î·Î³ÏŒÏ‚ Î¦ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚ ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï - The Happy Leash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FFF8E1; /* Warm cream background */
+            font-size: 1.125rem; /* Slightly larger base font size */
+            color: #424242; /* Dark grey for text, good contrast */
+        }
+        .tab-button {
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+            font-size: 1.125rem; /* Consistent with body */
+        }
+        .tab-button:hover {
+            transform: translateY(-2px); /* Subtle lift effect */
+        }
+        .tab-button.active {
+            background-color: #A1887F; /* Earthy brown, active tab */
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .tab-button:hover:not(.active) {
+            background-color: #EFEBE9; /* Light beige for hover */
+        }
+        .content-section {
+            background-color: #F5F0E8; /* Lighter cream for content */
+            border: 1px solid #E0E0E0; /* Soft border */
+            border-radius: 12px; /* More rounded corners */
+            padding: 2.5rem; /* Generous padding */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08); /* Softer shadow */
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: #5D4037; /* Darker brown for main title */
+            font-size: 3.5rem; /* Large and impactful */
+            letter-spacing: -0.025em; /* Tighter letter spacing */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle text shadow */
+        }
+        h2 {
+            color: #5D4037; /* Consistent heading color */
+            border-bottom: 2px solid #A1887F; /* Accent border */
+            padding-bottom: 12px; /* Space below border */
+            margin-bottom: 1.5rem;
+            font-size: 2rem; /* Clear section title size */
+        }
+        h3 {
+            color: #795548; /* Slightly lighter brown for sub-headings */
+            margin-top: 2.5rem; /* More space above h3 */
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Default height */
+            max-height: 350px;
+        }
+        @media (min-width: 768px) { /* Medium devices and up */
+            .chart-container {
+                height: 350px; /* Taller chart on larger screens */
+            }
+        }
+        .table-interactive tbody tr:hover {
+            background-color: #FBF8F5; /* Very light hover for table rows */
+        }
+        .equipment-list label:hover {
+            background-color: #FBF8F5; /* Hover for checklist items */
+        }
+        .accordion-button {
+            background-color: #EFEBE9; /* Light beige for accordion buttons */
+            color: #5D4037; /* Dark brown text */
+            padding: 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 1.25rem; /* Larger font for accordion titles */
+            font-weight: 700; /* Bold */
+        }
+        .accordion-button:hover {
+            background-color: #D7CCC8; /* Slightly darker beige on hover */
+            transform: translateY(-1px); /* Subtle lift */
+        }
+        .accordion-content {
+            background-color: #F5F2EF; /* Slightly different beige for content */
+            border-left: 4px solid #A1887F; /* Accent border */
+            padding: 1.5rem;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: #FFF8E1; /* Match body background */
+            padding-bottom: 1rem; /* Space for shadow */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow for sticky nav */
+        }
+        .llm-output { /* General style for AI/dynamic content output boxes */
+            background-color: #FBE9E7;
+            border-left: 4px solid #BF360C;
+            padding: 1.2rem;
+            border-radius: 0.6rem;
+            margin-top: 1.5rem;
+            color: #3E2723;
+            font-size: 1rem;
+            white-space: pre-wrap; /* Preserve line breaks from API response */
+        }
+        .tip-box { /* Specific style for socialization tips */
+            background-color: #FFF3E0;
+            border-left: 5px solid #FF9800;
+            padding: 1.2rem;
+            border-radius: 0.6rem;
+            margin-top: 1.5rem;
+            color: #E65100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            white-space: pre-wrap; /* Preserve line breaks from API response */
+        }
+        .ai-suggestion-box { /* Style for positive AI suggestions like games/names/food */
+            background-color: #E8F5E9; /* Light green background */
+            border-left: 4px solid #4CAF50; /* Green accent */
+            padding: 1.2rem;
+            border-radius: 0.6rem;
+            margin-top: 1.5rem;
+            color: #2E7D32; /* Darker green text */
+            white-space: pre-wrap;
+        }
+        .footer-copyright {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #E0E0E0;
+            color: #757575; /* Grey for footer text */
+            font-size: 0.875rem; /* Smaller footer text */
+        }
+        .lang-button {
+            background-color: #A1887F;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem; /* Tailwind's rounded-md */
+            font-weight: 600;
+            margin: 0 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+            outline: none;
+        }
+        .lang-button:hover {
+            background-color: #8D6E63; /* Darker shade on hover */
+        }
+        .lang-button.active {
+            background-color: #5D4037; /* Darkest brown for active language */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .ai-input-area { /* General class for textareas in AI features */
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1C4E9;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
+            min-height: 80px;
+            background-color: #FBFBFB;
+        }
+        .ai-select { /* General class for select dropdowns in AI features */
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #D1C4E9;
+            border-radius: 0.375rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.75rem;
+            background-color: #FBFBFB;
+        }
+        .ai-submit-button { /* General class for submit buttons in AI features */
+            background-color: #795548;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .ai-submit-button:hover {
+            background-color: #5D4037;
+        }
+        .ai-submit-button:disabled {
+            background-color: #BDBDBD; /* Grey out button when loading */
+            cursor: not-allowed;
+        }
+        .loading-message {
+            color: #757575;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 max-w-5xl">
+        <header class="text-center mb-8">
+            <img src="images/the-happy-leash-logo.png" ... >
+                 alt="The Happy Leash - Î›Î¿Î³ÏŒÏ„Ï…Ï€Î¿ ÎŸÎ´Î·Î³ÏŒÏ‚ Î¦ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚ ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï"
+                 class="w-full mb-4 object-contain"
+                 style="max-height: 400px;"
+                 data-i18n-key="logoAltText"
+                 data-i18n-target-alt="true">
+            <h1 class="font-bold text-gray-700" data-i18n-key="mainTitle">ðŸ¾ ÎŸÎ´Î·Î³ÏŒÏ‚ Î¦ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚ ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ðŸ¾</h1>
+            <p class="text-2xl text-gray-600 mt-2" data-i18n-key="subTitle">ÎŒÎ»Î± ÏŒÏƒÎ± Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± Î³Î½Ï‰ÏÎ¯Î¶ÎµÏ„Îµ Î³Î¹Î± Ï„Î¿ Î½Î­Î¿ ÏƒÎ±Ï‚ Ï†Î¯Î»Î¿!</p>
+            <div class="mt-4" id="language-switcher">
+                <button class="lang-button active" id="lang-el">Î•Î›</button>
+                <button class="lang-button" id="lang-en">EN</button>
+            </div>
+        </header>
+
+        <div class="nav-container mb-6">
+            <div class="flex flex-wrap justify-center space-x-2 sm:space-x-4" id="tab-buttons">
+                <button class="tab-button active py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-intro" data-i18n-key="tabIntro">Î•Î¹ÏƒÎ±Î³Ï‰Î³Î®</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-preparation" data-i18n-key="tabPreparation">Î ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-days" data-i18n-key="tabFirstDays">Î ÏÏŽÏ„ÎµÏ‚ ÎœÎ­ÏÎµÏ‚ âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-health" data-i18n-key="tabHealth">Î¥Î³ÎµÎ¯Î± âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-nutrition" data-i18n-key="tabNutrition">Î”Î¹Î±Ï„ÏÎ¿Ï†Î® âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-exercise" data-i18n-key="tabExercise">Î†ÏƒÎºÎ·ÏƒÎ· âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-training" data-i18n-key="tabTraining">Î•ÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-aid" data-i18n-key="tabFirstAid">Î ÏÏŽÏ„ÎµÏ‚ Î’Î¿Î®Î¸ÎµÎ¹ÎµÏ‚ âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-stories" data-i18n-key="tabStories">Î™ÏƒÏ„Î¿ÏÎ¯ÎµÏ‚ ÎšÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·Ï‚ âœ¨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-longterm" data-i18n-key="tabLongterm">ÎœÎ±ÎºÏÎ¿Ï€ÏÏŒÎ¸ÎµÏƒÎ¼Î±</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-conclusion" data-i18n-key="tabConclusion">Î£Ï…Î¼Ï€Î­ÏÎ±ÏƒÎ¼Î±</button>
+            </div>
+        </div>
+
+        <div id="tab-content" class="space-y-6">
+            <div id="tab-intro" class="tab-pane active content-section">
+                <h2 data-i18n-key="introTitle">ÎšÎ±Î»Ï‰ÏƒÎ¿ÏÎ¯Î¶Î¿Î½Ï„Î±Ï‚ Ï„Î¿ ÎÎ­Î¿ ÎœÎ­Î»Î¿Ï‚ Ï„Î·Ï‚ ÎŸÎ¹ÎºÎ¿Î³Î­Î½ÎµÎ¹Î±Ï‚</h2>
+                <p class="text-justify" data-i18n-key="introContent">Î— Î¬Ï†Î¹Î¾Î· ÎµÎ½ÏŒÏ‚ ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹ Î±Ï€Î¿Ï„ÎµÎ»ÎµÎ¯ Î¼Î¹Î± ÏƒÏ…Î½Î±ÏÏ€Î±ÏƒÏ„Î¹ÎºÎ® ÏƒÏ„Î¹Î³Î¼Î®, Î³ÎµÎ¼Î¬Ï„Î· Ï‡Î±ÏÎ¬ ÎºÎ±Î¹ Ï€ÏÎ¿ÏƒÎ¼Î¿Î½Î®. Î©ÏƒÏ„ÏŒÏƒÎ¿, ÏƒÏ…Î½Î¿Î´ÎµÏÎµÏ„Î±Î¹ ÎºÎ±Î¹ Î±Ï€ÏŒ ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÎ­Ï‚ ÎµÏ…Î¸ÏÎ½ÎµÏ‚ Ï€Î¿Ï… Î±Ï€Î±Î¹Ï„Î¿ÏÎ½ Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± ÎºÎ±Î¹ Î³Î½ÏŽÏƒÎ·. Î‘Ï…Ï„Î® Î· Î´Î¹Î±Î´ÏÎ±Ï€Ï„Î¹ÎºÎ® ÎµÏ†Î±ÏÎ¼Î¿Î³Î® Î­Ï‡ÎµÎ¹ ÏƒÏ‡ÎµÎ´Î¹Î±ÏƒÏ„ÎµÎ¯ Î³Î¹Î± Î½Î± Ï€Î±ÏÎ­Ï‡ÎµÎ¹ Ï„Î¹Ï‚ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„ÎµÏ‚ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ ÎºÎ±Î¹ Ï€ÏÎ±ÎºÏ„Î¹ÎºÎ­Ï‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚, ÏŽÏƒÏ„Îµ Î½Î± ÎµÎ¾Î±ÏƒÏ†Î±Î»Î¹ÏƒÏ„ÎµÎ¯ Î¼Î¹Î± Î¿Î¼Î±Î»Î® Î¼ÎµÏ„Î¬Î²Î±ÏƒÎ· ÎºÎ±Î¹ Î¼Î¹Î± Ï…Î³Î¹Î®Ï‚, ÎµÏ…Ï„Ï…Ï‡Î¹ÏƒÎ¼Î­Î½Î· Î¶Ï‰Î® Î³Î¹Î± Ï„Î¿ Î½Î­Î¿ Ï„ÎµÏ„ÏÎ¬Ï€Î¿Î´Î¿ Î¼Î­Î»Î¿Ï‚ Ï„Î·Ï‚ Î¿Î¹ÎºÎ¿Î³Î­Î½ÎµÎ¹Î±Ï‚. Î•Î¾ÎµÏÎµÏ…Î½Î®ÏƒÏ„Îµ Ï„Î¹Ï‚ Ï€Î±ÏÎ±ÎºÎ¬Ï„Ï‰ ÎµÎ½ÏŒÏ„Î·Ï„ÎµÏ‚ Î³Î¹Î± Î½Î± Î¼Î¬Î¸ÎµÏ„Îµ Ï„Î± Ï€Î¬Î½Ï„Î±, Î±Ï€ÏŒ Ï„Î·Î½ Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Ï„Î¿Ï… Ï‡ÏŽÏÎ¿Ï… ÎºÎ±Î¹ Ï„Î·Î½ Î±ÏÏ‡Î¹ÎºÎ® Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î®, Î¼Î­Ï‡ÏÎ¹ Ï„Î·Î½ Ï…Î³ÎµÎ¯Î±, Ï„Î· Î´Î¹Î±Ï„ÏÎ¿Ï†Î®, Ï„Î·Î½ Î¬ÏƒÎºÎ·ÏƒÎ·, Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· ÎºÎ±Î¹ Ï„Î¹Ï‚ Î¼Î±ÎºÏÎ¿Ï€ÏÏŒÎ¸ÎµÏƒÎ¼ÎµÏ‚ ÎµÏ…Î¸ÏÎ½ÎµÏ‚.</p>
+            </div>
+
+            <div id="tab-preparation" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="prepTabTitle">I. Î ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Î³Î¹Î± Ï„Î·Î½ Î†Ï†Î¹Î¾Î· Ï„Î¿Ï… ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï</h2>
+                <p class="mb-4 text-justify" data-i18n-key="prepTabIntro">Î ÏÎ¹Î½ Î±ÎºÏŒÎ¼Î· Ï„Î·Î½ Î¬Ï†Î¹Î¾Î· Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹, ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Ï„Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚ Î· Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Ï„Î¿Ï… Ï‡ÏŽÏÎ¿Ï… Ï„Î¿Ï…. Î‘Ï…Ï„ÏŒ Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½ÎµÎ¹ Ï„Î· Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± ÎµÎ½ÏŒÏ‚ Î±ÏƒÏ†Î±Î»Î¿ÏÏ‚ ÎºÎ±Î¹ Î¬Î½ÎµÏ„Î¿Ï… Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î¿Ï‚, ÏŒÏ€Î¿Ï… Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¸Î± Î½Î¹ÏŽÎ¸ÎµÎ¹ Ï€ÏÎ¿ÏƒÏ„Î±Ï„ÎµÏ…Î¼Î­Î½Î¿ ÎºÎ±Î¹ Î¸Î± Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿ÏƒÏ„ÎµÎ¯ Î¿Î¼Î±Î»Î¬. Î•Ï€Î¯ÏƒÎ·Ï‚, Î· ÏƒÏ…Î³ÎºÎ­Î½Ï„ÏÏ‰ÏƒÎ· Ï„Î¿Ï… Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿Ï… ÎµÎ¾Î¿Ï€Î»Î¹ÏƒÎ¼Î¿Ï ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î· Î³Î¹Î± Î¼Î¹Î± Î¿Î¼Î±Î»Î® Î¼ÎµÏ„Î¬Î²Î±ÏƒÎ·. Î‘Ï…Ï„Î® Î· ÎµÎ½ÏŒÏ„Î·Ï„Î± ÏƒÎ±Ï‚ ÎºÎ±Î¸Î¿Î´Î·Î³ÎµÎ¯ ÏƒÏ„Î· Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± ÎµÎ½ÏŒÏ‚ Î±ÏƒÏ†Î±Î»Î¿ÏÏ‚ Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î¿Ï‚ ÎºÎ±Î¹ ÏƒÏ„Î·Î½ ÎµÏ€Î¹Î»Î¿Î³Î® Ï„Ï‰Î½ Î²Î±ÏƒÎ¹ÎºÏŽÎ½ Ï€ÏÎ¿Î¼Î·Î¸ÎµÎ¹ÏŽÎ½.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="prepAccordionEnvTitle">Î”Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± Î‘ÏƒÏ†Î±Î»Î¿ÏÏ‚ ÎºÎ±Î¹ Î†Î½ÎµÏ„Î¿Ï… Î ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î¿Ï‚</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="prepAccordionEnvContent">Î— Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Ï„Î¿Ï… Ï‡ÏŽÏÎ¿Ï… ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Ï„Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚. Î‘ÏƒÏ†Î±Î»Î¯ÏƒÏ„Îµ Ï„Î¿Î½ Ï‡ÏŽÏÎ¿ ("dog-proofing") Î±Ï€Î¿Î¼Î±ÎºÏÏÎ½Î¿Î½Ï„Î±Ï‚ ÎµÏ€Î¹ÎºÎ¯Î½Î´Ï…Î½Î± Î±Î½Ï„Î¹ÎºÎµÎ¯Î¼ÎµÎ½Î± ÏŒÏ€Ï‰Ï‚ Ï‡Î±Î»Î¹Î¬, Ï‡Î·Î¼Î¹ÎºÎ¬, ÎºÎ±Î»ÏŽÎ´Î¹Î± ÎºÎ±Î¹ Î±ÎºÏÎ¹Î²Î²Î¬ Î­Ï€Î¹Ï€Î»Î±. Î ÏÎ¿ÏƒÏ„Î±Ï„Î­ÏˆÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î±Ï€ÏŒ Ï€Ï„ÏŽÏƒÎµÎ¹Ï‚ (Ï€.Ï‡. ÏƒÎºÎ¬Î»ÎµÏ‚). Î”Î¹Î±Ï„Î·ÏÎ®ÏƒÏ„Îµ ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î· Î¸ÎµÏÎ¼Î¿ÎºÏÎ±ÏƒÎ¯Î± (10-26.6Â°C), Ï…Î³ÏÎ±ÏƒÎ¯Î± (30-70%) ÎºÎ±Î¹ Î±ÎµÏÎ¹ÏƒÎ¼ÏŒ. ÎŸ Ï„Î±ÎºÏ„Î¹ÎºÏŒÏ‚ ÎºÎ±Î¸Î±ÏÎ¹ÏƒÎ¼ÏŒÏ‚ ÎµÎ¯Î½Î±Î¹ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿Ï‚.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="prepAccordionEquipTitle">Î‘Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿Ï‚ Î•Î¾Î¿Ï€Î»Î¹ÏƒÎ¼ÏŒÏ‚ (Î›Î¯ÏƒÏ„Î± Î•Î»Î­Î³Ï‡Î¿Ï…) âœ¨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <ul class="list-none space-y-2 equipment-list">
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemBed">Î†Î½ÎµÏ„Î¿ ÎºÏÎµÎ²Î±Ï„Î¬ÎºÎ¹/ÎºÎ±Î»Î¬Î¸Î¹ (Ï€Î»Î­Î½ÎµÏ„Î±Î¹ ÏƒÏ…Ï‡Î½Î¬)</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemBowls">Î‘Î½Î¿Î¾ÎµÎ¯Î´Ï‰Ï„Î± Î¼Ï€Î¿Î» Î³Î¹Î± Î½ÎµÏÏŒ ÎºÎ±Î¹ Ï„ÏÎ¿Ï†Î®</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemLeash">Î ÎµÏÎ¹Î»Î±Î¯Î¼Î¹Î¿, ÏƒÎ±Î¼Î±ÏÎ¬ÎºÎ¹ ÎºÎ±Î¹ Î»Î¿Ï…ÏÎ¯</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemIdTag">Î¤Î±Ï…Ï„ÏŒÏ„Î·Ï„Î± Î¼Îµ ÏƒÏ„Î¿Î¹Ï‡ÎµÎ¯Î±</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemPoopBags">Î£Î±ÎºÎ¿ÏÎ»ÎµÏ‚ Î³Î¹Î± Ï€ÎµÏÎ¹Ï„Ï„ÏŽÎ¼Î±Ï„Î±</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemPadsWipes">Î Î¬Î½ÎµÏ‚ Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±, Î¼Î±Î½Ï„Î·Î»Î¬ÎºÎ¹Î± ÎºÎ±Î¸Î±ÏÎ¹ÏƒÎ¼Î¿Ï</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemToothbrush">ÎŸÎ´Î¿Î½Ï„ÏŒÎºÏÎµÎ¼Î± & Î¿Î´Î¿Î½Ï„ÏŒÎ²Î¿Ï…ÏÏ„ÏƒÎ± ÏƒÎºÏÎ»Î¿Ï…</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemParasiteControl">Î‘Î½Ï„Î¹Ï€Î±ÏÎ±ÏƒÎ¹Ï„Î¹ÎºÎ¬ (Î±Î¼Ï€Î¿ÏÎ»ÎµÏ‚/ÏƒÏ€ÏÎ­Î¹)</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemGrooming">Î’Î¿ÏÏÏ„ÏƒÎ±, ÏƒÎ±Î¼Ï€Î¿Ï…Î¬Î½, Î½Ï…Ï‡Î¿ÎºÏŒÏ€Ï„Î·Ï‚</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemToys">Î Î¿Î¹ÎºÎ¹Î»Î¯Î± Ï€Î±Î¹Ï‡Î½Î¹Î´Î¹ÏŽÎ½ (Î¼Î¬ÏƒÎ·ÏƒÎ·Ï‚, Ï€Î±Î¶Î»)</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemCarrier">ÎšÎ»Î¿Ï…Î²Î¯/Ï„ÏƒÎ¬Î½Ï„Î± Î¼ÎµÏ„Î±Ï†Î¿ÏÎ¬Ï‚</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemCrate">Crate (ÎºÎ»Î¿Ï…Î²Î¯ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚)</span></label></li>
+                        </ul>
+                        <h4 class="font-semibold mt-4" data-i18n-key="prepCrateHeading">Î¤Î¿ Crate: ÎˆÎ½Î± Î Î±ÏÎµÎ¾Î·Î³Î·Î¼Î­Î½Î¿ Î•ÏÎ³Î±Î»ÎµÎ¯Î¿</h4>
+                        <p class="text-justify mt-2" data-i18n-key="prepCratePara1">Î¤Î¿ crate (ÎºÎ»Î¿Ï…Î²Î¯ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚) ÎµÎ¯Î½Î±Î¹ Î­Î½Î± ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÏŒ ÎµÏÎ³Î±Î»ÎµÎ¯Î¿ Î³Î¹Î± Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· ÎºÎ±Î¹ Ï„Î·Î½ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï, Î±Î»Î»Î¬ ÏƒÏ…Ï‡Î½Î¬ Ï€Î±ÏÎµÎ¾Î·Î³ÎµÎ¯Ï„Î±Î¹ Ï‰Ï‚ "Ï†Ï…Î»Î±ÎºÎ®". Î£Ï„Î·Î½ Ï€ÏÎ±Î³Î¼Î±Ï„Î¹ÎºÏŒÏ„Î·Ï„Î±, ÏŒÏ„Î±Î½ Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹ÎµÎ¯Ï„Î±Î¹ ÏƒÏ‰ÏƒÏ„Î¬, Ï„Î¿ crate Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î±Ï€Î¿Ï„ÎµÎ»Î­ÏƒÎµÎ¹ Î­Î½Î± Î±ÏƒÏ†Î±Î»Î­Ï‚, Ï€ÏÎ¿ÏƒÏ‰Ï€Î¹ÎºÏŒ ÎºÎ±Ï„Î±Ï†ÏÎ³Î¹Î¿ Î³Î¹Î± Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚, ÎºÎ±Î¸ÏŽÏ‚ ÎºÎ±Î¹ Î­Î½Î± ÎµÎ¾Î±Î¹ÏÎµÏ„Î¹ÎºÏŒ Î²Î¿Î®Î¸Î·Î¼Î± Î³Î¹Î± Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Ï„Î¿Ï…Î±Î»Î­Ï„Î±Ï‚ ÎºÎ±Î¹ Ï„Î· Î´Î¹Î±Ï‡ÎµÎ¯ÏÎ¹ÏƒÎ· Ï„Î·Ï‚ ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚.</p>
+                        <p class="text-justify mt-2" data-i18n-key="prepCrateBenefitsTitle">ÎŸÏ†Î­Î»Î· Ï„Î¿Ï… Crate:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li data-i18n-key="prepCrateBenefit1">Î•ÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Î¤Î¿Ï…Î±Î»Î­Ï„Î±Ï‚: Î¤Î± ÏƒÎºÏ…Î»Î¹Î¬ Î±Ï€ÏŒ Ï„Î· Ï†ÏÏƒÎ· Ï„Î¿Ï…Ï‚ Î´ÎµÎ½ Î¸Î­Î»Î¿Ï…Î½ Î½Î± Î»ÎµÏÏŽÏƒÎ¿Ï…Î½ Ï„Î¿Î½ Ï‡ÏŽÏÎ¿ Ï€Î¿Ï… ÎºÎ¿Î¹Î¼Î¿ÏÎ½Ï„Î±Î¹. Î¤Î¿ crate ÎµÎºÎ¼ÎµÏ„Î±Î»Î»ÎµÏÎµÏ„Î±Î¹ Î±Ï…Ï„ÏŒ Ï„Î¿ Î­Î½ÏƒÏ„Î¹ÎºÏ„Î¿, Î²Î¿Î·Î¸ÏŽÎ½Ï„Î±Ï‚ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î½Î± Î¼Î¬Î¸ÎµÎ¹ Î½Î± ÎºÏÎ±Ï„Î¹Î­Ï„Î±Î¹ Î¼Î­Ï‡ÏÎ¹ Î½Î± Î²Î³ÎµÎ¹ Î­Î¾Ï‰.</li>
+                            <li data-i18n-key="prepCrateBenefit2">Î‘ÏƒÏ†Î¬Î»ÎµÎ¹Î±: Î ÏÎ¿ÏƒÏ„Î±Ï„ÎµÏÎµÎ¹ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î±Ï€ÏŒ Ï„Î¿ Î½Î± Î¼Î±ÏƒÎ®ÏƒÎµÎ¹ ÎµÏ€Î¹ÎºÎ¯Î½Î´Ï…Î½Î± Î±Î½Ï„Î¹ÎºÎµÎ¯Î¼ÎµÎ½Î± Î® Î½Î± Ï€Î¬Î¸ÎµÎ¹ Î±Ï„ÏÏ‡Î·Î¼Î± ÏŒÏ„Î±Î½ Î´ÎµÎ½ Î¼Ï€Î¿ÏÎµÎ¯Ï„Îµ Î½Î± Ï„Î¿ ÎµÏ€Î¹Î²Î»Î­Ï€ÎµÏ„Îµ Î¬Î¼ÎµÏƒÎ±.</li>
+                            <li data-i18n-key="prepCrateBenefit3">Î ÏÎ¿ÏƒÏ‰Ï€Î¹ÎºÏŒÏ‚ Î§ÏŽÏÎ¿Ï‚: Î“Î¯Î½ÎµÏ„Î±Î¹ Î­Î½Î± Î±ÏƒÏ†Î±Î»Î­Ï‚ ÎºÎ±Î¹ Î¬Î½ÎµÏ„Î¿ "Î´Ï‰Î¼Î¬Ï„Î¹Î¿" Î³Î¹Î± Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹, ÏŒÏ€Î¿Ï… Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î¾ÎµÎºÎ¿Ï…ÏÎ±ÏƒÏ„ÎµÎ¯ ÎºÎ±Î¹ Î½Î± Î·ÏÎµÎ¼Î®ÏƒÎµÎ¹ Ï‡Ï‰ÏÎ¯Ï‚ ÎµÎ½Î¿Ï‡Î»Î®ÏƒÎµÎ¹Ï‚.</li>
+                            <li data-i18n-key="prepCrateBenefit4">Î¤Î±Î¾Î¯Î´Î¹Î± ÎºÎ±Î¹ Î•Ï€Î¹ÏƒÎºÎ­ÏˆÎµÎ¹Ï‚: Î”Î¹ÎµÏ…ÎºÎ¿Î»ÏÎ½ÎµÎ¹ Ï„Î·Î½ Î±ÏƒÏ†Î±Î»Î® Î¼ÎµÏ„Î±Ï†Î¿ÏÎ¬ ÎºÎ±Î¹ Ï„Î·Î½ Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î® Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎµ Î½Î­Î± Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î±, ÏŒÏ€Ï‰Ï‚ ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹ Ï†Î¯Î»Ï‰Î½ Î® ÏƒÎµ Î¾ÎµÎ½Î¿Î´Î¿Ï‡ÎµÎ¯Î±.</li>
+                            <li data-i18n-key="prepCrateBenefit5">Î”Î¹Î±Ï‡ÎµÎ¯ÏÎ¹ÏƒÎ· Î£Ï…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚: Î’Î¿Î·Î¸Î¬ ÏƒÏ„Î·Î½ Î±Î½Ï„Î¹Î¼ÎµÏ„ÏŽÏ€Î¹ÏƒÎ· Ï€ÏÎ¿Î²Î»Î·Î¼Î¬Ï„Ï‰Î½ ÏŒÏ€Ï‰Ï‚ Ï„Î¿ Î¬Î³Ï‡Î¿Ï‚ Î±Ï€Î¿Ï‡Ï‰ÏÎ¹ÏƒÎ¼Î¿Ï (ÏŒÏ„Î±Î½ ÎµÎºÏ€Î±Î¹Î´ÎµÏÎµÏ„Î±Î¹ ÏƒÏ‰ÏƒÏ„Î¬) Î® Î· ÎºÎ±Ï„Î±ÏƒÏ„ÏÎ¿Ï†Î¹ÎºÎ® Î¼Î¬ÏƒÎ·ÏƒÎ·.</li>
+                        </ul>
+                        <p class="text-justify mt-2" data-i18n-key="prepCrateMisconceptionsTitle">Î¤Î¹ Î´ÎµÎ½ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÏƒÎºÎ­Ï†Ï„ÎµÏ„Î±Î¹ Î¿ ÎºÎ·Î´ÎµÎ¼ÏŒÎ½Î±Ï‚ (ÎºÎ±Î¹ Î³Î¹Î±Ï„Î¯ ÎµÎ¯Î½Î±Î¹ Ï€Î±ÏÎµÎ¾Î·Î³Î·Î¼Î­Î½Î¿):</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li data-i18n-key="prepCrateMisconception1">Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Ï„Î¹Î¼Ï‰ÏÎ¯Î±: Î¤Î¿ crate Î´ÎµÎ½ Ï€ÏÎ­Ï€ÎµÎ¹ Ï€Î¿Ï„Î­ Î½Î± Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹ÎµÎ¯Ï„Î±Î¹ Ï‰Ï‚ Î¼Î­ÏƒÎ¿ Ï„Î¹Î¼Ï‰ÏÎ¯Î±Ï‚. Î‘Î½ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÏ…Î½Î´Î­ÏƒÎµÎ¹ Ï„Î¿ crate Î¼Îµ Î±ÏÎ½Î·Ï„Î¹ÎºÎ­Ï‚ ÎµÎ¼Ï€ÎµÎ¹ÏÎ¯ÎµÏ‚, Î¸Î± Ï„Î¿ Ï†Î¿Î²Î¬Ï„Î±Î¹ ÎºÎ±Î¹ Î¸Î± Î±ÏÎ½ÎµÎ¯Ï„Î±Î¹ Î½Î± Î¼Ï€ÎµÎ¹.</li>
+                            <li data-i18n-key="prepCrateMisconception2">Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Ï†Ï…Î»Î±ÎºÎ®: Î¤Î¿ crate Î´ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Î³Î¹Î± Î½Î± "ÎºÎ»ÎµÎ¯Î½ÎµÏ„Îµ" Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î³Î¹Î± Ï€Î¿Î»Î»Î­Ï‚ ÏŽÏÎµÏ‚. Î ÏÎ­Ï€ÎµÎ¹ Î½Î± Î­Ï‡ÎµÎ¹ ÎµÏ€Î±ÏÎºÎ® Ï‡ÏÏŒÎ½Î¿ ÎµÎºÏ„ÏŒÏ‚ Ï„Î¿Ï… crate Î³Î¹Î± Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹, Î¬ÏƒÎºÎ·ÏƒÎ· ÎºÎ±Î¹ Ï„Î¿Ï…Î±Î»Î­Ï„Î±. ÎŸ Ï‡ÏÏŒÎ½Î¿Ï‚ Ï€Î±ÏÎ±Î¼Î¿Î½Î¯Î±Ï‚ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Î±Î½Î¬Î»Î¿Î³Î¿Ï‚ Î¼Îµ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± Ï„Î¿Ï… (Ï€.Ï‡., Î­Î½Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹ 8 ÎµÎ²Î´Î¿Î¼Î¬Î´Ï‰Î½ Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÎºÏÎ±Ï„Î·Î¸ÎµÎ¯ Ï€ÎµÏÎ¯Ï€Î¿Ï… 3-4 ÏŽÏÎµÏ‚).</li>
+                            <li data-i18n-key="prepCrateMisconception3">Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· ÏƒÎµ ÏŒÎ»Î± Ï„Î± Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î±: Î¤Î¿ crate ÎµÎ¯Î½Î±Î¹ Î­Î½Î± ÎµÏÎ³Î±Î»ÎµÎ¯Î¿ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚, ÏŒÏ‡Î¹ Î¼Î¹Î± Î¼Î±Î³Î¹ÎºÎ® Î»ÏÏƒÎ· Î³Î¹Î± ÏŒÎ»Î± Ï„Î± Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚. Î ÏÎ­Ï€ÎµÎ¹ Î½Î± ÏƒÏ…Î½Î´Ï…Î¬Î¶ÎµÏ„Î±Î¹ Î¼Îµ ÏƒÏ…Î½ÎµÏ€Î® ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·, ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· ÎºÎ±Î¹ Î¬ÏƒÎºÎ·ÏƒÎ·.</li>
+                            <li data-i18n-key="prepCrateMisconception4">Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Î±Ï€Î¬Î½Î¸ÏÏ‰Ï€Î¿: Î“Î¹Î± Ï„Î± ÏƒÎºÏ…Î»Î¹Î¬, Ï„Î¿ crate Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Ï†Ï…ÏƒÎ¹ÎºÎ® ÎµÏ€Î­ÎºÏ„Î±ÏƒÎ· Ï„Î¿Ï… ÎµÎ½ÏƒÏ„Î¯ÎºÏ„Î¿Ï… Ï„Î¿Ï…Ï‚ Î³Î¹Î± Î­Î½Î± "ÎºÏÎ·ÏƒÏ†ÏÎ³ÎµÏ„Î¿" Î® Î¼Î¹Î± "Ï†Ï‰Î»Î¹Î¬". Î Î¿Î»Î»Î¬ ÏƒÎºÏ…Î»Î¹Î¬ Ï„Î¿ Î±Î³Î±Ï€Î¿ÏÎ½ ÎºÎ±Î¹ Ï„Î¿ Î±Î½Î±Î¶Î·Ï„Î¿ÏÎ½ Ï‰Ï‚ Î±ÏƒÏ†Î±Î»Î­Ï‚ Î¼Î­ÏÎ¿Ï‚.</li>
+                        </ul>
+                        <p class="text-justify mt-2" data-i18n-key="prepCrateConclusion">Î— ÏƒÏ‰ÏƒÏ„Î® ÎµÎ¹ÏƒÎ±Î³Ï‰Î³Î® ÎºÎ±Î¹ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Î¼Îµ Ï„Î¿ crate ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î·. Î ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Î¸ÎµÏ„Î¹ÎºÎ® ÎµÎ¼Ï€ÎµÎ¹ÏÎ¯Î±, Î¼Îµ Î»Î¹Ï‡Î¿Ï…Î´Î¹Î­Ï‚, Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± ÎºÎ±Î¹ Î¬Î½ÎµÏ„Î¿ ÎºÏÎµÎ²Î¬Ï„Î¹, ÏŽÏƒÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î½Î± Ï„Î¿ Î²Î»Î­ÏƒÎµÎ¹ Ï‰Ï‚ Ï„Î¿ Î´Î¹ÎºÏŒ Ï„Î¿Ï…, Î±ÏƒÏ†Î±Î»Î­Ï‚ ÎºÎ±Ï„Î±Ï†ÏÎ³Î¹Î¿.</p>
+                    </div>
+                </div>
+
+                <div class="accordion mt-6"> <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nameFinderTitle">
+                        Î’ÏÎµÏ‚ ÎŒÎ½Î¿Î¼Î± Î³Î¹Î± Ï„Î¿ ÎšÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ¿Ï… âœ¨
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="nameFinderDescription">
+                            Î ÎµÏÎ¹Î­Î³ÏÎ±ÏˆÎµ ÎºÎ¬Ï€Î¿Î¹Î± Ï‡Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬ Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ¿Ï… ÎºÎ±Î¹ Ï€Î¬ÏÎµ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚!
+                        </p>
+
+                        <div class="mb-4">
+                            <label for="puppyGender" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="nameFinderGenderLabel">Î¦ÏÎ»Î¿:</label>
+                            <select id="puppyGender" name="puppyGender" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="any" data-i18n-key="nameFinderGenderAny">Î”ÎµÎ½ Î­Ï‡ÎµÎ¹ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±</option>
+                                <option value="male" data-i18n-key="nameFinderGenderMale">Î‘ÏÏƒÎµÎ½Î¹ÎºÏŒ</option>
+                                <option value="female" data-i18n-key="nameFinderGenderFemale">Î˜Î·Î»Ï…ÎºÏŒ</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="puppyTraits" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="nameFinderTraitsLabel">ÎšÏÏÎ¹Î± Î§Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬ (Ï€.Ï‡. Ï€Î±Î¹Ï‡Î½Î¹Î´Î¹Î¬ÏÎ·Ï‚, Î®ÏÎµÎ¼Î·, Î¸Î±ÏÏÎ±Î»Î­Î¿Ï‚):</label>
+                            <textarea id="puppyTraits" name="puppyTraits" rows="3"
+                                      class="ai-input-area w-full p-2 border rounded mt-1"
+                                      data-i18n-key="nameFinderTraitsPlaceholder"
+                                      data-i18n-target-placeholder="true"
+                                      placeholder="Î“ÏÎ¬ÏˆÏ„Îµ 1-3 Î»Î­Î¾ÎµÎ¹Ï‚ ÎºÎ»ÎµÎ¹Î´Î¹Î¬..."></textarea>
+                        </div>
+
+                        <button id="suggestNameButton" class="ai-submit-button" data-i18n-key="nameFinderSuggestButton">
+                           âœ¨ Î ÏÏŒÏ„ÎµÎ¹Î½Îµ ÎŸÎ½ÏŒÎ¼Î±Ï„Î± (AI)
+                        </button>
+
+                        <div id="nameFinderLoading" class="loading-message hidden mt-3" data-i18n-key="loadingMessage">
+                            Î•Ï€ÎµÎ¾ÎµÏÎ³Î±ÏƒÎ¯Î±...
+                        </div>
+
+                        <div id="nameSuggestionsOutput" class="hidden mt-4">
+                            <h4 class="font-semibold text-md mb-2" data-i18n-key="nameFinderOutputTitle">Î ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ ÎŸÎ½Î¿Î¼Î¬Ï„Ï‰Î½:</h4>
+                            <div id="nameList" class="ai-suggestion-box"> </div> </div>
+                    </div>
+                </div>
+                </div>
+
+            <div id="tab-first-days" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="firstDaysTabTitle">II. ÎŸÎ¹ Î ÏÏŽÏ„ÎµÏ‚ Î—Î¼Î­ÏÎµÏ‚ ÏƒÏ„Î¿ ÎÎ­Î¿ Î£Ï€Î¯Ï„Î¹</h2>
+                <p class="mb-4 text-justify" data-i18n-key="firstDaysTabIntro">ÎŸÎ¹ Ï€ÏÏŽÏ„ÎµÏ‚ Î·Î¼Î­ÏÎµÏ‚ ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼ÎµÏ‚ Î³Î¹Î± Ï„Î·Î½ Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î® Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï. Î— Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± ÏÎ¿Ï…Ï„Î¯Î½Î±Ï‚ ÎºÎ±Î¹ Î· ÏƒÏ‰ÏƒÏ„Î®, Ï€ÏÏŽÎ¹Î¼Î· ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· Î¸Î­Ï„Î¿Ï…Î½ Ï„Î¹Ï‚ Î²Î¬ÏƒÎµÎ¹Ï‚ Î³Î¹Î± Î­Î½Î±Î½ Î¹ÏƒÎ¿ÏÏÎ¿Ï€Î·Î¼Î­Î½Î¿ ÎµÎ½Î®Î»Î¹ÎºÎ¿ ÏƒÎºÏÎ»Î¿. Î•Î´ÏŽ Î¸Î± Î²ÏÎµÎ¯Ï„Îµ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Î³Î¹Î± Î½Î± Î²Î¿Î·Î¸Î®ÏƒÎµÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚ Î½Î± Î½Î¹ÏŽÏƒÎµÎ¹ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± ÎºÎ±Î¹ Î½Î± ÎµÎ¾ÎµÏÎµÏ…Î½Î®ÏƒÎµÎ¹ Ï„Î¿Î½ ÎºÏŒÏƒÎ¼Î¿ Î¼Îµ Î±Ï…Ï„Î¿Ï€ÎµÏ€Î¿Î¯Î¸Î·ÏƒÎ·.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="firstDaysAccordionRoutineTitle">Î ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î® ÎºÎ±Î¹ ÎšÎ±Î¸Î¹Î­ÏÏ‰ÏƒÎ· Î¡Î¿Ï…Ï„Î¯Î½Î±Ï‚ âœ¨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="firstDaysAccordionRoutineContent">Î”ÏŽÏƒÏ„Îµ Ï‡ÏÏŒÎ½Î¿ ÏƒÏ„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î½Î± ÏƒÏ…Î½Î·Î¸Î¯ÏƒÎµÎ¹. Î”Î·Î¼Î¹Î¿Ï…ÏÎ³Î®ÏƒÏ„Îµ ÏƒÏ„Î±Î¸ÎµÏÎ® ÏÎ¿Ï…Ï„Î¯Î½Î± Î³Î¹Î± ÏƒÎ¯Ï„Î¹ÏƒÎ·, Ï„Î¿Ï…Î±Î»Î­Ï„Î±, Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹ ÎºÎ±Î¹ "Î®ÏƒÏ…Ï‡Î¿ Ï‡ÏÏŒÎ½Î¿". ÎžÎµÎºÎ¹Î½Î®ÏƒÏ„Îµ Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· "Home Alone" Î±Ï€ÏŒ Ï„Î·Î½ Ï€ÏÏŽÏ„Î· Î¼Î­ÏÎ±, Î±Ï†Î®Î½Î¿Î½Ï„Î±Ï‚ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¼ÏŒÎ½Î¿ Ï„Î¿Ï… Î³Î¹Î± Î¼Î¹ÎºÏÎ¬ Î´Î¹Î±ÏƒÏ„Î®Î¼Î±Ï„Î±, Î³Î¹Î± Î½Î± Î±Ï€Î¿Ï†ÏÎ³ÎµÏ„Îµ Ï„Î¿ Î¬Î³Ï‡Î¿Ï‚ Î±Ï€Î¿Ï‡Ï‰ÏÎ¹ÏƒÎ¼Î¿Ï. ÎœÎ·Î½ ÎµÏ€Î¹ÏƒÏ„ÏÎ­ÏˆÎµÏ„Îµ ÏŒÏ„Î±Î½ ÎºÎ»Î±Î¯ÎµÎ¹ Î³Î¹Î± Î½Î± Î¼Î·Î½ ÎµÏ€Î¹Î²ÏÎ±Î²ÎµÏÏƒÎµÏ„Îµ Ï„Î·Î½ Î±Î½ÎµÏ€Î¹Î¸ÏÎ¼Î·Ï„Î· ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="firstDaysAccordionSocialTitle">Î ÏÏŽÎ¹Î¼Î· ÎšÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·: Î— Î£Î·Î¼Î±ÏƒÎ¯Î± Ï„Î·Ï‚</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="firstDaysAccordionSocialContent">Î— ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· (3-16 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚) ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î·. Î•ÎºÎ¸Î­ÏƒÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎµ Î´Î¹Î¬Ï†Î¿ÏÎ± Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î±, Î®Ï‡Î¿Ï…Ï‚, Î¿ÏƒÎ¼Î­Ï‚, Î¾Î­Î½Î¿Ï…Ï‚ Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚, Ï€Î±Î¹Î´Î¹Î¬ ÎºÎ±Î¹ Î¬Î»Î»Î± Ï…Î³Î¹Î®, ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î­Î½Î± ÏƒÎºÏ…Î»Î¹Î¬. ÎŸÎ¹ ÎµÎ¼Ï€ÎµÎ¹ÏÎ¯ÎµÏ‚ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Î¸ÎµÏ„Î¹ÎºÎ­Ï‚. Î ÏÎ¹Î½ Ï„Î·Î½ Î¿Î»Î¿ÎºÎ»Î®ÏÏ‰ÏƒÎ· Ï„Ï‰Î½ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼ÏŽÎ½, Î· ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î³Î¯Î½ÎµÎ¹ Î¼Îµ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± Î¼ÎµÏ„Î±Ï†Î­ÏÎ¿Î½Ï„Î±Ï‚ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÏ„Î·Î½ Î±Î³ÎºÎ±Î»Î¹Î¬/Ï„ÏƒÎ¬Î½Ï„Î± Î® Ï€ÏÎ¿ÏƒÎºÎ±Î»ÏŽÎ½Ï„Î±Ï‚ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î­Î½Î¿Ï…Ï‚ Ï†Î¯Î»Î¿Ï…Ï‚ (Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚/ÏƒÎºÏÎ»Î¿Ï…Ï‚) ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹. Î— ÏˆÏ…Ï‡Î¹ÎºÎ® Î´Î¹Î­Î³ÎµÏÏƒÎ· Î¼Îµ Î´Î¹Î±Î´ÏÎ±ÏƒÏ„Î¹ÎºÎ¬ Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± ÎµÎ¯Î½Î±Î¹ ÎµÏ€Î¯ÏƒÎ·Ï‚ ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÎ®.</p>
+                    </div>
+                </div>
+                 <div class="accordion mt-6">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="firstDaysAITitle">
+                        âœ¨ AI Î’Î¿Î·Î¸ÏŒÏ‚ Î ÏÏŽÏ„Ï‰Î½ Î—Î¼ÎµÏÏŽÎ½
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="firstDaysAIDescription">
+                            ÎˆÏ‡ÎµÏ„Îµ ÎºÎ¬Ï€Î¿Î¹Î± Î±Ï€Î¿ÏÎ¯Î± Î® Î±Î½Î·ÏƒÏ…Ï‡Î¯Î± Î³Î¹Î± Ï„Î¹Ï‚ Ï€ÏÏŽÏ„ÎµÏ‚ Î¼Î­ÏÎµÏ‚ Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹; Î ÎµÏÎ¹Î³ÏÎ¬ÏˆÏ„Îµ Ï„Î·Î½ ÎµÎ´ÏŽ.
+                        </p>
+                        <textarea id="firstDaysQuery" class="ai-input-area" rows="4" data-i18n-key="firstDaysAIPlaceholder" data-i18n-target-placeholder="true" placeholder="Î .Ï‡. 'Î¤Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÎºÎ»Î±Î¯ÎµÎ¹ Ï„Î· Î½ÏÏ‡Ï„Î±', 'Î ÏŽÏ‚ Î½Î± Ï„Î¿ Î³Î½Ï‰ÏÎ¯ÏƒÏ‰ ÏƒÏ„Î· Î³Î¬Ï„Î± Î¼Î¿Ï…;'..."></textarea>
+                        <button id="getFirstDaysAdviceButton" class="ai-submit-button" data-i18n-key="firstDaysAIButtonText">âœ¨ Î›Î®ÏˆÎ· Î£Ï…Î¼Î²Î¿Ï…Î»ÏŽÎ½ (AI)</button>
+                        <div id="firstDaysAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Î¦ÏŒÏÏ„Ï‰ÏƒÎ·...</div>
+                        <div id="firstDaysAIOutput" class="ai-suggestion-box hidden mt-3"></div>
+                        <p class="mt-4 text-xs text-gray-500" data-i18n-key="firstDaysAIDisclaimer">ÎŸÎ¹ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Ï€Î±ÏÎ­Ï‡Î¿Î½Ï„Î±Î¹ Î³Î¹Î± Î³ÎµÎ½Î¹ÎºÎ® ÎºÎ±Î¸Î¿Î´Î®Î³Î·ÏƒÎ·. Î— Ï…Ï€Î¿Î¼Î¿Î½Î® ÎºÎ±Î¹ Î· ÏƒÏ…Î½Î­Ï€ÎµÎ¹Î± ÎµÎ¯Î½Î±Î¹ Ï„Î¿ ÎºÎ»ÎµÎ¹Î´Î¯.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-health" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="healthTitle">III. Î¥Î³ÎµÎ¯Î± ÎºÎ±Î¹ ÎšÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Î¦ÏÎ¿Î½Ï„Î¯Î´Î± âœ¨</h2>
+                <p class="mb-4 text-justify" data-i18n-key="healthIntro">Î— Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚ ÎµÎ¯Î½Î±Î¹ Ï€ÏÏ‰Ï„Î±ÏÏ‡Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚. Î‘Ï€ÏŒ Ï„Î·Î½ Ï€ÏÏŽÏ„Î· ÎµÏ€Î¯ÏƒÎºÎµÏˆÎ· ÏƒÏ„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿ Î¼Î­Ï‡ÏÎ¹ Ï„Î¿Î½ Ï„Î±ÎºÏ„Î¹ÎºÏŒ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼ÏŒ ÎºÎ±Î¹ Ï„Î·Î½ Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ·, Î· Ï€ÏÎ¿Î»Î·Ï€Ï„Î¹ÎºÎ® Ï†ÏÎ¿Î½Ï„Î¯Î´Î± ÎµÎ¯Î½Î±Î¹ Ï„Î¿ ÎºÎ»ÎµÎ¹Î´Î¯. ÎœÎ¬Î¸ÎµÏ„Îµ Ï€ÏŽÏ‚ Î½Î± Î´Î¹Î±Ï„Î·ÏÎµÎ¯Ï„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚ Ï…Î³Î¹Î­Ï‚ ÎºÎ±Î¹ Ï€ÏŒÏ„Îµ Î½Î± Î¶Î·Ï„Î®ÏƒÎµÏ„Îµ ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Î²Î¿Î®Î¸ÎµÎ¹Î±.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAccordionVetTitle">Î— Î ÏÏŽÏ„Î· Î•Ï€Î¯ÏƒÎºÎµÏˆÎ· ÏƒÏ„Î¿Î½ ÎšÏ„Î·Î½Î¯Î±Ï„ÏÎ¿</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="healthAccordionVetContent">Î£Ï…Î½Î®Î¸Ï‰Ï‚ ÏƒÏ„Î¹Ï‚ 6-8 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚. ÎŸ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿Ï‚ Î¸Î± ÎºÎ¬Î½ÎµÎ¹ Ï†Ï…ÏƒÎ¹ÎºÎ® ÎµÎ¾Î­Ï„Î±ÏƒÎ· (Î¼Î¬Ï„Î¹Î±, Î±Ï…Ï„Î¹Î¬, Î¼ÏÏ„Î·, Î´Î­ÏÎ¼Î±, ÎºÎ±ÏÎ´Î¹Î¬, Ï€Î½ÎµÏÎ¼Î¿Î½ÎµÏ‚ Îº.Î¬.) ÎºÎ±Î¹ Î¸Î± ÏƒÎ±Ï‚ ÎµÎ½Î·Î¼ÎµÏÏŽÏƒÎµÎ¹ Î³Î¹Î± ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î¿ÏÏ‚, Î¿Î´Î¿Î½Ï„Î¹ÎºÎ® Ï†ÏÎ¿Î½Ï„Î¯Î´Î±, grooming, Î¬ÏƒÎºÎ·ÏƒÎ·, ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·, microchipping, ÏƒÏ„ÎµÎ¯ÏÏ‰ÏƒÎ·, Ï„Î±Î¾Î¯Î´Î¹Î±, Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± ÎºÎ±Î¹ Î¶Ï‰Î¿Î½ÏŒÏƒÎ¿Ï…Ï‚.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAccordionVaccTitle">Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î•Î¼Î²Î¿Î»Î¹Î±ÏƒÎ¼ÏŽÎ½</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="healthAccordionVaccP1">ÎŸÎ¹ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î¿Î¯ ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Ï„Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚ Î³Î¹Î± Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· Î¼ÎµÏ„Î±Î´Î¿Ï„Î¹ÎºÏŽÎ½ ÎºÎ±Î¹ ÎµÎ½Î¯Î¿Ï„Îµ Î¸Î±Î½Î±Ï„Î·Ï†ÏŒÏÏ‰Î½ Î±ÏƒÎ¸ÎµÎ½ÎµÎ¹ÏŽÎ½. Î”Î¹ÎµÎ³ÎµÎ¯ÏÎ¿Ï…Î½ Ï„Î¿ Î±Î½Î¿ÏƒÎ¿Ï€Î¿Î¹Î·Ï„Î¹ÎºÏŒ ÏƒÏÏƒÏ„Î·Î¼Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï Î½Î± Î±Î½Î±Ï€Ï„ÏÎ¾ÎµÎ¹ ÏƒÏ…Î³ÎºÎµÎºÏÎ¹Î¼Î­Î½Î± Î±Î½Ï„Î¹ÏƒÏŽÎ¼Î±Ï„Î± ÎºÎ±Ï„Î¬ Ï„Ï‰Î½ Î¹ÏŽÎ½ ÎºÎ±Î¹ Ï„Ï‰Î½ Î²Î±ÎºÏ„Î·ÏÎ¯Ï‰Î½.</p>
+                        <p class="mt-2" data-i18n-key="healthAccordionVaccP2">Î¤Î± Î²Î±ÏƒÎ¹ÎºÎ¬ (core) ÎµÎ¼Î²ÏŒÎ»Î¹Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Ï…Ï„Î¬ Î³Î¹Î± Ï„Î· Î¼ÏŒÏÎ²Î±, Ï„Î· Î»Î¿Î¹Î¼ÏŽÎ´Î· Î·Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Ï„Î¿Î½ Ï€Î±ÏÎ²Î¿ÏŠÏŒ ÎºÎ±Î¹ Ï„Î· Î»ÏÏƒÏƒÎ±. Î†Î»Î»Î± ÏƒÏ…Î½Î¹ÏƒÏ„ÏŽÎ¼ÎµÎ½Î± ÎµÎ¼Î²ÏŒÎ»Î¹Î± ÎµÎ¯Î½Î±Î¹ Î³Î¹Î± Ï„Î· Î»Î¿Î¹Î¼ÏŽÎ´Î· Ï„ÏÎ±Ï‡ÎµÎ¹Î¿Î²ÏÎ¿Î³Ï‡Î¯Ï„Î¹Î´Î± (ÎºÏ…Î½Î¿ÎºÎ¿Î¼ÎµÎ¹Î±ÎºÏŒÏ‚ Î²Î®Ï‡Î±Ï‚) ÎºÎ±Î¹ Ï„Î· Î»ÎµÏ€Ï„Î¿ÏƒÏ€ÎµÎ¯ÏÏ‰ÏƒÎ·.</p>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-white border border-gray-300 table-interactive">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="text-left py-2 px-4 border-b" data-i18n-key="healthVaccTableAge">Î—Î»Î¹ÎºÎ¯Î±</th>
+                                        <th class="text-left py-2 px-4 border-b" data-i18n-key="healthVaccTableVaccine">Î•Î¼Î²ÏŒÎ»Î¹Î¿</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow1Age">6-8 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚</td><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow1Vaccine">ÎœÏŒÏÎ²Î±, Î—Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚</td></tr>
+                                    <tr><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow2Age">11-13 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚</td><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow2Vaccine">ÎœÏŒÏÎ²Î±, Î—Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚ (ÎµÎ½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÏŒ) + Î›ÏÏƒÏƒÎ±, Î›ÎµÏ€Ï„Î¿ÏƒÏ€ÎµÎ¯ÏÏ‰ÏƒÎ·</td></tr>
+                                    <tr><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow3Age">15-17 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚</td><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow3Vaccine">Î›ÏÏƒÏƒÎ±, Î›ÎµÏ€Ï„Î¿ÏƒÏ€ÎµÎ¯ÏÏ‰ÏƒÎ· (ÎµÎ½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÏŒ)</td></tr>
+                                    <tr><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow4Age">15 Î¼Î·Î½ÏŽÎ½</td><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow4Vaccine">Î•Î½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÎ¿Î¯ Î³Î¹Î± ÏŒÎ»Î± Ï„Î± Ï€Î±ÏÎ±Ï€Î¬Î½Ï‰</td></tr>
+                                    <tr><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow5Age">Î•Ï„Î®ÏƒÎ¹Î±</td><td class="py-2 px-4 border-b" data-i18n-key="healthVaccRow5Vaccine">ÎœÏŒÏÎ²Î±, Î—Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚ (ÎµÎ½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÎ¿Î¯)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600" data-i18n-key="healthAccordionVaccP3">Î•Î»Î±Ï†ÏÎ¹Î¬ ÎºÎ±Ï„Î¬Ï€Ï„Ï‰ÏƒÎ· Î® Î¿Î¯Î´Î·Î¼Î± ÏƒÏ„Î¿ ÏƒÎ·Î¼ÎµÎ¯Î¿ Ï„Î·Ï‚ Î­Î½ÎµÏƒÎ·Ï‚ ÎµÎ¯Î½Î±Î¹ Ï†Ï…ÏƒÎ¹Î¿Î»Î¿Î³Î¹ÎºÎ¬ ÎºÎ±Î¹ Ï…Ï€Î¿Ï‡Ï‰ÏÎ¿ÏÎ½.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAccordionDewormTitle">Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î‘Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ·Ï‚</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="healthAccordionDewormP1">Î— ÏƒÏ‰ÏƒÏ„Î® ÎºÎ±Î¹ Ï€Î»Î®ÏÎ·Ï‚ Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ· ÎµÎ¯Î½Î±Î¹ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î· Ï„ÏŒÏƒÎ¿ Î³Î¹Î± Ï„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÏƒÎºÏÎ»Î¿Ï… ÏŒÏƒÎ¿ ÎºÎ±Î¹ Î³Î¹Î± Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· Ï„Î·Ï‚ Î¼ÎµÏ„Î¬Î´Î¿ÏƒÎ·Ï‚ Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰Î½ ÏƒÎµ Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚, ÎºÎ±Î¸ÏŽÏ‚ Ï€Î¿Î»Î»Î¬ Î±Ï€ÏŒ Î±Ï…Ï„Î¬ ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Î¿Î½ÏŒÏƒÎ¿Î¹. ÎŸÎ¹ ÎºÎ·Î´ÎµÎ¼ÏŒÎ½ÎµÏ‚ Ï†Î­ÏÎ¿Ï…Î½ Ï„Î·Î½ ÎµÏ…Î¸ÏÎ½Î· Î½Î± Ï€ÏÎ¿ÏƒÏ„Î±Ï„ÎµÏÎ¿Ï…Î½ Ï„Î¿ Î½Î¿Î¹ÎºÎ¿ÎºÏ…ÏÎ¹ÏŒ Ï„Î¿Ï…Ï‚ ÎºÎ±Î¹ Ï„Î·Î½ ÎºÎ¿Î¹Î½ÏŒÏ„Î·Ï„Î± Î±Ï€ÏŒ Ï€Î¹Î¸Î±Î½Î­Ï‚ Î¶Ï‰Î¿Î½ÏŒÏƒÎ¿Ï…Ï‚, ÎºÎ±Î¸Î¹ÏƒÏ„ÏŽÎ½Ï„Î±Ï‚ Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰Î½ Î¼Î¹Î± Î´Î¹Ï€Î»Î® Ï€ÏÎ¬Î¾Î· Ï†ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚.</p>
+                        <h4 class="font-semibold mt-2" data-i18n-key="healthDewormInternalTitle">Î•ÏƒÏ‰Ï„ÎµÏÎ¹ÎºÎ¬ Î Î±ÏÎ¬ÏƒÎ¹Ï„Î± (Î•Î½Î´Î¿Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î±):</h4>
+                        <p data-i18n-key="healthDewormInternalP1">ÎšÎ¿Î¹Î½Î¬ Î•Î¯Î´Î·: Î ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ ÏƒÏ„ÏÎ¿Î³Î³Ï…Î»Î¬ ÏƒÎºÎ¿Ï…Î»Î®ÎºÎ¹Î± (ÏŒÏ€Ï‰Ï‚ Toxocara canis, Toxascaris leonina), Ï„Î±Î¹Î½Î¯ÎµÏ‚ (ÏŒÏ€Ï‰Ï‚ Dipylidium caninum, Echinococcus granulosus), Î±Î³ÎºÏ…Î»ÏŒÏƒÏ„Î¿Î¼Î± (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), ÎºÎ±Î¹ ÏƒÎºÎ¿Ï…Î»Î®ÎºÎ¹Î± Ï€Î½ÎµÏ…Î¼ÏŒÎ½Ï‰Î½/ÎºÎ±ÏÎ´Î¹Î¬Ï‚ (Angiostrongylus vasorum).</p>
+                        <p class="mt-2" data-i18n-key="healthDewormInternalP2">Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î±: Î— Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ· Î³Î¹Î± ÎµÎ½Î´Î¿Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î± Î¾ÎµÎºÎ¹Î½Î¬ Î±Ï€ÏŒ Ï€Î¿Î»Ï Î¼Î¹ÎºÏÎ® Î·Î»Î¹ÎºÎ¯Î±, ÏƒÏÎ¼Ï†Ï‰Î½Î± Ï€Î¬Î½Ï„Î± Î¼Îµ Ï„Î¹Ï‚ Î¿Î´Î·Î³Î¯ÎµÏ‚ Ï„Î¿Ï… ÎºÏ„Î·Î½Î¹Î¬Ï„ÏÎ¿Ï…. Î£Ï…Î½Î®Î¸Ï‰Ï‚, ÏƒÏ…Î½ÎµÏ‡Î¯Î¶ÎµÏ„Î±Î¹ Î¼Îµ Ï‡Î¬Ï€Î¹ Î±Î½Î¬ Ï„ÏÎµÎ¹Ï‚ Î¼Î®Î½ÎµÏ‚ Î³Î¹Î± ÏŒÎ»Î· Ï„Î· Î´Î¹Î¬ÏÎºÎµÎ¹Î± Î¶Ï‰Î®Ï‚ Ï„Î¿Ï… Î¶ÏŽÎ¿Ï…. Î“Î¹Î± Ï„Î¹Ï‚ Î­Î³ÎºÏ…ÎµÏ‚ ÏƒÎºÏÎ»ÎµÏ‚, Î· Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ· Î¼Îµ Ï†ÎµÎ½Î²ÎµÎ½Î´Î±Î¶ÏŒÎ»Î· ÏƒÏ…Î½Î¹ÏƒÏ„Î¬Ï„Î±Î¹ Î³ÏÏÏ‰ ÏƒÏ„Î·Î½ 40Î· Î·Î¼Î­ÏÎ± Ï„Î·Ï‚ ÎºÏÎ·ÏƒÎ·Ï‚, ÏŽÏƒÏ„Îµ Î½Î± Î±Ï€Î¿Ï†ÎµÏ…Ï‡Î¸ÎµÎ¯ Î· Î¼ÎµÏ„Î¬Î´Î¿ÏƒÎ· Ï„Ï‰Î½ Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰Î½ ÏƒÏ„Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±.</p>
+                        <p class="mt-2" data-i18n-key="healthDewormInternalP3">ÎœÎ¿ÏÏ†Î­Ï‚: Î¤Î± Î±Î½Ï„Î¹Ï€Î±ÏÎ±ÏƒÎ¹Ï„Î¹ÎºÎ¬ Î³Î¹Î± ÎµÎ½Î´Î¿Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î± Î´Î¹Î±Ï„Î¯Î¸ÎµÎ½Ï„Î±Î¹ ÏƒÎµ Î¼Î¿ÏÏ†Î® Ï‡Î±Ï€Î¹Î¿Ï, Ï€Î¬ÏƒÏ„Î±Ï‚ Î® Ï€ÏŒÏƒÎ¹Î¼Î¿Ï… ÎµÎ½Î±Î¹Ï‰ÏÎ®Î¼Î±Ï„Î¿Ï‚.</p>
+                        <h4 class="font-semibold mt-2" data-i18n-key="healthDewormExternalTitle">Î•Î¾Ï‰Ï„ÎµÏÎ¹ÎºÎ¬ Î Î±ÏÎ¬ÏƒÎ¹Ï„Î± (Î•Î¾Ï‰Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î±):</h4>
+                        <p data-i18n-key="healthDewormExternalP1">ÎšÎ¿Î¹Î½Î¬ Î•Î¯Î´Î·: Î£Îµ Î±Ï…Ï„Î® Ï„Î·Î½ ÎºÎ±Ï„Î·Î³Î¿ÏÎ¯Î± Î±Î½Î®ÎºÎ¿Ï…Î½ Î¿Î¹ ÎºÏÏŒÏ„Ï‰Î½ÎµÏ‚ (Ï„ÏƒÎ¹Î¼Ï€Î¿ÏÏÎ¹Î±), Î¿Î¹ ÏˆÏÎ»Î»Î¿Î¹, Ï„Î± Î±ÎºÎ¬ÏÎµÎ± (Ï€Î¿Ï… Ï€ÏÎ¿ÎºÎ±Î»Î¿ÏÎ½ ÏˆÏŽÏÎ±) ÎºÎ±Î¹ Î¿Î¹ ÏˆÎµÎ¯ÏÎµÏ‚. Î‘Ï…Ï„Î¬ Ï„Î± Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î± ÎµÎ¯Î½Î±Î¹ Ï†Î¿ÏÎµÎ¯Ï‚ ÏƒÎ¿Î²Î±ÏÏŽÎ½, ÎµÎ½Î¯Î¿Ï„Îµ Î¸Î±Î½Î±Ï„Î·Ï†ÏŒÏÏ‰Î½, Î±ÏƒÎ¸ÎµÎ½ÎµÎ¹ÏŽÎ½ ÎºÎ±Î¹ Î¼Ï€Î¿ÏÎ¿ÏÎ½ Î½Î± Î¼ÎµÏ„Î±Î´Î¿Î¸Î¿ÏÎ½ ÎºÎ±Î¹ ÏƒÎµ Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚.</p>
+                        <p class="mt-2" data-i18n-key="healthDewormExternalP2">Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î±: ÎŸÎ¹ ÎµÏ€Î¹Î»Î¿Î³Î­Ï‚ Î±Î½Ï„Î¹Î¼ÎµÏ„ÏŽÏ€Î¹ÏƒÎ·Ï‚ Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Î¼Ï€Î¿ÏÎ»ÎµÏ‚, ÎºÎ¿Î»Î¬ÏÎ± ÎºÎ±Î¹ Ï‡Î¬Ï€Î¹Î±.</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li data-i18n-key="healthDewormExternalListItem1">Î‘Î¼Ï€Î¿ÏÎ»ÎµÏ‚: ÎœÏ€Î¿ÏÎ¿ÏÎ½ Î½Î± Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹Î·Î¸Î¿ÏÎ½ Î±Ï€ÏŒ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± Ï„Ï‰Î½ Î¿ÎºÏ„ÏŽ Î¼Î·Î½ÏŽÎ½ ÎºÎ±Î¹ Î¬Î½Ï‰, ÎµÏ†Î±ÏÎ¼ÏŒÎ¶Î¿Î½Ï„Î±Î¹ ÏƒÏ„Î· ÏÎ¬Ï‡Î· Ï„Î¿Ï… Î¶ÏŽÎ¿Ï….</li>
+                            <li data-i18n-key="healthDewormExternalListItem2">Î§Î¬Ï€Î¹Î±: Î Î±ÏÎ­Ï‡Î¿Ï…Î½ Ï„ÏÎ¹Î¼Î·Î½Î¹Î±Î¯Î± Î® Î¼Î·Î½Î¹Î±Î¯Î± Ï€ÏÎ¿ÏƒÏ„Î±ÏƒÎ¯Î±.</li>
+                            <li data-i18n-key="healthDewormExternalListItem3">ÎšÎ¿Î»Î¬ÏÎ±: ÎœÏ€Î¿ÏÎ¿ÏÎ½ Î½Î± Ï†Î¿ÏÎµÎ¸Î¿ÏÎ½ Î±Ï€ÏŒ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± Ï„Ï‰Î½ 4 Î¼Î·Î½ÏŽÎ½ ÎºÎ±Î¹ Î¬Î½Ï‰, Ï€ÏÎ¿ÏƒÏ†Î­ÏÎ¿Î½Ï„Î±Ï‚ ÎºÎ¬Î»Ï…ÏˆÎ· Î³Î¹Î± ÏˆÏÎ»Î»Î¿Ï…Ï‚, Ï„ÏƒÎ¹Î¼Ï€Î¿ÏÏÎ¹Î± ÎºÎ±Î¹ ÏƒÎºÎ½Î¯Ï€Î±.</li>
+                        </ul>
+                        <p class="mt-2" data-i18n-key="healthDewormExternalP3">Î£Ï…Î½Î´Ï…Î±ÏƒÎ¼Î¿Î¯: Î£Ï…Ï‡Î½Î¬ Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹Î¿ÏÎ½Ï„Î±Î¹ ÏƒÏ…Î½Î´Ï…Î±ÏƒÎ¼Î¿Î¯ Ï€ÏÎ¿ÏŠÏŒÎ½Ï„Ï‰Î½ (Ï€.Ï‡., Î±Î¼Ï€Î¿ÏÎ»Î±, ÎºÎ¿Î»Î¬ÏÎ¿ ÎºÎ±Î¹ ÏƒÏ€ÏÎ­Î¹ ÏƒÎ¹Ï„ÏÎ¿Î½Î­Î»Î±Ï‚) Î³Î¹Î± Ï„Î·Î½ ÎµÏ€Î¯Ï„ÎµÏ…Î¾Î· Ï„Î¿Ï… Î²Î­Î»Ï„Î¹ÏƒÏ„Î¿Ï… Î±Ï€Î¿Ï„ÎµÎ»Î­ÏƒÎ¼Î±Ï„Î¿Ï‚ ÏƒÏ„Î·Î½ Ï€ÏÎ¿ÏƒÏ„Î±ÏƒÎ¯Î± Ï„Î¿Ï… ÏƒÎºÏÎ»Î¿Ï….</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAccordionProblemsTitle">Î£Ï…Ï‡Î½Î¬ Î ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± Î¥Î³ÎµÎ¯Î±Ï‚ & Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î±</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="healthAccordionProblemsP1">Î•Î¯Î½Î±Î¹ ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÏŒ Î³Î¹Î± Ï„Î¿Ï…Ï‚ ÎºÎ·Î´ÎµÎ¼ÏŒÎ½ÎµÏ‚ Î½Î± Î±Î½Î±Î³Î½Ï‰ÏÎ¯Î¶Î¿Ï…Î½ Ï„Î± ÎºÎ¿Î¹Î½Î¬ ÏƒÎ·Î¼Î¬Î´Î¹Î± Î±ÏƒÎ¸Î­Î½ÎµÎ¹Î±Ï‚ Î³Î¹Î± Î¬Î¼ÎµÏƒÎ· ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Ï€Î±ÏÎ­Î¼Î²Î±ÏƒÎ·. Î›ÏŒÎ³Ï‰ Ï„Î·Ï‚ ÎµÏ…Î±Î»Ï‰Ï„ÏŒÏ„Î·Ï„Î¬Ï‚ Ï„Î¿Ï…Ï‚, Ï„Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± Î±Ï€Î±Î¹Ï„Î¿ÏÎ½ ÏƒÏ…Î½ÎµÏ‡Î® Ï€Î±ÏÎ±ÎºÎ¿Î»Î¿ÏÎ¸Î·ÏƒÎ· Î³Î¹Î± Î±Î½ÎµÏ€Î±Î¯ÏƒÎ¸Î·Ï„ÎµÏ‚ Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï…Ï‚. Î— Î¬Î¼ÎµÏƒÎ· Î±Î½Î±Î³Î½ÏŽÏÎ¹ÏƒÎ· Ï„Ï‰Î½ ÏƒÏ…Î¼Ï€Ï„Ï‰Î¼Î¬Ï„Ï‰Î½ ÎºÎ±Î¹ Î· ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î± Î¼Îµ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿ ÎµÎ¯Î½Î±Î¹ Ï…ÏˆÎ¯ÏƒÏ„Î·Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚, ÎºÎ±Î¸ÏŽÏ‚ Î· Ï„Î±Ï‡ÎµÎ¯Î± ÎµÏ€Î¹Î´ÎµÎ¯Î½Ï‰ÏƒÎ· Ï„Î·Ï‚ Ï…Î³ÎµÎ¯Î±Ï‚ Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÏƒÏ…Î¼Î²ÎµÎ¯, ÎºÎ±Î¸Î¹ÏƒÏ„ÏŽÎ½Ï„Î±Ï‚ Ï„Î·Î½ Î­Î³ÎºÎ±Î¹ÏÎ· Ï€Î±ÏÎ­Î¼Î²Î±ÏƒÎ· ÏƒÏ‰Ï„Î®ÏÎ¹Î± Î³Î¹Î± Ï„Î· Î¶Ï‰Î® Ï„Î¿Ï…Ï‚.</p>
+                        <h4 class="font-semibold mt-2" data-i18n-key="healthProblemsGeneralSymptomsTitle">Î“ÎµÎ½Î¹ÎºÎ¬ Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Î‘ÏƒÎ¸Î­Î½ÎµÎ¹Î±Ï‚:</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li data-i18n-key="healthProblemsGenSymptomEyes">ÎœÎ¬Ï„Î¹Î±, Î£Ï„ÏŒÎ¼Î±, ÎœÏÏ„Î·: Î’Î®Ï‡Î±Ï‚, Ï†Ï„Î­ÏÎ½Î¹ÏƒÎ¼Î±, Î­Î½Ï„Î¿Î½Î¿ Î»Î±Ï‡Î¬Î½Î¹Î±ÏƒÎ¼Î±, Î´Ï…ÏƒÎºÎ¿Î»Î¯Î± ÏƒÏ„Î·Î½ Î±Î½Î±Ï€Î½Î¿Î®, Î¬ÏƒÏ‡Î·Î¼Î· Î±Î½Î±Ï€Î½Î¿Î®, Ï€Î¿Î»Î»Î¬ ÏƒÎ¬Î»Î¹Î±, Î¾Î·ÏÎ¬, Î¸Î¿Î»Î¬ Î® ÎºÏŒÎºÎºÎ¹Î½Î± Î¼Î¬Ï„Î¹Î±.</li>
+                            <li data-i18n-key="healthProblemsGenSymptomBehavior">Î£Ï…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬: ÎœÎµÎ¹Ï‰Î¼Î­Î½Î· Î´ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„Î±, Î¼Î¹ÎºÏÏŒÏ„ÎµÏÎ¿ ÎµÎ½Î´Î¹Î±Ï†Î­ÏÎ¿Î½ Î³Î¹Î± Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹, Ï€ÎµÏÎ¹ÏƒÏƒÏŒÏ„ÎµÏÎµÏ‚ ÏŽÏÎµÏ‚ ÏÏ€Î½Î¿Ï…, Î® Î¬Î»Î»ÎµÏ‚ Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ„Î· ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬.</li>
+                            <li data-i18n-key="healthProblemsGenSymptomSkin">Î”ÎµÏÎ¼Î±Ï„Î¹ÎºÎ­Ï‚ Î‘Î»Î»Î±Î³Î­Ï‚: ÎžÎ·ÏÏŒÏ„Î·Ï„Î±, Î±Î»Î»Î¿Î¹ÏŽÏƒÎµÎ¹Ï‚, ÎµÏÏ…Î¸ÏÏŒÏ„Î·Ï„Î±, Î±Ï€ÏŽÎ»ÎµÎ¹Î± Ï„ÏÎ¹Ï‡ÏŽÎ½, Ï†Î»Î¿Î¹ÏŽÎ´ÎµÏ‚ Î´Î­ÏÎ¼Î±, Î­Î½Ï„Î¿Î½Î¿Ï‚ ÎºÎ½Î·ÏƒÎ¼ÏŒÏ‚.</li>
+                            <li data-i18n-key="healthProblemsGenSymptomDigestion">ÎšÎ±Ï„Î±Î½Î¬Î»Ï‰ÏƒÎ· Î¤ÏÎ¿Ï†Î®Ï‚ ÎºÎ±Î¹ Î Î­ÏˆÎ·: ÎœÎµÎ¹Ï‰Î¼Î­Î½Î· ÏŒÏÎµÎ¾Î·, Î±Ï€ÏŽÎ»ÎµÎ¹Î± Î²Î¬ÏÎ¿Ï…Ï‚, ÏƒÏ„Î¿Î¼Î±Ï‡Î¹ÎºÎ­Ï‚ Î´Î¹Î±Ï„Î±ÏÎ±Ï‡Î­Ï‚, Ï€ÎµÏÎ¹Ï„Ï„ÏŽÎ¼Î±Ï„Î± Ï€Î¿Ï… Ï€ÎµÏÎ¹Î­Ï‡Î¿Ï…Î½ Î±Î¯Î¼Î±, Î²Î»Î­Î½Î½Î±, ÏƒÎºÎ¿Ï…Î»Î®ÎºÎ¹Î± Î® Î±Ï‡ÏŽÎ½ÎµÏ…Ï„ÎµÏ‚ Ï„ÏÎ¿Ï†Î­Ï‚, Ï…Ï€ÎµÏÎ²Î¿Î»Î¹ÎºÎ® ÎºÎ±Ï„Î±Î½Î¬Î»Ï‰ÏƒÎ· Î½ÎµÏÎ¿Ï Î® Ï…Ï€ÎµÏÎ²Î¿Î»Î¹ÎºÎ® Î¿ÏÏÎ·ÏƒÎ·.</li>
+                            <li data-i18n-key="healthProblemsGenSymptomStiffness">Î”Ï…ÏƒÎºÎ±Î¼ÏˆÎ¯Î± Î‘ÏÎ¸ÏÏŽÏƒÎµÏ‰Î½: Î”Ï…ÏƒÎºÎ¿Î»Î¯Î± ÏƒÏ„Î¿ ÏƒÎ®ÎºÏ‰Î¼Î± Î® ÏƒÏ„Î·Î½ Î±Î½Î¬Î²Î±ÏƒÎ· ÏƒÎºÎ±Î»Î¿Ï€Î±Ï„Î¹ÏŽÎ½.</li>
+                        </ul>
+                        <h4 class="font-semibold mt-2" data-i18n-key="healthProblemsSpecificProblemsTitle">Î•Î¹Î´Î¹ÎºÎ¬ Î ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î±:</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li data-i18n-key="healthProblemsSpecDiarrhea">Î”Î¹Î¬ÏÏÎ¿Î¹Î±: Î•Î¯Î½Î±Î¹ Î±ÏÎºÎµÏ„Î¬ ÏƒÏ…Î½Î·Î¸Î¹ÏƒÎ¼Î­Î½Î· ÏƒÏ„Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± ÎºÎ±Î¹ Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÎºÏ…Î¼Î±Î¯Î½ÎµÏ„Î±Î¹ Î±Ï€ÏŒ Î®Ï€Î¹Î± ÎµÏ€ÎµÎ¹ÏƒÏŒÎ´Î¹Î± Ï€Î¿Ï… Ï…Ï€Î¿Ï‡Ï‰ÏÎ¿ÏÎ½ Î³ÏÎ®Î³Î¿ÏÎ± Î­Ï‰Ï‚ ÏƒÎ¿Î²Î±ÏÎ¬ Î³Î±ÏƒÏ„ÏÎ¹ÎºÎ¬ Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± Ï€Î¿Ï… Ï€ÏÎ¿ÎºÎ±Î»Î¿ÏÎ½Ï„Î±Î¹ Î±Ï€ÏŒ ÏƒÎ¿Î²Î±ÏÎ® Î±ÏƒÎ¸Î­Î½ÎµÎ¹Î± Î® Î±Ï€ÏŒÏ†ÏÎ±Î¾Î·, Î¼Îµ Ï€Î¹Î¸Î±Î½Î® Ï€Î±ÏÎ¿Ï…ÏƒÎ¯Î± Î±Î¯Î¼Î±Ï„Î¿Ï‚ Î® Î²Î»Î­Î½Î½Î±Ï‚ ÎºÎ±Î¹ Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·.</li>
+                            <li data-i18n-key="healthProblemsSpecVomiting">Î•Î¼ÎµÏ„ÏŒÏ‚: Î‘Ï€Î¿Ï„ÎµÎ»ÎµÎ¯ Î­Î½Î± ÎºÎ¿Î¹Î½ÏŒ Ï€ÏÏŒÎ²Î»Î·Î¼Î± Î¼Îµ Î´ÎµÎºÎ¬Î´ÎµÏ‚ Ï€Î¹Î¸Î±Î½Î­Ï‚ Î±Î¹Ï„Î¯ÎµÏ‚, ÏŒÏ€Ï‰Ï‚ Î»Î¿Î¹Î¼ÏŽÎ¾ÎµÎ¹Ï‚, ÎµÎ½Ï„ÎµÏÎ¹ÎºÎ¬ Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î±, Ï€Î±Î³ÎºÏÎµÎ±Ï„Î¯Ï„Î¹Î´Î±, Î½ÎµÏ†ÏÎ¹ÎºÎ® Î±Î½ÎµÏ€Î¬ÏÎºÎµÎ¹Î±, Î¸ÎµÏÎ¼Î¿Ï€Î»Î·Î¾Î¯Î±, Î¾Î­Î½Î¿ ÏƒÏŽÎ¼Î± ÏƒÏ„Î¿ ÏƒÏ„Î¿Î¼Î¬Ï‡Î¹-Î­Î½Ï„ÎµÏÎ¿ ÎºÎ±Î¹ Î´Î·Î»Î·Ï„Î·ÏÎ¯Î±ÏƒÎ·.</li>
+                            <li data-i18n-key="healthProblemsSpecHypoglycemia">Î¥Ï€Î¿Î³Î»Ï…ÎºÎ±Î¹Î¼Î¯Î±: Î§Î±Î¼Î·Î»Î¬ ÎµÏ€Î¯Ï€ÎµÎ´Î± Î³Î»Ï…ÎºÏŒÎ¶Î·Ï‚ ÏƒÏ„Î¿ Î±Î¯Î¼Î±, ÏƒÏ…Ï‡Î½ÏŒÏ„ÎµÏÎ± ÏƒÎµ Î¼Î¹ÎºÏÏŒÏƒÏ‰Î¼Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± Î® ÏƒÎµ Ï€ÎµÏÎ¯Ï€Ï„Ï‰ÏƒÎ· Î±ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î·Ï‚ ÏƒÎ¯Ï„Î¹ÏƒÎ·Ï‚. Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Î½Î¿ÏÎµÎ¾Î¯Î±, Î»Î®Î¸Î±ÏÎ³Î¿, Ï„ÏÏŒÎ¼Î¿ (Ï„ÏÎ­Î¼Î¿Ï…Î»Î¿), Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚ ÎºÎ±Î¹ ÏƒÏ€Î±ÏƒÎ¼Î¿ÏÏ‚. Î£Îµ Ï€ÎµÏÎ¯Ï€Ï„Ï‰ÏƒÎ· Ï…Ï€Î¿ÏˆÎ¯Î±Ï‚, ÏƒÏ…Î½Î¹ÏƒÏ„Î¬Ï„Î±Î¹ Î· Î¬Î¼ÎµÏƒÎ· ÎµÏ€Î¬Î»ÎµÎ¹ÏˆÎ· Î¼Îµ Î¼Î­Î»Î¹ ÏƒÏ„Î± Î¿ÏÎ»Î± Î® Î· Ï‡Î¿ÏÎ®Î³Î·ÏƒÎ· Î½ÎµÏÎ¿Ï Î¼Îµ Î¶Î¬Ï‡Î±ÏÎ·, ÎºÎ±Î¹ Î¬Î¼ÎµÏƒÎ· ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î± Î¼Îµ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿.</li>
+                            <li data-i18n-key="healthProblemsSpecCoccidiosis">ÎšÎ¿ÎºÎºÎ¹Î´Î¯Ï‰ÏƒÎ·: Î ÏÎ¿ÎºÎ±Î»ÎµÎ¯Ï„Î±Î¹ Î±Ï€ÏŒ Î­Î½Î± Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î¿ (ÎºÎ¿ÎºÎºÎ¯Î´Î¹Î±) ÎºÎ±Î¹ ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Î±Ï€ÏŒ Ï„Î¹Ï‚ Ï€Î¹Î¿ ÏƒÏ…Ï‡Î½Î­Ï‚ Î±Î¹Ï„Î¯ÎµÏ‚ ÎµÏ€ÏŽÎ´Ï…Î½Î·Ï‚ ÎºÎ±Î¹ ÏƒÏ…Ï‡Î½Î¬ Î¸Î±Î½Î±Ï„Î·Ï†ÏŒÏÎ¿Ï… Î´Î¹Î¬ÏÏÎ¿Î¹Î±Ï‚ ÏƒÎµ Î½ÎµÎ±ÏÎ­Ï‚ Î·Î»Î¹ÎºÎ¯ÎµÏ‚. Î¤Î± ÏƒÏ…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ ÏƒÎ¿Î²Î±ÏÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Î»Î·Î¸Î±ÏÎ³Î¹ÎºÏŒÏ„Î·Ï„Î±, Î±Î½Î¿ÏÎµÎ¾Î¯Î± ÎºÎ±Î¹ Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·.</li>
+                            <li data-i18n-key="healthProblemsSpecGiardia">Giardia (Î›Î±Î¼Î²Î»Î¯Î±ÏƒÎ·): ÎˆÎ½Î± ÎºÎ¿Î¹Î½ÏŒ ÎµÎ½Ï„ÎµÏÎ¹ÎºÏŒ Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î¿. Î¤Î± ÏƒÏ…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î¼Î±Î»Î±ÎºÎ¬, Ï‡Î»Ï‰Î¼Î¬, Î´ÏÏƒÎ¿ÏƒÎ¼Î± ÎºÏŒÏ€ÏÎ±Î½Î±, Î±Ï…Î¾Î·Î¼Î­Î½Î· ÏƒÏ…Ï‡Î½ÏŒÏ„Î·Ï„Î± ÎºÎµÎ½ÏŽÏƒÎµÏ‰Î½, Î±Î­ÏÎ¹Î±, ÎºÎ¿Î¹Î»Î¹Î±ÎºÎ® Î´Ï…ÏƒÏ†Î¿ÏÎ¯Î±, Î¼ÎµÎ¹Ï‰Î¼Î­Î½Î· ÏŒÏÎµÎ¾Î· ÎºÎ±Î¹ Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·. ÎœÎµÏ„Î±Î´Î¯Î´ÎµÏ„Î±Î¹ Î¼Î­ÏƒÏ‰ Î¼Î¿Î»Ï…ÏƒÎ¼Î­Î½Î¿Ï… Î½ÎµÏÎ¿Ï Î® ÎºÎ¿Ï€ÏÎ¬Î½Ï‰Î½. Î— Î¸ÎµÏÎ±Ï€ÎµÎ¯Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½ÎµÎ¹ Ï†Î±Î¹Î½Î²ÎµÎ½Î´Î±Î¶ÏŒÎ»Î· ÎºÎ±Î¹/Î® Î¼ÎµÏ„ÏÎ¿Î½Î¹Î´Î±Î¶ÏŒÎ»Î·, ÏƒÎµ ÏƒÏ…Î½Î´Ï…Î±ÏƒÎ¼ÏŒ Î¼Îµ Î±Ï…ÏƒÏ„Î·ÏÎ® Ï…Î³Î¹ÎµÎ¹Î½Î®.</li>
+                            <li data-i18n-key="healthProblemsSpecParvo">Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚: Î•Î¾Î±Î¹ÏÎµÏ„Î¹ÎºÎ¬ Î¼ÎµÏ„Î±Î´Î¿Ï„Î¹ÎºÏŒÏ‚ ÎºÎ±Î¹ ÎµÏ€Î¹ÎºÎ¯Î½Î´Ï…Î½Î¿Ï‚, ÎµÎ¹Î´Î¹ÎºÎ¬ Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±. Î¤Î± ÏƒÏ…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Ï€ÏŽÎ»ÎµÎ¹Î± ÏŒÏÎµÎ¾Î·Ï‚, Î»Î®Î¸Î±ÏÎ³Î¿, ÎµÏ€Î¯Î¼Î¿Î½Î¿ ÎµÎ¼ÎµÏ„ÏŒ ÎºÎ±Î¹ Î±Î¹Î¼Î¿ÏÏÎ±Î³Î¹ÎºÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±. Î‘Ï€Î±Î¹Ï„ÎµÎ¯ Î¬Î¼ÎµÏƒÎ· ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Ï†ÏÎ¿Î½Ï„Î¯Î´Î±.</li>
+                        </ul>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-white border border-gray-300 table-interactive">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="text-left py-2 px-4 border-b" data-i18n-key="healthProblemsTableSystem">Î£ÏÏƒÏ„Î·Î¼Î±/Î ÏÏŒÎ²Î»Î·Î¼Î±</th>
+                                        <th class="text-left py-2 px-4 border-b" data-i18n-key="healthProblemsTableSymptoms">ÎšÎ¿Î¹Î½Î¬ Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î±</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow1Cat">Î“ÎµÎ½Î¹ÎºÎ¬ Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î±<br>Î£Ï…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow1Sym">Î›Î®Î¸Î±ÏÎ³Î¿Ï‚, Î¼ÎµÎ¹Ï‰Î¼Î­Î½Î· Î´ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„Î±, Î±Î´Î¹Î±Ï†Î¿ÏÎ¯Î±, Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ„Î¿Î½ ÏÏ€Î½Î¿</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow2Cat">Î‘Î½Î±Ï€Î½ÎµÏ…ÏƒÏ„Î¹ÎºÏŒ</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow2Sym">Î’Î®Ï‡Î±Ï‚, Ï†Ï„Î­ÏÎ½Î¹ÏƒÎ¼Î±, Î»Î±Ï‡Î¬Î½Î¹Î±ÏƒÎ¼Î±, Î´Ï…ÏƒÎºÎ¿Î»Î¯Î± ÏƒÏ„Î·Î½ Î±Î½Î±Ï€Î½Î¿Î®</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow3Cat">Î”Î­ÏÎ¼Î±/Î¤ÏÎ¯Ï‡Ï‰Î¼Î±</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow3Sym">ÎžÎ·ÏÏŒÏ„Î·Ï„Î±, ÎµÏÏ…Î¸ÏÏŒÏ„Î·Ï„Î±, ÎµÎ¾Î±Î½Î¸Î®Î¼Î±Ï„Î±, Ï„ÏÎ¹Ï‡ÏŒÏ€Ï„Ï‰ÏƒÎ·, Î­Î½Ï„Î¿Î½Î¿Ï‚ ÎºÎ½Î·ÏƒÎ¼ÏŒÏ‚</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow4Cat">Î ÎµÏ€Ï„Î¹ÎºÏŒ Î£ÏÏƒÏ„Î·Î¼Î±<br>Î”Î¹Î¬ÏÏÎ¿Î¹Î±</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow4Sym">Î¥Î´Î±ÏÎ®, Î¼Îµ Î±Î¯Î¼Î±/Î²Î»Î­Î½Î½Î±, Î±Ï…Î¾Î·Î¼Î­Î½Î· ÏƒÏ…Ï‡Î½ÏŒÏ„Î·Ï„Î±, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow5Cat">Î•Î¼ÎµÏ„ÏŒÏ‚</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow5Sym">Î•Ï€Î¯Î¼Î¿Î½Î¿Ï‚, Î¼Îµ Î® Ï‡Ï‰ÏÎ¯Ï‚ Ï„ÏÎ¿Ï†Î®/Î±Î¯Î¼Î±</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow6Cat">ÎŒÏÎµÎ¾Î·/Î’Î¬ÏÎ¿Ï‚</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow6Sym">ÎœÎµÎ¹Ï‰Î¼Î­Î½Î· ÏŒÏÎµÎ¾Î·, Î±Î½Î¿ÏÎµÎ¾Î¯Î±, Î±Ï€ÏŽÎ»ÎµÎ¹Î± Î²Î¬ÏÎ¿Ï…Ï‚</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow7Cat">Î•Î¹Î´Î¹ÎºÎ¬ Î ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î±<br>Î¥Ï€Î¿Î³Î»Ï…ÎºÎ±Î¹Î¼Î¯Î±</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow7Sym">Î¤ÏÎ­Î¼Î¿Ï…Î»Î¿, Î±Î´Ï…Î½Î±Î¼Î¯Î±, ÏƒÏ€Î±ÏƒÎ¼Î¿Î¯, Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚, Î»Î¹Ï€Î¿Î¸Ï…Î¼Î¯Î±</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow8Cat">Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow8Sym">Î•Î¼ÎµÏ„ÏŒÏ‚, Î±Î¹Î¼Î¿Î¼Î¿ÏÏÎ±Î³Î¹ÎºÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Î»Î®Î¸Î±ÏÎ³Î¿Ï‚, Ï€Ï…ÏÎµÏ„ÏŒÏ‚, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow9Cat">ÎšÎ¿ÎºÎºÎ¹Î´Î¯Ï‰ÏƒÎ·</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow9Sym">Î£Î¿Î²Î±ÏÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Î»Î®Î¸Î±ÏÎ³Î¿Ï‚, Î±Î½Î¿ÏÎµÎ¾Î¯Î±, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow10Cat">Giardia</td><td class="py-2 px-4 border-b align-top" data-i18n-key="healthProblemsRow10Sym">ÎœÎ±Î»Î±ÎºÎ¬, Î´ÏÏƒÎ¿ÏƒÎ¼Î± ÎºÏŒÏ€ÏÎ±Î½Î±, Î±Î­ÏÎ¹Î±, ÎºÎ¿Î¹Î»Î¹Î±ÎºÎ® Î´Ï…ÏƒÏ†Î¿ÏÎ¯Î±, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600" data-i18n-key="healthAccordionProblemsP2">Î•Î»Î±Ï†ÏÎ¹Î¬ ÎºÎ±Ï„Î¬Ï€Ï„Ï‰ÏƒÎ· Î® Î¿Î¯Î´Î·Î¼Î± ÏƒÏ„Î¿ ÏƒÎ·Î¼ÎµÎ¯Î¿ Ï„Î·Ï‚ Î­Î½ÎµÏƒÎ·Ï‚ ÎµÎ¯Î½Î±Î¹ Ï†Ï…ÏƒÎ¹Î¿Î»Î¿Î³Î¹ÎºÎ¬ ÎºÎ±Î¹ Ï…Ï€Î¿Ï‡Ï‰ÏÎ¿ÏÎ½.</p>
+                    </div>
+                </div>
+                <div class="accordion mt-6">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="healthAITitle">
+                        âœ¨ AI Î’Î¿Î·Î¸ÏŒÏ‚ Î•ÏÏ‰Ï„Î®ÏƒÎµÏ‰Î½ Î¥Î³ÎµÎ¯Î±Ï‚
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="healthAIDescription">
+                            ÎˆÏ‡ÎµÏ„Îµ Î¼Î¹Î± Î³ÎµÎ½Î¹ÎºÎ® ÎµÏÏŽÏ„Î·ÏƒÎ· Î³Î¹Î± Ï„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚ (Î¼Î· ÎµÏ€ÎµÎ¯Î³Î¿Ï…ÏƒÎ±); Î¡Ï‰Ï„Î®ÏƒÏ„Îµ Î¼Î±Ï‚!
+                        </p>
+                        <textarea id="healthAIQuery" class="ai-input-area" rows="3" data-i18n-key="healthAIPlaceholder" data-i18n-target-placeholder="true" placeholder="Î .Ï‡. Î“Î¹Î±Ï„Î¯ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¼Î¿Ï… Ï„ÏÏŽÎµÎ¹ Ï‡ÏŒÏÏ„Î¿; Î•Î¯Î½Î±Î¹ Ï†Ï…ÏƒÎ¹Î¿Î»Î¿Î³Î¹ÎºÏŒ Î½Î± ÎºÎ¿Î¹Î¼Î¬Ï„Î±Î¹ Ï„ÏŒÏƒÎ¿ Ï€Î¿Î»Ï;"></textarea>
+                        <button id="getHealthAIAdviceButton" class="ai-submit-button" data-i18n-key="healthAIButtonText">âœ¨ Î›Î®ÏˆÎ· Î Î»Î·ÏÎ¿Ï†Î¿ÏÎ¹ÏŽÎ½ (AI)</button>
+                        <div id="healthAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Î¦ÏŒÏÏ„Ï‰ÏƒÎ·...</div>
+                        <div id="healthAIOutput" class="llm-output hidden mt-3"></div>
+                        <p class="mt-4 text-xs text-red-700 font-semibold" data-i18n-key="healthAIDisclaimer">Î£Î—ÎœÎ‘ÎÎ¤Î™ÎšÎŸ: Î‘Ï…Ï„Î­Ï‚ Î¿Î¹ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ ÎµÎ¯Î½Î±Î¹ Î³ÎµÎ½Î¹ÎºÎ­Ï‚ ÎºÎ±Î¹ Î”Î•Î Î±Î½Ï„Î¹ÎºÎ±Î¸Î¹ÏƒÏ„Î¿ÏÎ½ Ï„Î·Î½ ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® ÏƒÏ…Î¼Î²Î¿Ï…Î»Î®. Î“Î¹Î± Î¿Ï€Î¿Î¹Î¿Î´Î®Ï€Î¿Ï„Îµ Ï€ÏÏŒÎ²Î»Î·Î¼Î± Ï…Î³ÎµÎ¯Î±Ï‚, ÏƒÏ…Î¼Î²Î¿Ï…Î»ÎµÏ…Ï„ÎµÎ¯Ï„Îµ Î‘ÎœÎ•Î£Î‘ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ ÏƒÎ±Ï‚.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-nutrition" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="nutritionTitle">IV. Î”Î¹Î±Ï„ÏÎ¿Ï†Î®: Î¤Î¿ Î˜ÎµÎ¼Î­Î»Î¹Î¿ Ï„Î·Ï‚ Î¥Î³ÎµÎ¯Î±Ï‚ ÎºÎ±Î¹ Î‘Î½Î¬Ï€Ï„Ï…Î¾Î·Ï‚</h2>
+                <p class="mb-4 text-justify" data-i18n-key="nutritionIntro">Î— ÏƒÏ‰ÏƒÏ„Î® Î´Î¹Î±Ï„ÏÎ¿Ï†Î® ÎµÎ¯Î½Î±Î¹ Î¸ÎµÎ¼ÎµÎ»Î¹ÏŽÎ´Î·Ï‚ Î³Î¹Î± Ï„Î·Î½ Î±Î½Î¬Ï€Ï„Ï…Î¾Î· ÎºÎ±Î¹ Ï„Î·Î½ ÎµÏ…Î·Î¼ÎµÏÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚. Î‘Ï…Ï„Î® Î· ÎµÎ½ÏŒÏ„Î·Ï„Î± ÎºÎ±Î»ÏÏ€Ï„ÎµÎ¹ Ï„Î·Î½ ÎµÏ€Î¹Î»Î¿Î³Î® Ï„Î·Ï‚ ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î·Ï‚ Ï„ÏÎ¿Ï†Î®Ï‚, Ï„Î¿ Ï€ÏÏŒÎ³ÏÎ±Î¼Î¼Î± ÏƒÎ¯Ï„Î¹ÏƒÎ·Ï‚ Î±Î½Î¬Î»Î¿Î³Î± Î¼Îµ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î±, ÎºÎ±Î¹ Ï„Î¹Ï‚ Ï„ÏÎ¿Ï†Î­Ï‚ Ï€Î¿Ï… Ï€ÏÎ­Ï€ÎµÎ¹ Î¿Ï€Ï‰ÏƒÎ´Î®Ï€Î¿Ï„Îµ Î½Î± Î±Ï€Î¿Ï†ÎµÏÎ³Î¿Î½Ï„Î±Î¹ Î³Î¹Î± Ï„Î·Î½ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± Ï„Î¿Ï… Î¼Î¹ÎºÏÎ¿Ï ÏƒÎ±Ï‚ Ï†Î¯Î»Î¿Ï….</p>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionFood">Î•Ï€Î¹Î»Î¿Î³Î® ÎšÎ±Ï„Î¬Î»Î»Î·Î»Î·Ï‚ Î¤ÏÎ¿Ï†Î®Ï‚ ÎºÎ±Î¹ Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î£Î¯Ï„Î¹ÏƒÎ·Ï‚</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="nutritionFoodSelectP1">Î•Ï€Î¹Î»Î­Î¾Ï„Îµ Ï…ÏˆÎ·Î»Î®Ï‚ Ï€Î¿Î¹ÏŒÏ„Î·Ï„Î±Ï‚, ÎµÏ€ÏŽÎ½Ï…Î¼Î· Ï„ÏÎ¿Ï†Î® ÎµÎ¹Î´Î¹ÎºÎ¬ ÏƒÏ‡ÎµÎ´Î¹Î±ÏƒÎ¼Î­Î½Î· Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±. Î“Î¹Î± Î¼ÎµÎ³Î±Î»ÏŒÏƒÏ‰Î¼ÎµÏ‚ Ï†Ï…Î»Î­Ï‚, ÏƒÏ…Î½Î¹ÏƒÏ„Î¬Ï„Î±Î¹ Î· ÎµÏ€Î¹Î»Î¿Î³Î® Ï„ÏÎ¿Ï†ÏŽÎ½ ÎµÎ¹Î´Î¹ÎºÎ¬ Î´Î¹Î±Î¼Î¿ÏÏ†Ï‰Î¼Î­Î½Ï‰Î½ Î³Î¹Î± Ï„Î¹Ï‚ Î±Î½Î¬Î³ÎºÎµÏ‚ Ï„Î¿Ï…Ï‚. ÎŸÎ¹ Ï„ÏÎ¿Ï†Î­Ï‚ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Ï€Î»Î¿ÏÏƒÎ¹ÎµÏ‚ ÏƒÎµ Î¸ÏÎµÏ€Ï„Î¹ÎºÎ¬ ÏƒÏ…ÏƒÏ„Î±Ï„Î¹ÎºÎ¬, ÏŒÏ€Ï‰Ï‚ Ï€ÏÏ‰Ï„ÎµÎÎ½ÎµÏ‚ (Î³Î¹Î± Ï„Î·Î½ Î±Î½Î¬Ï€Ï„Ï…Î¾Î· Î¼Ï…ÏŽÎ½ ÎºÎ±Î¹ Î¹ÏƒÏ„ÏŽÎ½), Î»Î¯Ï€Î· (Î³Î¹Î± ÎµÎ½Î­ÏÎ³ÎµÎ¹Î± ÎºÎ±Î¹ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… Î´Î­ÏÎ¼Î±Ï„Î¿Ï‚), Ï…Î´Î±Ï„Î¬Î½Î¸ÏÎ±ÎºÎµÏ‚ (Î³Î¹Î± ÎµÎ½Î­ÏÎ³ÎµÎ¹Î±), Î²Î¹Ï„Î±Î¼Î¯Î½ÎµÏ‚ ÎºÎ±Î¹ Î¼Î­Ï„Î±Î»Î»Î± (ÏŒÏ€Ï‰Ï‚ Î±ÏƒÎ²Î­ÏƒÏ„Î¹Î¿, ÏƒÎ¯Î´Î·ÏÎ¿Ï‚, ÏˆÎµÏ…Î´Î¬ÏÎ³Ï…ÏÎ¿Ï‚).</p>
+                        <p class="mt-2" data-i18n-key="nutritionFoodSelectP2">Î— Î´Î¹Î±Ï„ÏÎ¿Ï†Î® Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï Î´ÎµÎ½ ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î±Ï„Î¹ÎºÎ®, Î±Î»Î»Î¬ ÎµÎ¾ÎµÎ»Î¯ÏƒÏƒÎµÏ„Î±Î¹ ÏÎ±Î³Î´Î±Î¯Î± Î¼Îµ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± ÎºÎ±Î¹ Ï„Î·Î½ Î±Î½Î¬Ï€Ï„Ï…Î¾Î·. Î— Ï€Î±ÏÎ¿Ï‡Î® Ï„Î·Ï‚ ÏƒÏ‰ÏƒÏ„Î®Ï‚ Î¹ÏƒÎ¿ÏÏÎ¿Ï€Î¯Î±Ï‚ Î¸ÏÎµÏ€Ï„Î¹ÎºÏŽÎ½ ÏƒÏ…ÏƒÏ„Î±Ï„Î¹ÎºÏŽÎ½ ÏƒÎµ ÎºÎ¬Î¸Îµ ÏƒÏ„Î¬Î´Î¹Î¿ ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î· Î³Î¹Î± Ï„Î· Î²Î­Î»Ï„Î¹ÏƒÏ„Î· Î±Î½Î¬Ï€Ï„Ï…Î¾Î· ÎºÎ±Î¹ Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· ÎµÎ»Î»ÎµÎ¯ÏˆÎµÏ‰Î½ Î® Ï…Ï€ÎµÏÎ²Î¿Î»ÏŽÎ½ Ï€Î¿Ï… Î¸Î± Î¼Ï€Î¿ÏÎ¿ÏÏƒÎ±Î½ Î½Î± ÎµÏ€Î·ÏÎµÎ¬ÏƒÎ¿Ï…Î½ Ï„Î· Î¼Î±ÎºÏÎ¿Ï€ÏÏŒÎ¸ÎµÏƒÎ¼Î· Ï…Î³ÎµÎ¯Î±.</p>
+                        <p class="mt-2" data-i18n-key="nutritionFoodSelectP3">Î•Î¬Î½ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÎµÎ¯Î½Î±Î¹ Ï€Î¿Î»Ï Î¼Î¹ÎºÏÏŒ, Î· Î´Î¹Î±Î´Î¹ÎºÎ±ÏƒÎ¯Î± Ï„Î¿Ï… Î±Ï€Î¿Î³Î±Î»Î±ÎºÏ„Î¹ÏƒÎ¼Î¿Ï Î¾ÎµÎºÎ¹Î½Î¬ Î³ÏÏÏ‰ ÏƒÏ„Î¹Ï‚ 3-4 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚ ÎºÎ±Î¹ Î´Î¹Î±ÏÎºÎµÎ¯ Î­Ï‰Ï‚ Ï„Î¹Ï‚ 8 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚. Î‘ÏÏ‡Î¹ÎºÎ¬, Î· ÏƒÏ„ÎµÏÎµÎ¬ Ï„ÏÎ¿Ï†Î® Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î±Î½Î±ÎºÎ±Ï„ÎµÏ…Ï„ÎµÎ¯ Î¼Îµ Î½ÎµÏÏŒ Î® Î³Î¬Î»Î± Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± Î³Î¹Î± Î½Î± Î¼Î±Î»Î±ÎºÏŽÏƒÎµÎ¹ ÎºÎ±Î¹ Î½Î± Î³Î¯Î½ÎµÎ¹ Ï€Î¹Î¿ ÎµÏÏ€ÎµÏ€Ï„Î·.</p>
+                        <h4 class="font-semibold mt-3 mb-2" data-i18n-key="nutritionFeedingScheduleTitle">Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î£Î¯Ï„Î¹ÏƒÎ·Ï‚:</h4>
+                        <div class="chart-container my-4">
+                            <canvas id="feedingScheduleChart"></canvas>
+                        </div>
+                        <ul class="list-disc list-inside">
+                            <li data-i18n-key="nutritionFeedList1">8-12 ÎµÎ²Î´Î¿Î¼Î¬Î´Ï‰Î½: 4 Î³ÎµÏÎ¼Î±Ï„Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ±.</li>
+                            <li data-i18n-key="nutritionFeedList2">3-6 Î¼Î·Î½ÏŽÎ½: 3 Î³ÎµÏÎ¼Î±Ï„Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ±.</li>
+                            <li data-i18n-key="nutritionFeedList3">6 Î¼Î·Î½ÏŽÎ½ - 1 Î­Ï„Î¿Ï…Ï‚: 2 Î³ÎµÏÎ¼Î±Ï„Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ±.</li>
+                            <li data-i18n-key="nutritionFeedList4">ÎœÎµÏ„Î¬ Ï„Î¿Î½ 1Î¿ Ï‡ÏÏŒÎ½Î¿: Î£Ï…Î½Î®Î¸Ï‰Ï‚ 1 Î³ÎµÏÎ¼Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ± ÎµÎ¯Î½Î±Î¹ ÎµÏ€Î±ÏÎºÎ­Ï‚, Î±Î½ ÎºÎ±Î¹ Î³Î¹Î± Î¼ÎµÎ³Î±Î»ÏÏ„ÎµÏÎµÏ‚ Ï†Ï…Î»Î­Ï‚ Î® ÏƒÎºÏÎ»Î¿Ï…Ï‚ ÎµÏ€Î¹ÏÏÎµÏ€ÎµÎ¯Ï‚ ÏƒÎµ Ï†Î¿ÏÏƒÎºÏ‰Î¼Î±, 2 Î¼Î¹ÎºÏÏŒÏ„ÎµÏÎ± Î³ÎµÏÎ¼Î±Ï„Î± ÎµÎ¯Î½Î±Î¹ Ï€ÏÎ¿Ï„Î¹Î¼ÏŒÏ„ÎµÏÎ±.</li>
+                        </ul>
+                        <p class="mt-2" data-i18n-key="nutritionWaterBowls">Î•Î¯Î½Î±Î¹ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿ Î½Î± Ï…Ï€Î¬ÏÏ‡ÎµÎ¹ Ï€Î¬Î½Ï„Î± Î´Î¹Î±Î¸Î­ÏƒÎ¹Î¼Î¿ ÎºÎ±Î¸Î±ÏÏŒ, Ï†ÏÎ­ÏƒÎºÎ¿ Î½ÎµÏÏŒ. Î¤Î± Î¼Ï€Î¿Î» Ï†Î±Î³Î·Ï„Î¿Ï ÎºÎ±Î¹ Î½ÎµÏÎ¿Ï Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± Ï€Î»Î­Î½Î¿Î½Ï„Î±Î¹ ÏƒÏ…Ï‡Î½Î¬ Î³Î¹Î± Ï„Î· Î´Î¹Î±Ï„Î®ÏÎ·ÏƒÎ· Ï„Î·Ï‚ Ï…Î³Î¹ÎµÎ¹Î½Î®Ï‚.</p>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionDangerousFoodTitle">Î•Ï€Î¹ÎºÎ¯Î½Î´Ï…Î½ÎµÏ‚ Î¤ÏÎ¿Ï†Î­Ï‚ Ï€ÏÎ¿Ï‚ Î‘Ï€Î¿Ï†Ï…Î³Î®</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="nutritionAccordionDangerousFoodContent"></p>
+                        <div data-i18n-key="dangerousFoodsTableHtml"></div>
+                    </div>
+                </div>
+                 <div class="accordion mt-6">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAISuggestionTitle">
+                        âœ¨ AI Î£ÏÎ¼Î²Î¿Ï…Î»Î¿Ï‚ Î“ÎµÏ…Î¼Î¬Ï„Ï‰Î½ & Î›Î¹Ï‡Î¿Ï…Î´Î¹ÏŽÎ½
+                    </button>
+                    <div class="accordion-content hidden p-4 rounded-b-md">
+                        <p class="mb-3 text-sm" data-i18n-key="nutritionAIDescription">
+                            Î”ÏŽÏƒÏ„Îµ Î¼Î±Ï‚ Î¼ÎµÏÎ¹ÎºÎ­Ï‚ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ Î³Î¹Î± Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚ Î³Î¹Î± ÎµÎ¾Î±Ï„Î¿Î¼Î¹ÎºÎµÏ…Î¼Î­Î½ÎµÏ‚ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚!
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="nutritionAIPuppyAge" class="block text-sm font-medium text-gray-700" data-i18n-key="nutritionAIAgeLabel">Î—Î»Î¹ÎºÎ¯Î± ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï:</label>
+                                <select id="nutritionAIPuppyAge" class="ai-select">
+                                    <option value="under3" data-i18n-key="nutritionAIAgeUnder3">&lt; 3 Î¼Î·Î½ÏŽÎ½</option>
+                                    <option value="3-6" data-i18n-key="nutritionAIAge3_6">3-6 Î¼Î·Î½ÏŽÎ½</option>
+                                    <option value="6-12" data-i18n-key="nutritionAIAge6_12">6-12 Î¼Î·Î½ÏŽÎ½</option>
+                                    <option value="over12" data-i18n-key="nutritionAIAgeOver12">&gt; 1 Î­Ï„Î¿Ï…Ï‚</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="nutritionAISuggestionType" class="block text-sm font-medium text-gray-700" data-i18n-key="nutritionAISuggestionTypeLabel">Î¤ÏÏ€Î¿Ï‚ Î ÏÏŒÏ„Î±ÏƒÎ·Ï‚:</label>
+                                <select id="nutritionAISuggestionType" class="ai-select">
+                                    <option value="meal" data-i18n-key="nutritionAISuggestionMeal">Î™Î´Î­Î± Î£Ï€Î¹Ï„Î¹ÎºÎ¿Ï Î“ÎµÏÎ¼Î±Ï„Î¿Ï‚</option>
+                                    <option value="treat" data-i18n-key="nutritionAISuggestionTreat">Î™Î´Î­Î± Î¥Î³Î¹ÎµÎ¹Î½Î®Ï‚ Î›Î¹Ï‡Î¿Ï…Î´Î¹Î¬Ï‚</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="nutritionAIPreferences" class="block text-sm font-medium text-gray-700" data-i18n-key="nutritionAIPreferencesLabel">Î‘Î»Î»ÎµÏÎ³Î¯ÎµÏ‚ / Î ÏÎ¿Ï„Î¹Î¼Î®ÏƒÎµÎ¹Ï‚ / Î£Î·Î¼ÎµÎ¹ÏŽÏƒÎµÎ¹Ï‚ (Ï€ÏÎ¿Î±Î¹ÏÎµÏ„Î¹ÎºÎ¬):</label>
+                            <textarea id="nutritionAIPreferences" class="ai-input-area" rows="3" data-i18n-key="nutritionAIPreferencesPlaceholder" data-i18n-target-placeholder="true" placeholder="Î .Ï‡. Î±Î»Î»ÎµÏÎ³Î¯Î± ÏƒÏ„Î¿ ÎºÎ¿Ï„ÏŒÏ€Î¿Ï…Î»Î¿, Ï€ÏÎ¿Ï„Î¹Î¼Î¬ ÏˆÎ¬ÏÎ¹..."></textarea>
+                        </div>
+                        <button id="getNutritionSuggestionsButton" class="ai-submit-button" data-i18n-key="nutritionAIButtonText">âœ¨ Î›Î®ÏˆÎ· Î ÏÎ¿Ï„Î¬ÏƒÎµÏ‰Î½ Î”Î¹Î±Ï„ÏÎ¿Ï†Î®Ï‚ (AI)</button>
+                        <div id="nutritionAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Î¦ÏŒÏÏ„Ï‰ÏƒÎ·...</div>
+                        <div id="nutritionAIOutput" class="ai-suggestion-box hidden mt-3"></div>
+                        <p class="mt-4 text-xs text-gray-500" data-i18n-key="nutritionAIDisclaimer">ÎŸÎ¹ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ ÎµÎ¯Î½Î±Î¹ Î³ÎµÎ½Î¹ÎºÎ­Ï‚. Î Î¬Î½Ï„Î± Î½Î± ÏƒÏ…Î¼Î²Î¿Ï…Î»ÎµÏÎµÏƒÏ„Îµ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ ÏƒÎ±Ï‚ Î³Î¹Î± Ï„Î¹Ï‚ ÏƒÏ…Î³ÎºÎµÎºÏÎ¹Î¼Î­Î½ÎµÏ‚ Î´Î¹Î±Ï„ÏÎ¿Ï†Î¹ÎºÎ­Ï‚ Î±Î½Î¬Î³ÎºÎµÏ‚ Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-exercise" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="exerciseTitle">V. Î†ÏƒÎºÎ·ÏƒÎ· ÎºÎ±Î¹ Î¨Ï…Ï‡Î¹ÎºÎ® Î´Î¹Î­Î³ÎµÏÏƒÎ·</h2>
+                <p class="mb-4 text-justify" data-i18n-key="exerciseIntro">Î— Î¬ÏƒÎºÎ·ÏƒÎ· ÎºÎ±Î¹ Î· Ï€Î½ÎµÏ…Î¼Î±Ï„Î¹ÎºÎ® Î´Î¹Î­Î³ÎµÏÏƒÎ· ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Ï„Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚ Î³Î¹Î± Ï„Î·Î½ Ï…Î³Î¹Î® Î±Î½Î¬Ï€Ï„Ï…Î¾Î· ÎºÎ±Î¹ Ï„Î·Î½ ÎµÏ…Ï„Ï…Ï‡Î¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚. ÎˆÎ½Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Ï€Î¿Ï… Î±ÏƒÎºÎµÎ¯Ï„Î±Î¹ ÎµÏ€Î±ÏÎºÏŽÏ‚ ÎºÎ±Î¹ Î±Ï€Î±ÏƒÏ‡Î¿Î»ÎµÎ¯Ï„Î±Î¹ Ï€Î½ÎµÏ…Î¼Î±Ï„Î¹ÎºÎ¬ ÎµÎ¯Î½Î±Î¹ Î»Î¹Î³ÏŒÏ„ÎµÏÎ¿ Ï€Î¹Î¸Î±Î½ÏŒ Î½Î± Î±Î½Î±Ï€Ï„ÏÎ¾ÎµÎ¹ Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚.</p>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="exerciseNeedsTitle">Î‘Î½Î¬Î³ÎºÎµÏ‚ Î†ÏƒÎºÎ·ÏƒÎ·Ï‚</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p data-i18n-key="exerciseNeedsPuppies">ÎšÎ¿Ï…Ï„Î¬Î²Î¹Î±: Î ÏÎ¿ÏƒÎµÎºÏ„Î¹ÎºÎ® Î¬ÏƒÎºÎ·ÏƒÎ· Î³Î¹Î± Ï„Î·Î½ Ï€ÏÎ¿ÏƒÏ„Î±ÏƒÎ¯Î± Ï„Ï‰Î½ Î±Î½Î±Ï€Ï„Ï…ÏƒÏƒÏŒÎ¼ÎµÎ½Ï‰Î½ Î±ÏÎ¸ÏÏŽÏƒÎµÏ‰Î½. ÎšÎ±Î½ÏŒÎ½Î±Ï‚: 5 Î»ÎµÏ€Ï„Î¬ Î¬ÏƒÎºÎ·ÏƒÎ·Ï‚ Î±Î½Î¬ Î¼Î®Î½Î± Î·Î»Î¹ÎºÎ¯Î±Ï‚, Î´ÏÎ¿ Ï†Î¿ÏÎ­Ï‚ Ï„Î·Î½ Î·Î¼Î­ÏÎ±. Î .Ï‡. Î­Î½Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹ 3 Î¼Î·Î½ÏŽÎ½ Ï‡ÏÎµÎ¹Î¬Î¶ÎµÏ„Î±Î¹ Ï€ÎµÏÎ¯Ï€Î¿Ï… 15 Î»ÎµÏ€Ï„Î¬ Î¬ÏƒÎºÎ·ÏƒÎ·Ï‚ Î´ÏÎ¿ Ï†Î¿ÏÎ­Ï‚ Ï„Î·Î½ Î·Î¼Î­ÏÎ±. Î‘Ï€Î¿Ï†ÏÎ³ÎµÏ„Îµ Ï„Î¿ Ï„ÏÎ­Î¾Î¹Î¼Î¿ ÏƒÎµ ÏƒÎºÎ»Î·ÏÎ­Ï‚ ÎµÏ€Î¹Ï†Î¬Î½ÎµÎ¹ÎµÏ‚ ÎºÎ±Î¹ Ï„Î± Ï€Î¿Î»Î»Î¬ Î¬Î»Î¼Î±Ï„Î±.</p>
+                        <p class="mt-2" data-i18n-key="exerciseNeedsAdults">Î•Î½Î®Î»Î¹ÎºÎ¿Î¹ Î£ÎºÏÎ»Î¿Î¹ (Î•Î½Î´ÎµÎ¹ÎºÏ„Î¹ÎºÎ¬):</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li data-i18n-key="exerciseNeedsAdultHigh">Î¥ÏˆÎ·Î»Î®Ï‚ ÎµÎ½Î­ÏÎ³ÎµÎ¹Î±Ï‚ (Ï€.Ï‡. Border Collie, Jack Russell): 1.5-2+ ÏŽÏÎµÏ‚ Î­Î½Ï„Î¿Î½Î·Ï‚ Î¬ÏƒÎºÎ·ÏƒÎ·Ï‚ (Ï„ÏÎ­Î¾Î¹Î¼Î¿, Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹).</li>
+                            <li data-i18n-key="exerciseNeedsAdultMed">ÎœÎµÏƒÎ±Î¯Î±Ï‚ ÎµÎ½Î­ÏÎ³ÎµÎ¹Î±Ï‚ (Ï€.Ï‡. Labrador, Beagle): 1-1.5 ÏŽÏÎ± Î¼Î­Ï„ÏÎ¹Î±Ï‚ Î¬ÏƒÎºÎ·ÏƒÎ·Ï‚ (Î³ÏÎ®Î³Î¿ÏÎ¿ Ï€ÎµÏÏ€Î¬Ï„Î·Î¼Î±, Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹).</li>
+                            <li data-i18n-key="exerciseNeedsAdultLow">Î§Î±Î¼Î·Î»Î®Ï‚ ÎµÎ½Î­ÏÎ³ÎµÎ¹Î±Ï‚ (Ï€.Ï‡. Pug, Basset Hound): 30 Î»ÎµÏ€Ï„Î¬ - 1 ÏŽÏÎ± Î®Ï€Î¹Î±Ï‚ Î¬ÏƒÎºÎ·ÏƒÎ·Ï‚ (Ï€ÎµÏÏ€Î¬Ï„Î·Î¼Î±).</li>
+                        </ul>
+                        <p class="mt-2" data-i18n-key="exerciseNeedsSeniors">Î—Î»Î¹ÎºÎ¹Ï‰Î¼Î­Î½Î¿Î¹ Î£ÎºÏÎ»Î¿Î¹: Î— Î±Î½Î¬Î³ÎºÎ· Î³Î¹Î± Î¬ÏƒÎºÎ·ÏƒÎ· Î¼ÎµÎ¹ÏŽÎ½ÎµÏ„Î±Î¹ Î±Î»Î»Î¬ Ï€Î±ÏÎ±Î¼Î­Î½ÎµÎ¹ ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÎ®. Î£ÏÎ½Ï„Î¿Î¼ÎµÏ‚, Î®Ï€Î¹ÎµÏ‚ Î²ÏŒÎ»Ï„ÎµÏ‚ Î±ÏÎºÎµÏ„Î­Ï‚ Ï†Î¿ÏÎ­Ï‚ Ï„Î·Î½ Î·Î¼Î­ÏÎ± Î³Î¹Î± Î´Î¹Î±Ï„Î®ÏÎ·ÏƒÎ· Ï„Î·Ï‚ ÎºÎ¹Î½Î·Ï„Î¹ÎºÏŒÏ„Î·Ï„Î±Ï‚ ÎºÎ±Î¹ Ï„Î·Ï‚ ÏˆÏ…Ï‡Î¹ÎºÎ®Ï‚ Ï…Î³ÎµÎ¯Î±Ï‚. Î ÏÎ¿ÏƒÎ±ÏÎ¼ÏŒÏƒÏ„Îµ ÏƒÏ„Î¹Ï‚ Î±Î½Ï„Î¿Ï‡Î­Ï‚ Ï„Î¿Ï…Ï‚.</p>
+                        <div class="mt-4">
+                            <label for="dog-type-selector" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="exerciseDogTypeLabel">Î•Ï€Î¹Î»Î­Î¾Ï„Îµ Ï„ÏÏ€Î¿ ÏƒÎºÏÎ»Î¿Ï… Î³Î¹Î± Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ Î¬ÏƒÎºÎ·ÏƒÎ·Ï‚:</label>
+                            <select id="dog-type-selector" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="puppy" data-i18n-key="dogTypePuppy">ÎšÎ¿Ï…Ï„Î¬Î²Î¹ (&lt;1 Î­Ï„Î¿Ï…Ï‚)</option>
+                                <option value="adult_low" data-i18n-key="dogTypeAdultLow">Î•Î½Î®Î»Î¹ÎºÎ¿Ï‚ - Î§Î±Î¼Î·Î»Î® Î•Î½Î­ÏÎ³ÎµÎ¹Î±</option>
+                                <option value="adult_medium" data-i18n-key="dogTypeAdultMedium">Î•Î½Î®Î»Î¹ÎºÎ¿Ï‚ - ÎœÎµÏƒÎ±Î¯Î± Î•Î½Î­ÏÎ³ÎµÎ¹Î±</option>
+                                <option value="adult_high" data-i18n-key="dogTypeAdultHigh">Î•Î½Î®Î»Î¹ÎºÎ¿Ï‚ - Î¥ÏˆÎ·Î»Î® Î•Î½Î­ÏÎ³ÎµÎ¹Î±</option>
+                                <option value="senior" data-i18n-key="dogTypeSenior">Î—Î»Î¹ÎºÎ¹Ï‰Î¼Î­Î½Î¿Ï‚ Î£ÎºÏÎ»Î¿Ï‚</option>
+                            </select>
+                            <div id="exercise-recommendation" class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm text-blue-700" data-i18n-key="exerciseDefaultReco">
+                                Î•Ï€Î¹Î»Î­Î¾Ï„Îµ Î³Î¹Î± Î½Î± Î´ÎµÎ¯Ï„Îµ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="exercisePlayTitle">Î Î±Î¹Ï‡Î½Î¯Î´Î¹ ÎºÎ±Î¹ Î”ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„ÎµÏ‚ Î³Î¹Î± Î£Ï‰Î¼Î±Ï„Î¹ÎºÎ® ÎºÎ±Î¹ Î Î½ÎµÏ…Î¼Î±Ï„Î¹ÎºÎ® Î•ÎºÏ„ÏŒÎ½Ï‰ÏƒÎ· âœ¨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                       <p data-i18n-key="exercisePlayContent">Î— ÏˆÏ…Ï‡Î¹ÎºÎ® Î´Î¹Î­Î³ÎµÏÏƒÎ· ÎµÎ¯Î½Î±Î¹ ÎµÎ¾Î¯ÏƒÎ¿Ï… ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÎ® Î¼Îµ Ï„Î· ÏƒÏ‰Î¼Î±Ï„Î¹ÎºÎ®. Î”Î¿ÎºÎ¹Î¼Î¬ÏƒÏ„Îµ: Î´Î¹Î±Î´ÏÎ±ÏƒÏ„Î¹ÎºÎ¬ Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± (Ï€.Ï‡. ÎºÏÏ…Î¼Î¼Î­Î½ÎµÏ‚ Î»Î¹Ï‡Î¿Ï…Î´Î¹Î­Ï‚), Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚ (ÎµÎºÎ¼Î¬Î¸Î·ÏƒÎ· Î½Î­Ï‰Î½ ÎµÎ½Ï„Î¿Î»ÏŽÎ½), Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± Î¼ÏÏ„Î·Ï‚ (Î±Î½Î¯Ï‡Î½ÎµÏ…ÏƒÎ· Î¿ÏƒÎ¼ÏŽÎ½), ÎºÎ±Î¹ Î±ÏƒÏ†Î±Î»Î® Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± Î¼Î¬ÏƒÎ·ÏƒÎ·Ï‚. Î— ÎµÎ½Î±Î»Î»Î±Î³Î® Ï€Î±Î¹Ï‡Î½Î¹Î´Î¹ÏŽÎ½ ÎºÏÎ±Ï„Î¬ Ï„Î¿ ÎµÎ½Î´Î¹Î±Ï†Î­ÏÎ¿Î½ Î¶Ï‰Î½Ï„Î±Î½ÏŒ.</p>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-lg mb-2" data-i18n-key="exerciseAISuggestionTitle">âœ¨ AI Î ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ Î Î±Î¹Ï‡Î½Î¹Î´Î¹ÏŽÎ½/Î”ÏÎ±ÏƒÏ„Î·ÏÎ¹Î¿Ï„Î®Ï„Ï‰Î½</h4>
+                            <p class="mb-3 text-sm" data-i18n-key="exerciseAIDescription">Î ÎµÎ¯Ï„Îµ Î¼Î±Ï‚ Î³Î¹Î± Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚ ÎºÎ±Î¹ Î¸Î± ÏƒÎ±Ï‚ Ï€ÏÎ¿Ï„ÎµÎ¯Î½Î¿Ï…Î¼Îµ Î¹Î´Î­ÎµÏ‚!</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <label for="exerciseAIPuppyAge" class="block text-sm font-medium text-gray-700" data-i18n-key="exerciseAIAgeLabel">Î—Î»Î¹ÎºÎ¯Î± ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï:</label>
+                                    <select id="exerciseAIPuppyAge" class="ai-select">
+                                        <option value="2-4" data-i18n-key="exerciseAIAge2_4">2-4 Î¼Î·Î½ÏŽÎ½</option>
+                                        <option value="5-8" data-i18n-key="exerciseAIAge5_8">5-8 Î¼Î·Î½ÏŽÎ½</option>
+                                        <option value="9-12" data-i18n-key="exerciseAIAge9_12">9-12 Î¼Î·Î½ÏŽÎ½</option>
+                                        <option value="over12" data-i18n-key="exerciseAIAgeOver12">Î Î¬Î½Ï‰ Î±Ï€ÏŒ 1 Î­Ï„Î¿Ï…Ï‚</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="exerciseAIActivityType" class="block text-sm font-medium text-gray-700" data-i18n-key="exerciseAIActivityTypeLabel">Î•ÏƒÏ„Î¯Î±ÏƒÎ· Î”ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„Î±Ï‚:</label>
+                                    <select id="exerciseAIActivityType" class="ai-select">
+                                        <option value="mental" data-i18n-key="exerciseAIActivityMental">Î Î½ÎµÏ…Î¼Î±Ï„Î¹ÎºÎ® Î”Î¹Î­Î³ÎµÏÏƒÎ·</option>
+                                        <option value="physical_gentle" data-i18n-key="exerciseAIActivityGentle">Î‰Ï€Î¹Î± Î£Ï‰Î¼Î±Ï„Î¹ÎºÎ® Î†ÏƒÎºÎ·ÏƒÎ·</option>
+                                        <option value="physical_active" data-i18n-key="exerciseAIActivityActive">Î•Î½ÎµÏÎ³Î® Î£Ï‰Î¼Î±Ï„Î¹ÎºÎ® Î†ÏƒÎºÎ·ÏƒÎ·</option>
+                                        <option value="any" data-i18n-key="exerciseAIActivityAny">ÎŸÏ€Î¿Î¹Î±Î´Î®Ï€Î¿Ï„Îµ</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="exerciseAIAvailableTime" class="block text-sm font-medium text-gray-700" data-i18n-key="exerciseAITimeLabel">Î”Î¹Î±Î¸Î­ÏƒÎ¹Î¼Î¿Ï‚ Î§ÏÏŒÎ½Î¿Ï‚:</label>
+                                    <select id="exerciseAIAvailableTime" class="ai-select">
+                                        <option value="10-15" data-i18n-key="exerciseAITime10_15">10-15 Î»ÎµÏ€Ï„Î¬</option>
+                                        <option value="20-30" data-i18n-key="exerciseAITime20_30">20-30 Î»ÎµÏ€Ï„Î¬</option>
+                                        <option value="30+" data-i18n-key="exerciseAITime30plus">30+ Î»ÎµÏ€Ï„Î¬</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button id="getExerciseSuggestionsButton" class="ai-submit-button" data-i18n-key="exerciseAIButtonText">âœ¨ Î›Î®ÏˆÎ· Î ÏÎ¿Ï„Î¬ÏƒÎµÏ‰Î½ (AI)</button>
+                            <div id="exerciseAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Î¦ÏŒÏÏ„Ï‰ÏƒÎ·...</div>
+                            <div id="exerciseAIOutput" class="ai-suggestion-box hidden mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-training" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="trainingTitle">VI. Î’Î±ÏƒÎ¹ÎºÎ® Î•ÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· ÎºÎ±Î¹ Î”Î¹Î±Ï‡ÎµÎ¯ÏÎ¹ÏƒÎ· Î£Ï…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚</h2>
+                <p class="mb-4 text-justify" data-i18n-key="trainingIntro">Î©Ï‚ ÎµÎºÏ€Î±Î¹Î´ÎµÏ…Ï„Î®Ï‚ ÏƒÎºÏÎ»Ï‰Î½, Ï„Î¿Î½Î¯Î¶Ï‰ ÏŒÏ„Î¹ Î· ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· ÎµÎ¯Î½Î±Î¹ Î¿ Î±ÎºÏÎ¿Î³Ï‰Î½Î¹Î±Î¯Î¿Ï‚ Î»Î¯Î¸Î¿Ï‚ Î¼Î¹Î±Ï‚ Î±ÏÎ¼Î¿Î½Î¹ÎºÎ®Ï‚ ÏƒÏ…Î¼Î²Î¯Ï‰ÏƒÎ·Ï‚. ÎžÎµÎºÎ¹Î½Î®ÏƒÏ„Îµ Î½Ï‰ÏÎ¯Ï‚ Î¼Îµ Î¸ÎµÏ„Î¹ÎºÎ® ÎµÎ½Î¯ÏƒÏ‡Ï…ÏƒÎ· (Î»Î¹Ï‡Î¿Ï…Î´Î¹Î­Ï‚, Î­Ï€Î±Î¹Î½Î¿Ï‚). Î’Î±ÏƒÎ¹ÎºÎ­Ï‚ ÎµÎ½Ï„Î¿Î»Î­Ï‚ ÏŒÏ€Ï‰Ï‚ "Î­Î»Î±", "ÎºÎ¬Ï„ÏƒÎµ", "Î¼ÎµÎ¯Î½Îµ", "ÎºÎ¬Ï„Ï‰" ÎµÎ¯Î½Î±Î¹ Î¸ÎµÎ¼ÎµÎ»Î¹ÏŽÎ´ÎµÎ¹Ï‚. Î— ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Ï„Î¿Ï…Î±Î»Î­Ï„Î±Ï‚ Î±Ï€Î±Î¹Ï„ÎµÎ¯ Ï…Ï€Î¿Î¼Î¿Î½Î® ÎºÎ±Î¹ ÏƒÏ…Î½Î­Ï€ÎµÎ¹Î±. Î— Ï€ÏÏŒÎ»Î·ÏˆÎ· Î±Î½ÎµÏ€Î¹Î¸ÏÎ¼Î·Ï„Ï‰Î½ ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÏŽÎ½ (Î¼Î¬ÏƒÎ·Î¼Î±, Î³Î¬Î²Î³Î¹ÏƒÎ¼Î±) ÎµÎ¯Î½Î±Î¹ Ï€Î¹Î¿ ÎµÏÎºÎ¿Î»Î· Î±Ï€ÏŒ Ï„Î· Î´Î¹ÏŒÏÎ¸Ï‰ÏƒÎ® Ï„Î¿Ï…Ï‚. Î•Î¾ÎµÏ„Î¬ÏƒÏ„Îµ Ï„Î¿ ÎµÎ½Î´ÎµÏ‡ÏŒÎ¼ÎµÎ½Î¿ ÎµÏ€Î±Î³Î³ÎµÎ»Î¼Î±Ï„Î¹ÎºÎ®Ï‚ Î²Î¿Î®Î¸ÎµÎ¹Î±Ï‚ Î±Î½ Î±Î½Ï„Î¹Î¼ÎµÏ„Ï‰Ï€Î¯Î¶ÎµÏ„Îµ Î´Ï…ÏƒÎºÎ¿Î»Î¯ÎµÏ‚.</p>
+                
+                <div class="mt-6">
+                    <h3 data-i18n-key="trainingAITitle" class="text-xl font-semibold mb-2">âœ¨ Î’Î¿Î·Î¸ÏŒÏ‚ Î•ÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚ AI</h3>
+                    <p class="mb-3 text-sm" data-i18n-key="trainingAIDescription">Î‘Î½Ï„Î¹Î¼ÎµÏ„Ï‰Ï€Î¯Î¶ÎµÏ„Îµ ÎºÎ¬Ï€Î¿Î¹Î± ÏƒÏ…Î³ÎºÎµÎºÏÎ¹Î¼Î­Î½Î· Ï€ÏÏŒÎºÎ»Î·ÏƒÎ· ÏƒÏ„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚; Î ÎµÏÎ¹Î³ÏÎ¬ÏˆÏ„Îµ Ï„Î·Î½ Ï€Î±ÏÎ±ÎºÎ¬Ï„Ï‰ Î³Î¹Î± Î½Î± Î»Î¬Î²ÎµÏ„Îµ ÎµÎ¾Î±Ï„Î¿Î¼Î¹ÎºÎµÏ…Î¼Î­Î½ÎµÏ‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚.</p>
+                    <textarea id="trainingQuery" class="ai-input-area" rows="4" data-i18n-key="trainingAIPlaceholder" data-i18n-target-placeholder="true" placeholder="Î .Ï‡. 'Î¤Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¼Î¿Ï… Ï€Î·Î´Î¬ÎµÎ¹ Ï€Î¬Î½Ï‰ ÏƒÏ„Î¿Ï…Ï‚ Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚', 'Î”ÎµÎ½ Î­ÏÏ‡ÎµÏ„Î±Î¹ ÏŒÏ„Î±Î½ Ï„Î¿ ÎºÎ±Î»ÏŽ'..."></textarea>
+                    <button id="getTrainingAdviceButton" class="ai-submit-button" data-i18n-key="trainingAIButtonText">âœ¨ Î›Î®ÏˆÎ· Î£Ï…Î¼Î²Î¿Ï…Î»ÏŽÎ½ Î•ÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚ (AI)</button>
+                    <div id="trainingAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Î¦ÏŒÏÏ„Ï‰ÏƒÎ·...</div>
+                    <div id="trainingAIOutput" class="llm-output hidden mt-3"></div>
+                    <p class="mt-4 text-xs text-gray-500" data-i18n-key="trainingAIDisclaimer">ÎŸÎ¹ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Ï€Î±ÏÎ­Ï‡Î¿Î½Ï„Î±Î¹ Î³Î¹Î± Î³ÎµÎ½Î¹ÎºÎ® ÎºÎ±Î¸Î¿Î´Î®Î³Î·ÏƒÎ·. Î“Î¹Î± ÏƒÎ¿Î²Î±ÏÎ¬ Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚, ÏƒÏ…Î¼Î²Î¿Ï…Î»ÎµÏ…Ï„ÎµÎ¯Ï„Îµ Î­Î½Î±Î½ ÎµÏ€Î±Î³Î³ÎµÎ»Î¼Î±Ï„Î¯Î± ÎµÎºÏ€Î±Î¹Î´ÎµÏ…Ï„Î®.</p>
+                </div>
+            </div>
+
+            <div id="tab-first-aid" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="firstAidSecTitle">"Î¤Î¹ Î½Î± ÎºÎ¬Î½Ï‰ Î±Î½..." / Î ÏÏŽÏ„ÎµÏ‚ Î’Î¿Î®Î¸ÎµÎ¹ÎµÏ‚ âœ¨</h2>
+                <p class="mb-3" data-i18n-key="firstAidSecDesc">Î ÎµÏÎ¹Î³ÏÎ¬ÏˆÏ„Îµ Î¼Î¹Î± Î¾Î±Ï†Î½Î¹ÎºÎ® ÎºÎ±Ï„Î¬ÏƒÏ„Î±ÏƒÎ· Î® Î­Î½Î± ÏƒÏÎ¼Ï€Ï„Ï‰Î¼Î± Ï€Î¿Ï… ÏƒÎ±Ï‚ Î±Î½Î·ÏƒÏ…Ï‡ÎµÎ¯ (Ï€.Ï‡. "Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î­Ï†Î±Î³Îµ ÏƒÎ¿ÎºÎ¿Î»Î¬Ï„Î±", "Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÎºÎ¿Ï…Ï„ÏƒÎ±Î¯Î½ÎµÎ¹ Î¾Î±Ï†Î½Î¹ÎºÎ¬").</p>
+                <textarea id="firstAidQuery" class="ai-input-area" rows="4" data-i18n-key="firstAidPlaceholder" data-i18n-target-placeholder="true" placeholder="Î ÎµÏÎ¹Î³ÏÎ¬ÏˆÏ„Îµ Ï„Î·Î½ ÎºÎ±Ï„Î¬ÏƒÏ„Î±ÏƒÎ· ÎµÎ´ÏŽ..."></textarea>
+                <button id="getFirstAidButton" class="ai-submit-button" data-i18n-key="firstAidButtonText">âœ¨ Î›Î®ÏˆÎ· Î£Ï…Î¼Î²Î¿Ï…Î»ÏŽÎ½ Î ÏÏŽÏ„Ï‰Î½ Î’Î¿Î·Î¸ÎµÎ¹ÏŽÎ½ (AI)</button>
+                <div id="firstAidLoading" class="loading-message hidden" data-i18n-key="loadingMessage">Î¦ÏŒÏÏ„Ï‰ÏƒÎ·...</div>
+                <div id="firstAidOutput" class="llm-output hidden"></div>
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mt-6 mb-4" role="alert">
+                    <p class="font-bold" data-i18n-key="firstAidWarningTitle">Î£Î·Î¼Î±Î½Ï„Î¹ÎºÎ® Î ÏÎ¿ÎµÎ¹Î´Î¿Ï€Î¿Î¯Î·ÏƒÎ·!</p>
+                    <p data-i18n-key="firstAidWarningContent">ÎŸÎ¹ Ï€Î±ÏÎ±ÎºÎ¬Ï„Ï‰ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ ÎµÎ¯Î½Î±Î¹ Î³ÎµÎ½Î¹ÎºÎ­Ï‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ ÎºÎ±Î¹ Î”Î•Î Î±Î½Ï„Î¹ÎºÎ±Î¸Î¹ÏƒÏ„Î¿ÏÎ½ Ï„Î·Î½ ÎµÏ€Î±Î³Î³ÎµÎ»Î¼Î±Ï„Î¹ÎºÎ® ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Î´Î¹Î¬Î³Î½Ï‰ÏƒÎ· ÎºÎ±Î¹ Î¸ÎµÏÎ±Ï€ÎµÎ¯Î±. Î£Îµ ÎºÎ¬Î¸Îµ Ï€ÎµÏÎ¯Ï€Ï„Ï‰ÏƒÎ· Ï€Î¿Ï… Î±Î½Î·ÏƒÏ…Ï‡ÎµÎ¯Ï„Îµ Î³Î¹Î± Ï„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚, ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î®ÏƒÏ„Îµ Î‘ÎœÎ•Î£Î‘ Î¼Îµ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ ÏƒÎ±Ï‚ Î® Î¼Î¹Î± ÎºÎ»Î¹Î½Î¹ÎºÎ® Î­ÎºÏ„Î±ÎºÏ„Î·Ï‚ Î±Î½Î¬Î³ÎºÎ·Ï‚.</p>
+                </div>
+            </div>
+
+            <div id="tab-stories" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="storiesSecTitle">Î”Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± "Î™ÏƒÏ„Î¿ÏÎ¹ÏŽÎ½ ÎšÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·Ï‚" / Î˜ÎµÏ„Î¹ÎºÏŽÎ½ Î•Î¼Ï€ÎµÎ¹ÏÎ¹ÏŽÎ½ âœ¨</h2>
+                <p class="mb-3" data-i18n-key="storiesSecDesc">Î•Î¹ÏƒÎ¬Î³ÎµÏ„Îµ Î­Î½Î± ÏƒÎµÎ½Î¬ÏÎ¹Î¿ ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·Ï‚ (Ï€.Ï‡. "Ï€ÏÏŽÏ„Î· ÏƒÏ…Î½Î¬Î½Ï„Î·ÏƒÎ· Î¼Îµ Î¬Î»Î»Î¿ ÏƒÎºÏÎ»Î¿", "ÎµÏ€Î¯ÏƒÎºÎµÏˆÎ· ÏƒÎµ Î¸Î¿ÏÏ…Î²ÏŽÎ´ÎµÏ‚ Î¼Î­ÏÎ¿Ï‚", "Î³Î½Ï‰ÏÎ¹Î¼Î¯Î± Î¼Îµ Ï€Î±Î¹Î´Î¹Î¬") Î³Î¹Î± Î½Î± Î»Î¬Î²ÎµÏ„Îµ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Î³Î¹Î± Ï„Î¿ Ï€ÏŽÏ‚ Î½Î± Ï„Î¿ Ï‡ÎµÎ¹ÏÎ¹ÏƒÏ„ÎµÎ¯Ï„Îµ Î¸ÎµÏ„Î¹ÎºÎ¬ ÎºÎ±Î¹ Î¼Îµ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î±.</p>
+                <textarea id="socializationQuery" class="ai-input-area" rows="4" data-i18n-key="storiesPlaceholder" data-i18n-target-placeholder="true" placeholder="Î ÎµÏÎ¹Î³ÏÎ¬ÏˆÏ„Îµ Ï„Î¿ ÏƒÎµÎ½Î¬ÏÎ¹Î¿ ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·Ï‚ ÎµÎ´ÏŽ..."></textarea>
+                <button id="getSocializationTipsButton" class="ai-submit-button" data-i18n-key="storiesButtonText">âœ¨ Î›Î®ÏˆÎ· Î£Ï…Î¼Î²Î¿Ï…Î»ÏŽÎ½ ÎšÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·Ï‚ (AI)</button>
+                <div id="socializationLoading" class="loading-message hidden" data-i18n-key="loadingMessage">Î¦ÏŒÏÏ„Ï‰ÏƒÎ·...</div>
+                <div id="socializationOutput" class="tip-box hidden"></div>
+                 <p class="mt-4 text-sm text-gray-600" data-i18n-key="storiesDisclaimer">Î— ÏƒÏ‰ÏƒÏ„Î® ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· ÎµÎ¯Î½Î±Î¹ ÎºÎ»ÎµÎ¹Î´Î¯ Î³Î¹Î± Î­Î½Î±Î½ Î¹ÏƒÎ¿ÏÏÎ¿Ï€Î·Î¼Î­Î½Î¿ ÏƒÎºÏÎ»Î¿. ÎŸÎ¹ Ï€Î±ÏÎ±ÎºÎ¬Ï„Ï‰ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ ÎµÎ¯Î½Î±Î¹ Î³ÎµÎ½Î¹ÎºÎ­Ï‚ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚.</p>
+            </div>
+
+            <div id="tab-longterm" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="longtermTitle">VII. ÎœÎ±ÎºÏÎ¿Ï€ÏÏŒÎ¸ÎµÏƒÎ¼ÎµÏ‚ Î•Ï…Î¸ÏÎ½ÎµÏ‚ Ï„Î¿Ï… ÎšÎ·Î´ÎµÎ¼ÏŒÎ½Î±</h2>
+                <p class="mb-4 text-justify" data-i18n-key="longtermIntro">Î— Ï†ÏÎ¿Î½Ï„Î¯Î´Î± ÎµÎ½ÏŒÏ‚ ÏƒÎºÏÎ»Î¿Ï… ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Î´Î­ÏƒÎ¼ÎµÏ…ÏƒÎ· Î¶Ï‰Î®Ï‚ (10-15+ Ï‡ÏÏŒÎ½Î¹Î±). Î ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½ÎµÎ¹ ÏƒÏ…Î½ÎµÏ‡Î® ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Ï†ÏÎ¿Î½Ï„Î¯Î´Î± (ÎµÏ„Î®ÏƒÎ¹Î¿Î¹ Î­Î»ÎµÎ³Ï‡Î¿Î¹, ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î¿Î¯), Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î® Ï„Î·Ï‚ Î´Î¹Î±Ï„ÏÎ¿Ï†Î®Ï‚ ÎºÎ±Î¹ Ï„Î·Ï‚ Î¬ÏƒÎºÎ·ÏƒÎ·Ï‚ ÎºÎ±Î¸ÏŽÏ‚ Î¼ÎµÎ³Î±Î»ÏŽÎ½ÎµÎ¹, Î´Î¹Î±Ï‡ÎµÎ¯ÏÎ¹ÏƒÎ· Î±Î»Î»Î±Î³ÏŽÎ½ ÏƒÏ„Î· ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬, ÎºÎ±Î¹ Î¿Î¹ÎºÎ¿Î½Î¿Î¼Î¹ÎºÎ® ÎµÏ…Î¸ÏÎ½Î· Î³Î¹Î± Ï„ÏÎ¿Ï†Î®, Ï€ÎµÏÎ¯Î¸Î±Î»ÏˆÎ·, ÎºÎ±Î¹ Î±Ï€ÏÏŒÎ¿Ï€Ï„Î± Î­Î¾Î¿Î´Î±. Î— Î±Î³Î¬Ï€Î·, Î· Ï…Ï€Î¿Î¼Î¿Î½Î® ÎºÎ±Î¹ Î· ÏƒÏ…Î½Î­Ï€ÎµÎ¹Î± ÎµÎ¯Î½Î±Î¹ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„ÎµÏ‚ ÏƒÎµ ÏŒÎ»Î· Ï„Î· Î´Î¹Î¬ÏÎºÎµÎ¹Î± Ï„Î·Ï‚ Î¶Ï‰Î®Ï‚ Ï„Î¿Ï….</p>
+            </div>
+
+            <div id="tab-conclusion" class="tab-pane hidden content-section">
+                <h2 data-i18n-key="conclusionTitle">Î£Ï…Î¼Ï€Î­ÏÎ±ÏƒÎ¼Î±: Î— Î‘Î½Ï„Î±Î¼Î¿Î¹Î²Î® Î¼Î¹Î±Ï‚ Î¥Ï€ÎµÏÎ¸Ï…Î½Î·Ï‚ Î¦ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚</h2>
+                <p class="text-justify" data-i18n-key="conclusionContent">Î— Ï…Î¹Î¿Î¸ÎµÏƒÎ¯Î± ÎµÎ½ÏŒÏ‚ ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Î´Î­ÏƒÎ¼ÎµÏ…ÏƒÎ· Ï€Î¿Ï… Ï†Î­ÏÎ½ÎµÎ¹ Ï„ÎµÏÎ¬ÏƒÏ„Î¹Î± Ï‡Î±ÏÎ¬ ÎºÎ±Î¹ ÏƒÏ…Î½Ï„ÏÎ¿Ï†Î¹ÎºÏŒÏ„Î·Ï„Î±. ÎœÎµ Ï„Î·Î½ ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î· Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î±, Î³Î½ÏŽÏƒÎ· ÎºÎ±Î¹ Î±Ï†Î¿ÏƒÎ¯Ï‰ÏƒÎ·, Î¸Î± Ï‡Ï„Î¯ÏƒÎµÏ„Îµ Î­Î½Î±Î½ Î¹ÏƒÏ‡Ï…ÏÏŒ Î´ÎµÏƒÎ¼ÏŒ Î¼Îµ Ï„Î¿Î½ Î½Î­Î¿ ÏƒÎ±Ï‚ Ï†Î¯Î»Î¿, Ï€ÏÎ¿ÏƒÏ†Î­ÏÎ¿Î½Ï„Î¬Ï‚ Ï„Î¿Ï… Î¼Î¹Î± Ï…Î³Î¹Î®, ÎµÏ…Ï„Ï…Ï‡Î¹ÏƒÎ¼Î­Î½Î· ÎºÎ±Î¹ Î³ÎµÎ¼Î¬Ï„Î· Î±Î³Î¬Ï€Î· Î¶Ï‰Î®. Î‘Ï…Ï„ÏŒÏ‚ Î¿ Î¿Î´Î·Î³ÏŒÏ‚ ÎµÎ¯Î½Î±Î¹ Î­Î½Î± ÏƒÎ·Î¼ÎµÎ¯Î¿ ÎµÎºÎºÎ¯Î½Î·ÏƒÎ·Ï‚. Î£Ï…Î½ÎµÏ‡Î¯ÏƒÏ„Îµ Î½Î± Î¼Î±Î¸Î±Î¯Î½ÎµÏ„Îµ, Î½Î± Ï€Î±ÏÎ±Ï„Î·ÏÎµÎ¯Ï„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚ ÎºÎ±Î¹ Î½Î± Ï€ÏÎ¿ÏƒÎ±ÏÎ¼ÏŒÎ¶ÎµÏ„Îµ Ï„Î· Ï†ÏÎ¿Î½Ï„Î¯Î´Î± ÏƒÎ±Ï‚ ÏƒÏ„Î¹Ï‚ Î±Î½Î¬Î³ÎºÎµÏ‚ Ï„Î¿Ï…. Î— Î±Î½Ï„Î±Î¼Î¿Î¹Î²Î® Î¸Î± ÎµÎ¯Î½Î±Î¹ Î­Î½Î±Ï‚ Ï€Î¹ÏƒÏ„ÏŒÏ‚ ÏƒÏÎ½Ï„ÏÎ¿Ï†Î¿Ï‚ Î³Î¹Î± Ï€Î¿Î»Î»Î¬ Ï‡ÏÏŒÎ½Î¹Î±.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- I18N (Internationalization) ---
+        const translations = {
+            el: {
+                logoAltText: "The Happy Leash - Î›Î¿Î³ÏŒÏ„Ï…Ï€Î¿ ÎŸÎ´Î·Î³ÏŒÏ‚ Î¦ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚ ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï",
+                mainTitle: "ðŸ¾ ÎŸÎ´Î·Î³ÏŒÏ‚ Î¦ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚ ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ðŸ¾",
+                subTitle: "ÎŒÎ»Î± ÏŒÏƒÎ± Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± Î³Î½Ï‰ÏÎ¯Î¶ÎµÏ„Îµ Î³Î¹Î± Ï„Î¿ Î½Î­Î¿ ÏƒÎ±Ï‚ Ï†Î¯Î»Î¿!",
+                tabIntro: "Î•Î¹ÏƒÎ±Î³Ï‰Î³Î®",
+                tabPreparation: "Î ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± âœ¨",
+                tabFirstDays: "Î ÏÏŽÏ„ÎµÏ‚ ÎœÎ­ÏÎµÏ‚ âœ¨",
+                tabHealth: "Î¥Î³ÎµÎ¯Î± âœ¨", // Added sparkle
+                tabNutrition: "Î”Î¹Î±Ï„ÏÎ¿Ï†Î® âœ¨",
+                tabExercise: "Î†ÏƒÎºÎ·ÏƒÎ· âœ¨",
+                tabTraining: "Î•ÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· âœ¨",
+                tabFirstAid: "Î ÏÏŽÏ„ÎµÏ‚ Î’Î¿Î®Î¸ÎµÎ¹ÎµÏ‚ âœ¨",
+                tabStories: "Î™ÏƒÏ„Î¿ÏÎ¯ÎµÏ‚ ÎšÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·Ï‚ âœ¨",
+                tabLongterm: "ÎœÎ±ÎºÏÎ¿Ï€ÏÏŒÎ¸ÎµÏƒÎ¼Î±",
+                tabConclusion: "Î£Ï…Î¼Ï€Î­ÏÎ±ÏƒÎ¼Î±",
+
+                introTitle: "ÎšÎ±Î»Ï‰ÏƒÎ¿ÏÎ¯Î¶Î¿Î½Ï„Î±Ï‚ Ï„Î¿ ÎÎ­Î¿ ÎœÎ­Î»Î¿Ï‚ Ï„Î·Ï‚ ÎŸÎ¹ÎºÎ¿Î³Î­Î½ÎµÎ¹Î±Ï‚",
+                introContent: "Î— Î¬Ï†Î¹Î¾Î· ÎµÎ½ÏŒÏ‚ ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹ Î±Ï€Î¿Ï„ÎµÎ»ÎµÎ¯ Î¼Î¹Î± ÏƒÏ…Î½Î±ÏÏ€Î±ÏƒÏ„Î¹ÎºÎ® ÏƒÏ„Î¹Î³Î¼Î®, Î³ÎµÎ¼Î¬Ï„Î· Ï‡Î±ÏÎ¬ ÎºÎ±Î¹ Ï€ÏÎ¿ÏƒÎ¼Î¿Î½Î®. Î©ÏƒÏ„ÏŒÏƒÎ¿, ÏƒÏ…Î½Î¿Î´ÎµÏÎµÏ„Î±Î¹ ÎºÎ±Î¹ Î±Ï€ÏŒ ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÎ­Ï‚ ÎµÏ…Î¸ÏÎ½ÎµÏ‚ Ï€Î¿Ï… Î±Ï€Î±Î¹Ï„Î¿ÏÎ½ Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± ÎºÎ±Î¹ Î³Î½ÏŽÏƒÎ·. Î‘Ï…Ï„Î® Î· Î´Î¹Î±Î´ÏÎ±Ï€Ï„Î¹ÎºÎ® ÎµÏ†Î±ÏÎ¼Î¿Î³Î® Î­Ï‡ÎµÎ¹ ÏƒÏ‡ÎµÎ´Î¹Î±ÏƒÏ„ÎµÎ¯ Î³Î¹Î± Î½Î± Ï€Î±ÏÎ­Ï‡ÎµÎ¹ Ï„Î¹Ï‚ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„ÎµÏ‚ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ ÎºÎ±Î¹ Ï€ÏÎ±ÎºÏ„Î¹ÎºÎ­Ï‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚, ÏŽÏƒÏ„Îµ Î½Î± ÎµÎ¾Î±ÏƒÏ†Î±Î»Î¹ÏƒÏ„ÎµÎ¯ Î¼Î¹Î± Î¿Î¼Î±Î»Î® Î¼ÎµÏ„Î¬Î²Î±ÏƒÎ· ÎºÎ±Î¹ Î¼Î¹Î± Ï…Î³Î¹Î®Ï‚, ÎµÏ…Ï„Ï…Ï‡Î¹ÏƒÎ¼Î­Î½Î· Î¶Ï‰Î® Î³Î¹Î± Ï„Î¿ Î½Î­Î¿ Ï„ÎµÏ„ÏÎ¬Ï€Î¿Î´Î¿ Î¼Î­Î»Î¿Ï‚ Ï„Î·Ï‚ Î¿Î¹ÎºÎ¿Î³Î­Î½ÎµÎ¹Î±Ï‚. Î•Î¾ÎµÏÎµÏ…Î½Î®ÏƒÏ„Îµ Ï„Î¹Ï‚ Ï€Î±ÏÎ±ÎºÎ¬Ï„Ï‰ ÎµÎ½ÏŒÏ„Î·Ï„ÎµÏ‚ Î³Î¹Î± Î½Î± Î¼Î¬Î¸ÎµÏ„Îµ Ï„Î± Ï€Î¬Î½Ï„Î±, Î±Ï€ÏŒ Ï„Î·Î½ Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Ï„Î¿Ï… Ï‡ÏŽÏÎ¿Ï… ÎºÎ±Î¹ Ï„Î·Î½ Î±ÏÏ‡Î¹ÎºÎ® Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î®, Î¼Î­Ï‡ÏÎ¹ Ï„Î·Î½ Ï…Î³ÎµÎ¯Î±, Ï„Î· Î´Î¹Î±Ï„ÏÎ¿Ï†Î®, Ï„Î·Î½ Î¬ÏƒÎºÎ·ÏƒÎ·, Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· ÎºÎ±Î¹ Ï„Î¹Ï‚ Î¼Î±ÎºÏÎ¿Ï€ÏÏŒÎ¸ÎµÏƒÎ¼ÎµÏ‚ ÎµÏ…Î¸ÏÎ½ÎµÏ‚.",
+
+                prepTabTitle: "I. Î ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Î³Î¹Î± Ï„Î·Î½ Î†Ï†Î¹Î¾Î· Ï„Î¿Ï… ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï",
+                prepTabIntro: "Î ÏÎ¹Î½ Î±ÎºÏŒÎ¼Î· Ï„Î·Î½ Î¬Ï†Î¹Î¾Î· Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹, ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Ï„Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚ Î· Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Ï„Î¿Ï… Ï‡ÏŽÏÎ¿Ï… Ï„Î¿Ï…. Î‘Ï…Ï„ÏŒ Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½ÎµÎ¹ Ï„Î· Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± ÎµÎ½ÏŒÏ‚ Î±ÏƒÏ†Î±Î»Î¿ÏÏ‚ ÎºÎ±Î¹ Î¬Î½ÎµÏ„Î¿Ï… Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î¿Ï‚, ÏŒÏ€Î¿Ï… Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¸Î± Î½Î¹ÏŽÎ¸ÎµÎ¹ Ï€ÏÎ¿ÏƒÏ„Î±Ï„ÎµÏ…Î¼Î­Î½Î¿ ÎºÎ±Î¹ Î¸Î± Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿ÏƒÏ„ÎµÎ¯ Î¿Î¼Î±Î»Î¬. Î•Ï€Î¯ÏƒÎ·Ï‚, Î· ÏƒÏ…Î³ÎºÎ­Î½Ï„ÏÏ‰ÏƒÎ· Ï„Î¿Ï… Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿Ï… ÎµÎ¾Î¿Ï€Î»Î¹ÏƒÎ¼Î¿Ï ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î· Î³Î¹Î± Î¼Î¹Î± Î¿Î¼Î±Î»Î® Î¼ÎµÏ„Î¬Î²Î±ÏƒÎ·. Î‘Ï…Ï„Î® Î· ÎµÎ½ÏŒÏ„Î·Ï„Î± ÏƒÎ±Ï‚ ÎºÎ±Î¸Î¿Î´Î·Î³ÎµÎ¯ ÏƒÏ„Î· Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± ÎµÎ½ÏŒÏ‚ Î±ÏƒÏ†Î±Î»Î¿ÏÏ‚ Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î¿Ï‚ ÎºÎ±Î¹ ÏƒÏ„Î·Î½ ÎµÏ€Î¹Î»Î¿Î³Î® Ï„Ï‰Î½ Î²Î±ÏƒÎ¹ÎºÏŽÎ½ Ï€ÏÎ¿Î¼Î·Î¸ÎµÎ¹ÏŽÎ½.",
+                prepAccordionEnvTitle: "Î”Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± Î‘ÏƒÏ†Î±Î»Î¿ÏÏ‚ ÎºÎ±Î¹ Î†Î½ÎµÏ„Î¿Ï… Î ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î¿Ï‚",
+                prepAccordionEnvContent: "Î— Ï€ÏÎ¿ÎµÏ„Î¿Î¹Î¼Î±ÏƒÎ¯Î± Ï„Î¿Ï… Ï‡ÏŽÏÎ¿Ï… ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Ï„Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚. Î‘ÏƒÏ†Î±Î»Î¯ÏƒÏ„Îµ Ï„Î¿Î½ Ï‡ÏŽÏÎ¿ (\"dog-proofing\") Î±Ï€Î¿Î¼Î±ÎºÏÏÎ½Î¿Î½Ï„Î±Ï‚ ÎµÏ€Î¹ÎºÎ¯Î½Î´Ï…Î½Î± Î±Î½Ï„Î¹ÎºÎµÎ¯Î¼ÎµÎ½Î± ÏŒÏ€Ï‰Ï‚ Ï‡Î±Î»Î¹Î¬, Ï‡Î·Î¼Î¹ÎºÎ¬, ÎºÎ±Î»ÏŽÎ´Î¹Î± ÎºÎ±Î¹ Î±ÎºÏÎ¹Î²Î²Î¬ Î­Ï€Î¹Ï€Î»Î±. Î ÏÎ¿ÏƒÏ„Î±Ï„Î­ÏˆÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î±Ï€ÏŒ Ï€Ï„ÏŽÏƒÎµÎ¹Ï‚ (Ï€.Ï‡. ÏƒÎºÎ¬Î»ÎµÏ‚). Î”Î¹Î±Ï„Î·ÏÎ®ÏƒÏ„Îµ ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î· Î¸ÎµÏÎ¼Î¿ÎºÏÎ±ÏƒÎ¯Î± (10-26.6Â°C), Ï…Î³ÏÎ±ÏƒÎ¯Î± (30-70%) ÎºÎ±Î¹ Î±ÎµÏÎ¹ÏƒÎ¼ÏŒ. ÎŸ Ï„Î±ÎºÏ„Î¹ÎºÏŒÏ‚ ÎºÎ±Î¸Î±ÏÎ¹ÏƒÎ¼ÏŒÏ‚ ÎµÎ¯Î½Î±Î¹ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿Ï‚.",
+                prepAccordionEquipTitle: "Î‘Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿Ï‚ Î•Î¾Î¿Ï€Î»Î¹ÏƒÎ¼ÏŒÏ‚ (Î›Î¯ÏƒÏ„Î± Î•Î»Î­Î³Ï‡Î¿Ï…) âœ¨",
+                equipItemBed: "Î†Î½ÎµÏ„Î¿ ÎºÏÎµÎ²Î±Ï„Î¬ÎºÎ¹/ÎºÎ±Î»Î¬Î¸Î¹ (Ï€Î»Î­Î½ÎµÏ„Î±Î¹ ÏƒÏ…Ï‡Î½Î¬)",
+                equipItemBowls: "Î‘Î½Î¿Î¾ÎµÎ¯Î´Ï‰Ï„Î± Î¼Ï€Î¿Î» Î³Î¹Î± Î½ÎµÏÏŒ ÎºÎ±Î¹ Ï„ÏÎ¿Ï†Î®",
+                equipItemLeash: "Î ÎµÏÎ¹Î»Î±Î¯Î¼Î¹Î¿, ÏƒÎ±Î¼Î±ÏÎ¬ÎºÎ¹ ÎºÎ±Î¹ Î»Î¿Ï…ÏÎ¯",
+                equipItemIdTag: "Î¤Î±Ï…Ï„ÏŒÏ„Î·Ï„Î± Î¼Îµ ÏƒÏ„Î¿Î¹Ï‡ÎµÎ¯Î±",
+                equipItemPoopBags: "Î£Î±ÎºÎ¿ÏÎ»ÎµÏ‚ Î³Î¹Î± Ï€ÎµÏÎ¹Ï„Ï„ÏŽÎ¼Î±Ï„Î±",
+                equipItemPadsWipes: "Î Î¬Î½ÎµÏ‚ Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±, Î¼Î±Î½Ï„Î·Î»Î¬ÎºÎ¹Î± ÎºÎ±Î¸Î±ÏÎ¹ÏƒÎ¼Î¿Ï",
+                equipItemToothbrush: "ÎŸÎ´Î¿Î½Ï„ÏŒÎºÏÎµÎ¼Î± & Î¿Î´Î¿Î½Ï„ÏŒÎ²Î¿Ï…ÏÏ„ÏƒÎ± ÏƒÎºÏÎ»Î¿Ï…",
+                equipItemParasiteControl: "Î‘Î½Ï„Î¹Ï€Î±ÏÎ±ÏƒÎ¹Ï„Î¹ÎºÎ¬ (Î±Î¼Ï€Î¿ÏÎ»ÎµÏ‚/ÏƒÏ€ÏÎ­Î¹)",
+                equipItemGrooming: "Î’Î¿ÏÏÏ„ÏƒÎ±, ÏƒÎ±Î¼Ï€Î¿Ï…Î¬Î½, Î½Ï…Ï‡Î¿ÎºÏŒÏ€Ï„Î·Ï‚",
+                equipItemToys: "Î Î¿Î¹ÎºÎ¹Î»Î¯Î± Ï€Î±Î¹Ï‡Î½Î¹Î´Î¹ÏŽÎ½ (Î¼Î¬ÏƒÎ·ÏƒÎ·Ï‚, Ï€Î±Î¶Î»)",
+                equipItemCarrier: "ÎšÎ»Î¿Ï…Î²Î¯/Ï„ÏƒÎ¬Î½Ï„Î± Î¼ÎµÏ„Î±Ï†Î¿ÏÎ¬Ï‚",
+                equipItemCrate: "Crate (ÎºÎ»Î¿Ï…Î²Î¯ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚)",
+                prepCrateHeading: "Î¤Î¿ Crate: ÎˆÎ½Î± Î Î±ÏÎµÎ¾Î·Î³Î·Î¼Î­Î½Î¿ Î•ÏÎ³Î±Î»ÎµÎ¯Î¿",
+                prepCratePara1: "Î¤Î¿ crate (ÎºÎ»Î¿Ï…Î²Î¯ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚) ÎµÎ¯Î½Î±Î¹ Î­Î½Î± ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÏŒ ÎµÏÎ³Î±Î»ÎµÎ¯Î¿ Î³Î¹Î± Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· ÎºÎ±Î¹ Ï„Î·Î½ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï, Î±Î»Î»Î¬ ÏƒÏ…Ï‡Î½Î¬ Ï€Î±ÏÎµÎ¾Î·Î³ÎµÎ¯Ï„Î±Î¹ Ï‰Ï‚ \"Ï†Ï…Î»Î±ÎºÎ®\". Î£Ï„Î·Î½ Ï€ÏÎ±Î³Î¼Î±Ï„Î¹ÎºÏŒÏ„Î·Ï„Î±, ÏŒÏ„Î±Î½ Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹ÎµÎ¯Ï„Î±Î¹ ÏƒÏ‰ÏƒÏ„Î¬, Ï„Î¿ crate Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î±Ï€Î¿Ï„ÎµÎ»Î­ÏƒÎµÎ¹ Î­Î½Î± Î±ÏƒÏ†Î±Î»Î­Ï‚, Ï€ÏÎ¿ÏƒÏ‰Ï€Î¹ÎºÏŒ ÎºÎ±Ï„Î±Ï†ÏÎ³Î¹Î¿ Î³Î¹Î± Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚, ÎºÎ±Î¸ÏŽÏ‚ ÎºÎ±Î¹ Î­Î½Î± ÎµÎ¾Î±Î¹ÏÎµÏ„Î¹ÎºÏŒ Î²Î¿Î®Î¸Î·Î¼Î± Î³Î¹Î± Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Ï„Î¿Ï…Î±Î»Î­Ï„Î±Ï‚ ÎºÎ±Î¹ Ï„Î· Î´Î¹Î±Ï‡ÎµÎ¯ÏÎ¹ÏƒÎ· Ï„Î·Ï‚ ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚.",
+                prepCrateBenefitsTitle: "ÎŸÏ†Î­Î»Î· Ï„Î¿Ï… Crate:",
+                prepCrateBenefit1: "Î•ÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Î¤Î¿Ï…Î±Î»Î­Ï„Î±Ï‚: Î¤Î± ÏƒÎºÏ…Î»Î¹Î¬ Î±Ï€ÏŒ Ï„Î· Ï†ÏÏƒÎ· Ï„Î¿Ï…Ï‚ Î´ÎµÎ½ Î¸Î­Î»Î¿Ï…Î½ Î½Î± Î»ÎµÏÏŽÏƒÎ¿Ï…Î½ Ï„Î¿Î½ Ï‡ÏŽÏÎ¿ Ï€Î¿Ï… ÎºÎ¿Î¹Î¼Î¿ÏÎ½Ï„Î±Î¹. Î¤Î¿ crate ÎµÎºÎ¼ÎµÏ„Î±Î»Î»ÎµÏÎµÏ„Î±Î¹ Î±Ï…Ï„ÏŒ Ï„Î¿ Î­Î½ÏƒÏ„Î¹ÎºÏ„Î¿, Î²Î¿Î·Î¸ÏŽÎ½Ï„Î±Ï‚ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î½Î± Î¼Î¬Î¸ÎµÎ¹ Î½Î± ÎºÏÎ±Ï„Î¹Î­Ï„Î±Î¹ Î¼Î­Ï‡ÏÎ¹ Î½Î± Î²Î³ÎµÎ¹ Î­Î¾Ï‰.",
+                prepCrateBenefit2: "Î‘ÏƒÏ†Î¬Î»ÎµÎ¹Î±: Î ÏÎ¿ÏƒÏ„Î±Ï„ÎµÏÎµÎ¹ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î±Ï€ÏŒ Ï„Î¿ Î½Î± Î¼Î±ÏƒÎ®ÏƒÎµÎ¹ ÎµÏ€Î¹ÎºÎ¯Î½Î´Ï…Î½Î± Î±Î½Ï„Î¹ÎºÎµÎ¯Î¼ÎµÎ½Î± Î® Î½Î± Ï€Î¬Î¸ÎµÎ¹ Î±Ï„ÏÏ‡Î·Î¼Î± ÏŒÏ„Î±Î½ Î´ÎµÎ½ Î¼Ï€Î¿ÏÎµÎ¯Ï„Îµ Î½Î± Ï„Î¿ ÎµÏ€Î¹Î²Î»Î­Ï€ÎµÏ„Îµ Î¬Î¼ÎµÏƒÎ±.",
+                prepCrateBenefit3: "Î ÏÎ¿ÏƒÏ‰Ï€Î¹ÎºÏŒÏ‚ Î§ÏŽÏÎ¿Ï‚: Î“Î¯Î½ÎµÏ„Î±Î¹ Î­Î½Î± Î±ÏƒÏ†Î±Î»Î­Ï‚ ÎºÎ±Î¹ Î¬Î½ÎµÏ„Î¿ \"Î´Ï‰Î¼Î¬Ï„Î¹Î¿\" Î³Î¹Î± Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹, ÏŒÏ€Î¿Ï… Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î¾ÎµÎºÎ¿Ï…ÏÎ±ÏƒÏ„ÎµÎ¯ ÎºÎ±Î¹ Î½Î± Î·ÏÎµÎ¼Î®ÏƒÎµÎ¹ Ï‡Ï‰ÏÎ¯Ï‚ ÎµÎ½Î¿Ï‡Î»Î®ÏƒÎµÎ¹Ï‚.",
+                prepCrateBenefit4: "Î¤Î±Î¾Î¯Î´Î¹Î± ÎºÎ±Î¹ Î•Ï€Î¹ÏƒÎºÎ­ÏˆÎµÎ¹Ï‚: Î”Î¹ÎµÏ…ÎºÎ¿Î»ÏÎ½ÎµÎ¹ Ï„Î·Î½ Î±ÏƒÏ†Î±Î»Î® Î¼ÎµÏ„Î±Ï†Î¿ÏÎ¬ ÎºÎ±Î¹ Ï„Î·Î½ Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î® Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎµ Î½Î­Î± Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î±, ÏŒÏ€Ï‰Ï‚ ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹ Ï†Î¯Î»Ï‰Î½ Î® ÏƒÎµ Î¾ÎµÎ½Î¿Î´Î¿Ï‡ÎµÎ¯Î±.",
+                prepCrateBenefit5: "Î”Î¹Î±Ï‡ÎµÎ¯ÏÎ¹ÏƒÎ· Î£Ï…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚: Î’Î¿Î·Î¸Î¬ ÏƒÏ„Î·Î½ Î±Î½Ï„Î¹Î¼ÎµÏ„ÏŽÏ€Î¹ÏƒÎ· Ï€ÏÎ¿Î²Î»Î·Î¼Î¬Ï„Ï‰Î½ ÏŒÏ€Ï‰Ï‚ Ï„Î¿ Î¬Î³Ï‡Î¿Ï‚ Î±Ï€Î¿Ï‡Ï‰ÏÎ¹ÏƒÎ¼Î¿Ï (ÏŒÏ„Î±Î½ ÎµÎºÏ€Î±Î¹Î´ÎµÏÎµÏ„Î±Î¹ ÏƒÏ‰ÏƒÏ„Î¬) Î® Î· ÎºÎ±Ï„Î±ÏƒÏ„ÏÎ¿Ï†Î¹ÎºÎ® Î¼Î¬ÏƒÎ·ÏƒÎ·.",
+                prepCrateMisconceptionsTitle: "Î¤Î¹ Î´ÎµÎ½ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÏƒÎºÎ­Ï†Ï„ÎµÏ„Î±Î¹ Î¿ ÎºÎ·Î´ÎµÎ¼ÏŒÎ½Î±Ï‚ (ÎºÎ±Î¹ Î³Î¹Î±Ï„Î¯ ÎµÎ¯Î½Î±Î¹ Ï€Î±ÏÎµÎ¾Î·Î³Î·Î¼Î­Î½Î¿):",
+                prepCrateMisconception1: "Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Ï„Î¹Î¼Ï‰ÏÎ¯Î±: Î¤Î¿ crate Î´ÎµÎ½ Ï€ÏÎ­Ï€ÎµÎ¹ Ï€Î¿Ï„Î­ Î½Î± Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹ÎµÎ¯Ï„Î±Î¹ Ï‰Ï‚ Î¼Î­ÏƒÎ¿ Ï„Î¹Î¼Ï‰ÏÎ¯Î±Ï‚. Î‘Î½ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÏ…Î½Î´Î­ÏƒÎµÎ¹ Ï„Î¿ crate Î¼Îµ Î±ÏÎ½Î·Ï„Î¹ÎºÎ­Ï‚ ÎµÎ¼Ï€ÎµÎ¹ÏÎ¯ÎµÏ‚, Î¸Î± Ï„Î¿ Ï†Î¿Î²Î¬Ï„Î±Î¹ ÎºÎ±Î¹ Î¸Î± Î±ÏÎ½ÎµÎ¯Ï„Î±Î¹ Î½Î± Î¼Ï€ÎµÎ¹.",
+                prepCrateMisconception2: "Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Ï†Ï…Î»Î±ÎºÎ®: Î¤Î¿ crate Î´ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Î³Î¹Î± Î½Î± \"ÎºÎ»ÎµÎ¯Î½ÎµÏ„Îµ\" Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î³Î¹Î± Ï€Î¿Î»Î»Î­Ï‚ ÏŽÏÎµÏ‚. Î ÏÎ­Ï€ÎµÎ¹ Î½Î± Î­Ï‡ÎµÎ¹ ÎµÏ€Î±ÏÎºÎ® Ï‡ÏÏŒÎ½Î¿ ÎµÎºÏ„ÏŒÏ‚ Ï„Î¿Ï… crate Î³Î¹Î± Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹, Î¬ÏƒÎºÎ·ÏƒÎ· ÎºÎ±Î¹ Ï„Î¿Ï…Î±Î»Î­Ï„Î±. ÎŸ Ï‡ÏÏŒÎ½Î¿Ï‚ Ï€Î±ÏÎ±Î¼Î¿Î½Î¯Î±Ï‚ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Î±Î½Î¬Î»Î¿Î³Î¿Ï‚ Î¼Îµ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± Ï„Î¿Ï… (Ï€.Ï‡., Î­Î½Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹ 8 ÎµÎ²Î´Î¿Î¼Î¬Î´Ï‰Î½ Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÎºÏÎ±Ï„Î·Î¸ÎµÎ¯ Ï€ÎµÏÎ¯Ï€Î¿Ï… 3-4 ÏŽÏÎµÏ‚).",
+                prepCrateMisconception3: "Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· ÏƒÎµ ÏŒÎ»Î± Ï„Î± Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î±: Î¤Î¿ crate ÎµÎ¯Î½Î±Î¹ Î­Î½Î± ÎµÏÎ³Î±Î»ÎµÎ¯Î¿ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚, ÏŒÏ‡Î¹ Î¼Î¹Î± Î¼Î±Î³Î¹ÎºÎ® Î»ÏÏƒÎ· Î³Î¹Î± ÏŒÎ»Î± Ï„Î± Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚. Î ÏÎ­Ï€ÎµÎ¹ Î½Î± ÏƒÏ…Î½Î´Ï…Î¬Î¶ÎµÏ„Î±Î¹ Î¼Îµ ÏƒÏ…Î½ÎµÏ€Î® ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·, ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· ÎºÎ±Î¹ Î¬ÏƒÎºÎ·ÏƒÎ·.",
+                prepCrateMisconception4: "Î”ÎµÎ½ ÎµÎ¯Î½Î±Î¹ Î±Ï€Î¬Î½Î¸ÏÏ‰Ï€Î¿: Î“Î¹Î± Ï„Î± ÏƒÎºÏ…Î»Î¹Î¬, Ï„Î¿ crate Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Ï†Ï…ÏƒÎ¹ÎºÎ® ÎµÏ€Î­ÎºÏ„Î±ÏƒÎ· Ï„Î¿Ï… ÎµÎ½ÏƒÏ„Î¯ÎºÏ„Î¿Ï… Ï„Î¿Ï…Ï‚ Î³Î¹Î± Î­Î½Î± \"ÎºÏÎ·ÏƒÏ†ÏÎ³ÎµÏ„Î¿\" Î® Î¼Î¹Î± \"Ï†Ï‰Î»Î¹Î¬\". Î Î¿Î»Î»Î¬ ÏƒÎºÏ…Î»Î¹Î¬ Ï„Î¿ Î±Î³Î±Ï€Î¿ÏÎ½ ÎºÎ±Î¹ Ï„Î¿ Î±Î½Î±Î¶Î·Ï„Î¿ÏÎ½ Ï‰Ï‚ Î±ÏƒÏ†Î±Î»Î­Ï‚ Î¼Î­ÏÎ¿Ï‚.",
+                prepCrateConclusion: "Î— ÏƒÏ‰ÏƒÏ„Î® ÎµÎ¹ÏƒÎ±Î³Ï‰Î³Î® ÎºÎ±Î¹ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· Î¼Îµ Ï„Î¿ crate ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î·. Î ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Î¸ÎµÏ„Î¹ÎºÎ® ÎµÎ¼Ï€ÎµÎ¹ÏÎ¯Î±, Î¼Îµ Î»Î¹Ï‡Î¿Ï…Î´Î¹Î­Ï‚, Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± ÎºÎ±Î¹ Î¬Î½ÎµÏ„Î¿ ÎºÏÎµÎ²Î¬Ï„Î¹, ÏŽÏƒÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î½Î± Ï„Î¿ Î²Î»Î­ÏƒÎµÎ¹ Ï‰Ï‚ Ï„Î¿ Î´Î¹ÎºÏŒ Ï„Î¿Ï…, Î±ÏƒÏ†Î±Î»Î­Ï‚ ÎºÎ±Ï„Î±Ï†ÏÎ³Î¹Î¿.",
+                nameFinderTitle: "Î’ÏÎµÏ‚ ÎŒÎ½Î¿Î¼Î± Î³Î¹Î± Ï„Î¿ ÎšÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ¿Ï… âœ¨",
+                nameFinderDescription: "Î ÎµÏÎ¹Î­Î³ÏÎ±ÏˆÎµ ÎºÎ¬Ï€Î¿Î¹Î± Ï‡Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬ Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ¿Ï… ÎºÎ±Î¹ Ï€Î¬ÏÎµ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚!",
+                nameFinderGenderLabel: "Î¦ÏÎ»Î¿:",
+                nameFinderGenderAny: "Î”ÎµÎ½ Î­Ï‡ÎµÎ¹ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±",
+                nameFinderGenderMale: "Î‘ÏÏƒÎµÎ½Î¹ÎºÏŒ",
+                nameFinderGenderFemale: "Î˜Î·Î»Ï…ÎºÏŒ",
+                nameFinderTraitsLabel: "ÎšÏÏÎ¹Î± Î§Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬ (Ï€.Ï‡. Ï€Î±Î¹Ï‡Î½Î¹Î´Î¹Î¬ÏÎ·Ï‚, Î®ÏÎµÎ¼Î·, Î¸Î±ÏÏÎ±Î»Î­Î¿Ï‚):",
+                nameFinderTraitsPlaceholder: "Î .Ï‡. Ï€Î±Î¹Ï‡Î½Î¹Î´Î¹Î¬ÏÎ·Ï‚, Î­Î¾Ï…Ï€Î½Î¿Ï‚, Ï€Î¹ÏƒÏ„Î®, Î±Ï†ÏÎ¬Ï„Î¿",
+                nameFinderSuggestButton: "âœ¨ Î ÏÏŒÏ„ÎµÎ¹Î½Îµ ÎŸÎ½ÏŒÎ¼Î±Ï„Î± (AI)",
+                nameFinderOutputTitle: "Î ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ ÎŸÎ½Î¿Î¼Î¬Ï„Ï‰Î½:",
+                nameSuggestionIntro: "ÎœÎµ Î²Î¬ÏƒÎ· Ï„Î± Ï‡Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬ Ï€Î¿Ï… Î­Î´Ï‰ÏƒÎµÏ‚ ({gender}, {traits}), Î¿ÏÎ¯ÏƒÏ„Îµ Î¼ÎµÏÎ¹ÎºÎ­Ï‚ Î¹Î´Î­ÎµÏ‚:",
+                noNamesFound: "Î”ÎµÎ½ Î²ÏÎ­Î¸Î·ÎºÎ±Î½ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ Î³Î¹Î± Î±Ï…Ï„Î¬ Ï„Î± Ï‡Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬. Î”Î¿ÎºÎ¹Î¼Î¬ÏƒÏ„Îµ ÎºÎ¬Ï„Î¹ Ï€Î¹Î¿ Î³ÎµÎ½Î¹ÎºÏŒ!",
+                loadingMessage: "Î•Ï€ÎµÎ¾ÎµÏÎ³Î±ÏƒÎ¯Î±...",
+
+                firstDaysTabTitle: "II. ÎŸÎ¹ Î ÏÏŽÏ„ÎµÏ‚ Î—Î¼Î­ÏÎµÏ‚ ÏƒÏ„Î¿ ÎÎ­Î¿ Î£Ï€Î¯Ï„Î¹",
+                firstDaysTabIntro: "ÎŸÎ¹ Ï€ÏÏŽÏ„ÎµÏ‚ Î·Î¼Î­ÏÎµÏ‚ ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼ÎµÏ‚ Î³Î¹Î± Ï„Î·Î½ Ï€ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î® Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï. Î— Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± ÏÎ¿Ï…Ï„Î¯Î½Î±Ï‚ ÎºÎ±Î¹ Î· ÏƒÏ‰ÏƒÏ„Î®, Ï€ÏÏŽÎ¹Î¼Î· ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· Î¸Î­Ï„Î¿Ï…Î½ Ï„Î¹Ï‚ Î²Î¬ÏƒÎµÎ¹Ï‚ Î³Î¹Î± Î­Î½Î±Î½ Î¹ÏƒÎ¿ÏÏÎ¿Ï€Î·Î¼Î­Î½Î¿ ÎµÎ½Î®Î»Î¹ÎºÎ¿ ÏƒÎºÏÎ»Î¿. Î•Î´ÏŽ Î¸Î± Î²ÏÎµÎ¯Ï„Îµ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Î³Î¹Î± Î½Î± Î²Î¿Î·Î¸Î®ÏƒÎµÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚ Î½Î± Î½Î¹ÏŽÏƒÎµÎ¹ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± ÎºÎ±Î¹ Î½Î± ÎµÎ¾ÎµÏÎµÏ…Î½Î®ÏƒÎµÎ¹ Ï„Î¿Î½ ÎºÏŒÏƒÎ¼Î¿ Î¼Îµ Î±Ï…Ï„Î¿Ï€ÎµÏ€Î¿Î¯Î¸Î·ÏƒÎ·.",
+                firstDaysAccordionRoutineTitle: "Î ÏÎ¿ÏƒÎ±ÏÎ¼Î¿Î³Î® ÎºÎ±Î¹ ÎšÎ±Î¸Î¹Î­ÏÏ‰ÏƒÎ· Î¡Î¿Ï…Ï„Î¯Î½Î±Ï‚ âœ¨",
+                firstDaysAccordionRoutineContent: "Î”ÏŽÏƒÏ„Îµ Ï‡ÏÏŒÎ½Î¿ ÏƒÏ„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î½Î± ÏƒÏ…Î½Î·Î¸Î¯ÏƒÎµÎ¹. Î”Î·Î¼Î¹Î¿Ï…ÏÎ³Î®ÏƒÏ„Îµ ÏƒÏ„Î±Î¸ÎµÏÎ® ÏÎ¿Ï…Ï„Î¯Î½Î± Î³Î¹Î± ÏƒÎ¯Ï„Î¹ÏƒÎ·, Ï„Î¿Ï…Î±Î»Î­Ï„Î±, Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹ ÎºÎ±Î¹ \"Î®ÏƒÏ…Ï‡Î¿ Ï‡ÏÏŒÎ½Î¿\". ÎžÎµÎºÎ¹Î½Î®ÏƒÏ„Îµ Ï„Î·Î½ ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ· \"Home Alone\" Î±Ï€ÏŒ Ï„Î·Î½ Ï€ÏÏŽÏ„Î· Î¼Î­ÏÎ±, Î±Ï†Î®Î½Î¿Î½Ï„Î±Ï‚ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¼ÏŒÎ½Î¿ Ï„Î¿Ï… Î³Î¹Î± Î¼Î¹ÎºÏÎ¬ Î´Î¹Î±ÏƒÏ„Î®Î¼Î±Ï„Î±, Î³Î¹Î± Î½Î± Î±Ï€Î¿Ï†ÏÎ³ÎµÏ„Îµ Ï„Î¿ Î¬Î³Ï‡Î¿Ï‚ Î±Ï€Î¿Ï‡Ï‰ÏÎ¹ÏƒÎ¼Î¿Ï. ÎœÎ·Î½ ÎµÏ€Î¹ÏƒÏ„ÏÎ­ÏˆÎµÏ„Îµ ÏŒÏ„Î±Î½ ÎºÎ»Î±Î¯ÎµÎ¹ Î³Î¹Î± Î½Î± Î¼Î·Î½ ÎµÏ€Î¹Î²ÏÎ±Î²ÎµÏÏƒÎµÏ„Îµ Ï„Î·Î½ Î±Î½ÎµÏ€Î¹Î¸ÏÎ¼Î·Ï„Î· ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬.",
+                firstDaysAccordionSocialTitle: "Î ÏÏŽÎ¹Î¼Î· ÎšÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·: Î— Î£Î·Î¼Î±ÏƒÎ¯Î± Ï„Î·Ï‚",
+                firstDaysAccordionSocialContent: "Î— ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· (3-16 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚) ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î·. Î•ÎºÎ¸Î­ÏƒÏ„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎµ Î´Î¹Î¬Ï†Î¿ÏÎ± Ï€ÎµÏÎ¹Î²Î¬Î»Î»Î¿Î½Ï„Î±, Î®Ï‡Î¿Ï…Ï‚, Î¿ÏƒÎ¼Î­Ï‚, Î¾Î­Î½Î¿Ï…Ï‚ Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚, Ï€Î±Î¹Î´Î¹Î¬ ÎºÎ±Î¹ Î¬Î»Î»Î± Ï…Î³Î¹Î®, ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î­Î½Î± ÏƒÎºÏ…Î»Î¹Î¬. ÎŸÎ¹ ÎµÎ¼Ï€ÎµÎ¹ÏÎ¯ÎµÏ‚ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Î¸ÎµÏ„Î¹ÎºÎ­Ï‚. Î ÏÎ¹Î½ Ï„Î·Î½ Î¿Î»Î¿ÎºÎ»Î®ÏÏ‰ÏƒÎ· Ï„Ï‰Î½ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼ÏŽÎ½, Î· ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î³Î¯Î½ÎµÎ¹ Î¼Îµ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± Î¼ÎµÏ„Î±Ï†Î­ÏÎ¿Î½Ï„Î±Ï‚ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÏ„Î·Î½ Î±Î³ÎºÎ±Î»Î¹Î¬/Ï„ÏƒÎ¬Î½Ï„Î± Î® Ï€ÏÎ¿ÏƒÎºÎ±Î»ÏŽÎ½Ï„Î±Ï‚ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î­Î½Î¿Ï…Ï‚ Ï†Î¯Î»Î¿Ï…Ï‚ (Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚/ÏƒÎºÏÎ»Î¿Ï…Ï‚) ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹. Î— ÏˆÏ…Ï‡Î¹ÎºÎ® Î´Î¹Î­Î³ÎµÏÏƒÎ· Î¼Îµ Î´Î¹Î±Î´ÏÎ±ÏƒÏ„Î¹ÎºÎ¬ Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± ÎµÎ¯Î½Î±Î¹ ÎµÏ€Î¯ÏƒÎ·Ï‚ ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÎ®.",
+                firstDaysAITitle: "âœ¨ AI Î’Î¿Î·Î¸ÏŒÏ‚ Î ÏÏŽÏ„Ï‰Î½ Î—Î¼ÎµÏÏŽÎ½",
+                firstDaysAIDescription: "ÎˆÏ‡ÎµÏ„Îµ ÎºÎ¬Ï€Î¿Î¹Î± Î±Ï€Î¿ÏÎ¯Î± Î® Î±Î½Î·ÏƒÏ…Ï‡Î¯Î± Î³Î¹Î± Ï„Î¹Ï‚ Ï€ÏÏŽÏ„ÎµÏ‚ Î¼Î­ÏÎµÏ‚ Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÏ„Î¿ ÏƒÏ€Î¯Ï„Î¹; Î ÎµÏÎ¹Î³ÏÎ¬ÏˆÏ„Îµ Ï„Î·Î½ ÎµÎ´ÏŽ.",
+                firstDaysAIPlaceholder: "Î .Ï‡. 'Î¤Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÎºÎ»Î±Î¯ÎµÎ¹ Ï„Î· Î½ÏÏ‡Ï„Î±', 'Î ÏŽÏ‚ Î½Î± Ï„Î¿ Î³Î½Ï‰ÏÎ¯ÏƒÏ‰ ÏƒÏ„Î· Î³Î¬Ï„Î± Î¼Î¿Ï…;'...",
+                firstDaysAIButtonText: "âœ¨ Î›Î®ÏˆÎ· Î£Ï…Î¼Î²Î¿Ï…Î»ÏŽÎ½ (AI)",
+                firstDaysAIDisclaimer: "ÎŸÎ¹ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Ï€Î±ÏÎ­Ï‡Î¿Î½Ï„Î±Î¹ Î³Î¹Î± Î³ÎµÎ½Î¹ÎºÎ® ÎºÎ±Î¸Î¿Î´Î®Î³Î·ÏƒÎ·. Î— Ï…Ï€Î¿Î¼Î¿Î½Î® ÎºÎ±Î¹ Î· ÏƒÏ…Î½Î­Ï€ÎµÎ¹Î± ÎµÎ¯Î½Î±Î¹ Ï„Î¿ ÎºÎ»ÎµÎ¹Î´Î¯.",
+                firstDaysAIError: "Î Î±ÏÎ¿Ï…ÏƒÎ¹Î¬ÏƒÏ„Î·ÎºÎµ ÏƒÏ†Î¬Î»Î¼Î± ÎºÎ±Ï„Î¬ Ï„Î·Î½ ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î± Î¼Îµ Ï„Î·Î½ AI Î³Î¹Î± Ï„Î¹Ï‚ Ï€ÏÏŽÏ„ÎµÏ‚ Î¼Î­ÏÎµÏ‚. Î Î±ÏÎ±ÎºÎ±Î»ÏŽ Î´Î¿ÎºÎ¹Î¼Î¬ÏƒÏ„Îµ Î¾Î±Î½Î¬ Î±ÏÎ³ÏŒÏ„ÎµÏÎ±.",
+
+
+                healthTitle: "III. Î¥Î³ÎµÎ¯Î± ÎºÎ±Î¹ ÎšÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Î¦ÏÎ¿Î½Ï„Î¯Î´Î± âœ¨",
+                healthIntro: "Î— Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚ ÎµÎ¯Î½Î±Î¹ Ï€ÏÏ‰Ï„Î±ÏÏ‡Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚. Î‘Ï€ÏŒ Ï„Î·Î½ Ï€ÏÏŽÏ„Î· ÎµÏ€Î¯ÏƒÎºÎµÏˆÎ· ÏƒÏ„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿ Î¼Î­Ï‡ÏÎ¹ Ï„Î¿Î½ Ï„Î±ÎºÏ„Î¹ÎºÏŒ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼ÏŒ ÎºÎ±Î¹ Ï„Î·Î½ Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ·, Î· Ï€ÏÎ¿Î»Î·Ï€Ï„Î¹ÎºÎ® Ï†ÏÎ¿Î½Ï„Î¯Î´Î± ÎµÎ¯Î½Î±Î¹ Ï„Î¿ ÎºÎ»ÎµÎ¹Î´Î¯. ÎœÎ¬Î¸ÎµÏ„Îµ Ï€ÏŽÏ‚ Î½Î± Î´Î¹Î±Ï„Î·ÏÎµÎ¯Ï„Îµ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÏƒÎ±Ï‚ Ï…Î³Î¹Î­Ï‚ ÎºÎ±Î¹ Ï€ÏŒÏ„Îµ Î½Î± Î¶Î·Ï„Î®ÏƒÎµÏ„Îµ ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Î²Î¿Î®Î¸ÎµÎ¹Î±.",
+                healthAccordionVetTitle: "Î— Î ÏÏŽÏ„Î· Î•Ï€Î¯ÏƒÎºÎµÏˆÎ· ÏƒÏ„Î¿Î½ ÎšÏ„Î·Î½Î¯Î±Ï„ÏÎ¿",
+                healthAccordionVetContent: "Î£Ï…Î½Î®Î¸Ï‰Ï‚ ÏƒÏ„Î¹Ï‚ 6-8 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚. ÎŸ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿Ï‚ Î¸Î± ÎºÎ¬Î½ÎµÎ¹ Ï†Ï…ÏƒÎ¹ÎºÎ® ÎµÎ¾Î­Ï„Î±ÏƒÎ· (Î¼Î¬Ï„Î¹Î±, Î±Ï…Ï„Î¹Î¬, Î¼ÏÏ„Î·, Î´Î­ÏÎ¼Î±, ÎºÎ±ÏÎ´Î¹Î¬, Ï€Î½ÎµÏÎ¼Î¿Î½ÎµÏ‚ Îº.Î¬.) ÎºÎ±Î¹ Î¸Î± ÏƒÎ±Ï‚ ÎµÎ½Î·Î¼ÎµÏÏŽÏƒÎµÎ¹ Î³Î¹Î± ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î¿ÏÏ‚, Î¿Î´Î¿Î½Ï„Î¹ÎºÎ® Ï†ÏÎ¿Î½Ï„Î¯Î´Î±, grooming, Î¬ÏƒÎºÎ·ÏƒÎ·, ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ·, microchipping, ÏƒÏ„ÎµÎ¯ÏÏ‰ÏƒÎ·, Ï„Î±Î¾Î¯Î´Î¹Î±, Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± ÎºÎ±Î¹ Î¶Ï‰Î¿Î½ÏŒÏƒÎ¿Ï…Ï‚.",
+                healthAccordionVaccTitle: "Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î•Î¼Î²Î¿Î»Î¹Î±ÏƒÎ¼ÏŽÎ½",
+                healthAccordionVaccP1: "ÎŸÎ¹ ÎµÎ¼Î²Î¿Î»Î¹Î±ÏƒÎ¼Î¿Î¯ ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Ï„Î¹ÎºÎ®Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚ Î³Î¹Î± Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· Î¼ÎµÏ„Î±Î´Î¿Ï„Î¹ÎºÏŽÎ½ ÎºÎ±Î¹ ÎµÎ½Î¯Î¿Ï„Îµ Î¸Î±Î½Î±Ï„Î·Ï†ÏŒÏÏ‰Î½ Î±ÏƒÎ¸ÎµÎ½ÎµÎ¹ÏŽÎ½. Î”Î¹ÎµÎ³ÎµÎ¯ÏÎ¿Ï…Î½ Ï„Î¿ Î±Î½Î¿ÏƒÎ¿Ï€Î¿Î¹Î·Ï„Î¹ÎºÏŒ ÏƒÏÏƒÏ„Î·Î¼Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï Î½Î± Î±Î½Î±Ï€Ï„ÏÎ¾ÎµÎ¹ ÏƒÏ…Î³ÎºÎµÎºÏÎ¹Î¼Î­Î½Î± Î±Î½Ï„Î¹ÏƒÏŽÎ¼Î±Ï„Î± ÎºÎ±Ï„Î¬ Ï„Ï‰Î½ Î¹ÏŽÎ½ ÎºÎ±Î¹ Ï„Ï‰Î½ Î²Î±ÎºÏ„Î·ÏÎ¯Ï‰Î½.",
+                healthAccordionVaccP2: "Î¤Î± Î²Î±ÏƒÎ¹ÎºÎ¬ (core) ÎµÎ¼Î²ÏŒÎ»Î¹Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Ï…Ï„Î¬ Î³Î¹Î± Ï„Î· Î¼ÏŒÏÎ²Î±, Ï„Î· Î»Î¿Î¹Î¼ÏŽÎ´Î· Î·Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Ï„Î¿Î½ Ï€Î±ÏÎ²Î¿ÏŠÏŒ ÎºÎ±Î¹ Ï„Î· Î»ÏÏƒÏƒÎ±. Î†Î»Î»Î± ÏƒÏ…Î½Î¹ÏƒÏ„ÏŽÎ¼ÎµÎ½Î± ÎµÎ¼Î²ÏŒÎ»Î¹Î± ÎµÎ¯Î½Î±Î¹ Î³Î¹Î± Ï„Î· Î»Î¿Î¹Î¼ÏŽÎ´Î· Ï„ÏÎ±Ï‡ÎµÎ¹Î¿Î²ÏÎ¿Î³Ï‡Î¯Ï„Î¹Î´Î± (ÎºÏ…Î½Î¿ÎºÎ¿Î¼ÎµÎ¹Î±ÎºÏŒÏ‚ Î²Î®Ï‡Î±Ï‚) ÎºÎ±Î¹ Ï„Î· Î»ÎµÏ€Ï„Î¿ÏƒÏ€ÎµÎ¯ÏÏ‰ÏƒÎ·.",
+                healthVaccTableAge: "Î—Î»Î¹ÎºÎ¯Î±",
+                healthVaccTableVaccine: "Î•Î¼Î²ÏŒÎ»Î¹Î¿",
+                healthVaccRow1Age: "6-8 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚",
+                healthVaccRow1Vaccine: "ÎœÏŒÏÎ²Î±, Î—Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚",
+                healthVaccRow2Age: "11-13 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚",
+                healthVaccRow2Vaccine: "ÎœÏŒÏÎ²Î±, Î—Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚ (ÎµÎ½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÏŒ) + Î›ÏÏƒÏƒÎ±, Î›ÎµÏ€Ï„Î¿ÏƒÏ€ÎµÎ¯ÏÏ‰ÏƒÎ·",
+                healthVaccRow3Age: "15-17 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚",
+                healthVaccRow3Vaccine: "Î›ÏÏƒÏƒÎ±, Î›ÎµÏ€Ï„Î¿ÏƒÏ€ÎµÎ¯ÏÏ‰ÏƒÎ· (ÎµÎ½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÏŒ)",
+                healthVaccRow4Age: "15 Î¼Î·Î½ÏŽÎ½",
+                healthVaccRow4Vaccine: "Î•Î½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÎ¿Î¯ Î³Î¹Î± ÏŒÎ»Î± Ï„Î± Ï€Î±ÏÎ±Ï€Î¬Î½Ï‰",
+                healthVaccRow5Age: "Î•Ï„Î®ÏƒÎ¹Î±",
+                healthVaccRow5Vaccine: "ÎœÏŒÏÎ²Î±, Î—Ï€Î±Ï„Î¯Ï„Î¹Î´Î±, Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚ (ÎµÎ½Î¹ÏƒÏ‡Ï…Ï„Î¹ÎºÎ¿Î¯)",
+                healthAccordionVaccP3: "Î•Î»Î±Ï†ÏÎ¹Î¬ ÎºÎ±Ï„Î¬Ï€Ï„Ï‰ÏƒÎ· Î® Î¿Î¯Î´Î·Î¼Î± ÏƒÏ„Î¿ ÏƒÎ·Î¼ÎµÎ¯Î¿ Ï„Î·Ï‚ Î­Î½ÎµÏƒÎ·Ï‚ ÎµÎ¯Î½Î±Î¹ Ï†Ï…ÏƒÎ¹Î¿Î»Î¿Î³Î¹ÎºÎ¬ ÎºÎ±Î¹ Ï…Ï€Î¿Ï‡Ï‰ÏÎ¿ÏÎ½.",
+                healthAccordionDewormTitle: "Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î‘Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ·Ï‚",
+                healthAccordionDewormP1: "Î— ÏƒÏ‰ÏƒÏ„Î® ÎºÎ±Î¹ Ï€Î»Î®ÏÎ·Ï‚ Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ· ÎµÎ¯Î½Î±Î¹ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î· Ï„ÏŒÏƒÎ¿ Î³Î¹Î± Ï„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÏƒÎºÏÎ»Î¿Ï… ÏŒÏƒÎ¿ ÎºÎ±Î¹ Î³Î¹Î± Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· Ï„Î·Ï‚ Î¼ÎµÏ„Î¬Î´Î¿ÏƒÎ·Ï‚ Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰Î½ ÏƒÎµ Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚, ÎºÎ±Î¸ÏŽÏ‚ Ï€Î¿Î»Î»Î¬ Î±Ï€ÏŒ Î±Ï…Ï„Î¬ ÎµÎ¯Î½Î±Î¹ Î¶Ï‰Î¿Î½ÏŒÏƒÎ¿Î¹. ÎŸÎ¹ ÎºÎ·Î´ÎµÎ¼ÏŒÎ½ÎµÏ‚ Ï†Î­ÏÎ¿Ï…Î½ Ï„Î·Î½ ÎµÏ…Î¸ÏÎ½Î· Î½Î± Ï€ÏÎ¿ÏƒÏ„Î±Ï„ÎµÏÎ¿Ï…Î½ Ï„Î¿ Î½Î¿Î¹ÎºÎ¿ÎºÏ…ÏÎ¹ÏŒ Ï„Î¿Ï…Ï‚ ÎºÎ±Î¹ Ï„Î·Î½ ÎºÎ¿Î¹Î½ÏŒÏ„Î·Ï„Î± Î±Ï€ÏŒ Ï€Î¹Î¸Î±Î½Î­Ï‚ Î¶Ï‰Î¿Î½ÏŒÏƒÎ¿Ï…Ï‚, ÎºÎ±Î¸Î¹ÏƒÏ„ÏŽÎ½Ï„Î±Ï‚ Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰Î½ Î¼Î¹Î± Î´Î¹Ï€Î»Î® Ï€ÏÎ¬Î¾Î· Ï†ÏÎ¿Î½Ï„Î¯Î´Î±Ï‚.",
+                healthDewormInternalTitle: "Î•ÏƒÏ‰Ï„ÎµÏÎ¹ÎºÎ¬ Î Î±ÏÎ¬ÏƒÎ¹Ï„Î± (Î•Î½Î´Î¿Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î±):",
+                healthDewormInternalP1: "ÎšÎ¿Î¹Î½Î¬ Î•Î¯Î´Î·: Î ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ ÏƒÏ„ÏÎ¿Î³Î³Ï…Î»Î¬ ÏƒÎºÎ¿Ï…Î»Î®ÎºÎ¹Î± (ÏŒÏ€Ï‰Ï‚ Toxocara canis, Toxascaris leonina), Ï„Î±Î¹Î½Î¯ÎµÏ‚ (ÏŒÏ€Ï‰Ï‚ Dipylidium caninum, Echinococcus granulosus), Î±Î³ÎºÏ…Î»ÏŒÏƒÏ„Î¿Î¼Î± (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), ÎºÎ±Î¹ ÏƒÎºÎ¿Ï…Î»Î®ÎºÎ¹Î± Ï€Î½ÎµÏ…Î¼ÏŒÎ½Ï‰Î½/ÎºÎ±ÏÎ´Î¹Î¬Ï‚ (Angiostrongylus vasorum).",
+                healthDewormInternalP2: "Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î±: Î— Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ· Î³Î¹Î± ÎµÎ½Î´Î¿Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î± Î¾ÎµÎºÎ¹Î½Î¬ Î±Ï€ÏŒ Ï€Î¿Î»Ï Î¼Î¹ÎºÏÎ® Î·Î»Î¹ÎºÎ¯Î±, ÏƒÏÎ¼Ï†Ï‰Î½Î± Ï€Î¬Î½Ï„Î± Î¼Îµ Ï„Î¹Ï‚ Î¿Î´Î·Î³Î¯ÎµÏ‚ Ï„Î¿Ï… ÎºÏ„Î·Î½Î¹Î¬Ï„ÏÎ¿Ï…. Î£Ï…Î½Î®Î¸Ï‰Ï‚, ÏƒÏ…Î½ÎµÏ‡Î¯Î¶ÎµÏ„Î±Î¹ Î¼Îµ Ï‡Î¬Ï€Î¹ Î±Î½Î¬ Ï„ÏÎµÎ¹Ï‚ Î¼Î®Î½ÎµÏ‚ Î³Î¹Î± ÏŒÎ»Î· Ï„Î· Î´Î¹Î¬ÏÎºÎµÎ¹Î± Î¶Ï‰Î®Ï‚ Ï„Î¿Ï… Î¶ÏŽÎ¿Ï…. Î“Î¹Î± Ï„Î¹Ï‚ Î­Î³ÎºÏ…ÎµÏ‚ ÏƒÎºÏÎ»ÎµÏ‚, Î· Î±Ï€Î¿Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰ÏƒÎ· Î¼Îµ Ï†ÎµÎ½Î²ÎµÎ½Î´Î±Î¶ÏŒÎ»Î· ÏƒÏ…Î½Î¹ÏƒÏ„Î¬Ï„Î±Î¹ Î³ÏÏÏ‰ ÏƒÏ„Î·Î½ 40Î· Î·Î¼Î­ÏÎ± Ï„Î·Ï‚ ÎºÏÎ·ÏƒÎ·Ï‚, ÏŽÏƒÏ„Îµ Î½Î± Î±Ï€Î¿Ï†ÎµÏ…Ï‡Î¸ÎµÎ¯ Î· Î¼ÎµÏ„Î¬Î´Î¿ÏƒÎ· Ï„Ï‰Î½ Ï€Î±ÏÎ±ÏƒÎ¯Ï„Ï‰Î½ ÏƒÏ„Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±.",
+                healthDewormInternalP3: "ÎœÎ¿ÏÏ†Î­Ï‚: Î¤Î± Î±Î½Ï„Î¹Ï€Î±ÏÎ±ÏƒÎ¹Ï„Î¹ÎºÎ¬ Î³Î¹Î± ÎµÎ½Î´Î¿Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î± Î´Î¹Î±Ï„Î¯Î¸ÎµÎ½Ï„Î±Î¹ ÏƒÎµ Î¼Î¿ÏÏ†Î® Ï‡Î±Ï€Î¹Î¿Ï, Ï€Î¬ÏƒÏ„Î±Ï‚ Î® Ï€ÏŒÏƒÎ¹Î¼Î¿Ï… ÎµÎ½Î±Î¹Ï‰ÏÎ®Î¼Î±Ï„Î¿Ï‚.",
+                healthDewormExternalTitle: "Î•Î¾Ï‰Ï„ÎµÏÎ¹ÎºÎ¬ Î Î±ÏÎ¬ÏƒÎ¹Ï„Î± (Î•Î¾Ï‰Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î±):",
+                healthDewormExternalP1: "ÎšÎ¿Î¹Î½Î¬ Î•Î¯Î´Î·: Î£Îµ Î±Ï…Ï„Î® Ï„Î·Î½ ÎºÎ±Ï„Î·Î³Î¿ÏÎ¯Î± Î±Î½Î®ÎºÎ¿Ï…Î½ Î¿Î¹ ÎºÏÏŒÏ„Ï‰Î½ÎµÏ‚ (Ï„ÏƒÎ¹Î¼Ï€Î¿ÏÏÎ¹Î±), Î¿Î¹ ÏˆÏÎ»Î»Î¿Î¹, Ï„Î± Î±ÎºÎ¬ÏÎµÎ± (Ï€Î¿Ï… Ï€ÏÎ¿ÎºÎ±Î»Î¿ÏÎ½ ÏˆÏŽÏÎ±) ÎºÎ±Î¹ Î¿Î¹ ÏˆÎµÎ¯ÏÎµÏ‚. Î‘Ï…Ï„Î¬ Ï„Î± Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î± ÎµÎ¯Î½Î±Î¹ Ï†Î¿ÏÎµÎ¯Ï‚ ÏƒÎ¿Î²Î±ÏÏŽÎ½, ÎµÎ½Î¯Î¿Ï„Îµ Î¸Î±Î½Î±Ï„Î·Ï†ÏŒÏÏ‰Î½, Î±ÏƒÎ¸ÎµÎ½ÎµÎ¹ÏŽÎ½ ÎºÎ±Î¹ Î¼Ï€Î¿ÏÎ¿ÏÎ½ Î½Î± Î¼ÎµÏ„Î±Î´Î¿Î¸Î¿ÏÎ½ ÎºÎ±Î¹ ÏƒÎµ Î±Î½Î¸ÏÏŽÏ€Î¿Ï…Ï‚.",
+                healthDewormExternalP2: "Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î±: ÎŸÎ¹ ÎµÏ€Î¹Î»Î¿Î³Î­Ï‚ Î±Î½Ï„Î¹Î¼ÎµÏ„ÏŽÏ€Î¹ÏƒÎ·Ï‚ Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Î¼Ï€Î¿ÏÎ»ÎµÏ‚, ÎºÎ¿Î»Î¬ÏÎ± ÎºÎ±Î¹ Ï‡Î¬Ï€Î¹Î±.",
+                healthDewormExternalListItem1: "Î‘Î¼Ï€Î¿ÏÎ»ÎµÏ‚: ÎœÏ€Î¿ÏÎ¿ÏÎ½ Î½Î± Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹Î·Î¸Î¿ÏÎ½ Î±Ï€ÏŒ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± Ï„Ï‰Î½ Î¿ÎºÏ„ÏŽ Î¼Î·Î½ÏŽÎ½ ÎºÎ±Î¹ Î¬Î½Ï‰, ÎµÏ†Î±ÏÎ¼ÏŒÎ¶Î¿Î½Ï„Î±Î¹ ÏƒÏ„Î· ÏÎ¬Ï‡Î· Ï„Î¿Ï… Î¶ÏŽÎ¿Ï….",
+                healthDewormExternalListItem2: "Î§Î¬Ï€Î¹Î±: Î Î±ÏÎ­Ï‡Î¿Ï…Î½ Ï„ÏÎ¹Î¼Î·Î½Î¹Î±Î¯Î± Î® Î¼Î·Î½Î¹Î±Î¯Î± Ï€ÏÎ¿ÏƒÏ„Î±ÏƒÎ¯Î±.",
+                healthDewormExternalListItem3: "ÎšÎ¿Î»Î¬ÏÎ±: ÎœÏ€Î¿ÏÎ¿ÏÎ½ Î½Î± Ï†Î¿ÏÎµÎ¸Î¿ÏÎ½ Î±Ï€ÏŒ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± Ï„Ï‰Î½ 4 Î¼Î·Î½ÏŽÎ½ ÎºÎ±Î¹ Î¬Î½Ï‰, Ï€ÏÎ¿ÏƒÏ†Î­ÏÎ¿Î½Ï„Î±Ï‚ ÎºÎ¬Î»Ï…ÏˆÎ· Î³Î¹Î± ÏˆÏÎ»Î»Î¿Ï…Ï‚, Ï„ÏƒÎ¹Î¼Ï€Î¿ÏÏÎ¹Î± ÎºÎ±Î¹ ÏƒÎºÎ½Î¯Ï€Î±.",
+                healthDewormExternalP3: "Î£Ï…Î½Î´Ï…Î±ÏƒÎ¼Î¿Î¯: Î£Ï…Ï‡Î½Î¬ Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹Î¿ÏÎ½Ï„Î±Î¹ ÏƒÏ…Î½Î´Ï…Î±ÏƒÎ¼Î¿Î¯ Ï€ÏÎ¿ÏŠÏŒÎ½Ï„Ï‰Î½ (Ï€.Ï‡., Î±Î¼Ï€Î¿ÏÎ»Î±, ÎºÎ¿Î»Î¬ÏÎ¿ ÎºÎ±Î¹ ÏƒÏ€ÏÎ­Î¹ ÏƒÎ¹Ï„ÏÎ¿Î½Î­Î»Î±Ï‚) Î³Î¹Î± Ï„Î·Î½ ÎµÏ€Î¯Ï„ÎµÏ…Î¾Î· Ï„Î¿Ï… Î²Î­Î»Ï„Î¹ÏƒÏ„Î¿Ï… Î±Ï€Î¿Ï„ÎµÎ»Î­ÏƒÎ¼Î±Ï„Î¿Ï‚ ÏƒÏ„Î·Î½ Ï€ÏÎ¿ÏƒÏ„Î±ÏƒÎ¯Î± Ï„Î¿Ï… ÏƒÎºÏÎ»Î¿Ï….",
+                healthAccordionProblemsTitle: "Î£Ï…Ï‡Î½Î¬ Î ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± Î¥Î³ÎµÎ¯Î±Ï‚ & Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î±",
+                healthAccordionProblemsP1: "Î•Î¯Î½Î±Î¹ ÏƒÎ·Î¼Î±Î½Ï„Î¹ÎºÏŒ Î³Î¹Î± Ï„Î¿Ï…Ï‚ ÎºÎ·Î´ÎµÎ¼ÏŒÎ½ÎµÏ‚ Î½Î± Î±Î½Î±Î³Î½Ï‰ÏÎ¯Î¶Î¿Ï…Î½ Ï„Î± ÎºÎ¿Î¹Î½Î¬ ÏƒÎ·Î¼Î¬Î´Î¹Î± Î±ÏƒÎ¸Î­Î½ÎµÎ¹Î±Ï‚ Î³Î¹Î± Î¬Î¼ÎµÏƒÎ· ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Ï€Î±ÏÎ­Î¼Î²Î±ÏƒÎ·. Î›ÏŒÎ³Ï‰ Ï„Î·Ï‚ ÎµÏ…Î±Î»Ï‰Ï„ÏŒÏ„Î·Ï„Î¬Ï‚ Ï„Î¿Ï…Ï‚, Ï„Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± Î±Ï€Î±Î¹Ï„Î¿ÏÎ½ ÏƒÏ…Î½ÎµÏ‡Î® Ï€Î±ÏÎ±ÎºÎ¿Î»Î¿ÏÎ¸Î·ÏƒÎ· Î³Î¹Î± Î±Î½ÎµÏ€Î±Î¯ÏƒÎ¸Î·Ï„ÎµÏ‚ Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï…Ï‚. Î— Î¬Î¼ÎµÏƒÎ· Î±Î½Î±Î³Î½ÏŽÏÎ¹ÏƒÎ· Ï„Ï‰Î½ ÏƒÏ…Î¼Ï€Ï„Ï‰Î¼Î¬Ï„Ï‰Î½ ÎºÎ±Î¹ Î· ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î± Î¼Îµ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿ ÎµÎ¯Î½Î±Î¹ Ï…ÏˆÎ¯ÏƒÏ„Î·Ï‚ ÏƒÎ·Î¼Î±ÏƒÎ¯Î±Ï‚, ÎºÎ±Î¸ÏŽÏ‚ Î· Ï„Î±Ï‡ÎµÎ¯Î± ÎµÏ€Î¹Î´ÎµÎ¯Î½Ï‰ÏƒÎ· Ï„Î·Ï‚ Ï…Î³ÎµÎ¯Î±Ï‚ Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÏƒÏ…Î¼Î²ÎµÎ¯, ÎºÎ±Î¸Î¹ÏƒÏ„ÏŽÎ½Ï„Î±Ï‚ Ï„Î·Î½ Î­Î³ÎºÎ±Î¹ÏÎ· Ï€Î±ÏÎ­Î¼Î²Î±ÏƒÎ· ÏƒÏ‰Ï„Î®ÏÎ¹Î± Î³Î¹Î± Ï„Î· Î¶Ï‰Î® Ï„Î¿Ï…Ï‚.",
+                healthProblemsGeneralSymptomsTitle: "Î“ÎµÎ½Î¹ÎºÎ¬ Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Î‘ÏƒÎ¸Î­Î½ÎµÎ¹Î±Ï‚:",
+                healthProblemsGenSymptomEyes: "ÎœÎ¬Ï„Î¹Î±, Î£Ï„ÏŒÎ¼Î±, ÎœÏÏ„Î·: Î’Î®Ï‡Î±Ï‚, Ï†Ï„Î­ÏÎ½Î¹ÏƒÎ¼Î±, Î­Î½Ï„Î¿Î½Î¿ Î»Î±Ï‡Î¬Î½Î¹Î±ÏƒÎ¼Î±, Î´Ï…ÏƒÎºÎ¿Î»Î¯Î± ÏƒÏ„Î·Î½ Î±Î½Î±Ï€Î½Î¿Î®, Î¬ÏƒÏ‡Î·Î¼Î· Î±Î½Î±Ï€Î½Î¿Î®, Ï€Î¿Î»Î»Î¬ ÏƒÎ¬Î»Î¹Î±, Î¾Î·ÏÎ¬, Î¸Î¿Î»Î¬ Î® ÎºÏŒÎºÎºÎ¹Î½Î± Î¼Î¬Ï„Î¹Î±.",
+                healthProblemsGenSymptomBehavior: "Î£Ï…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬: ÎœÎµÎ¹Ï‰Î¼Î­Î½Î· Î´ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„Î±, Î¼Î¹ÎºÏÏŒÏ„ÎµÏÎ¿ ÎµÎ½Î´Î¹Î±Ï†Î­ÏÎ¿Î½ Î³Î¹Î± Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹, Ï€ÎµÏÎ¹ÏƒÏƒÏŒÏ„ÎµÏÎµÏ‚ ÏŽÏÎµÏ‚ ÏÏ€Î½Î¿Ï…, Î® Î¬Î»Î»ÎµÏ‚ Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ„Î· ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬.",
+                healthProblemsGenSymptomSkin: "Î”ÎµÏÎ¼Î±Ï„Î¹ÎºÎ­Ï‚ Î‘Î»Î»Î±Î³Î­Ï‚: ÎžÎ·ÏÏŒÏ„Î·Ï„Î±, Î±Î»Î»Î¿Î¹ÏŽÏƒÎµÎ¹Ï‚, ÎµÏÏ…Î¸ÏÏŒÏ„Î·Ï„Î±, Î±Ï€ÏŽÎ»ÎµÎ¹Î± Ï„ÏÎ¹Ï‡ÏŽÎ½, Ï†Î»Î¿Î¹ÏŽÎ´ÎµÏ‚ Î´Î­ÏÎ¼Î±, Î­Î½Ï„Î¿Î½Î¿Ï‚ ÎºÎ½Î·ÏƒÎ¼ÏŒÏ‚.",
+                healthProblemsGenSymptomDigestion: "ÎšÎ±Ï„Î±Î½Î¬Î»Ï‰ÏƒÎ· Î¤ÏÎ¿Ï†Î®Ï‚ ÎºÎ±Î¹ Î Î­ÏˆÎ·: ÎœÎµÎ¹Ï‰Î¼Î­Î½Î· ÏŒÏÎµÎ¾Î·, Î±Ï€ÏŽÎ»ÎµÎ¹Î± Î²Î¬ÏÎ¿Ï…Ï‚, ÏƒÏ„Î¿Î¼Î±Ï‡Î¹ÎºÎ­Ï‚ Î´Î¹Î±Ï„Î±ÏÎ±Ï‡Î­Ï‚, Ï€ÎµÏÎ¹Ï„Ï„ÏŽÎ¼Î±Ï„Î± Ï€Î¿Ï… Ï€ÎµÏÎ¹Î­Ï‡Î¿Ï…Î½ Î±Î¯Î¼Î±, Î²Î»Î­Î½Î½Î±, ÏƒÎºÎ¿Ï…Î»Î®ÎºÎ¹Î± Î® Î±Ï‡ÏŽÎ½ÎµÏ…Ï„ÎµÏ‚ Ï„ÏÎ¿Ï†Î­Ï‚, Ï…Ï€ÎµÏÎ²Î¿Î»Î¹ÎºÎ® ÎºÎ±Ï„Î±Î½Î¬Î»Ï‰ÏƒÎ· Î½ÎµÏÎ¿Ï Î® Ï…Ï€ÎµÏÎ²Î¿Î»Î¹ÎºÎ® Î¿ÏÏÎ·ÏƒÎ·.",
+                healthProblemsGenSymptomStiffness: "Î”Ï…ÏƒÎºÎ±Î¼ÏˆÎ¯Î± Î‘ÏÎ¸ÏÏŽÏƒÎµÏ‰Î½: Î”Ï…ÏƒÎºÎ¿Î»Î¯Î± ÏƒÏ„Î¿ ÏƒÎ®ÎºÏ‰Î¼Î± Î® ÏƒÏ„Î·Î½ Î±Î½Î¬Î²Î±ÏƒÎ· ÏƒÎºÎ±Î»Î¿Ï€Î±Ï„Î¹ÏŽÎ½.",
+                healthProblemsSpecificProblemsTitle: "Î•Î¹Î´Î¹ÎºÎ¬ Î ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î±:",
+                healthProblemsSpecDiarrhea: "Î”Î¹Î¬ÏÏÎ¿Î¹Î±: Î•Î¯Î½Î±Î¹ Î±ÏÎºÎµÏ„Î¬ ÏƒÏ…Î½Î·Î¸Î¹ÏƒÎ¼Î­Î½Î· ÏƒÏ„Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± ÎºÎ±Î¹ Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± ÎºÏ…Î¼Î±Î¯Î½ÎµÏ„Î±Î¹ Î±Ï€ÏŒ Î®Ï€Î¹Î± ÎµÏ€ÎµÎ¹ÏƒÏŒÎ´Î¹Î± Ï€Î¿Ï… Ï…Ï€Î¿Ï‡Ï‰ÏÎ¿ÏÎ½ Î³ÏÎ®Î³Î¿ÏÎ± Î­Ï‰Ï‚ ÏƒÎ¿Î²Î±ÏÎ¬ Î³Î±ÏƒÏ„ÏÎ¹ÎºÎ¬ Ï€ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î± Ï€Î¿Ï… Ï€ÏÎ¿ÎºÎ±Î»Î¿ÏÎ½Ï„Î±Î¹ Î±Ï€ÏŒ ÏƒÎ¿Î²Î±ÏÎ® Î±ÏƒÎ¸Î­Î½ÎµÎ¹Î± Î® Î±Ï€ÏŒÏ†ÏÎ±Î¾Î·, Î¼Îµ Ï€Î¹Î¸Î±Î½Î® Ï€Î±ÏÎ¿Ï…ÏƒÎ¯Î± Î±Î¯Î¼Î±Ï„Î¿Ï‚ Î® Î²Î»Î­Î½Î½Î±Ï‚ ÎºÎ±Î¹ Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·.",
+                healthProblemsSpecVomiting: "Î•Î¼ÎµÏ„ÏŒÏ‚: Î‘Ï€Î¿Ï„ÎµÎ»ÎµÎ¯ Î­Î½Î± ÎºÎ¿Î¹Î½ÏŒ Ï€ÏÏŒÎ²Î»Î·Î¼Î± Î¼Îµ Î´ÎµÎºÎ¬Î´ÎµÏ‚ Ï€Î¹Î¸Î±Î½Î­Ï‚ Î±Î¹Ï„Î¯ÎµÏ‚, ÏŒÏ€Ï‰Ï‚ Î»Î¿Î¹Î¼ÏŽÎ¾ÎµÎ¹Ï‚, ÎµÎ½Ï„ÎµÏÎ¹ÎºÎ¬ Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î±, Ï€Î±Î³ÎºÏÎµÎ±Ï„Î¯Ï„Î¹Î´Î±, Î½ÎµÏ†ÏÎ¹ÎºÎ® Î±Î½ÎµÏ€Î¬ÏÎºÎµÎ¹Î±, Î¸ÎµÏÎ¼Î¿Ï€Î»Î·Î¾Î¯Î±, Î¾Î­Î½Î¿ ÏƒÏŽÎ¼Î± ÏƒÏ„Î¿ ÏƒÏ„Î¿Î¼Î¬Ï‡Î¹-Î­Î½Ï„ÎµÏÎ¿ ÎºÎ±Î¹ Î´Î·Î»Î·Ï„Î·ÏÎ¯Î±ÏƒÎ·.",
+                healthProblemsSpecHypoglycemia: "Î¥Ï€Î¿Î³Î»Ï…ÎºÎ±Î¹Î¼Î¯Î±: Î§Î±Î¼Î·Î»Î¬ ÎµÏ€Î¯Ï€ÎµÎ´Î± Î³Î»Ï…ÎºÏŒÎ¶Î·Ï‚ ÏƒÏ„Î¿ Î±Î¯Î¼Î±, ÏƒÏ…Ï‡Î½ÏŒÏ„ÎµÏÎ± ÏƒÎµ Î¼Î¹ÎºÏÏŒÏƒÏ‰Î¼Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± Î® ÏƒÎµ Ï€ÎµÏÎ¯Ï€Ï„Ï‰ÏƒÎ· Î±ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î·Ï‚ ÏƒÎ¯Ï„Î¹ÏƒÎ·Ï‚. Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Î½Î¿ÏÎµÎ¾Î¯Î±, Î»Î®Î¸Î±ÏÎ³Î¿, Ï„ÏÏŒÎ¼Î¿ (Ï„ÏÎ­Î¼Î¿Ï…Î»Î¿), Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚ ÎºÎ±Î¹ ÏƒÏ€Î±ÏƒÎ¼Î¿ÏÏ‚. Î£Îµ Ï€ÎµÏÎ¯Ï€Ï„Ï‰ÏƒÎ· Ï…Ï€Î¿ÏˆÎ¯Î±Ï‚, ÏƒÏ…Î½Î¹ÏƒÏ„Î¬Ï„Î±Î¹ Î· Î¬Î¼ÎµÏƒÎ· ÎµÏ€Î¬Î»ÎµÎ¹ÏˆÎ· Î¼Îµ Î¼Î­Î»Î¹ ÏƒÏ„Î± Î¿ÏÎ»Î± Î® Î· Ï‡Î¿ÏÎ®Î³Î·ÏƒÎ· Î½ÎµÏÎ¿Ï Î¼Îµ Î¶Î¬Ï‡Î±ÏÎ·, ÎºÎ±Î¹ Î¬Î¼ÎµÏƒÎ· ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î± Î¼Îµ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÎ¿.",
+                healthProblemsSpecCoccidiosis: "ÎšÎ¿ÎºÎºÎ¹Î´Î¯Ï‰ÏƒÎ·: Î ÏÎ¿ÎºÎ±Î»ÎµÎ¯Ï„Î±Î¹ Î±Ï€ÏŒ Î­Î½Î± Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î¿ (ÎºÎ¿ÎºÎºÎ¯Î´Î¹Î±) ÎºÎ±Î¹ ÎµÎ¯Î½Î±Î¹ Î¼Î¹Î± Î±Ï€ÏŒ Ï„Î¹Ï‚ Ï€Î¹Î¿ ÏƒÏ…Ï‡Î½Î­Ï‚ Î±Î¹Ï„Î¯ÎµÏ‚ ÎµÏ€ÏŽÎ´Ï…Î½Î·Ï‚ ÎºÎ±Î¹ ÏƒÏ…Ï‡Î½Î¬ Î¸Î±Î½Î±Ï„Î·Ï†ÏŒÏÎ¿Ï… Î´Î¹Î¬ÏÏÎ¿Î¹Î±Ï‚ ÏƒÎµ Î½ÎµÎ±ÏÎ­Ï‚ Î·Î»Î¹ÎºÎ¯ÎµÏ‚. Î¤Î± ÏƒÏ…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ ÏƒÎ¿Î²Î±ÏÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Î»Î·Î¸Î±ÏÎ³Î¹ÎºÏŒÏ„Î·Ï„Î±, Î±Î½Î¿ÏÎµÎ¾Î¯Î± ÎºÎ±Î¹ Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·.",
+                healthProblemsSpecGiardia: "Giardia (Î›Î±Î¼Î²Î»Î¯Î±ÏƒÎ·): ÎˆÎ½Î± ÎºÎ¿Î¹Î½ÏŒ ÎµÎ½Ï„ÎµÏÎ¹ÎºÏŒ Ï€Î±ÏÎ¬ÏƒÎ¹Ï„Î¿. Î¤Î± ÏƒÏ…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î¼Î±Î»Î±ÎºÎ¬, Ï‡Î»Ï‰Î¼Î¬, Î´ÏÏƒÎ¿ÏƒÎ¼Î± ÎºÏŒÏ€ÏÎ±Î½Î±, Î±Ï…Î¾Î·Î¼Î­Î½Î· ÏƒÏ…Ï‡Î½ÏŒÏ„Î·Ï„Î± ÎºÎµÎ½ÏŽÏƒÎµÏ‰Î½, Î±Î­ÏÎ¹Î±, ÎºÎ¿Î¹Î»Î¹Î±ÎºÎ® Î´Ï…ÏƒÏ†Î¿ÏÎ¯Î±, Î¼ÎµÎ¹Ï‰Î¼Î­Î½Î· ÏŒÏÎµÎ¾Î· ÎºÎ±Î¹ Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·. ÎœÎµÏ„Î±Î´Î¯Î´ÎµÏ„Î±Î¹ Î¼Î­ÏƒÏ‰ Î¼Î¿Î»Ï…ÏƒÎ¼Î­Î½Î¿Ï… Î½ÎµÏÎ¿Ï Î® ÎºÎ¿Ï€ÏÎ¬Î½Ï‰Î½. Î— Î¸ÎµÏÎ±Ï€ÎµÎ¯Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½ÎµÎ¹ Ï†Î±Î¹Î½Î²ÎµÎ½Î´Î±Î¶ÏŒÎ»Î· ÎºÎ±Î¹/Î® Î¼ÎµÏ„ÏÎ¿Î½Î¹Î´Î±Î¶ÏŒÎ»Î·, ÏƒÎµ ÏƒÏ…Î½Î´Ï…Î±ÏƒÎ¼ÏŒ Î¼Îµ Î±Ï…ÏƒÏ„Î·ÏÎ® Ï…Î³Î¹ÎµÎ¹Î½Î®.",
+                healthProblemsSpecParvo: "Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚: Î•Î¾Î±Î¹ÏÎµÏ„Î¹ÎºÎ¬ Î¼ÎµÏ„Î±Î´Î¿Ï„Î¹ÎºÏŒÏ‚ ÎºÎ±Î¹ ÎµÏ€Î¹ÎºÎ¯Î½Î´Ï…Î½Î¿Ï‚, ÎµÎ¹Î´Î¹ÎºÎ¬ Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±. Î¤Î± ÏƒÏ…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ Î±Ï€ÏŽÎ»ÎµÎ¹Î± ÏŒÏÎµÎ¾Î·Ï‚, Î»Î®Î¸Î±ÏÎ³Î¿, ÎµÏ€Î¯Î¼Î¿Î½Î¿ ÎµÎ¼ÎµÏ„ÏŒ ÎºÎ±Î¹ Î±Î¹Î¼Î¿ÏÏÎ±Î³Î¹ÎºÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±. Î‘Ï€Î±Î¹Ï„ÎµÎ¯ Î¬Î¼ÎµÏƒÎ· ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Ï†ÏÎ¿Î½Ï„Î¯Î´Î±.",
+                healthProblemsTableSystem: "Î£ÏÏƒÏ„Î·Î¼Î±/Î ÏÏŒÎ²Î»Î·Î¼Î±",
+                healthProblemsTableSymptoms: "ÎšÎ¿Î¹Î½Î¬ Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î±",
+                healthProblemsRow1Cat: "Î“ÎµÎ½Î¹ÎºÎ¬ Î£Ï…Î¼Ï€Ï„ÏŽÎ¼Î±Ï„Î±<br>Î£Ï…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬",
+                healthProblemsRow1Sym: "Î›Î®Î¸Î±ÏÎ³Î¿Ï‚, Î¼ÎµÎ¹Ï‰Î¼Î­Î½Î· Î´ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„Î±, Î±Î´Î¹Î±Ï†Î¿ÏÎ¯Î±, Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ„Î¿Î½ ÏÏ€Î½Î¿",
+                healthProblemsRow2Cat: "Î‘Î½Î±Ï€Î½ÎµÏ…ÏƒÏ„Î¹ÎºÏŒ",
+                healthProblemsRow2Sym: "Î’Î®Ï‡Î±Ï‚, Ï†Ï„Î­ÏÎ½Î¹ÏƒÎ¼Î±, Î»Î±Ï‡Î¬Î½Î¹Î±ÏƒÎ¼Î±, Î´Ï…ÏƒÎºÎ¿Î»Î¯Î± ÏƒÏ„Î·Î½ Î±Î½Î±Ï€Î½Î¿Î®",
+                healthProblemsRow3Cat: "Î”Î­ÏÎ¼Î±/Î¤ÏÎ¯Ï‡Ï‰Î¼Î±",
+                healthProblemsRow3Sym: "ÎžÎ·ÏÏŒÏ„Î·Ï„Î±, ÎµÏÏ…Î¸ÏÏŒÏ„Î·Ï„Î±, ÎµÎ¾Î±Î½Î¸Î®Î¼Î±Ï„Î±, Ï„ÏÎ¹Ï‡ÏŒÏ€Ï„Ï‰ÏƒÎ·, Î­Î½Ï„Î¿Î½Î¿Ï‚ ÎºÎ½Î·ÏƒÎ¼ÏŒÏ‚",
+                healthProblemsRow4Cat: "Î ÎµÏ€Ï„Î¹ÎºÏŒ Î£ÏÏƒÏ„Î·Î¼Î±<br>Î”Î¹Î¬ÏÏÎ¿Î¹Î±",
+                healthProblemsRow4Sym: "Î¥Î´Î±ÏÎ®, Î¼Îµ Î±Î¯Î¼Î±/Î²Î»Î­Î½Î½Î±, Î±Ï…Î¾Î·Î¼Î­Î½Î· ÏƒÏ…Ï‡Î½ÏŒÏ„Î·Ï„Î±, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·",
+                healthProblemsRow5Cat: "Î•Î¼ÎµÏ„ÏŒÏ‚",
+                healthProblemsRow5Sym: "Î•Ï€Î¯Î¼Î¿Î½Î¿Ï‚, Î¼Îµ Î® Ï‡Ï‰ÏÎ¯Ï‚ Ï„ÏÎ¿Ï†Î®/Î±Î¯Î¼Î±",
+                healthProblemsRow6Cat: "ÎŒÏÎµÎ¾Î·/Î’Î¬ÏÎ¿Ï‚",
+                healthProblemsRow6Sym: "ÎœÎµÎ¹Ï‰Î¼Î­Î½Î· ÏŒÏÎµÎ¾Î·, Î±Î½Î¿ÏÎµÎ¾Î¯Î±, Î±Ï€ÏŽÎ»ÎµÎ¹Î± Î²Î¬ÏÎ¿Ï…Ï‚",
+                healthProblemsRow7Cat: "Î•Î¹Î´Î¹ÎºÎ¬ Î ÏÎ¿Î²Î»Î®Î¼Î±Ï„Î±<br>Î¥Ï€Î¿Î³Î»Ï…ÎºÎ±Î¹Î¼Î¯Î±",
+                healthProblemsRow7Sym: "Î¤ÏÎ­Î¼Î¿Ï…Î»Î¿, Î±Î´Ï…Î½Î±Î¼Î¯Î±, ÏƒÏ€Î±ÏƒÎ¼Î¿Î¯, Î±Î»Î»Î±Î³Î­Ï‚ ÏƒÏ…Î¼Ï€ÎµÏÎ¹Ï†Î¿ÏÎ¬Ï‚, Î»Î¹Ï€Î¿Î¸Ï…Î¼Î¯Î±",
+                healthProblemsRow8Cat: "Î Î±ÏÎ²Î¿ÏŠÏŒÏ‚",
+                healthProblemsRow8Sym: "Î•Î¼ÎµÏ„ÏŒÏ‚, Î±Î¹Î¼Î¿Î¼Î¿ÏÏÎ±Î³Î¹ÎºÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Î»Î®Î¸Î±ÏÎ³Î¿Ï‚, Ï€Ï…ÏÎµÏ„ÏŒÏ‚, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·",
+                healthProblemsRow9Cat: "ÎšÎ¿ÎºÎºÎ¹Î´Î¯Ï‰ÏƒÎ·",
+                healthProblemsRow9Sym: "Î£Î¿Î²Î±ÏÎ® Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Î»Î®Î¸Î±ÏÎ³Î¿Ï‚, Î±Î½Î¿ÏÎµÎ¾Î¯Î±, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·",
+                healthProblemsRow10Cat: "Giardia",
+                healthProblemsRow10Sym: "ÎœÎ±Î»Î±ÎºÎ¬, Î´ÏÏƒÎ¿ÏƒÎ¼Î± ÎºÏŒÏ€ÏÎ±Î½Î±, Î±Î­ÏÎ¹Î±, ÎºÎ¿Î¹Î»Î¹Î±ÎºÎ® Î´Ï…ÏƒÏ†Î¿ÏÎ¯Î±, Î±Ï†Ï…Î´Î¬Ï„Ï‰ÏƒÎ·",
+                healthAccordionProblemsP2: "Î•Î»Î±Ï†ÏÎ¹Î¬ ÎºÎ±Ï„Î¬Ï€Ï„Ï‰ÏƒÎ· Î® Î¿Î¯Î´Î·Î¼Î± ÏƒÏ„Î¿ ÏƒÎ·Î¼ÎµÎ¯Î¿ Ï„Î·Ï‚ Î­Î½ÎµÏƒÎ·Ï‚ ÎµÎ¯Î½Î±Î¹ Ï†Ï…ÏƒÎ¹Î¿Î»Î¿Î³Î¹ÎºÎ¬ ÎºÎ±Î¹ Ï…Ï€Î¿Ï‡Ï‰ÏÎ¿ÏÎ½.",
+                healthAITitle: "âœ¨ AI Î’Î¿Î·Î¸ÏŒÏ‚ Î•ÏÏ‰Ï„Î®ÏƒÎµÏ‰Î½ Î¥Î³ÎµÎ¯Î±Ï‚",
+                healthAIDescription: "ÎˆÏ‡ÎµÏ„Îµ Î¼Î¹Î± Î³ÎµÎ½Î¹ÎºÎ® ÎµÏÏŽÏ„Î·ÏƒÎ· Î³Î¹Î± Ï„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚ (Î¼Î· ÎµÏ€ÎµÎ¯Î³Î¿Ï…ÏƒÎ±); Î¡Ï‰Ï„Î®ÏƒÏ„Îµ Î¼Î±Ï‚!",
+                healthAIPlaceholder: "Î .Ï‡. Î“Î¹Î±Ï„Î¯ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¼Î¿Ï… Ï„ÏÏŽÎµÎ¹ Ï‡ÏŒÏÏ„Î¿; Î•Î¯Î½Î±Î¹ Ï†Ï…ÏƒÎ¹Î¿Î»Î¿Î³Î¹ÎºÏŒ Î½Î± ÎºÎ¿Î¹Î¼Î¬Ï„Î±Î¹ Ï„ÏŒÏƒÎ¿ Ï€Î¿Î»Ï;",
+                healthAIButtonText: "âœ¨ Î›Î®ÏˆÎ· Î Î»Î·ÏÎ¿Ï†Î¿ÏÎ¹ÏŽÎ½ (AI)",
+                healthAIDisclaimer: "Î£Î—ÎœÎ‘ÎÎ¤Î™ÎšÎŸ: Î‘Ï…Ï„Î­Ï‚ Î¿Î¹ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ ÎµÎ¯Î½Î±Î¹ Î³ÎµÎ½Î¹ÎºÎ­Ï‚ ÎºÎ±Î¹ Î”Î•Î Î±Î½Ï„Î¹ÎºÎ±Î¸Î¹ÏƒÏ„Î¿ÏÎ½ Ï„Î·Î½ ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® ÏƒÏ…Î¼Î²Î¿Ï…Î»Î®. Î“Î¹Î± Î¿Ï€Î¿Î¹Î¿Î´Î®Ï€Î¿Ï„Îµ Ï€ÏÏŒÎ²Î»Î·Î¼Î± Ï…Î³ÎµÎ¯Î±Ï‚, ÏƒÏ…Î¼Î²Î¿Ï…Î»ÎµÏ…Ï„ÎµÎ¯Ï„Îµ Î‘ÎœÎ•Î£Î‘ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ ÏƒÎ±Ï‚.",
+                healthAIError: "Î Î±ÏÎ¿Ï…ÏƒÎ¹Î¬ÏƒÏ„Î·ÎºÎµ ÏƒÏ†Î¬Î»Î¼Î± ÎºÎ±Ï„Î¬ Ï„Î·Î½ ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î¯Î± Î¼Îµ Ï„Î·Î½ AI Î³Î¹Î± Î¸Î­Î¼Î±Ï„Î± Ï…Î³ÎµÎ¯Î±Ï‚. Î Î±ÏÎ±ÎºÎ±Î»ÏŽ Î´Î¿ÎºÎ¹Î¼Î¬ÏƒÏ„Îµ Î¾Î±Î½Î¬ Î±ÏÎ³ÏŒÏ„ÎµÏÎ±.",
+
+                nutritionTitle: "IV. Î”Î¹Î±Ï„ÏÎ¿Ï†Î®: Î¤Î¿ Î˜ÎµÎ¼Î­Î»Î¹Î¿ Ï„Î·Ï‚ Î¥Î³ÎµÎ¯Î±Ï‚ ÎºÎ±Î¹ Î‘Î½Î¬Ï€Ï„Ï…Î¾Î·Ï‚",
+                nutritionIntro: "Î— ÏƒÏ‰ÏƒÏ„Î® Î´Î¹Î±Ï„ÏÎ¿Ï†Î® ÎµÎ¯Î½Î±Î¹ Î¸ÎµÎ¼ÎµÎ»Î¹ÏŽÎ´Î·Ï‚ Î³Î¹Î± Ï„Î·Î½ Î±Î½Î¬Ï€Ï„Ï…Î¾Î· ÎºÎ±Î¹ Ï„Î·Î½ ÎµÏ…Î·Î¼ÎµÏÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï ÏƒÎ±Ï‚. Î‘Ï…Ï„Î® Î· ÎµÎ½ÏŒÏ„Î·Ï„Î± ÎºÎ±Î»ÏÏ€Ï„ÎµÎ¹ Ï„Î·Î½ ÎµÏ€Î¹Î»Î¿Î³Î® Ï„Î·Ï‚ ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î·Ï‚ Ï„ÏÎ¿Ï†Î®Ï‚, Ï„Î¿ Ï€ÏÏŒÎ³ÏÎ±Î¼Î¼Î± ÏƒÎ¯Ï„Î¹ÏƒÎ·Ï‚ Î±Î½Î¬Î»Î¿Î³Î± Î¼Îµ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î±, ÎºÎ±Î¹ Ï„Î¹Ï‚ Ï„ÏÎ¿Ï†Î­Ï‚ Ï€Î¿Ï… Ï€ÏÎ­Ï€ÎµÎ¹ Î¿Ï€Ï‰ÏƒÎ´Î®Ï€Î¿Ï„Îµ Î½Î± Î±Ï€Î¿Ï†ÎµÏÎ³Î¿Î½Ï„Î±Î¹ Î³Î¹Î± Ï„Î·Î½ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î± Ï„Î¿Ï… Î¼Î¹ÎºÏÎ¿Ï ÏƒÎ±Ï‚ Ï†Î¯Î»Î¿Ï….",
+                nutritionAccordionFood: "Î•Ï€Î¹Î»Î¿Î³Î® ÎšÎ±Ï„Î¬Î»Î»Î·Î»Î·Ï‚ Î¤ÏÎ¿Ï†Î®Ï‚ ÎºÎ±Î¹ Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î£Î¯Ï„Î¹ÏƒÎ·Ï‚",
+                nutritionFoodSelectP1: "Î•Ï€Î¹Î»Î­Î¾Ï„Îµ Ï…ÏˆÎ·Î»Î®Ï‚ Ï€Î¿Î¹ÏŒÏ„Î·Ï„Î±Ï‚, ÎµÏ€ÏŽÎ½Ï…Î¼Î· Ï„ÏÎ¿Ï†Î® ÎµÎ¹Î´Î¹ÎºÎ¬ ÏƒÏ‡ÎµÎ´Î¹Î±ÏƒÎ¼Î­Î½Î· Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î±. Î“Î¹Î± Î¼ÎµÎ³Î±Î»ÏŒÏƒÏ‰Î¼ÎµÏ‚ Ï†Ï…Î»Î­Ï‚, ÏƒÏ…Î½Î¹ÏƒÏ„Î¬Ï„Î±Î¹ Î· ÎµÏ€Î¹Î»Î¿Î³Î® Ï„ÏÎ¿Ï†ÏŽÎ½ ÎµÎ¹Î´Î¹ÎºÎ¬ Î´Î¹Î±Î¼Î¿ÏÏ†Ï‰Î¼Î­Î½Ï‰Î½ Î³Î¹Î± Ï„Î¹Ï‚ Î±Î½Î¬Î³ÎºÎµÏ‚ Ï„Î¿Ï…Ï‚. ÎŸÎ¹ Ï„ÏÎ¿Ï†Î­Ï‚ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÎ¯Î½Î±Î¹ Ï€Î»Î¿ÏÏƒÎ¹ÎµÏ‚ ÏƒÎµ Î¸ÏÎµÏ€Ï„Î¹ÎºÎ¬ ÏƒÏ…ÏƒÏ„Î±Ï„Î¹ÎºÎ¬, ÏŒÏ€Ï‰Ï‚ Ï€ÏÏ‰Ï„ÎµÎÎ½ÎµÏ‚ (Î³Î¹Î± Ï„Î·Î½ Î±Î½Î¬Ï€Ï„Ï…Î¾Î· Î¼Ï…ÏŽÎ½ ÎºÎ±Î¹ Î¹ÏƒÏ„ÏŽÎ½), Î»Î¯Ï€Î· (Î³Î¹Î± ÎµÎ½Î­ÏÎ³ÎµÎ¹Î± ÎºÎ±Î¹ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… Î´Î­ÏÎ¼Î±Ï„Î¿Ï‚), Ï…Î´Î±Ï„Î¬Î½Î¸ÏÎ±ÎºÎµÏ‚ (Î³Î¹Î± ÎµÎ½Î­ÏÎ³ÎµÎ¹Î±), Î²Î¹Ï„Î±Î¼Î¯Î½ÎµÏ‚ ÎºÎ±Î¹ Î¼Î­Ï„Î±Î»Î»Î± (ÏŒÏ€Ï‰Ï‚ Î±ÏƒÎ²Î­ÏƒÏ„Î¹Î¿, ÏƒÎ¯Î´Î·ÏÎ¿Ï‚, ÏˆÎµÏ…Î´Î¬ÏÎ³Ï…ÏÎ¿Ï‚).",
+                nutritionFoodSelectP2: "Î— Î´Î¹Î±Ï„ÏÎ¿Ï†Î® Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï Î´ÎµÎ½ ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î±Ï„Î¹ÎºÎ®, Î±Î»Î»Î¬ ÎµÎ¾ÎµÎ»Î¯ÏƒÏƒÎµÏ„Î±Î¹ ÏÎ±Î³Î´Î±Î¯Î± Î¼Îµ Ï„Î·Î½ Î·Î»Î¹ÎºÎ¯Î± ÎºÎ±Î¹ Ï„Î·Î½ Î±Î½Î¬Ï€Ï„Ï…Î¾Î·. Î— Ï€Î±ÏÎ¿Ï‡Î® Ï„Î·Ï‚ ÏƒÏ‰ÏƒÏ„Î®Ï‚ Î¹ÏƒÎ¿ÏÏÎ¿Ï€Î¯Î±Ï‚ Î¸ÏÎµÏ€Ï„Î¹ÎºÏŽÎ½ ÏƒÏ…ÏƒÏ„Î±Ï„Î¹ÎºÏŽÎ½ ÏƒÎµ ÎºÎ¬Î¸Îµ ÏƒÏ„Î¬Î´Î¹Î¿ ÎµÎ¯Î½Î±Î¹ ÎºÏÎ¯ÏƒÎ¹Î¼Î· Î³Î¹Î± Ï„Î· Î²Î­Î»Ï„Î¹ÏƒÏ„Î· Î±Î½Î¬Ï€Ï„Ï…Î¾Î· ÎºÎ±Î¹ Ï„Î·Î½ Ï€ÏÏŒÎ»Î·ÏˆÎ· ÎµÎ»Î»ÎµÎ¯ÏˆÎµÏ‰Î½ Î® Ï…Ï€ÎµÏÎ²Î¿Î»ÏŽÎ½ Ï€Î¿Ï… Î¸Î± Î¼Ï€Î¿ÏÎ¿ÏÏƒÎ±Î½ Î½Î± ÎµÏ€Î·ÏÎµÎ¬ÏƒÎ¿Ï…Î½ Ï„Î· Î¼Î±ÎºÏÎ¿Ï€ÏÏŒÎ¸ÎµÏƒÎ¼Î· Ï…Î³ÎµÎ¯Î±.",
+                nutritionFoodSelectP3: "Î•Î¬Î½ Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ ÎµÎ¯Î½Î±Î¹ Ï€Î¿Î»Ï Î¼Î¹ÎºÏÏŒ, Î· Î´Î¹Î±Î´Î¹ÎºÎ±ÏƒÎ¯Î± Ï„Î¿Ï… Î±Ï€Î¿Î³Î±Î»Î±ÎºÏ„Î¹ÏƒÎ¼Î¿Ï Î¾ÎµÎºÎ¹Î½Î¬ Î³ÏÏÏ‰ ÏƒÏ„Î¹Ï‚ 3-4 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚ ÎºÎ±Î¹ Î´Î¹Î±ÏÎºÎµÎ¯ Î­Ï‰Ï‚ Ï„Î¹Ï‚ 8 ÎµÎ²Î´Î¿Î¼Î¬Î´ÎµÏ‚. Î‘ÏÏ‡Î¹ÎºÎ¬, Î· ÏƒÏ„ÎµÏÎµÎ¬ Ï„ÏÎ¿Ï†Î® Î¼Ï€Î¿ÏÎµÎ¯ Î½Î± Î±Î½Î±ÎºÎ±Ï„ÎµÏ…Ï„ÎµÎ¯ Î¼Îµ Î½ÎµÏÏŒ Î® Î³Î¬Î»Î± Î³Î¹Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹Î± Î³Î¹Î± Î½Î± Î¼Î±Î»Î±ÎºÏŽÏƒÎµÎ¹ ÎºÎ±Î¹ Î½Î± Î³Î¯Î½ÎµÎ¹ Ï€Î¹Î¿ ÎµÏÏ€ÎµÏ€Ï„Î·.",
+                nutritionFeedingScheduleTitle: "Î ÏÏŒÎ³ÏÎ±Î¼Î¼Î± Î£Î¯Ï„Î¹ÏƒÎ·Ï‚:",
+                nutritionFeedList1: "8-12 ÎµÎ²Î´Î¿Î¼Î¬Î´Ï‰Î½: 4 Î³ÎµÏÎ¼Î±Ï„Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ±.",
+                nutritionFeedList2: "3-6 Î¼Î·Î½ÏŽÎ½: 3 Î³ÎµÏÎ¼Î±Ï„Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ±.",
+                nutritionFeedList3: "6 Î¼Î·Î½ÏŽÎ½ - 1 Î­Ï„Î¿Ï…Ï‚: 2 Î³ÎµÏÎ¼Î±Ï„Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ±.",
+                nutritionFeedList4: "ÎœÎµÏ„Î¬ Ï„Î¿Î½ 1Î¿ Ï‡ÏÏŒÎ½Î¿: Î£Ï…Î½Î®Î¸Ï‰Ï‚ 1 Î³ÎµÏÎ¼Î± Ï„Î·Î½ Î·Î¼Î­ÏÎ± ÎµÎ¯Î½Î±Î¹ ÎµÏ€Î±ÏÎºÎ­Ï‚, Î±Î½ ÎºÎ±Î¹ Î³Î¹Î± Î¼ÎµÎ³Î±Î»ÏÏ„ÎµÏÎµÏ‚ Ï†Ï…Î»Î­Ï‚ Î® ÏƒÎºÏÎ»Î¿Ï…Ï‚ ÎµÏ€Î¹ÏÏÎµÏ€ÎµÎ¯Ï‚ ÏƒÎµ Ï†Î¿ÏÏƒÎºÏ‰Î¼Î±, 2 Î¼Î¹ÎºÏÏŒÏ„ÎµÏÎ± Î³ÎµÏÎ¼Î±Ï„Î± ÎµÎ¯Î½Î±Î¹ Ï€ÏÎ¿Ï„Î¹Î¼ÏŒÏ„ÎµÏÎ±.",
+                nutritionWaterBowls: "Î•Î¯Î½Î±Î¹ Î±Ï€Î±ÏÎ±Î¯Ï„Î·Ï„Î¿ Î½Î± Ï…Ï€Î¬ÏÏ‡ÎµÎ¹ Ï€Î¬Î½Ï„Î± Î´Î¹Î±Î¸Î­ÏƒÎ¹Î¼Î¿ ÎºÎ±Î¸Î±ÏÏŒ, Ï†ÏÎ­ÏƒÎºÎ¿ Î½ÎµÏÏŒ. Î¤Î± Î¼Ï€Î¿Î» Ï†Î±Î³Î·Ï„Î¿Ï ÎºÎ±Î¹ Î½ÎµÏÎ¿Ï Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± Ï€Î»Î­Î½Î¿Î½Ï„Î±Î¹ ÏƒÏ…Ï‡Î½Î¬ Î³Î¹Î± Ï„Î· Î´Î¹Î±Ï„Î®ÏÎ·ÏƒÎ· Ï„Î·Ï‚ Ï…Î³Î¹ÎµÎ¹Î½Î®Ï‚.",
+                nutritionAccordionDangerousFoodTitle: "Î•Ï€Î¹ÎºÎ¯Î½Î´Ï…Î½ÎµÏ‚ Î¤ÏÎ¿Ï†Î­Ï‚ Ï€ÏÎ¿Ï‚ Î‘Ï€Î¿Ï†Ï…Î³Î®",
+                nutritionAccordionDangerousFoodContent: "Î Î¿Î»Î»Î­Ï‚ Î±Î½Î¸ÏÏŽÏ€Î¹Î½ÎµÏ‚ Ï„ÏÎ¿Ï†Î­Ï‚ ÎµÎ¯Î½Î±Î¹ Ï„Î¿Î¾Î¹ÎºÎ­Ï‚ Î³Î¹Î± Ï„Î¿Ï…Ï‚ ÏƒÎºÏÎ»Î¿Ï…Ï‚. Î Î±ÏÎ±ÎºÎ¬Ï„Ï‰ Î±ÎºÎ¿Î»Î¿Ï…Î¸ÎµÎ¯ Î­Î½Î±Ï‚ ÏƒÏ…Î½Î¿Ï€Ï„Î¹ÎºÏŒÏ‚ Ï€Î¯Î½Î±ÎºÎ±Ï‚ Î¼Îµ Î¼ÎµÏÎ¹ÎºÎ­Ï‚ Î±Ï€ÏŒ Ï„Î¹Ï‚ Ï€Î¹Î¿ ÎºÎ¿Î¹Î½Î­Ï‚. <br><strong>Î Î¬Î½Ï„Î± ÏƒÏ…Î¼Î²Î¿Ï…Î»ÎµÏ…Ï„ÎµÎ¯Ï„Îµ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ ÏƒÎ±Ï‚ Î±Î½ Î´ÎµÎ½ ÎµÎ¯ÏƒÏ„Îµ ÏƒÎ¯Î³Î¿Ï…ÏÎ¿Î¹ Î³Î¹Î± Î¼Î¹Î± Ï„ÏÎ¿Ï†Î®.</strong>",
+                dangerousFoodsTableHtml: `
+                    <h4 class="font-semibold mt-4 mb-2">Î Î¯Î½Î±ÎºÎ±Ï‚ Î•Ï€Î¹ÎºÎ¯Î½Î´Ï…Î½Ï‰Î½ Î¤ÏÎ¿Ï†ÏŽÎ½:</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-300 table-interactive text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="text-left py-2 px-3 border-b">Î¤ÏÎ¿Ï†Î®</th>
+                                    <th class="text-left py-2 px-3 border-b">Î Î¹Î¸Î±Î½Î­Ï‚ Î•Ï€Î¹Ï€Ï„ÏŽÏƒÎµÎ¹Ï‚</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="py-2 px-3 border-b">Î£Î¿ÎºÎ¿Î»Î¬Ï„Î± (ÎµÎ¹Î´Î¹ÎºÎ¬ Î¼Î±ÏÏÎ·)</td><td class="py-2 px-3 border-b">Î•Î¼ÎµÏ„ÏŒÏ‚, Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Ï„ÏÏŒÎ¼Î¿Ï‚, Î±ÏÏÏ…Î¸Î¼Î¯ÎµÏ‚, ÏƒÏ€Î±ÏƒÎ¼Î¿Î¯, Î¸Î¬Î½Î±Ï„Î¿Ï‚</td></tr>
+                                <tr><td class="py-2 px-3 border-b">ÎžÏ…Î»Î¹Ï„ÏŒÎ»Î· (Î³Î»Ï…ÎºÎ±Î½Ï„Î¹ÎºÏŒ)</td><td class="py-2 px-3 border-b">Î¥Ï€Î¿Î³Î»Ï…ÎºÎ±Î¹Î¼Î¯Î±, Î·Ï€Î±Ï„Î¹ÎºÎ® Î±Î½ÎµÏ€Î¬ÏÎºÎµÎ¹Î±, ÏƒÏ€Î±ÏƒÎ¼Î¿Î¯</td></tr>
+                                <tr><td class="py-2 px-3 border-b">ÎšÏÎµÎ¼Î¼ÏÎ´Î¹Î± & Î£ÎºÏŒÏÎ´Î¿</td><td class="py-2 px-3 border-b">Î’Î»Î¬Î²Î· ÎµÏÏ…Î¸ÏÏŽÎ½ Î±Î¹Î¼Î¿ÏƒÏ†Î±Î¹ÏÎ¯Ï‰Î½ (Î±Î¹Î¼Î¿Î»Ï…Ï„Î¹ÎºÎ® Î±Î½Î±Î¹Î¼Î¯Î±), Î³Î±ÏƒÏ„ÏÎµÎ½Ï„ÎµÏÎ¹ÎºÎ­Ï‚ Î´Î¹Î±Ï„Î±ÏÎ±Ï‡Î­Ï‚</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Î£Ï„Î±Ï†ÏÎ»Î¹Î± & Î£Ï„Î±Ï†Î¯Î´ÎµÏ‚</td><td class="py-2 px-3 border-b">ÎÎµÏ†ÏÎ¹ÎºÎ® Î±Î½ÎµÏ€Î¬ÏÎºÎµÎ¹Î±</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Î‘Î»ÎºÎ¿ÏŒÎ»</td><td class="py-2 px-3 border-b">Î•Î¼ÎµÏ„ÏŒÏ‚, Î´Î¹Î¬ÏÏÎ¿Î¹Î±, Î­Î»Î»ÎµÎ¹ÏˆÎ· ÏƒÏ…Î½Ï„Î¿Î½Î¹ÏƒÎ¼Î¿Ï, ÎºÎ±Ï„Î±ÏƒÏ„Î¿Î»Î® ÎšÎÎ£, Î´Ï…ÏƒÎºÎ¿Î»Î¯Î± Î±Î½Î±Ï€Î½Î¿Î®Ï‚, Î¸Î¬Î½Î±Ï„Î¿Ï‚</td></tr>
+                                <tr><td class="py-2 px-3 border-b">ÎšÎ±Ï†ÎµÎÎ½Î·</td><td class="py-2 px-3 border-b">Î¥Ï€ÎµÏÎ´Î¹Î­Î³ÎµÏÏƒÎ·, Î³ÏÎ®Î³Î¿ÏÎ¿Ï‚ ÎºÎ±ÏÎ´Î¹Î±ÎºÏŒÏ‚ Ï€Î±Î»Î¼ÏŒÏ‚, Ï„ÏÏŒÎ¼Î¿Ï‚, ÏƒÏ€Î±ÏƒÎ¼Î¿Î¯</td></tr>
+                                <tr><td class="py-2 px-3 border-b">ÎœÎ±Î³ÎµÎ¹ÏÎµÎ¼Î­Î½Î± ÎšÏŒÎºÎ±Î»Î±</td><td class="py-2 px-3 border-b">ÎšÎ¯Î½Î´Ï…Î½Î¿Ï‚ Ï€Î½Î¹Î³Î¼Î¿Ï, ÎµÏƒÏ‰Ï„ÎµÏÎ¹ÎºÎ¿Î¯ Ï„ÏÎ±Ï…Î¼Î±Ï„Î¹ÏƒÎ¼Î¿Î¯, ÎµÎ½Ï„ÎµÏÎ¹ÎºÎ® Î±Ï€ÏŒÏ†ÏÎ±Î¾Î·</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Î‘Î²Î¿ÎºÎ¬Î½Ï„Î¿ (Ï†Î»Î¿Î¹ÏŒÏ‚, ÎºÎ¿Ï…ÎºÎ¿ÏÏ„ÏƒÎ¹)</td><td class="py-2 px-3 border-b">Î•Î¼ÎµÏ„ÏŒÏ‚, Î´Î¹Î¬ÏÏÎ¿Î¹Î± (Î»ÏŒÎ³Ï‰ Ï€ÎµÏÏƒÎ¯Î½Î·Ï‚)</td></tr>
+                                <tr><td class="py-2 px-3 border-b">ÎšÎ±ÏÏÎ´Î¹Î± ÎœÎ±ÎºÎ±Î½Ï„Î¬Î¼Î¹Î±</td><td class="py-2 px-3 border-b">Î‘Î´Ï…Î½Î±Î¼Î¯Î±, ÎµÎ¼ÎµÏ„ÏŒÏ‚, Ï„ÏÏŒÎ¼Î¿Ï‚, Ï…Ï€ÎµÏÎ¸ÎµÏÎ¼Î¯Î±</td></tr>
+                                <tr><td class="py-2 px-3 border-b">Î“Î±Î»Î±ÎºÏ„Î¿ÎºÎ¿Î¼Î¹ÎºÎ¬ (Î¼ÎµÎ³Î¬Î»ÎµÏ‚ Ï€Î¿ÏƒÏŒÏ„Î·Ï„ÎµÏ‚/Î´Ï…ÏƒÎ±Î½ÎµÎ¾Î¯Î±)</td><td class="py-2 px-3 border-b">Î ÎµÏ€Ï„Î¹ÎºÎ­Ï‚ Î´Î¹Î±Ï„Î±ÏÎ±Ï‡Î­Ï‚, Î´Î¹Î¬ÏÏÎ¿Î¹Î±</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `,
+                nutritionAISuggestionTitle: "âœ¨ AI Meal & Treat Advisor",
+                nutritionAIDescription: "Tell us a bit about your puppy for personalized suggestions!",
+                nutritionAIAgeLabel: "Puppy Age:",
+                nutritionAIAgeUnder3: "< 3 months",
+                nutritionAIAge3_6: "3-6 months",
+                nutritionAIAge6_12: "6-12 months",
+                nutritionAIAgeOver12: "> 1 year",
+                nutritionAISuggestionTypeLabel: "Suggestion Type:",
+                nutritionAISuggestionMeal: "Homemade Meal Idea",
+                nutritionAISuggestionTreat: "Healthy Treat Idea",
+                nutritionAIPreferencesLabel: "Allergies / Preferences / Notes (optional):",
+                nutritionAIPreferencesPlaceholder: "E.g., chicken allergy, prefers fish...",
+                nutritionAIButtonText: "âœ¨ Get Nutrition Suggestions (AI)",
+                nutritionAIDisclaimer: "Suggestions are general. Always consult your vet for your puppy's specific dietary needs.",
+                nutritionAIError: "An error occurred while contacting the AI for nutrition suggestions. Please try again later.",
+
+                exerciseTitle: "V. Exercise and Mental Stimulation",
+                exerciseIntro: "Exercise and mental stimulation are vital for your puppy's healthy development and happiness. A puppy that gets enough exercise and mental engagement is less likely to develop behavioral problems.",
+                exerciseNeedsTitle: "Exercise Needs",
+                exerciseNeedsPuppies: "Puppies: Careful exercise to protect developing joints. Rule of thumb: 5 minutes of exercise per month of age, twice a day. E.g., a 3-month-old puppy needs about 15 minutes of exercise twice a day. Avoid running on hard surfaces and too much jumping.",
+                exerciseNeedsAdults: "Adult Dogs (Indicative):",
+                exerciseNeedsAdultHigh: "High-energy (e.g., Border Collie, Jack Russell): 1.5-2+ hours of vigorous exercise (running, playing).",
+                exerciseNeedsAdultMed: "Medium-energy (e.g., Labrador, Beagle): 1-1.5 hours of moderate exercise (brisk walking, playing).",
+                exerciseNeedsAdultLow: "Low-energy (e.g., Pug, Basset Hound): 30 minutes - 1 hour of mild exercise (walking).",
+                exerciseNeedsSeniors: "Senior Dogs: Exercise needs decrease but remain important. Short, gentle walks several times a day to maintain mobility and mental health. Adjust to their endurance.",
+                exerciseDogTypeLabel: "Select dog type for exercise suggestions:",
+                dogTypePuppy: "Puppy (<1 year)", dogTypeAdultLow: "Adult - Low Energy", dogTypeAdultMedium: "Adult - Medium Energy", dogTypeAdultHigh: "Adult - High Energy", dogTypeSenior: "Senior Dog",
+                exerciseDefaultReco: "Select to see suggestions.",
+                exercisePlayTitle: "Play and Activities for Physical and Mental Outlet âœ¨",
+                exercisePlayContent: "Mental stimulation is just as important as physical. Try: interactive toys (e.g., hidden treats), training games (learning new commands), nose work games (scent detection), and safe chew toys. Rotating toys keeps their interest alive.",
+                exerciseAISuggestionTitle: "âœ¨ AI Game/Activity Suggestions",
+                exerciseAIDescription: "Tell us about your puppy and we'll suggest some ideas!",
+                exerciseAIAgeLabel: "Puppy Age:",
+                exerciseAIAge2_4: "2-4 months",
+                exerciseAIAge5_8: "5-8 months",
+                exerciseAIAge9_12: "9-12 months",
+                exerciseAIAgeOver12: "Over 1 year",
+                exerciseAIActivityTypeLabel: "Activity Focus:",
+                exerciseAIActivityMental: "Mental Stimulation",
+                exerciseAIActivityGentle: "Gentle Physical Exercise",
+                exerciseAIActivityActive: "Active Physical Exercise",
+                exerciseAIActivityAny: "Any",
+                exerciseAITimeLabel: "Available Time:",
+                exerciseAITime10_15: "10-15 minutes",
+                exerciseAITime20_30: "20-30 minutes",
+                exerciseAITime30plus: "30+ minutes",
+                exerciseAIButtonText: "âœ¨ Get Suggestions (AI)",
+                exerciseAIError: "An error occurred while contacting the AI for exercise suggestions. Please try again later.",
+
+
+                trainingTitle: "VI. Basic Training and Behavior Management",
+                trainingIntro: "As a dog trainer, I emphasize that training is the cornerstone of a harmonious coexistence. Start early with positive reinforcement (treats, praise). Basic commands like 'come', 'sit', 'stay', 'down' are fundamental. Toilet training requires patience and consistency. Preventing unwanted behaviors (chewing, barking) is easier than correcting them. Consider professional help if you face difficulties.",
+                trainingAITitle: "âœ¨ AI Training Assistant",
+                trainingAIDescription: "Are you facing a specific challenge in training your puppy? Describe it below to get personalized advice.",
+                trainingAIPlaceholder: "E.g., 'My puppy jumps on people', 'Doesn't come when called'...",
+                trainingAIButtonText: "âœ¨ Get Training Advice (AI)",
+                trainingAIDisclaimer: "The advice provided is for general guidance. For serious behavioral problems, consult a professional trainer.",
+                trainingAIError: "An error occurred while contacting the AI for training advice. Please try again later.",
+
+
+                firstAidSecTitle: "\"What to do if...\" / First Aid âœ¨",
+                firstAidSecDesc: "Describe a sudden situation or symptom that worries you (e.g., 'puppy ate chocolate', 'puppy is suddenly limping').",
+                firstAidPlaceholder: "Describe the situation here...",
+                firstAidButtonText: "âœ¨ Get First Aid Advice (AI)",
+                firstAidWarningTitle: "Important Warning!",
+                firstAidWarningContent: "The following information is general advice and DOES NOT replace professional veterinary diagnosis and treatment. In any case where you are concerned about your puppy's health, contact your veterinarian or an emergency clinic IMMEDIATELY.",
+                firstAidAIError: "An error occurred while contacting the AI. Please try again later.",
+
+
+                storiesSecTitle: "Creating \"Socialization Stories\" / Positive Experiences âœ¨",
+                storiesSecDesc: "Enter a socialization scenario (e.g., 'first meeting with another dog', 'visit to a noisy place', 'meeting children') to get advice on how to handle it positively and safely.",
+                storiesPlaceholder: "Describe the socialization scenario here...",
+                storiesButtonText: "âœ¨ Get Socialization Tips (AI)",
+                storiesDisclaimer: "Proper socialization is key to a well-balanced dog. The following tips are general suggestions.",
+                socializationAIError: "An error occurred while contacting the AI. Please try again later.",
+
+                longtermTitle: "VII. Long-term Guardian Responsibilities",
+                longtermIntro: "Caring for a dog is a lifelong commitment (10-15+ years). It includes ongoing veterinary care (annual check-ups, vaccinations), adjusting diet and exercise as they age, managing behavioral changes, and financial responsibility for food, healthcare, and unexpected expenses. Love, patience, and consistency are essential throughout their life.",
+
+                conclusionTitle: "Conclusion: The Reward of Responsible Care",
+                conclusionContent: "Adopting a puppy is a commitment that brings immense joy and companionship. With proper preparation, knowledge, and dedication, you will build a strong bond with your new friend, offering them a healthy, happy, and love-filled life. This guide is a starting point. Continue to learn, observe your puppy, and adapt your care to their needs. The reward will be a faithful companion for many years.",
+            }
+        };
+
+        // Global variable declarations
+        let langElButton;
+        let langEnButton;
+        let feedingChart; // Keep track of the chart instance
+        let currentUpdateFunction = null; // For exercise recommendation event listener
+
+        // Helper function for translations with fallback
+        function getTranslation(lang, key) {
+            return translations[lang] && translations[lang][key]
+                ? translations[lang][key]
+                : translations['el'][key] || key; // Fallback to Greek, then key itself
+        }
+
+        // --- Gemini API Call Helper ---
+        async function callGeminiAPI(prompt, outputElement, loadingElement, buttonElement, errorKey) {
+            const currentLang = localStorage.getItem('language') || 'el';
+            loadingElement.classList.remove('hidden');
+            loadingElement.textContent = getTranslation(currentLang, 'loadingMessage');
+            outputElement.classList.add('hidden');
+            outputElement.textContent = ''; // Clear previous content
+            if (buttonElement) buttonElement.disabled = true;
+
+            const apiKey = "AIzaSyC7751PxaP2XWKees2VCSqRINztqrsYEHs"; // Ensure this is your actual key for testing
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+            
+            const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = { contents: chatHistory };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.textContent = text; 
+                } else {
+                    console.error('Unexpected API response structure:', result);
+                    outputElement.textContent = getTranslation(currentLang, errorKey) + ' (No content found)';
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                outputElement.textContent = getTranslation(currentLang, errorKey) + ` (${error.message})`;
+            } finally {
+                loadingElement.classList.add('hidden');
+                outputElement.classList.remove('hidden');
+                 if (buttonElement) buttonElement.disabled = false;
+            }
+        }
+
+
+        function switchLanguage(lang) {
+            try {
+                localStorage.setItem('language', lang);
+                document.documentElement.lang = lang;
+
+                if (langElButton && langEnButton) {
+                    if (lang === 'el') {
+                        langElButton.classList.add('active');
+                        langEnButton.classList.remove('active');
+                    } else {
+                        langEnButton.classList.add('active');
+                        langElButton.classList.remove('active');
+                    }
+                }
+
+                document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                    const key = element.getAttribute('data-i18n-key');
+                    const translation = getTranslation(lang, key);
+
+                    if (translation) {
+                        if (element.hasAttribute('data-i18n-target-placeholder')) {
+                            element.placeholder = translation;
+                        } else if (element.hasAttribute('data-i18n-target-alt')) {
+                            element.alt = translation;
+                        } else {
+                            if (key === "dangerousFoodsTableHtml" && typeof translation === 'string' && translation.trim().startsWith('<')) {
+                                element.innerHTML = translation;
+                            } else {
+                                element.textContent = translation;
+                            }
+                        }
+                    } else {
+                        console.warn('Translation key "' + key + '" not found for language "' + lang + '".');
+                    }
+                });
+                if (typeof initializeFeedingChart === 'function') initializeFeedingChart(lang);
+                if (typeof initializeExerciseReco === 'function') initializeExerciseReco(lang);
+
+            } catch (error) {
+                console.error('Error switching language:', error);
+            }
+        }
+
+        function initializeTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            if (tabButtons.length === 0 && tabPanes.length === 0) {
+                return;
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const targetTab = button.dataset.tab;
+                    tabPanes.forEach(pane => {
+                        if (pane.id === targetTab) {
+                            pane.classList.remove('hidden');
+                            pane.classList.add('active');
+                        } else {
+                            pane.classList.add('hidden');
+                            pane.classList.remove('active');
+                        }
+                    });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        }
+
+        function initializeAccordions() {
+            const accordions = document.querySelectorAll('.accordion');
+            if (accordions.length === 0) return;
+            accordions.forEach(accordion => {
+                const button = accordion.querySelector('.accordion-button');
+                const content = accordion.querySelector('.accordion-content');
+                if (button && content) {
+                    button.addEventListener('click', () => {
+                        const isVisible = !content.classList.contains('hidden');
+                        content.classList.toggle('hidden', isVisible);
+                        button.setAttribute('aria-expanded', String(!isVisible));
+                    });
+                }
+            });
+        }
+
+        function initializeFeedingChart(lang) {
+            const feedingCtx = document.getElementById('feedingScheduleChart');
+            if (!feedingCtx) return;
+            
+            const currentChartTexts = translations[lang] || translations.el; 
+
+            if (feedingChart && typeof feedingChart.destroy === 'function') {
+                feedingChart.destroy();
+                feedingChart = null;
+            }
+            try {
+                feedingChart = new Chart(feedingCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [ 
+                            `8-12 ${getTranslation(lang, 'Wks') || 'ÎµÎ²Î´.'}`,
+                            `3-6 ${getTranslation(lang, 'Mths') || 'Î¼Î·Î½ÏŽÎ½'}`,
+                            `6-12 ${getTranslation(lang, 'Mths') || 'Î¼Î·Î½ÏŽÎ½'}`,
+                            `>1 ${getTranslation(lang, 'Year') || 'Î­Ï„Î¿Ï…Ï‚'}`
+                        ],
+                        datasets: [{
+                            label: getTranslation(lang, 'chartLabelMealsPerDay') || "Î“ÎµÏÎ¼Î±Ï„Î± Î±Î½Î¬ Î—Î¼Î­ÏÎ±",
+                            data: [4, 3, 2, 1.5],
+                            backgroundColor: ['rgba(54, 162, 235, 0.6)','rgba(75, 192, 192, 0.6)','rgba(255, 206, 86, 0.6)','rgba(153, 102, 255, 0.6)'],
+                            borderColor: ['rgba(54, 162, 235, 1)','rgba(75, 192, 192, 1)','rgba(255, 206, 86, 1)','rgba(153, 102, 255, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: getTranslation(lang, 'chartYAxisTitle') || "Î‘ÏÎ¹Î¸Î¼ÏŒÏ‚ Î“ÎµÏ…Î¼Î¬Ï„Ï‰Î½"} },
+                            x: { title: { display: true, text: getTranslation(lang, 'chartXAxisTitle') || "Î—Î»Î¹ÎºÎ¯Î± ÎšÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï" } }
+                        },
+                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) {
+                            let label = context.dataset.label || ''; if (label) { label += ': '; }
+                            if (context.parsed.y !== null) { label += context.label.includes('>1') ? '1-2' : context.parsed.y; }
+                            return label;
+                        }}}}
+                    }
+                });
+            } catch (e) { console.error('Error initializing feeding chart:', e); }
+        }
+
+        function initializeExerciseReco(lang) {
+            const dogTypeSelector = document.getElementById('dog-type-selector');
+            const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
+            if (!dogTypeSelector || !exerciseRecommendationDiv) return;
+            
+            const currentExerciseTexts = translations[lang] || translations.el;
+
+            const selectorLabel = document.querySelector('label[for="dog-type-selector"]');
+            if (selectorLabel) selectorLabel.textContent = currentExerciseTexts.exerciseDogTypeLabel;
+
+            if (dogTypeSelector.options && dogTypeSelector.options.length >= 5) {
+                dogTypeSelector.options[0].textContent = currentExerciseTexts.dogTypePuppy;
+                dogTypeSelector.options[1].textContent = currentExerciseTexts.dogTypeAdultLow;
+                dogTypeSelector.options[2].textContent = currentExerciseTexts.dogTypeAdultMedium;
+                dogTypeSelector.options[3].textContent = currentExerciseTexts.dogTypeAdultHigh;
+                dogTypeSelector.options[4].textContent = currentExerciseTexts.dogTypeSenior;
+            }
+
+            const recommendations = {
+                puppy: currentExerciseTexts.exerciseRecoPuppy,
+                adult_low: currentExerciseTexts.exerciseRecoAdultLow,
+                adult_medium: currentExerciseTexts.exerciseRecoAdultMedium,
+                adult_high: currentExerciseTexts.exerciseRecoAdultHigh,
+                senior: currentExerciseTexts.exerciseRecoSenior
+            };
+            if (currentUpdateFunction) {
+                dogTypeSelector.removeEventListener('change', currentUpdateFunction);
+            }
+            currentUpdateFunction = function() {
+                const selectedType = dogTypeSelector.value;
+                exerciseRecommendationDiv.textContent = recommendations[selectedType] || currentExerciseTexts.exerciseDefaultReco;
+            };
+            dogTypeSelector.addEventListener('change', currentUpdateFunction);
+            currentUpdateFunction();
+        }
+
+        function initializeNameFinder() {
+            const genderSelect = document.getElementById('puppyGender');
+            const traitsInput = document.getElementById('puppyTraits');
+            const suggestButton = document.getElementById('suggestNameButton');
+            const loadingDiv = document.getElementById('nameFinderLoading');
+            const outputDiv = document.getElementById('nameSuggestionsOutput'); // This is the <h4> container
+            const nameListDiv = document.getElementById('nameList'); // This is the actual <div> for names
+
+            if (!genderSelect || !traitsInput || !suggestButton || !loadingDiv || !outputDiv || !nameListDiv) {
+                console.warn("Name finder elements not all found. Feature might not work as expected.");
+                return;
+            }
+
+            suggestButton.addEventListener('click', () => {
+                const selectedGender = genderSelect.value;
+                const traitsText = traitsInput.value.trim();
+                const currentLang = localStorage.getItem('language') || 'el';
+                let genderPromptText = "";
+                if (selectedGender === "male") genderPromptText = currentLang === "el" ? "Î±ÏÏƒÎµÎ½Î¹ÎºÏŒ" : "male";
+                else if (selectedGender === "female") genderPromptText = currentLang === "el" ? "Î¸Î·Î»Ï…ÎºÏŒ" : "female";
+                else genderPromptText = currentLang === "el" ? "Î¿Ï€Î¿Î¹Î¿Ï…Î´Î®Ï€Î¿Ï„Îµ Ï†ÏÎ»Î¿Ï…" : "any gender";
+                
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+                const prompt = `Î ÏÏŒÏ„ÎµÎ¹Î½Îµ 5-7 Î¼Î¿Î½Î±Î´Î¹ÎºÎ¬ Î¿Î½ÏŒÎ¼Î±Ï„Î± Î³Î¹Î± Î­Î½Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹. Î¦ÏÎ»Î¿: ${genderPromptText}. ÎšÏÏÎ¹Î± Ï‡Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬: ${traitsText || (currentLang === "el" ? "Î³ÎµÎ½Î¹ÎºÎ¬" : "general")}. Î¤Î± Î¿Î½ÏŒÎ¼Î±Ï„Î± Î½Î± ÎµÎ¯Î½Î±Î¹ ÎºÎ±Ï„Î¬Î»Î»Î·Î»Î± Î³Î¹Î± Ï„Î·Î½ ÎµÎ»Î»Î·Î½Î¹ÎºÎ® Î³Î»ÏŽÏƒÏƒÎ±, Î±Î»Î»Î¬ Î¼Ï€Î¿ÏÎ¿ÏÎ½ Î½Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½Î¿Ï…Î½ ÎºÎ±Î¹ Î´Î¹ÎµÎ¸Î½Î® Î¿Î½ÏŒÎ¼Î±Ï„Î± Ï€Î¿Ï… Ï‡ÏÎ·ÏƒÎ¹Î¼Î¿Ï€Î¿Î¹Î¿ÏÎ½Ï„Î±Î¹ ÏƒÏ„Î·Î½ Î•Î»Î»Î¬Î´Î±. Î Î±ÏÎ¿Ï…ÏƒÎ¯Î±ÏƒÎµ Ï„Î± Î¿Î½ÏŒÎ¼Î±Ï„Î± Ï‰Ï‚ Î¼Î¹Î± Î±Ï€Î»Î® Î»Î¯ÏƒÏ„Î± Î¼Îµ ÎºÎ¿Ï…ÎºÎºÎ¯Î´ÎµÏ‚ (bullets), Ï„Î¿ ÎºÎ±Î¸Î­Î½Î± ÏƒÎµ Î½Î­Î± Î³ÏÎ±Î¼Î¼Î®. Î“Î¹Î± Ï€Î±ÏÎ¬Î´ÎµÎ¹Î³Î¼Î±: \n- ÎŒÎ½Î¿Î¼Î±1\n- ÎŒÎ½Î¿Î¼Î±2. ${langInstruction}`;
+                
+                const genderDisplayVal = genderSelect.options[genderSelect.selectedIndex].text; 
+                const traitsDisplay = traitsText || (currentLang === 'el' ? "Î³ÎµÎ½Î¹ÎºÎ¬ Ï‡Î±ÏÎ±ÎºÏ„Î·ÏÎ¹ÏƒÏ„Î¹ÎºÎ¬" : "general traits");
+                let introText = getTranslation(currentLang, 'nameSuggestionIntro');
+                introText = introText.replace('{gender}', genderDisplayVal).replace('{traits}', traitsDisplay);
+                
+                // Store intro text to be used after API call
+                nameListDiv.dataset.introText = introText; 
+
+                callGeminiAPI(prompt, nameListDiv, loadingDiv, suggestButton, 'noNamesFound')
+                    .then(() => {
+                        // This block executes after callGeminiAPI has populated nameListDiv.textContent
+                        const apiResponseText = nameListDiv.textContent; // This is the raw response from Gemini
+                        const introForDisplay = nameListDiv.dataset.introText;
+                        const currentLanguage = localStorage.getItem('language') || 'el';
+
+                        nameListDiv.innerHTML = ''; // Clear the div to re-populate with intro + formatted list or raw text
+
+                        // Add the introductory paragraph
+                        if (introForDisplay) {
+                            const pIntro = document.createElement('p');
+                            pIntro.className = 'mb-2';
+                            pIntro.textContent = introForDisplay;
+                            nameListDiv.appendChild(pIntro);
+                        }
+
+                        // Check if the API response is an error message we set
+                        if (apiResponseText.startsWith(getTranslation(currentLanguage, 'noNamesFound'))) {
+                            const errorP = document.createElement('p');
+                            errorP.textContent = apiResponseText; // Display the full error message
+                            nameListDiv.appendChild(errorP);
+                        } else {
+                            // Attempt to parse the API response as a list
+                            const namesArray = apiResponseText.split(/[\n-â€¢]+/) 
+                                                            .map(name => name.trim())
+                                                            .filter(name => name && name.length > 0);
+
+                            if (namesArray.length > 0) {
+                                const ul = document.createElement('ul');
+                                ul.className = 'list-disc list-inside pl-4';
+                                namesArray.forEach(name => {
+                                    const li = document.createElement('li');
+                                    li.textContent = name;
+                                    ul.appendChild(li);
+                                });
+                                nameListDiv.appendChild(ul);
+                            } else {
+                                // If parsing fails or returns no names, display the raw API response after the intro
+                                const rawTextP = document.createElement('p');
+                                rawTextP.textContent = apiResponseText;
+                                nameListDiv.appendChild(rawTextP);
+                            }
+                        }
+                        outputDiv.classList.remove('hidden'); // Ensure the main output container is visible
+                    });
+            });
+        }
+
+        function initializeFirstAidAI() {
+            const queryInput = document.getElementById('firstAidQuery');
+            const getAdviceButton = document.getElementById('getFirstAidButton');
+            const loadingDiv = document.getElementById('firstAidLoading');
+            const outputDiv = document.getElementById('firstAidOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) return;
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'firstAidPlaceholder'); 
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+                const prompt = `Î•Î¯Î¼Î±Î¹ Î¹Î´Î¹Î¿ÎºÏ„Î®Ï„Î·Ï‚ ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï. Î¤Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¼Î¿Ï… ${userQuery}. Î Î±ÏÎ±ÎºÎ±Î»ÏŽ Î´ÏŽÏƒÎµ Î¼Î¿Ï… Î³ÎµÎ½Î¹ÎºÎ­Ï‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Ï€ÏÏŽÏ„Ï‰Î½ Î²Î¿Î·Î¸ÎµÎ¹ÏŽÎ½ ÏƒÎµ Î±Ï€Î»Î®, ÎºÎ±Ï„Î±Î½Î¿Î·Ï„Î® Î³Î»ÏŽÏƒÏƒÎ±, ÏƒÎµ Î¼Î¿ÏÏ†Î® Î»Î¯ÏƒÏ„Î±Ï‚ Î¼Îµ ÎºÎ¿Ï…ÎºÎºÎ¯Î´ÎµÏ‚ Î±Î½ ÎµÎ¯Î½Î±Î¹ Î´Ï…Î½Î±Ï„ÏŒÎ½. Î¤ÏŒÎ½Î¹ÏƒÎµ ÎµÎ¼Ï†Î±Ï„Î¹ÎºÎ¬ ÏƒÏ„Î¿ Ï„Î­Î»Î¿Ï‚ ÏŒÏ„Î¹ Î±Ï…Ï„Î­Ï‚ Î¿Î¹ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Î”Î•Î Î±Î½Ï„Î¹ÎºÎ±Î¸Î¹ÏƒÏ„Î¿ÏÎ½ Ï„Î·Î½ ÎµÏ€Î±Î³Î³ÎµÎ»Î¼Î±Ï„Î¹ÎºÎ® ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® Î´Î¹Î¬Î³Î½Ï‰ÏƒÎ· ÎºÎ±Î¹ Î¸ÎµÏÎ±Ï€ÎµÎ¯Î±, ÎºÎ±Î¹ ÏŒÏ„Î¹ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÎµÏ€Î¹ÎºÎ¿Î¹Î½Ï‰Î½Î®ÏƒÏ‰ Î‘ÎœÎ•Î£Î‘ Î¼Îµ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ Î¼Î¿Ï… Î® Î¼Î¹Î± ÎºÎ»Î¹Î½Î¹ÎºÎ® Î­ÎºÏ„Î±ÎºÏ„Î·Ï‚ Î±Î½Î¬Î³ÎºÎ·Ï‚. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'firstAidAIError');
+            });
+        }
+
+        function initializeSocializationAI() {
+            const queryInput = document.getElementById('socializationQuery');
+            const getTipsButton = document.getElementById('getSocializationTipsButton');
+            const loadingDiv = document.getElementById('socializationLoading');
+            const outputDiv = document.getElementById('socializationOutput');
+
+            if (!queryInput || !getTipsButton || !loadingDiv || !outputDiv) return;
+
+            getTipsButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                 if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'storiesPlaceholder'); 
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+                const prompt = `Î•Î¯Î¼Î±Î¹ Î¹Î´Î¹Î¿ÎºÏ„Î®Ï„Î·Ï‚ ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï. Î˜Î­Î»Ï‰ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Î³Î¹Î± Ï„Î¿ Ï€ÏŽÏ‚ Î½Î± Ï‡ÎµÎ¹ÏÎ¹ÏƒÏ„ÏŽ Ï„Î·Î½ ÎºÎ¿Î¹Î½Ï‰Î½Î¹ÎºÎ¿Ï€Î¿Î¯Î·ÏƒÎ· Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï Î¼Î¿Ï… ÏƒÏ„Î¿ ÎµÎ¾Î®Ï‚ ÏƒÎµÎ½Î¬ÏÎ¹Î¿: "${userQuery}". Î”ÏŽÏƒÎµ Ï€ÏÎ±ÎºÏ„Î¹ÎºÎ­Ï‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Î³Î¹Î± Î¸ÎµÏ„Î¹ÎºÎ® ÎºÎ±Î¹ Î±ÏƒÏ†Î±Î»Î® Ï€ÏÎ¿ÏƒÎ­Î³Î³Î¹ÏƒÎ·, ÏƒÎµ Î¼Î¿ÏÏ†Î® Î»Î¯ÏƒÏ„Î±Ï‚ Î¼Îµ ÎºÎ¿Ï…ÎºÎºÎ¯Î´ÎµÏ‚. Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÎµ Î±Ï€Î»Î®, ÎºÎ±Ï„Î±Î½Î¿Î·Ï„Î® Î³Î»ÏŽÏƒÏƒÎ±. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getTipsButton, 'socializationAIError');
+            });
+        }
+
+        function initializeTrainingAI() {
+            const queryInput = document.getElementById('trainingQuery');
+            const getAdviceButton = document.getElementById('getTrainingAdviceButton');
+            const loadingDiv = document.getElementById('trainingAILoading');
+            const outputDiv = document.getElementById('trainingAIOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) return;
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'trainingAIPlaceholder');
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+                const prompt = `Î•Î¯Î¼Î±Î¹ Î¹Î´Î¹Î¿ÎºÏ„Î®Ï„Î·Ï‚ ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï. Î¤Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î¼Î¿Ï… Î±Î½Ï„Î¹Î¼ÎµÏ„Ï‰Ï€Î¯Î¶ÎµÎ¹ Ï„Î¿ ÎµÎ¾Î®Ï‚ Ï€ÏÏŒÎ²Î»Î·Î¼Î± ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚: '${userQuery}'. Î Î±ÏÎ±ÎºÎ±Î»ÏŽ Î´ÏŽÏƒÎµ Î¼Î¿Ï… ÏƒÏ…Î³ÎºÎµÎºÏÎ¹Î¼Î­Î½ÎµÏ‚, Ï€ÏÎ±ÎºÏ„Î¹ÎºÎ­Ï‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ ÎºÎ±Î¹ Î²Î®Î¼Î±Ï„Î± ÎµÎºÏ€Î±Î¯Î´ÎµÏ…ÏƒÎ·Ï‚ Î¼Îµ Î¸ÎµÏ„Î¹ÎºÎ® ÎµÎ½Î¯ÏƒÏ‡Ï…ÏƒÎ· Î³Î¹Î± Î½Î± Ï„Î¿ Î±Î½Ï„Î¹Î¼ÎµÏ„Ï‰Ï€Î¯ÏƒÏ‰. Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÎµ Î±Ï€Î»Î®, ÎºÎ±Ï„Î±Î½Î¿Î·Ï„Î® Î³Î»ÏŽÏƒÏƒÎ± ÎºÎ±Î¹, Î±Î½ ÎµÎ¯Î½Î±Î¹ Î´Ï…Î½Î±Ï„ÏŒÎ½, ÏƒÎµ Î¼Î¿ÏÏ†Î® Î»Î¯ÏƒÏ„Î±Ï‚ Î¼Îµ Î²Î®Î¼Î±Ï„Î±. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'trainingAIError');
+            });
+        }
+
+        function initializeExerciseAISuggestions() {
+            const ageSelect = document.getElementById('exerciseAIPuppyAge');
+            const activityTypeSelect = document.getElementById('exerciseAIActivityType');
+            const timeSelect = document.getElementById('exerciseAIAvailableTime');
+            const getSuggestionsButton = document.getElementById('getExerciseSuggestionsButton');
+            const loadingDiv = document.getElementById('exerciseAILoading');
+            const outputDiv = document.getElementById('exerciseAIOutput');
+
+            if (!ageSelect || !activityTypeSelect || !timeSelect || !getSuggestionsButton || !loadingDiv || !outputDiv) {
+                console.warn("Exercise AI suggestion elements not all found.");
+                return;
+            }
+
+            getSuggestionsButton.addEventListener('click', () => {
+                const ageValue = ageSelect.options[ageSelect.selectedIndex].text; 
+                const activityTypeValue = activityTypeSelect.options[activityTypeSelect.selectedIndex].text;
+                const timeValue = timeSelect.options[timeSelect.selectedIndex].text;
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+
+                const prompt = `Î ÏÏŒÏ„ÎµÎ¹Î½Îµ 2-3 Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¹ÎºÎ¬ ÎºÎ±Î¹ Î±ÏƒÏ†Î±Î»Î® Ï€Î±Î¹Ï‡Î½Î¯Î´Î¹Î± Î® Î´ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„ÎµÏ‚ Î³Î¹Î± Î­Î½Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î·Î»Î¹ÎºÎ¯Î±Ï‚ Ï€ÎµÏÎ¯Ï€Î¿Ï… ${ageValue}. Î— ÎµÏƒÏ„Î¯Î±ÏƒÎ· Ï„Î·Ï‚ Î´ÏÎ±ÏƒÏ„Î·ÏÎ¹ÏŒÏ„Î·Ï„Î±Ï‚ ÎµÎ¯Î½Î±Î¹: ${activityTypeValue}. ÎˆÏ‡Ï‰ Î´Î¹Î±Î¸Î­ÏƒÎ¹Î¼Î¿ Ï‡ÏÏŒÎ½Î¿ Ï€ÎµÏÎ¯Ï€Î¿Ï… ${timeValue}. ÎŸÎ¹ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÎµ Î¼Î¿ÏÏ†Î® Î»Î¯ÏƒÏ„Î±Ï‚ Î¼Îµ ÎºÎ¿Ï…ÎºÎºÎ¯Î´ÎµÏ‚, Î¼Îµ ÏƒÏÎ½Ï„Î¿Î¼Î· Ï€ÎµÏÎ¹Î³ÏÎ±Ï†Î® Î³Î¹Î± ÎºÎ¬Î¸Îµ Î¼Î¯Î±. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getSuggestionsButton, 'exerciseAIError');
+            });
+        }
+
+        function initializeNutritionAISuggestions() {
+            const ageSelect = document.getElementById('nutritionAIPuppyAge');
+            const suggestionTypeSelect = document.getElementById('nutritionAISuggestionType');
+            const preferencesInput = document.getElementById('nutritionAIPreferences');
+            const getSuggestionsButton = document.getElementById('getNutritionSuggestionsButton');
+            const loadingDiv = document.getElementById('nutritionAILoading');
+            const outputDiv = document.getElementById('nutritionAIOutput');
+
+            if (!ageSelect || !suggestionTypeSelect || !preferencesInput || !getSuggestionsButton || !loadingDiv || !outputDiv) {
+                console.warn("Nutrition AI suggestion elements not all found.");
+                return;
+            }
+
+            getSuggestionsButton.addEventListener('click', () => {
+                const ageValue = ageSelect.options[ageSelect.selectedIndex].text;
+                const suggestionTypeValue = suggestionTypeSelect.options[suggestionTypeSelect.selectedIndex].text;
+                const preferencesValue = preferencesInput.value.trim();
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+
+                let prompt = `Î ÏÏŒÏ„ÎµÎ¹Î½Îµ 1-2 Î¹Î´Î­ÎµÏ‚ Î³Î¹Î± "${suggestionTypeValue}" Î³Î¹Î± Î­Î½Î± ÎºÎ¿Ï…Ï„Î¬Î²Î¹ Î·Î»Î¹ÎºÎ¯Î±Ï‚ Ï€ÎµÏÎ¯Ï€Î¿Ï… ${ageValue}. `;
+                if (preferencesValue) {
+                    prompt += `Î›Î¬Î²Îµ Ï…Ï€ÏŒÏˆÎ· Ï„Î¹Ï‚ ÎµÎ¾Î®Ï‚ ÏƒÎ·Î¼ÎµÎ¹ÏŽÏƒÎµÎ¹Ï‚/Î±Î»Î»ÎµÏÎ³Î¯ÎµÏ‚/Ï€ÏÎ¿Ï„Î¹Î¼Î®ÏƒÎµÎ¹Ï‚: "${preferencesValue}". `;
+                }
+                prompt += `ÎŸÎ¹ Ï€ÏÎ¿Ï„Î¬ÏƒÎµÎ¹Ï‚ Î½Î± ÎµÎ¯Î½Î±Î¹ Ï€ÏÎ±ÎºÏ„Î¹ÎºÎ­Ï‚, Î¼Îµ Î±Ï€Î»Î¬ Ï…Î»Î¹ÎºÎ¬ Î±Î½ Ï€ÏÏŒÎºÎµÎ¹Ï„Î±Î¹ Î³Î¹Î± ÏƒÏ…Î½Ï„Î±Î³Î®, ÎºÎ±Î¹ Î½Î± Ï„Î¿Î½Î¯Î¶Î¿Ï…Î½ Ï„Î· ÏƒÎ·Î¼Î±ÏƒÎ¯Î± Ï„Î·Ï‚ Î¹ÏƒÎ¿ÏÏÎ¿Ï€Î·Î¼Î­Î½Î·Ï‚ Î´Î¹Î±Ï„ÏÎ¿Ï†Î®Ï‚. Î Î¬Î½Ï„Î± Î½Î± Ï€ÎµÏÎ¹Î»Î±Î¼Î²Î¬Î½ÎµÏ„Î±Î¹ Î· ÏƒÏ…Î¼Î²Î¿Ï…Î»Î® Î½Î± ÏƒÏ…Î¼Î²Î¿Ï…Î»ÎµÏ…Ï„ÎµÎ¯ Î¿ Ï‡ÏÎ®ÏƒÏ„Î·Ï‚ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ Ï„Î¿Ï…. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getSuggestionsButton, 'nutritionAIError');
+            });
+        }
+
+        function initializeFirstDaysAI() {
+            const queryInput = document.getElementById('firstDaysQuery');
+            const getAdviceButton = document.getElementById('getFirstDaysAdviceButton');
+            const loadingDiv = document.getElementById('firstDaysAILoading');
+            const outputDiv = document.getElementById('firstDaysAIOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) {
+                console.warn("First Days AI elements not all found.");
+                return;
+            }
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'firstDaysAIPlaceholder'); 
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+                const prompt = `Î•Î¯Î¼Î±Î¹ Î½Î­Î¿Ï‚ Î¹Î´Î¹Î¿ÎºÏ„Î®Ï„Î·Ï‚ ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï. Î‘Î½Ï„Î¹Î¼ÎµÏ„Ï‰Ï€Î¯Î¶Ï‰ Ï„Î¿ ÎµÎ¾Î®Ï‚ Î¸Î­Î¼Î± Ï„Î¹Ï‚ Ï€ÏÏŽÏ„ÎµÏ‚ Î¼Î­ÏÎµÏ‚: "${userQuery}". Î Î±ÏÎ±ÎºÎ±Î»ÏŽ Î´ÏŽÏƒÎµ Î¼Î¿Ï… Ï€ÏÎ±ÎºÏ„Î¹ÎºÎ­Ï‚ ÏƒÏ…Î¼Î²Î¿Ï…Î»Î­Ï‚ Î³Î¹Î± Ï„Î¿ Ï€ÏŽÏ‚ Î½Î± Ï„Î¿ Ï‡ÎµÎ¹ÏÎ¹ÏƒÏ„ÏŽ, Î¼Îµ Î­Î¼Ï†Î±ÏƒÎ· ÏƒÏ„Î·Î½ Ï…Ï€Î¿Î¼Î¿Î½Î®, Ï„Î· Î¸ÎµÏ„Î¹ÎºÎ® ÎµÎ½Î¯ÏƒÏ‡Ï…ÏƒÎ· ÎºÎ±Î¹ Ï„Î· Î´Î·Î¼Î¹Î¿Ï…ÏÎ³Î¯Î± ÎµÎ½ÏŒÏ‚ Î±Î¹ÏƒÎ¸Î®Î¼Î±Ï„Î¿Ï‚ Î±ÏƒÏ†Î¬Î»ÎµÎ¹Î±Ï‚ Î³Î¹Î± Ï„Î¿ ÎºÎ¿Ï…Ï„Î¬Î²Î¹. Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÎµ Î±Ï€Î»Î®, ÎºÎ±Ï„Î±Î½Î¿Î·Ï„Î® Î³Î»ÏŽÏƒÏƒÎ±. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'firstDaysAIError');
+            });
+        }
+
+        function initializeHealthAI() {
+            const queryInput = document.getElementById('healthAIQuery');
+            const getAdviceButton = document.getElementById('getHealthAIAdviceButton');
+            const loadingDiv = document.getElementById('healthAILoading');
+            const outputDiv = document.getElementById('healthAIOutput');
+
+            if (!queryInput || !getAdviceButton || !loadingDiv || !outputDiv) {
+                console.warn("Health AI elements not all found.");
+                return;
+            }
+
+            getAdviceButton.addEventListener('click', () => {
+                const userQuery = queryInput.value.trim();
+                if (!userQuery) {
+                    const currentLang = localStorage.getItem('language') || 'el';
+                    outputDiv.textContent = getTranslation(currentLang, 'healthAIPlaceholder'); 
+                    outputDiv.classList.remove('hidden');
+                    return;
+                }
+                const currentLang = localStorage.getItem('language') || 'el';
+                const langInstruction = currentLang === 'el' ? "Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÏ„Î± Î•Î»Î»Î·Î½Î¹ÎºÎ¬." : "The answer should be in English.";
+                const prompt = `ÎˆÏ‡Ï‰ Î¼Î¹Î± Î³ÎµÎ½Î¹ÎºÎ® ÎµÏÏŽÏ„Î·ÏƒÎ· Î³Î¹Î± Ï„Î·Î½ Ï…Î³ÎµÎ¯Î± Ï„Î¿Ï… ÎºÎ¿Ï…Ï„Î±Î²Î¹Î¿Ï Î¼Î¿Ï… (ÏŒÏ‡Î¹ ÎµÏ€ÎµÎ¯Î³Î¿Ï…ÏƒÎ±): "${userQuery}". ÎœÏ€Î¿ÏÎµÎ¯Ï‚ Î½Î± Î¼Î¿Ï… Î´ÏŽÏƒÎµÎ¹Ï‚ ÎºÎ¬Ï€Î¿Î¹ÎµÏ‚ Î³ÎµÎ½Î¹ÎºÎ­Ï‚ Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯ÎµÏ‚ Î® Ï€Î¹Î¸Î±Î½Î­Ï‚ ÎµÎ¾Î·Î³Î®ÏƒÎµÎ¹Ï‚; Î— Î±Ï€Î¬Î½Ï„Î·ÏƒÎ· Î½Î± ÎµÎ¯Î½Î±Î¹ ÏƒÎµ Î±Ï€Î»Î®, ÎºÎ±Ï„Î±Î½Î¿Î·Ï„Î® Î³Î»ÏŽÏƒÏƒÎ±. Î¥Ï€ÎµÎ½Î¸ÏÎ¼Î¹ÏƒÎµ Î¼Î¿Ï… ÏƒÏ„Î¿ Ï„Î­Î»Î¿Ï‚ ÏŒÏ„Î¹ Î±Ï…Ï„Î® Î· Ï€Î»Î·ÏÎ¿Ï†Î¿ÏÎ¯Î± Î´ÎµÎ½ Î±Î½Ï„Î¹ÎºÎ±Î¸Î¹ÏƒÏ„Î¬ Ï„Î·Î½ ÎºÏ„Î·Î½Î¹Î±Ï„ÏÎ¹ÎºÎ® ÏƒÏ…Î¼Î²Î¿Ï…Î»Î® ÎºÎ±Î¹ ÏŒÏ„Î¹ Î³Î¹Î± Î¿Ï€Î¿Î¹Î¿Î´Î®Ï€Î¿Ï„Îµ Ï€ÏÏŒÎ²Î»Î·Î¼Î± Ï…Î³ÎµÎ¯Î±Ï‚ Ï€ÏÎ­Ï€ÎµÎ¹ Î½Î± ÏƒÏ…Î¼Î²Î¿Ï…Î»ÎµÏ…Ï„ÏŽ Ï„Î¿Î½ ÎºÏ„Î·Î½Î¯Î±Ï„ÏÏŒ Î¼Î¿Ï…. ${langInstruction}`;
+                callGeminiAPI(prompt, outputDiv, loadingDiv, getAdviceButton, 'healthAIError');
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                langElButton = document.getElementById('lang-el');
+                langEnButton = document.getElementById('lang-en');
+
+                if (langElButton && langEnButton) {
+                    langElButton.addEventListener('click', () => switchLanguage('el'));
+                    langEnButton.addEventListener('click', () => switchLanguage('en'));
+                }
+
+                const currentLang = localStorage.getItem('language') || 'el';
+                switchLanguage(currentLang);
+
+                initializeTabs();
+                initializeAccordions();
+                initializeNameFinder();
+                initializeFirstAidAI();
+                initializeSocializationAI();
+                initializeTrainingAI(); 
+                initializeExerciseAISuggestions(); 
+                initializeNutritionAISuggestions(); 
+                initializeFirstDaysAI(); 
+                initializeHealthAI(); // Initialize the new health AI feature
+
+
+                const activeTabButton = document.querySelector('#tab-buttons .tab-button.active');
+                if (activeTabButton) {
+                    const activeTabPaneId = activeTabButton.dataset.tab;
+                    const activeTabPane = document.getElementById(activeTabPaneId);
+                    if (activeTabPane) {
+                        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+                        activeTabPane.classList.remove('hidden');
+                        activeTabPane.classList.add('active');
+                    }
+                }
+                console.log("Puppy care guide script initialized successfully with AI features.");
+            } catch (error) {
+                console.error('Error initializing application:', error);
+            }
+        });
+    </script>
+</body>
+</html>
