@@ -9,52 +9,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #FFF8E1; /* Warm cream background */
-            font-size: 1.125rem; /* Slightly larger base font size */
-            color: #424242; /* Dark grey for text, good contrast */
+            font-family: 'Quicksand', sans-serif; /* Playful font */
+            background-color: #FFF8E1; /* Light warm cream background */
+            font-size: 1.125rem; /* Base font size enlarged for fullness */
+            color: #424242; /* Dark grey for readability */
         }
         .tab-button {
             transition: background-color 0.3s, color 0.3s, transform 0.2s;
-            font-size: 1.125rem; /* Consistent with body */
+            font-size: 1.125rem; /* Larger font size for tabs */
         }
         .tab-button:hover {
-            transform: translateY(-2px); /* Subtle lift effect */
+            transform: translateY(-2px);
         }
         .tab-button.active {
-            background-color: #A1887F; /* Earthy brown, active tab */
+            background-color: #A1887F; /* Warm Grey-Brown/Taupe for active tab */
             color: white;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .tab-button:hover:not(.active) {
-            background-color: #EFEBE9; /* Light beige for hover */
+            background-color: #EFEBE9; /* Lighter warm grey-brown hover for inactive tabs */
         }
         .content-section {
-            background-color: #F5F0E8; /* Lighter cream for content */
-            border: 1px solid #E0E0E0; /* Soft border */
-            border-radius: 12px; /* More rounded corners */
-            padding: 2.5rem; /* Generous padding */
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08); /* Softer shadow */
-            margin-bottom: 2rem;
+            background-color: #F5F0E8; /* Ελαφρώς πιο σκούρο, ζεστό μπεζ για τις ενότητες περιεχομένου */
+            border: 1px solid #E0E0E0; /* Subtle light grey border */
+            border-radius: 12px; /* Slightly larger border-radius for softer look */
+            padding: 2.5rem; /* Increased padding for more space */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08); /* Softer, slightly larger shadow */
+            margin-bottom: 2rem; /* More space between sections */
         }
         h1 {
-            color: #5D4037; /* Darker brown for main title */
-            font-size: 3.5rem; /* Large and impactful */
-            letter-spacing: -0.025em; /* Tighter letter spacing */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle text shadow */
+            color: #5D4037; /* Dark Brown for main title */
+            font-size: 3.5rem; /* Even larger H1 for emphasis */
+            letter-spacing: -0.025em; /* Subtle letter spacing */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Soft shadow for depth */
         }
         h2 {
-            color: #5D4037; /* Consistent heading color */
-            border-bottom: 2px solid #A1887F; /* Accent border */
-            padding-bottom: 12px; /* Space below border */
-            margin-bottom: 1.5rem;
-            font-size: 2rem; /* Clear section title size */
+            color: #5D4037; /* Dark Brown for main title */
+            border-bottom: 2px solid #A1887F; /* Warm Grey-Brown/Taupe accent */
+            padding-bottom: 12px; /* More padding */
+            margin-bottom: 1.5rem; /* More margin */
+            font-size: 2rem; /* Larger H2 */
         }
         h3 {
-            color: #795548; /* Slightly lighter brown for sub-headings */
-            margin-top: 2.5rem; /* More space above h3 */
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            color: #795548; /* Medium Brown for subtitles */
+            margin-top: 2.5rem; /* More top margin */
+            margin-bottom: 1rem; /* More bottom margin */
+            font-size: 1.5rem; /* Larger H3 */
         }
         .chart-container {
             position: relative;
@@ -62,37 +62,37 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 300px; /* Default height */
+            height: 300px;
             max-height: 350px;
         }
-        @media (min-width: 768px) { /* Medium devices and up */
+         @media (min-width: 768px) {
             .chart-container {
-                height: 350px; /* Taller chart on larger screens */
+                height: 350px;
             }
         }
         .table-interactive tbody tr:hover {
-            background-color: #FBF8F5; /* Very light hover for table rows */
+            background-color: #FBF8F5; /* Very light cream for table row hover */
         }
         .equipment-list label:hover {
-            background-color: #FBF8F5; /* Hover for checklist items */
+            background-color: #FBF8F5; /* Light cream hover for checklist items */
         }
         .accordion-button {
-            background-color: #EFEBE9; /* Light beige for accordion buttons */
-            color: #5D4037; /* Dark brown text */
-            padding: 1rem;
-            border-radius: 8px;
+            background-color: #EFEBE9; /* Light warm grey-brown for accordion button */
+            color: #5D4037; /* Dark Brown */
+            padding: 1rem; /* More padding */
+            border-radius: 8px; /* Softer corners */
             transition: background-color 0.3s, transform 0.2s;
-            font-size: 1.25rem; /* Larger font for accordion titles */
-            font-weight: 700; /* Bold */
+            font-size: 1.25rem; /* Even larger font for accordion titles */
+            font-weight: 700; /* Ensure it's bold */
         }
         .accordion-button:hover {
-            background-color: #D7CCC8; /* Slightly darker beige on hover */
-            transform: translateY(-1px); /* Subtle lift */
+            background-color: #D7CCC8; /* Slightly darker warm grey-brown on hover */
+            transform: translateY(-1px);
         }
         .accordion-content {
-            background-color: #F5F2EF; /* Slightly different beige for content */
-            border-left: 4px solid #A1887F; /* Accent border */
-            padding: 1.5rem;
+            background-color: #F5F2EF; /* Subtle warm light grey for accordion content */
+            border-left: 4px solid #A1887F; /* Matching warm accent border */
+            padding: 1.5rem; /* More padding */
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
         }
@@ -100,106 +100,35 @@
             position: sticky;
             top: 0;
             z-index: 50;
-            background-color: #FFF8E1; /* Match body background */
-            padding-bottom: 1rem; /* Space for shadow */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow for sticky nav */
+            background-color: #FFF8E1; /* Same as body to blend in */
+            padding-bottom: 1rem; /* More space below tabs */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow for depth */
         }
-        .llm-output { /* General style for AI/dynamic content output boxes */
-            background-color: #FBE9E7;
-            border-left: 4px solid #BF360C;
+        .llm-output {
+            background-color: #FBE9E7; /* Light Peach/Pinkish for LLM output */
+            border-left: 4px solid #BF360C; /* Deep Orange-Brown accent */
             padding: 1.2rem;
             border-radius: 0.6rem;
             margin-top: 1.5rem;
-            color: #3E2723;
-            font-size: 1rem;
-            white-space: pre-wrap; /* Preserve line breaks from API response */
+            color: #3E2723; /* Very dark brown text */
+            font-size: 1rem; /* Ensure readability */
         }
-        .tip-box { /* Specific style for socialization tips */
-            background-color: #FFF3E0;
-            border-left: 5px solid #FF9800;
+        .tip-box {
+            background-color: #FFF3E0; /* Light Orange/Cream for tip box */
+            border-left: 5px solid #FF9800; /* Orange accent */
             padding: 1.2rem;
             border-radius: 0.6rem;
             margin-top: 1.5rem;
-            color: #E65100;
+            font-style: italic;
+            color: #E65100; /* Darker orange text */
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            white-space: pre-wrap; /* Preserve line breaks from API response */
-        }
-        .ai-suggestion-box { /* Style for positive AI suggestions like games/names/food */
-            background-color: #E8F5E9; /* Light green background */
-            border-left: 4px solid #4CAF50; /* Green accent */
-            padding: 1.2rem;
-            border-radius: 0.6rem;
-            margin-top: 1.5rem;
-            color: #2E7D32; /* Darker green text */
-            white-space: pre-wrap;
         }
         .footer-copyright {
             margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid #E0E0E0;
-            color: #757575; /* Grey for footer text */
-            font-size: 0.875rem; /* Smaller footer text */
-        }
-        .lang-button {
-            background-color: #A1887F;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem; /* Tailwind's rounded-md */
-            font-weight: 600;
-            margin: 0 0.25rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border: none;
-            outline: none;
-        }
-        .lang-button:hover {
-            background-color: #8D6E63; /* Darker shade on hover */
-        }
-        .lang-button.active {
-            background-color: #5D4037; /* Darkest brown for active language */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        .ai-input-area { /* General class for textareas in AI features */
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #D1C4E9;
-            border-radius: 0.375rem;
-            margin-top: 0.5rem;
-            margin-bottom: 0.75rem;
-            min-height: 80px;
-            background-color: #FBFBFB;
-        }
-        .ai-select { /* General class for select dropdowns in AI features */
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #D1C4E9;
-            border-radius: 0.375rem;
-            margin-top: 0.25rem;
-            margin-bottom: 0.75rem;
-            background-color: #FBFBFB;
-        }
-        .ai-submit-button { /* General class for submit buttons in AI features */
-            background-color: #795548;
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 0.375rem;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            border: none;
-            outline: none;
-            cursor: pointer;
-        }
-        .ai-submit-button:hover {
-            background-color: #5D4037;
-        }
-        .ai-submit-button:disabled {
-            background-color: #BDBDBD; /* Grey out button when loading */
-            cursor: not-allowed;
-        }
-        .loading-message {
-            color: #757575;
-            font-style: italic;
-            margin-top: 1rem;
+            color: #757575; /* Medium grey for copyright */
+            font-size: 0.875rem;
         }
     </style>
 </head>
@@ -207,304 +136,1062 @@
 
     <div class="container mx-auto p-4 max-w-5xl">
         <header class="text-center mb-8">
-            <img src="images/the-happy-leash-logo.png"
-                 alt="The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού"
-                 class="w-full mb-4 object-contain"
-                 style="max-height: 400px;"
-                 data-i18n-key="logoAltText"
-                 data-i18n-target-alt="true">
-            <h1 class="font-bold text-gray-700" data-i18n-key="mainTitle">🐾 Οδηγός Φροντίδας Κουταβιού 🐾</h1>
-            <p class="text-2xl text-gray-600 mt-2" data-i18n-key="subTitle">Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!</p>
-            <div class="mt-4" id="language-switcher">
-                <button class="lang-button active" id="lang-el">ΕΛ</button>
-                <button class="lang-button" id="lang-en">EN</button>
-            </div>
+            <img src="https://raw.githubusercontent.com/TheHappyLeashblog/the-happy-leash/main/images/the-happy-leash-logo.png" alt="The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού" class="w-full mb-4 object-contain" style="max-height: 400px;">
+            <h1 class="font-bold text-gray-700">🐾 Οδηγός Φροντίδας Κουταβιού 🐾</h1>
+            <p class="text-2xl text-gray-600 mt-2">Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!</p>
         </header>
 
         <div class="nav-container mb-6">
             <div class="flex flex-wrap justify-center space-x-2 sm:space-x-4" id="tab-buttons">
-                <button class="tab-button active py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-intro" data-i18n-key="tabIntro">Εισαγωγή</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-preparation" data-i18n-key="tabPreparation">Προετοιμασία ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-days" data-i18n-key="tabFirstDays">Πρώτες Μέρες ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-health" data-i18n-key="tabHealth">Υγεία ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-nutrition" data-i18n-key="tabNutrition">Διατροφή ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-exercise" data-i18n-key="tabExercise">Άσκηση ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-training" data-i18n-key="tabTraining">Εκπαίδευση ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-aid" data-i18n-key="tabFirstAid">Πρώτες Βοήθειες ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-stories" data-i18n-key="tabStories">Ιστορίες Κοινωνικοποίησης ✨</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-longterm" data-i18n-key="tabLongterm">Μακροπρόθεσμα</button>
-                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-conclusion" data-i18n-key="tabConclusion">Συμπέρασμα</button>
+                <button class="tab-button active py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-intro">Εισαγωγή</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-preparation">Προετοιμασία ✨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-days">Πρώτες Μέρες ✨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-health">Υγεία</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-nutrition">Διατροφή ✨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-exercise">Άσκηση ✨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-training">Εκπαίδευση ✨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-first-aid">Πρώτες Βοήθειες ✨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-stories">Ιστορίες Κοινωνικοποίησης ✨</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-longterm">Μακροπρόθεσμα</button>
+                <button class="tab-button py-2 px-3 sm:px-4 my-1 rounded-md font-semibold" data-tab="tab-conclusion">Συμπέρασμα</button>
             </div>
         </div>
 
         <div id="tab-content" class="space-y-6">
             <div id="tab-intro" class="tab-pane active content-section">
-                <h2 data-i18n-key="introTitle">Καλωσορίζοντας το Νέο Μέλος της Οικογένειας</h2>
-                <p class="text-justify" data-i18n-key="introContent">Η άφιξη ενός κουταβιού στο σπίτι αποτελεί μια συναρπαστική στιγμή, γεμάτη χαρά και προσμονή. Ωστόσο, συνοδεύεται και από σημαντικές ευθύνες που απαιτούν προετοιμασία και γνώση. Αυτή η διαδραστική εφαρμογή έχει σχεδιαστεί για να παρέχει τις απαραίτητες πληροφορίες και πρακτικές συμβουλές, ώστε να εξασφαλιστεί μια ομαλή μετάβαση και μια υγιής, ευτυχισμένη ζωή για το νέο τετράποδο μέλος της οικογένειας. Εξερευνήστε τις παρακάτω ενότητες για να μάθετε τα πάντα, από την προετοιμασία του χώρου και την αρχική προσαρμογή, μέχρι την υγεία, τη διατροφή, την άσκηση, την εκπαίδευση και τις μακροπρόθεσμες ευθύνες.</p>
+                <h2>Καλωσορίζοντας το Νέο Μέλος της Οικογένειας</h2>
+                <p class="text-justify">Η άφιξη ενός κουταβιού στο σπίτι αποτελεί μια συναρπαστική στιγμή, γεμάτη χαρά και προσμονή. Ωστόσο, συνοδεύεται και από σημαντικές ευθύνες που απαιτούν προετοιμασία και γνώση. Αυτή η διαδραπτική εφαρμογή έχει σχεδιαστεί για να παρέχει τις απαραίτητες πληροφορίες και πρακτικές συμβουλές, ώστε να εξασφαλιστεί μια ομαλή μετάβαση και μια υγιής, ευτυχισμένη ζωή για το νέο τετράποδο μέλος της οικογένειας. Εξερευνήστε τις παρακάτω ενότητες για να μάθετε τα πάντα, από την προετοιμασία του χώρου και την αρχική προσαρμογή, μέχρι την υγεία, τη διατροφή, την άσκηση, την εκπαίδευση και τις μακροπρόθεσμες ευθύνες.</p>
             </div>
 
             <div id="tab-preparation" class="tab-pane hidden content-section">
-                <h2 data-i18n-key="prepTabTitle">I. Προετοιμασία για την Άφιξη του Κουταβιού</h2>
-                <p class="mb-4 text-justify" data-i18n-key="prepTabIntro">Πριν ακόμη την άφιξη του κουταβιού στο σπίτι, είναι ζωτικής σημασίας η προετοιμασία του χώρου του. Αυτό περιλαμβάνει τη δημιουργία ενός ασφαλούς και άνετου περιβάλλοντος, όπου το κουτάβι θα νιώθει προστατευμένο και θα μπορεί να προσαρμοστεί ομαλά. Επίσης, η συγκέντρωση του απαραίτητου εξοπλισμού είναι κρίσιμη για μια ομαλή μετάβαση. Αυτή η ενότητα σας καθοδηγεί στη δημιουργία ενός ασφαλούς περιβάλλοντος και στην επιλογή των βασικών προμηθειών.</p>
-
+                <h2>I. Προετοιμασία για την Άφιξη του Κουταβιού</h2>
+                <p class="mb-4 text-justify">Πριν ακόμη την άφιξη του κουταβιού στο σπίτι, είναι ζωτικής σημασίας η προετοιμασία του χώρου του. Αυτό περιλαμβάνει τη δημιουργία ενός ασφαλούς και άνετου περιβάλλοντος, όπου το κουτάβι θα νιώθει προστατευμένο και θα μπορεί να προσαρμοστεί ομαλά. Επίσης, η συγκέντρωση του απαραίτητου εξοπλισμού είναι κρίσιμη για μια ομαλή μετάβαση. Αυτή η ενότητα σας καθοδηγεί στη δημιουργία ενός ασφαλούς περιβάλλοντος και στην επιλογή των βασικών προμηθειών.</p>
+                
                 <div class="accordion">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="prepAccordionEnvTitle">Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος</button>
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Δημιουργία Ασφαλούς και Άνετου Περιβάλλοντος</button>
                     <div class="accordion-content hidden p-3 rounded-b-md mb-3">
-                        <p data-i18n-key="prepAccordionEnvContent">Η προετοιμασία του χώρου είναι ζωτικής σημασίας. Ασφαλίστε τον χώρο ("dog-proofing") απομακρύνοντας επικίνδυνα αντικείμενα όπως χαλιά, χημικά, καλώδια και ακριβά έπιπλα. Προστατέψτε το κουτάβι από πτώσεις (π.χ. σκάλες). Διατηρήστε κατάλληλη θερμοκρασία (10-26.6°C), υγρασία (30-70%) και αερισμό. Ο τακτικός καθαρισμός είναι απαραίτητος.</p>
+                        <p>Η προετοιμασία του χώρου είναι ζωτικής σημασίας. Ασφαλίστε τον χώρο ("dog-proofing") απομακρύνοντας επικίνδυνα αντικείμενα όπως χαλιά, χημικά, καλώδια και ακριββά έπιπλα. Προστατέψτε το κουτάβι από πτώσεις (π.χ. σκάλες). Διατηρήστε κατάλληλη θερμοκρασία (10-26.6°C), υγρασία (30-70%) και αερισμό. Ο τακτικός καθαρισμός είναι απαραίτητος.</p>
                     </div>
                 </div>
 
                 <div class="accordion">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="prepAccordionEquipTitle">Απαραίτητος Εξοπλισμός (Λίστα Ελέγχου) ✨</button>
-                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Απαραίτητος Εξοπλισμός (Λίστα Ελέγχου) ✨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
                         <ul class="list-none space-y-2 equipment-list">
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemBed">Άνετο κρεβατάκι/καλάθι (πλένεται συχνά)</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemBowls">Ανοξείδωτα μπολ για νερό και τροφή</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemLeash">Περιλαίμιο, σαμαράκι και λουρί</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemIdTag">Ταυτότητα με στοιχεία</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemPoopBags">Σακούλες για περιττώματα</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemPadsWipes">Πάνες για κουτάβια, μαντηλάκια καθαρισμού</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemToothbrush">Οδοντόκρεμα & οδοντόβουρτσα σκύλου</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemParasiteControl">Αντιπαρασιτικά (αμπούλες/σπρέι)</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemGrooming">Βούρτσα, σαμπουάν, νυχοκόπτης</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemToys">Ποικιλία παιχνιδιών (μάσησης, παζλ)</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemCarrier">Κλουβί/τσάντα μεταφοράς</span></label></li>
-                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> <span data-i18n-key="equipItemCrate">Crate (κλουβί εκπαίδευσης)</span></label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Άνετο κρεβατάκι/καλάθι (πλένεται συχνά)</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Ανοξείδωτα μπολ για νερό και τροφή</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Περιλαίμιο, σαμαράκι και λουρί</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Ταυτότητα με στοιχεία</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Σακούλες για περιττώματα</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Πάνες για κουτάβια, μαντηλάκια καθαρισμού</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Οδοντόκρεμα & οδοντόβουρτσα σκύλου</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Αντιπαρασιτικά (αμπούλες/σπρέι)</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Βούρτσα, σαμπουάν, νυχοκόπτης</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Ποικιλία παιχνιδιών (μάσησης, παζλ)</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Κλουβί/τσάντα μεταφοράς</label></li>
+                            <li><label class="flex items-center p-2 rounded-md cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-3"> Crate (κλουβί εκπαίδευσης)</label></li>
                         </ul>
-                        <h4 class="font-semibold mt-4" data-i18n-key="prepCrateHeading">Το Crate: Ένα Παρεξηγημένο Εργαλείο</h4>
-                        <p class="text-justify mt-2" data-i18n-key="prepCratePara1">Το crate (κλουβί εκπαίδευσης) είναι ένα σημαντικό εργαλείο για την εκπαίδευση και την ασφάλεια του κουταβιού, αλλά συχνά παρεξηγείται ως "φυλακή". Στην πραγματικότητα, όταν χρησιμοποιείται σωστά, το crate μπορεί να αποτελέσει ένα ασφαλές, προσωπικό καταφύγιο για το κουτάβι σας, καθώς και ένα εξαιρετικό βοήθημα για την εκπαίδευση τουαλέτας και τη διαχείριση της συμπεριφοράς.</p>
-                        <p class="text-justify mt-2" data-i18n-key="prepCrateBenefitsTitle">Οφέλη του Crate:</p>
+                        <h4 class="font-semibold mt-4">Το Crate: Ένα Παρεξηγημένο Εργαλείο</h4>
+                        <p class="text-justify mt-2">Το crate (κλουβί εκπαίδευσης) είναι ένα σημαντικό εργαλείο για την εκπαίδευση και την ασφάλεια του κουταβιού, αλλά συχνά παρεξηγείται ως "φυλακή". Στην πραγματικότητα, όταν χρησιμοποιείται σωστά, το crate μπορεί να αποτελέσει ένα ασφαλές, προσωπικό καταφύγιο για το κουτάβι σας, καθώς και ένα εξαιρετικό βοήθημα για την εκπαίδευση τουαλέτας και τη διαχείριση της συμπεριφοράς.</p>
+                        <p class="text-justify mt-2">Οφέλη του Crate:</p>
                         <ul class="list-disc list-inside ml-4">
-                            <li data-i18n-key="prepCrateBenefit1">Εκπαίδευση Τουαλέτας: Τα σκυλιά από τη φύση τους δεν θέλουν να λερώσουν τον χώρο που κοιμούνται. Το crate εκμεταλλεύεται αυτό το ένστικτο, βοηθώντας το κουτάβι να μάθει να κρατιέται μέχρι να βγει έξω.</li>
-                            <li data-i18n-key="prepCrateBenefit2">Ασφάλεια: Προστατεύει το κουτάβι από το να μασήσει επικίνδυνα αντικείμενα ή να πάθει ατύχημα όταν δεν μπορείτε να το επιβλέπετε άμεσα.</li>
-                            <li data-i18n-key="prepCrateBenefit3">Προσωπικός Χώρος: Γίνεται ένα ασφαλές και άνετο "δωμάτιο" για το κουτάβι, όπου μπορεί να ξεκουραστεί και να ηρεμήσει χωρίς ενοχλήσεις.</li>
-                            <li data-i18n-key="prepCrateBenefit4">Ταξίδια και Επισκέψεις: Διευκολύνει την ασφαλή μεταφορά και την προσαρμογή του κουταβιού σε νέα περιβάλλοντα, όπως στο σπίτι φίλων ή σε ξενοδοχεία.</li>
-                            <li data-i18n-key="prepCrateBenefit5">Διαχείριση Συμπεριφοράς: Βοηθά στην αντιμετώπιση προβλημάτων όπως το άγχος αποχωρισμού (όταν εκπαιδεύεται σωστά) ή η καταστροφική μάσηση.</li>
+                            <li>Εκπαίδευση Τουαλέτας: Τα σκυλιά από τη φύση τους δεν θέλουν να λερώσουν τον χώρο που κοιμούνται. Το crate εκμεταλλεύεται αυτό το ένστικτο, βοηθώντας το κουτάβι να μάθει να κρατιέται μέχρι να βγει έξω.</li>
+                            <li>Ασφάλεια: Προστατεύει το κουτάβι από το να μασήσει επικίνδυνα αντικείμενα ή να πάθει ατύχημα όταν δεν μπορείτε να το επιβλέπετε άμεσα.</li>
+                            <li>Προσωπικός Χώρος: Γίνεται ένα ασφαλές και άνετο "δωμάτιο" για το κουτάβι, όπου μπορεί να ξεκουραστεί και να ηρεμήσει χωρίς ενοχλήσεις.</li>
+                            <li>Ταξίδια και Επισκέψεις: Διευκολύνει την ασφαλή μεταφορά και την προσαρμογή του κουταβιού σε νέα περιβάλλοντα, όπως στο σπίτι φίλων ή σε ξενοδοχεία.</li>
+                            <li>Διαχείριση Συμπεριφοράς: Βοηθά στην αντιμετώπιση προβλημάτων όπως το άγχος αποχωρισμού (όταν εκπαιδεύεται σωστά) ή η καταστροφική μάσηση.</li>
                         </ul>
-                        <p class="text-justify mt-2" data-i18n-key="prepCrateMisconceptionsTitle">Τι δεν πρέπει να σκέφτεται ο κηδεμόνας (και γιατί είναι παρεξηγημένο):</p>
+                        <p class="text-justify mt-2">Τι δεν πρέπει να σκέφτεται ο κηδεμόνας (και γιατί είναι παρεξηγημένο):</p>
                         <ul class="list-disc list-inside ml-4">
-                            <li data-i18n-key="prepCrateMisconception1">Δεν είναι τιμωρία: Το crate δεν πρέπει ποτέ να χρησιμοποιείται ως μέσο τιμωρίας. Αν το κουτάβι συνδέσει το crate με αρνητικές εμπειρίες, θα το φοβάται και θα αρνείται να μπει.</li>
-                            <li data-i18n-key="prepCrateMisconception2">Δεν είναι φυλακή: Το crate δεν είναι για να "κλείνετε" το κουτάβι για πολλές ώρες. Πρέπει να έχει επαρκή χρόνο εκτός του crate για παιχνίδι, άσκηση και τουαλέτα. Ο χρόνος παραμονής πρέπει να είναι ανάλογος με την ηλικία του (π.χ., ένα κουτάβι 8 εβδομάδων μπορεί να κρατηθεί περίπου 3-4 ώρες).</li>
-                            <li data-i18n-key="prepCrateMisconception3">Δεν είναι απάντηση σε όλα τα προβλήματα: Το crate είναι ένα εργαλείο εκπαίδευσης, όχι μια μαγική λύση για όλα τα προβλήματα συμπεριφοράς. Πρέπει να συνδυάζεται με συνεπή εκπαίδευση, κοινωνικοποίηση και άσκηση.</li>
-                            <li data-i18n-key="prepCrateMisconception4">Δεν είναι απάνθρωπο: Για τα σκυλιά, το crate μπορεί να είναι μια φυσική επέκταση του ενστίκτου τους για ένα "κρησφύγετο" ή μια "φωλιά". Πολλά σκυλιά το αγαπούν και το αναζητούν ως ασφαλές μέρος.</li>
+                            <li>Δεν είναι τιμωρία: Το crate δεν πρέπει ποτέ να χρησιμοποιείται ως μέσο τιμωρίας. Αν το κουτάβι συνδέσει το crate με αρνητικές εμπειρίες, θα το φοβάται και θα αρνείται να μπει.</li>
+                            <li>Δεν είναι φυλακή: Το crate δεν είναι για να "κλείνετε" το κουτάβι για πολλές ώρες. Πρέπει να έχει επαρκή χρόνο εκτός του crate για παιχνίδι, άσκηση και τουαλέτα. Ο χρόνος παραμονίας πρέπει να είναι ανάλογος με την ηλικία του (π.χ., ένα κουτάβι 8 εβδομάδων μπορεί να κρατηθεί περίπου 3-4 ώρες).</li>
+                            <li>Δεν είναι απάντηση σε όλα τα προβλήματα: Το crate είναι ένα εργαλείο εκπαίδευσης, όχι μια μαγική λύση για όλα τα προβλήματα συμπεριφοράς. Πρέπει να συνδυάζεται με συνεπή εκπαίδευση, κοινωνικοποίηση και άσκηση.</li>
+                            <li>Δεν είναι απάνθρωπο: Για τα σκυλιά, το crate μπορεί να είναι μια φυσική επέκταση του ενστίκτου τους για ένα "κρησφύγετο" ή μια "φωλιά". Πολλά σκυλιά το αγαπούν και το αναζητούν ως ασφαλές μέρος.</li>
                         </ul>
-                        <p class="text-justify mt-2" data-i18n-key="prepCrateConclusion">Η σωστή εισαγωγή και εκπαίδευση με το crate είναι κρίσιμη. Πρέπει να είναι μια θετική εμπειρία, με λιχουδιές, παιχνίδια και άνετο κρεβάτι, ώστε το κουτάβι να το βλέπει ως το δικό του, ασφαλές καταφύγιο.</p>
+                        <p class="text-justify mt-2">Η σωστή εισαγωγή και εκπαίδευση με το crate είναι κρίσιμη. Πρέπει να είναι μια θετική εμπειρία, με λιχουδιές, παιχνίδια και άνετο κρεβάτι, ώστε το κουτάβι να το βλέσει ως το δικό του, ασφαλές καταφύγιο.</p>
+
+                        <h3 class="mt-6 text-lg font-semibold text-gray-700">Προτάσεις Ονομάτων Κουταβιού ✨</h3>
+                        <div class="mt-3">
+                            <p class="mb-3 text-justify">Χρησιμοποιήστε την τεχνητή νοημοσύνη για να βρείτε το τέλειο όνομα για το νέο σας κουτάβι. Επιλέξτε το φύλο και το στυλ που προτιμάτε, και λάβετε δημιουργικές και πρωτότυπες ιδέες.</p>
+                            <label for="name-gender-selector" class="block text-sm font-medium text-gray-700 mb-1">Φύλο κουταβιού:</label>
+                            <select id="name-gender-selector" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-2">
+                                <option value="αρσενικό">Αρσενικό</option>
+                                <option value="θηλυκό">Θηλυκό</option>
+                                <option value="οποιοδήποτε">Οποιοδήποτε</option>
+                            </select>
+                            <label for="name-style-input" class="block text-sm font-medium text-gray-700 mb-1">Στυλ/Θέμα ονόματος (π.χ. χαριτωμένο, δυνατό, ελληνικό, αστείο):</label>
+                            <input type="text" id="name-style-input" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3" placeholder="π.χ. χαριτωμένο, δυνατό, ελληνικό">
+                            <button id="generate-name-ideas" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                                Δημιουργία Ονομάτων ✨
+                            </button>
+                            <div id="name-ideas-output" class="llm-output hidden mt-4"></div>
+                            <div id="name-ideas-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-first-days" class="tab-pane hidden content-section">
+                <h2>II. Οι Πρώτες Ημέρες στο Νέο Σπίτι</h2>
+                <p class="mb-4 text-justify">Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.</p>
+                
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Προσαρμογή και Καθιέρωση Ρουτίνας ✨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Δώστε χρόνο στο κουτάβι να συνηθίσει. Δημιουργήστε σταθερή ρουτίνα για σίτιση, τουαλέτα, παιχνίδι και "ήσυχο χρόνο". Ξεκινήστε την εκπαίδευση "Home Alone" από την πρώτη μέρα, αφήνοντας το κουτάβι μόνο του για μικρά διαστήματα, για να αποφύγετε το άγχος αποχωρισμού. Μην επιστρέψετε όταν κλαίει για να μην επιβραβεύσετε την ανεπιθύμητη συμπεριφορά.</p>
+
+                        <h3 class="mt-6 text-lg font-semibold text-gray-700">Δημιουργία Καθημερινής Ρουτίνας ✨</h3>
+                        <div class="mt-3">
+                            <p class="mb-3 text-justify">Χρησιμοποιήστε την τεχνητή νοημοσύνη για να δημιουργήσετε ένα προσαρμοσμένο καθημερινό πρόγραμμα για το κουτάβι σας. Επιλέξτε την ηλικία και το επίπεδο ενέργειας, και λάβετε μια ενδεικτική ρουτίνα με βασικές δραστηριότητες και ώρες.</p>
+                            <label for="routine-age-selector" class="block text-sm font-medium text-gray-700 mb-1">Ηλικία κουταβιού:</label>
+                            <select id="routine-age-selector" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-2">
+                                <option value="8-12 εβδομάδων">8-12 εβδομάδων</option>
+                                <option value="3-6 μηνών">3-6 μηνών</option>
+                                <option value="6-12 μηνών">6-12 μηνών</option>
+                            </select>
+                            <label for="routine-energy-selector" class="block text-sm font-medium text-gray-700 mb-1">Επίπεδο ενέργειας:</label>
+                            <select id="routine-energy-selector" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3">
+                                <option value="χαμηλό">Χαμηλό</option>
+                                <option value="μέτριο">Μέτριο</option>
+                                <option value="υψηλό">Υψηλό</option>
+                            </select>
+                            <button id="generate-routine" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                                Δημιουργία Ρουτίνας ✨
+                            </button>
+                            <div id="routine-output" class="llm-output hidden mt-4"></div>
+                            <div id="routine-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="accordion mt-6">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nameFinderTitle">
-                        Βρες Όνομα για το Κουτάβι σου ✨
-                    </button>
-                    <div class="accordion-content hidden p-4 rounded-b-md">
-                        <p class="mb-3 text-sm" data-i18n-key="nameFinderDescription">
-                            Περιέγραψε κάποια χαρακτηριστικά του κουταβιού σου και πάρε προτάσεις!
-                        </p>
-                        <div class="mb-4">
-                            <label for="puppyGender" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="nameFinderGenderLabel">Φύλο:</label>
-                            <select id="puppyGender" name="puppyGender" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option value="any" data-i18n-key="nameFinderGenderAny">Δεν έχει σημασία</option>
-                                <option value="male" data-i18n-key="nameFinderGenderMale">Αρσενικό</option>
-                                <option value="female" data-i18n-key="nameFinderGenderFemale">Θηλυκό</option>
-                            </select>
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Πρώιμη Κοινωνικοποίηση: Η Σημασία της</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Η κοινωνικοποίηση (3-16 εβδομάδες) είναι κρίσιμη. Εκθέστε το κουτάβι σε διάφορα περιβάλλοντα, ήχους, οσμές, ξένους ανθρώπους, παιδιά και άλλα υγιή, εμβολιασμένα σκυλιά. Οι εμπειρίες πρέπει να είναι θετικές. Πριν την ολοκλήρωση των εμβολιασμών, η κοινωνικοποίηση μπορεί να γίνει με ασφάλεια μεταφέροντας το κουτάβι στην αγκαλιά/τσάντα ή προσκαλώντας εμβολιασμένους φίλους (ανθρώπους/σκύλους) στο σπίτι. Η ψυχική διέγερση με διαδραστικά παιχνίδια είναι επίσης σημαντική.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-health" class="tab-pane hidden content-section">
+                <h2>III. Υγεία και Κτηνιατρική Φροντίδα</h2>
+                <p class="mb-4 text-justify">Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Η Πρώτη Επίσκεψη στον Κτηνίατρο</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Συνήθως στις 6-8 εβδομάδες. Ο κτηνίατρος θα κάνει φυσική εξέταση (μάτια, αυτιά, μύτη, δέρμα, καρδιά, πνεύμονες κ.ά.) και θα σας ενημερώσει για εμβολιασμούς, οδοντική φροντίδα, grooming, άσκηση, κοινωνικοποίηση, microchipping, στείρωση, ταξίδια, ασφάλεια και ζωονόσους.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Πρόγραμμα Εμβολιασμών</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Οι εμβολιασμοί είναι ζωτικής σημασίας για την πρόληψη μεταδοτικών και ενίοτε θανατηφόρων ασθενειών. Διεγείρουν το ανοσοποιητικό σύστημα του κουταβιού να αναπτύξει συγκεκριμένα αντισώματα κατά των ιών και των βακτηρίων.</p>
+                        <p class="mt-2">Τα βασικά (core) εμβόλια περιλαμβάνουν αυτά για τη μόρβα, τη λοιμώδη ηπατίτιδα, τον παρβοϊό και τη λύσσα. Άλλα συνιστώμενα εμβόλια είναι για τη λοιμώδη τραχειοβρογχίτιδα (κυνοκομειακός βήχας) και τη λεπτοσπείρωση.</p>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-white border border-gray-300 table-interactive">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="text-left py-2 px-4 border-b">Ηλικία</th>
+                                        <th class="text-left py-2 px-4 border-b">Εμβόλιο</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="py-2 px-4 border-b">6-8 εβδομάδες</td><td class="py-2 px-4 border-b">Μόρβα, Ηπατίτιδα, Παρβοϊός</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">11-13 εβδομάδες</td><td class="py-2 px-4 border-b">Μόρβα, Ηπατίτιδα, Παρβοϊός (ενισχυτικό) + Λύσσα, Λεπτοσπείρωση</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">15-17 εβδομάδες</td><td class="py-2 px-4 border-b">Λύσσα, Λεπτοσπείρωση (ενισχυτικό)</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">15 μηνών</td><td class="py-2 px-4 border-b">Ενισχυτικοί για όλα τα παραπάνω</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Ετήσια</td><td class="py-2 px-4 border-b">Μόρβα, Ηπατίτιδα, Παρβοϊός (ενισχυτικοί)</td></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="mb-4">
-                            <label for="puppyTraits" class="block text-sm font-medium text-gray-700 mb-1" data-i18n-key="nameFinderTraitsLabel">Κύρια Χαρακτηριστικά (π.χ. παιχνιδιάρης, ήρεμη, θαρραλέος):</label>
-                            <textarea id="puppyTraits" name="puppyTraits" rows="3"
-                                      class="ai-input-area w-full p-2 border rounded mt-1"
-                                      data-i18n-key="nameFinderTraitsPlaceholder"
-                                      data-i18n-target-placeholder="true"
-                                      placeholder="Γράψτε 1-3 λέξεις κλειδιά..."></textarea>
+                        <p class="mt-2 text-sm text-gray-600">Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Πρόγραμμα Αποπαρασίτωσης</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Η σωστή και πλήρης αποπαρασίτωση είναι απαραίτητη τόσο για την υγεία του σκύλου όσο και για την πρόληψη της μετάδοσης παρασίτων σε ανθρώπους, καθώς πολλά από αυτά είναι ζωονόσοι. Οι κηδεμόνες φέρουν την ευθύνη να προστατεύουν το νοικοκυριό τους και την κοινότητα από πιθανές ζωονόσους, καθιστώντας την πρόληψη παρασίτων μια διπλή πράξη φροντίδας.</p>
+                        <h4 class="font-semibold mt-2">Εσωτερικά Παράσιτα (Ενδοπαράσιτα):</h4>
+                        <p>Κοινά Είδη: Περιλαμβάνουν στρογγυλά σκουλήκια (όπως Toxocara canis, Toxascaris leonina), ταινίες (όπως Dipylidium caninum, Echinococcus granulosus), αγκυλόστομα (Ancylostoma sp., Uncinaria stenocephala), whipworms (Trichuris vulpis), και σκουλήκια πνευμόνων/καρδιάς (Angiostrongylus vasorum).</p>
+                        <p class="mt-2">Πρόγραμμα: Η αποπαρασίτωση για ενδοπαράσιτα ξεκινά από πολύ μικρή ηλικία, σύμφωνα πάντα με τις οδηγίες του κτηνιάτρου. Συνήθως, συνεχίζεται με χάπι ανά τρεις μήνες για όλη τη διάρκεια ζωής του ζώου. Για τις έγκυες σκύλες, η αποπαρασίτωση με φενβενδαζόλη συνιστάται γύρω στην 40η ημέρα της κύησης, ώστε να αποφευχθεί η μετάδοση των παρασίτων στα κουτάβια.</p>
+                        <p class="mt-2">Μορφές: Τα αντιπαρασιτικά για ενδοπαράσιτα διατίθενται σε μορφή χαπιού, πάστας ή πόσιμου εναιωρήματος.</p>
+                        <h4 class="font-semibold mt-2">Εξωτερικά Παράσιτα (Εξωπαράσιτα):</h4>
+                        <p>Κοινά Είδη: Σε αυτή την κατηγορία ανήκουν οι κρότωνες (τσιμπούρια), οι ψύλλοι, τα ακάρεα (που προκαλούν ψώρα) και οι ψείρες. Αυτά τα παράσιτα είναι φορείς σοβαρών, ενίοτε θανατηφόρων, ασθενειών και μπορούν να μεταδοθούν και σε ανθρώπους.</p>
+                        <p class="mt-2">Πρόγραμμα: Οι επιλογές αντιμετώπισης περιλαμβάνουν αμπούλες, κολάρα και χάπια.</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Αμπούλες: Μπορούν να χρησιμοποιηθούν από την ηλικία των οκτώ μηνών και άνω, εφαρμόζονται στη ράχη του ζώου.</li>
+                            <li>Χάπια: Παρέχουν τριμηνιαία ή μηνιαία προστασία.</li>
+                            <li>Κολάρα: Μπορούν να φορεθούν από την ηλικία των 4 μηνών και άνω, προσφέροντας κάλυψη για ψύλλους, τσιμπούρια και σκνίπα.</li>
+                        </ul>
+                        <p class="mt-2">Συνδυασμοί: Συχνά χρησιμοποιούνται συνδυασμοί προϊόντων (π.χ., αμπούλα, κολάρο και σπρέι σιτρονέλας) για την επίτευξη του βέλτιστου αποτελέσματος στην προστασία του σκύλου.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Συχνά Προβλήματα Υγείας & Συμπτώματα</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Είναι σημαντικό για τους κηδεμόνες να αναγνωρίζουν τα κοινά σημάδια ασθένειας για άμεση κτηνιατρική παρέμβαση. Λόγω της ευαλωτότητάς τους, τα κουτάβια απαιτούν συνεχή παρακολούθηση για ανεπαίσθητες αλλαγές στην υγεία τους. Η άμεση αναγνώριση των συμπτωμάτων και η επικοινωνία με τον κτηνίατρο είναι υψίστης σημασίας, καθώς η ταχεία επιδείνωση της υγείας μπορεί να συμβεί, καθιστώντας την έγκαιρη παρέμβαση σωτήρια για τη ζωή τους.</p>
+                        <h4 class="font-semibold mt-2">Γενικά Συμπτώματα Ασθένειας:</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Μάτια, Στόμα, Μύτη: Βήχας, φτέρνισμα, έντονο λαχάνιασμα, δυσκολία στην αναπνοή, άσχημη αναπνοή, πολλά σάλια, ξηρά, θολά ή κόκκινα μάτια.</li>
+                            <li>Συμπεριφορά: Μειωμένη δραστηριότητα, μικρότερο ενδιαφέρον για παιχνίδι, περισσότερες ώρες ύπνου, ή άλλες αλλαγές στη συμπεριφορά.</li>
+                            <li>Δερματικές Αλλαγές: Ξηρότητα, αλλοιώσεις, ερυθρότητα, απώλεια τριχών, φλοιώδες δέρμα, έντονος κνησμός.</li>
+                            <li>Κατανάλωση Τροφής και Πέψη: Μειωμένη όρεξη, απώλεια βάρους, στομαχικές διαταραχές, περιττώματα που περιέχουν αίμα, βλέννα, σκουλήκια ή αχώνευτες τροφές, υπερβολική κατανάλωση νερού ή υπερβολική ούρηση.</li>
+                            <li>Δυσκαμψία Αρθρώσεων: Δυσκολία στο σήκωμα ή στην ανάβαση σκαλοπατιών.</li>
+                        </ul>
+                        <h4 class="font-semibold mt-2">Ειδικά Προβλήματα:</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Διάρροια: Είναι αρκετά συνηθισμένη στα κουτάβια και μπορεί να κυμαίνεται από ήπια επεισόδια που υποχωρούν γρήγορα έως σοβαρά γαστρικά προβλήματα που προκαλούνται από σοβαρή ασθένεια ή απόφραξη, με πιθανή παρουσία αίματος ή βλέννας και αφυδάτωση.</li>
+                            <li>Εμετός: Αποτελεί ένα κοινό πρόβλημα με δεκάδες πιθανές αιτίες, όπως λοιμώξεις, εντερικά παράσιτα, παγκρεατίτιδα, νεφρική ανεπάρκεια, θερμοπληξία, ξένο σώμα στο στομάχι-έντερο και δηλητηρίαση.</li>
+                            <li>Υπογλυκαιμία: Χαμηλά επίπεδα γλυκόζης στο αίμα, συχνότερα σε μικρόσωμα κουτάβια ή σε περίπτωση ακατάλληλης σίτισης. Συμπτώματα περιλαμβάνουν ανορεξία, λήθαργο, τρόμο (τρέμουλο), αλλαγές συμπεριφοράς και σπασμούς. Σε περίπτωση υποψίας, συνιστάται η άμεση επάλειψη με μέλι στα ούλα ή η χορήγηση νερού με ζάχαρη, και άμεση επικοινωνία με κτηνίατρο.</li>
+                            <li>Κοκκιδίωση: Προκαλείται από ένα παράσιτο (κοκκίδια) και είναι μια από τις πιο συχνές αιτίες επώδυνης και συχνά θανατηφόρου διάρροιας σε νεαρές ηλικίες. Τα συμπτώματα περιλαμβάνουν σοβαρή διάρροια, ληθαργικότητα, ανορεξία και αφυδάτωση.</li>
+                            <li>Giardia (Λαμβλίαση): Ένα κοινό εντερικό παράσιτο. Τα συμπτώματα περιλαμβάνουν μαλακά, χλωμά, δύσοσμα κόπρανα, αυξημένη συχνότητα κενώσεων, αέρια, κοιλιακή δυσφορία, μειωμένη όρεξη και αφυδάτωση. Μεταδίδεται μέσω μολυσμένου νερού ή κοπράνων. Η θεραπεία περιλαμβάνει φαινβενδαζόλη και/ή μετρονιδαζόλη, σε συνδυασμό με αυστηρή υγιεινή.</li>
+                            <li>Παρβοϊός: Εξαιρετικά μεταδοτικός και επικίνδυνος, ειδικά για κουτάβια. Τα συμπτώματα περιλαμβάνουν απώλεια όρεξης, λήθαργο, επίμονο εμετό και αιμορραγική διάρροια. Απαιτεί άμεση κτηνιατρική φροντίδα.</li>
+                        </ul>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-white border border-gray-300 table-interactive">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="text-left py-2 px-4 border-b">Σύστημα/Πρόβλημα</th>
+                                        <th class="text-left py-2 px-4 border-b">Κοινά Συμπτώματα</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="py-2 px-4 border-b align-top">Γενικά Συμπτώματα<br>Συμπεριφορά</td><td class="py-2 px-4 border-b align-top">Λήθαργος, μειωμένη δραστηριότητα, αδιαφορία, αλλαγές στον ύπνο</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Αναπνευστικό</td><td class="py-2 px-4 border-b align-top">Βήχας, φτέρνισμα, λαχάνιασμα, δυσκολία στην αναπνοή</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Δέρμα/Τρίχωμα</td><td class="py-2 px-4 border-b align-top">Ξηρότητα, ερυθρότητα, εξανθήματα, τριχόπτωση, έντονος κνησμός</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Πεπτικό Σύστημα<br>Διάρροια</td><td class="py-2 px-4 border-b align-top">Υδαρή, με αίμα/βλέννα, αυξημένη συχνότητα, αφυδάτωση</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Εμετός</td><td class="py-2 px-4 border-b align-top">Επίμονος, με ή χωρίς τροφή/αίμα</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Όρεξη/Βάρος</td><td class="py-2 px-4 border-b align-top">Μειωμένη όρεξη, ανορεξία, απώλεια βάρους</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Ειδικά Προβλήματα<br>Υπογλυκαιμία</td><td class="py-2 px-4 border-b align-top">Τρέμουλο, αδυναμία, σπασμοί, αλλαγές συμπεριφοράς, λιποθυμία</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Παρβοϊός</td><td class="py-2 px-4 border-b align-top">Εμετός, αιμομορραγική διάρροια, λήθαργος, πυρετός, αφυδάτωση</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Κοκκιδίωση</td><td class="py-2 px-4 border-b align-top">Σοβαρή διάρροια, λήθαργος, ανορεξία, αφυδάτωση</td></tr>
+                                    <tr><td class="py-2 px-4 border-b align-top">Giardia</td><td class="py-2 px-4 border-b align-top">Μαλακά, δύσοσμα κόπρανα, αέρια, κοιλιακή δυσφορία, αφυδάτωση</td></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <button id="suggestNameButton" class="ai-submit-button" data-i18n-key="nameFinderSuggestButton">
-                           ✨ Πρότεινε Ονόματα (AI)
-                        </button>
-                        <div id="nameFinderLoading" class="loading-message hidden mt-3" data-i18n-key="loadingMessage">
-                            Επεξεργασία...
-                        </div>
-                        <div id="nameSuggestionsOutput" class="hidden mt-4">
-                            <h4 class="font-semibold text-md mb-2" data-i18n-key="nameFinderOutputTitle">Προτάσεις Ονομάτων:</h4>
-                            <div id="nameList" class="ai-suggestion-box"></div>
-                        </div>
+                        <p class="mt-2 text-sm text-gray-600">Ελαφριά κατάπτωση ή οίδημα στο σημείο της ένεσης είναι φυσιολογικά και υποχωρούν.</p>
                     </div>
                 </div>
             </div>
             
-            <div id="tab-first-days" class="tab-pane hidden content-section">
-                <h2 data-i18n-key="firstDaysTabTitle">II. Οι Πρώτες Ημέρες στο Νέο Σπίτι</h2>
-                <p class="mb-4 text-justify" data-i18n-key="firstDaysTabIntro">Οι πρώτες ημέρες είναι κρίσιμες για την προσαρμογή του κουταβιού. Η δημιουργία ρουτίνας και η σωστή, πρώιμη κοινωνικοποίηση θέτουν τις βάσεις για έναν ισορροπημένο ενήλικο σκύλο. Εδώ θα βρείτε συμβουλές για να βοηθήσετε το κουτάβι σας να νιώσει ασφάλεια και να εξερευνήσει τον κόσμο με αυτοπεποίθηση.</p>
-                </div>
-
-            <div id="tab-health" class="tab-pane hidden content-section">
-                <h2 data-i18n-key="healthTitle">III. Υγεία και Κτηνιατρική Φροντίδα ✨</h2>
-                <p class="mb-4 text-justify" data-i18n-key="healthIntro">Η υγεία του κουταβιού σας είναι πρωταρχικής σημασίας. Από την πρώτη επίσκεψη στον κτηνίατρο μέχρι τον τακτικό εμβολιασμό και την αποπαρασίτωση, η προληπτική φροντίδα είναι το κλειδί. Μάθετε πώς να διατηρείτε το κουτάβι σας υγιές και πότε να ζητήσετε κτηνιατρική βοήθεια.</p>
-                </div>
-
             <div id="tab-nutrition" class="tab-pane hidden content-section">
-                <h2 data-i18n-key="nutritionTitle">IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης</h2>
-                <p class="mb-4 text-justify" data-i18n-key="nutritionIntro">Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.</p>
-                 <div class="accordion">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAccordionFood">Επιλογή Κατάλληλης Τροφής και Πρόγραμμα Σίτισης</button>
+                <h2>IV. Διατροφή: Το Θεμέλιο της Υγείας και Ανάπτυξης</h2>
+                <p class="mb-4 text-justify">Η σωστή διατροφή είναι θεμελιώδης για την ανάπτυξη και την ευημερία του κουταβιού σας. Αυτή η ενότητα καλύπτει την επιλογή της κατάλληλης τροφής, το πρόγραμμα σίτισης ανάλογα με την ηλικία, και τις τροφές που πρέπει οπωσδήποτε να αποφεύγονται για την ασφάλεια του μικρού σας φίλου.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Επιλογή Κατάλληλης Τροφής και Πρόγραμμα Σίτισης</button>
                     <div class="accordion-content hidden p-3 rounded-b-md mb-3">
-                         <p data-i18n-key="nutritionFoodSelectP1">Επιλέξτε υψηλής ποιότητας, επώνυμη τροφή ειδικά σχεδιασμένη για κουτάβια...</p>
-                         <h4 class="font-semibold mt-3 mb-2" data-i18n-key="nutritionFeedingScheduleTitle">Πρόγραμμα Σίτισης:</h4>
-                         <div class="chart-container my-4">
-                             <canvas id="feedingScheduleChart"></canvas>
-                         </div>
-                         </div>
+                        <p>Επιλέξτε υψηλής ποιότητας, επώνυμη τροφή ειδικά σχεδιασμένη για κουτάβια. Για μεγαλόσωμες φυλές, συνιστάται η επιλογή τροφών ειδικά διαμορφωμένων για τις ανάγκες τους. Οι τροφές πρέπει να είναι πλούσιες σε θρεπτικά συστατικά, όπως πρωτεΐνες (για την ανάπτυξη μυών και ιστών), λίπη (για ενέργεια και υγεία του δέρματος), υδατάνθρακες (για ενέργεια), βιταμίνες και μέταλλα (όπως ασβέστιο, σίδηρος, ψευδάργυρος).</p>
+                        <p class="mt-2">Η διατροφή του κουταβιού δεν είναι στατική, αλλά εξελίσσεται ραγδαία με την ηλικία και την ανάπτυξη. Η παροχή της σωστής ισορροπίας θρεπτικών συστατικών σε κάθε στάδιο είναι κρίσιμη για τη βέλτιστη ανάπτυξη και την πρόληψη ελλείψεων ή υπερβολών που θα μπορούσαν να επηρεάσουν τη μακροπρόθεσμη υγεία.</p>
+                        <p class="mt-2">Εάν το κουτάβι είναι πολύ μικρό, η διαδικασία του απογαλακτισμού ξεκινά γύρω στις 3-4 εβδομάδες και διαρκεί έως τις 8 εβδομάδες. Αρχικά, η στερεά τροφή μπορεί να ανακατευτεί με νερό ή γάλα για κουτάβια για να μαλακώσει και να γίνει πιο εύπεπτη.</p>
+                        <h4 class="font-semibold mt-3 mb-2">Πρόγραμμα Σίτισης:</h4>
+                        <div class="chart-container my-4">
+                            <canvas id="feedingScheduleChart"></canvas>
+                        </div>
+                        <ul class="list-disc list-inside">
+                            <li>8-12 εβδομάδων: 4 γεύματα την ημέρα.</li>
+                            <li>3-6 μηνών: 3 γεύματα την ημέρα.</li>
+                            <li>6 μηνών - 1 έτους: 2 γεύματα την ημέρα.</li>
+                            <li>Μετά τον 1ο χρόνο: Συνήθως 1 γεύμα την ημέρα είναι επαρκές, αν και για μεγαλύτερες φυλές ή σκύλους επιρρεπείς σε φούσκωμα, 2 μικρότερα γεύματα είναι προτιμότερα.</li>
+                        </ul>
+                        <p class="mt-2">Είναι απαραίτητο να υπάρχει πάντα διαθέσιμο καθαρό, φρέσκο νερό. Τα μπολ φαγητού και νερού πρέπει να πλένονται συχνά για τη διατήρηση της υγιεινής.</p>
+                    </div>
                 </div>
-                 <div class="accordion mt-6">
-                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1" data-i18n-key="nutritionAISuggestionTitle">
-                       ✨ AI Σύμβουλος Γευμάτων & Λιχουδιών
+                
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Επικίνδυνες Τροφές προς Αποφυγή</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Πολλές ανθρώπινες τροφές είναι τοξικές για τους σκύλους και πρέπει να αποφεύγονται αυστηρά. Η φαινομενικά αθώα πράξη της κοινής χρήσης "ανθρώπινης τροφής" με ένα κουτάβι ενέχει σημαντικούς μακροπρόθεσμους κινδύνους για την υγεία, συμπεριλαμβανομένων διατροφικών ελλείψεων, σκελετικών προβλημάτων και συμπεριφορικών ζητημάτων όπως η επιλεκτικότητα στο φαγητό.</p>
+                        <p class="mt-2">Οι πιο επικίνδυνες τροφές περιλαμβάνουν:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Σοκολάτα και Καφεΐνη: Περιέχουν ουσίες που μπορούν να προκαλέσουν προβλήματα στο νευρικό σύστημα, όπως ανησυχία, γρήγορη αναπνοή, μυϊκές συσπάσεις, διάρροια, εμετό, ακόμα και επιληπτικές κρίσεις.</li>
+                            <li>Αλκοόλ: Προκαλεί σοβαρές βλάβες στο συκώτι και τον εγκέφαλο.</li>
+                            <li>Μαγειρεμένα Κόκκαλα: Μπούν να διασπαστούν και να προκαλέσουν εσωτερικές βλάβες ή απόφραξη στο πεπτικό σύστημα.</li>
+                            <li>Κρεμμύδια και Σκόρδο: Είναι δηλητηριώδη ακόμα και σε μικρές ποσότητες, προκαλώντας ναυτία, εμετό και διάρροια.</li>
+                            <li>Φρούτα με Κουκούτσια/Σταφύλια/Σταφίδες: Τα κουκούτσια ορισμένων φρούτων (π.χ., κεράσια) περιέχουν κυανιούχο άλας. Τα σταφύλια και οι σταφίδες είναι εξαιρετικά τοξικά και μπορούν να προκαλέσουν οξεία νεφρική ανεπάρκεια.</li>
+                            <li>Ωμά Κρέατα/Ψάρια: Μπορεί να περιέχουν επιβλαβή βακτήρια που είναι επικίνδυνα για την υγεία του σκύλου.</li>
+                            <li>"Ανθρώπινη" Τροφή Γενικά: Η υπερβολική χορήγηση "ανθρώπινης" τροφής μπορεί να οδηγοίσει σε ανισορροπίες βιταμινών και μετάλλων, προβλήματα οστών και δοντιών, ανάπτυξη επιλεκτικών διατροφικών συνηθειών και παχυσαρκία.</li>
+                        </ul>
+                        <div class="overflow-x-auto mt-4">
+                             <table class="min-w-full bg-white border border-gray-300 table-interactive">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="text-left py-2 px-4 border-b">Τροφή ☠️</th>
+                                        <th class="text-left py-2 px-4 border-b">Πιθανά Συμπτώματα/Επιπτώσεις</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="py-2 px-4 border-b">Σοκολάτα, Καφεΐνη</td><td class="py-2 px-4 border-b">Τοξικότητα νευρικού συστήματος, εμετός, διάρροια, σπασμοί</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Αλκοόλ</td><td class="py-2 px-4 border-b">Βλάβες συκωτιού & εγκεφάλου</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Μαγειρεμένα Κόκκαλα</td><td class="py-2 px-4 border-b">Εσωτερικές βλάβες, απόφραξη</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Κρεμμύδια, Σκόρδο</td><td class="py-2 px-4 border-b">Δηλητηρίαση, ναυτία, εμετός, διάρροια</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Σταφύλια, Σταφίδες</td><td class="py-2 px-4 border-b">Οξεία νεφρική ανεπάρκεια</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Φρούτα με κουκούτσια (π.χ. κεράσια)</td><td class="py-2 px-4 border-b">Κυανιούχο άλας, κίνδυνος απόφραξης</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Ωμά Κρέατα/Ψάρια</td><td class="py-2 px-4 border-b">Βακτηριακές λοιμώξεις</td></tr>
+                                    <tr><td class="py-2 px-4 border-b">Υπερβολική "Ανθρώπινη" Τροφή</td><td class="py-2 px-4 border-b">Διατροφικές ανισορροπίες, οδοντικά/οστικά προβλήματα, παχυσαρκεία</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="mt-6 text-lg font-semibold text-gray-700">Προτάσεις Διατροφής/Λιχουδιών βάσει Αναγκών ✨</h3>
+                <div class="mt-3">
+                    <p class="mb-3 text-justify">Εισάγετε τα στοιχεία του κουταβιού σας για να λάβετε εξατομικευμένες προτάσεις για τύπους τροφών ή υγιεινές λιχουδιές.</p>
+                    <label for="nutrition-age-input" class="block text-sm font-medium text-gray-700 mb-1">Ηλικία κουταβιού:</label>
+                    <input type="text" id="nutrition-age-input" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-2" placeholder="π.χ. 4 μηνών">
+                    <label for="nutrition-size-input" class="block text-sm font-medium text-gray-700 mb-1">Μέγεθος/Ράτσα (π.χ. μικρόσωμο, μεγαλόσωμο, Labrador):</label>
+                    <input type="text" id="nutrition-size-input" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-2" placeholder="π.χ. μεγαλόσωμο">
+                    <label for="nutrition-allergies-input" class="block text-sm font-medium text-gray-700 mb-1">Τυχόν αλλεργίες/ευαισθησίες (π.χ. αλλεργία στο κοτόπουλο, ευαίσθητο στομάχι):</label>
+                    <textarea id="nutrition-allergies-input" rows="3" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3" placeholder="π.χ. αλλεργία στο κοτόπουλο"></textarea>
+                    <button id="generate-nutrition-suggestions" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                        Δημιουργία Προτάσεων Διατροφής ✨
                     </button>
-                     <div class="accordion-content hidden p-4 rounded-b-md">
-                        <p class="mb-3 text-sm" data-i18n-key="nutritionAIDescription">
-                            Δώστε μας μερικές πληροφορίες για το κουτάβι σας για εξατομικευμένες προτάσεις!
-                        </p>
-                        <button id="getNutritionSuggestionsButton" class="ai-submit-button" data-i18n-key="nutritionAIButtonText">✨ Λήψη Προτάσεων Διατροφής (AI)</button>
-                         <div id="nutritionAILoading" class="loading-message hidden" data-i18n-key="loadingMessage">Φόρτωση...</div>
-                         <div id="nutritionAIOutput" class="ai-suggestion-box hidden mt-3"></div>
-                         <p class="mt-4 text-xs text-gray-500" data-i18n-key="nutritionAIDisclaimer">Οι προτάσεις είναι γενικές. Πάντα να συμβουλεύεστε τον κτηνίατρό σας για τις συγκεκριμένες διατροφικές ανάγκες του κουταβιού σας.</p>
-                     </div>
+                    <div id="nutrition-suggestions-output" class="llm-output hidden mt-4"></div>
+                    <div id="nutrition-suggestions-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
                 </div>
             </div>
 
+            <div id="tab-exercise" class="tab-pane hidden content-section">
+                <h2>V. Άσκηση και Ψυχική διέγερση</h2>
+                <p class="mb-4 text-justify">Η άσκηση και η πνευματική διέγερση είναι ζωτικής σημασίας για την ευτυχία και την υγεία του κουταβιού σας. Βοηθούν στην πρόληψη προβλημάτων συμπεριφοράς και στην ενίσχυση του δεσμού σας. Εδώ θα μάθετε για τις ανάγκες άσκησης ανάλογα με την ηλικία και τη ράτσα, καθώς και για παιχνίδια που κρατούν το μυαλό του σε εγρήγορση.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Ανάγκες Άσκησης</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Κουτάβια: Προσεκτική άσκηση για να μην καταπονηθούν τα αναπτυσσόμενα κόκαλα. Συνιστώνται σύντομες περίοδοι παιχνιδιού (5-10 λεπτά) πολλές φορές την ημέρα. Αποφύγετε το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.</p>
+                        <p class="mt-2">Ενήλικοι Σκύλοι (Ενδεικτικά):</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Υψηλής ενέργειας (π.χ. Border Collie): 1.5-2 ώρες έντονης άσκησης ημερησίως.</li>
+                            <li>Μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1-1.5 ώρες άσκησης/ημέρα.</li>
+                            <li>Χαμηλής ενέργειας (π.χ. Pug): 30 λεπτά - 1 ώρα άσκηση/ημέρα.</li>
+                        </ul>
+                        <p class="mt-2">Ηλικιωμένοι Σκύλοι: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Συνιστώνται σύντομες, ήπιες βόλτες και χαλαρά παιχνίδια για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους.</p>
+                        <div class="mt-4">
+                            <label for="dog-type-selector" class="block text-sm font-medium text-gray-700 mb-1">Επιλέξτε τύπο σκύλου για προτάσεις άσκησης:</label>
+                            <select id="dog-type-selector" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="puppy">Κουτάβι (&lt;1 έτους)</option>
+                                <option value="adult_low">Ενήλικος - Χαμηλή Ενέργεια</option>
+                                <option value="adult_medium">Ενήλικος - Μεσαία Ενέργεια</option>
+                                <option value="adult_high">Ενήλικος - Υψηλή Ενέργεια</option>
+                                <option value="senior">Ηλικιωμένος Σκύλος</option>
+                            </select>
+                            <div id="exercise-recommendation" class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm text-blue-700">
+                                Επιλέξτε για να δείτε προτάσεις.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Παιχνίδι και Δραστηριότητες για Σωματική και Πνευματική Εκτόνωση ✨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Η ψυχική διέγερση είναι εξίσου σημαντική με τη σωματική άσκηση. Η έλλειψη πνευματικής διέγερσης μπορεί να οδηγήσει σε πλήξη και άγχος, τα οποία με τη σειρά τους εκδηλώνονται συχνά ως καταστροφικές συμπεριφορές, όπως το μάσημα επίπλων ή το υπερβολικό γάβγισμα. Η παροχή παιχνιδιών παζλ, η εκμάθηση νέων κόλπων και η συμμετοχή σε παιχνίδια αναζήτησης αντιμετωπίζουν άμεσα την υποκείμενη αιτία αυτών των προβλημάτων, καθιστώντας την πνευματική διέγερση μια προληπτική στρατηγική διαχείρισης συμπεριφοράς.</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Καθημερινές Βόλτες: Τουλάχιστον 30 λεπτά, 5 φορές/εβδομάδα. Πάντα με λουρί σε δημόσιους χώρους.</li>
+                            <li>Τρέξιμο και Παιχνίδια: Μπάλα, frisbee για σκύλους υψηλής ενέργειας.</li>
+                            <li>Παιχνίδια Παζλ/Διαδραστικά Παιχνίδια: Κρύψτε τροφή/λιχουδιές για να τις βρει. Ιδανικά για πλήξη.</li>
+                            <li>Εκπαιδευτικά Παιχνίδια/Κόλπα: Εκμάθηση νέων κόλπων (π.χ. "κόλλα πέντε").</li>
+                            <li>Παιχνίδια Αναζήτησης: Κρύψτε αντικείμενα για να τα βρει.</li>
+                        </ul>
+
+                        <h3 class="mt-6 text-lg font-semibold text-gray-700">Ιδέες για Παιχνίδια/Δραστηριότητες ✨</h3>
+                        <div class="mt-3">
+                            <p class="mb-3 text-justify">Χρησιμοποιήστε την τεχνητή νοημοσύνη για να λάβετε δημιουργικές ιδέες για παιχνίδια και δραστηριότητες, προσαρμοσμένες στην ενέργεια του κουταβιού σας και στον τύπο δραστηριότητας που προτιμάτε. Αφήστε τη φαντασία σας ελεύθερη!</p>
+                            <label for="activity-energy-level" class="block text-sm font-medium text-gray-700 mb-1">Ενέργεια κουταβιού:</label>
+                            <select id="activity-energy-level" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-2">
+                                <option value="χαμηλή">Χαμηλή</option>
+                                <option value="μέτρια">Μέτριο</option>
+                                <option value="υψηλή">Υψηλό</option>
+                            </select>
+                            <label for="activity-type" class="block text-sm font-medium text-gray-700 mb-1">Τύπος δραστηριότητας:</label>
+                            <select id="activity-type" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3">
+                                <option value="σωματική">Σωματική</option>
+                                <option value="πνευματική">Πνευματική</option>
+                                <option value="κοινωνική">Κοινωνική</option>
+                            </select>
+                            <button id="generate-activity-ideas" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                                Δημιουργία Ιδεών ✨
+                            </button>
+                            <div id="activity-ideas-output" class="llm-output hidden mt-4"></div>
+                            <div id="activity-ideas-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div id="tab-training" class="tab-pane hidden content-section">
+                <h2>VI. Βασική Εκπαίδευση και Διαχείριση Συμπεριφοράς</h2>
+                <p class="mb-4 text-justify">Ως εκπαιδευτής σκύλων, τονίζω ότι η εκπαίδευση είναι ο ακρογωνιαίος λίθος για μια αρμονική και ευτυχισμένη συνύπαρξη με τον σκύλο σας. Δεν πρόκειται απλώς για την εκμάθηση εντολών, αλλά για την οικοδόμηση μιας σταθερής επικοινωνίας, την ενίσχυση του δεσμού σας και την πρόληψη ή διαχείριση συμπεριφορικών προβλημάτων. Ένας καλά εκπαιδευμένος σκύλος είναι ένας χαρούμενος, με αυτοπεποίθηση σκύλος που μπορεί να συμμετέχει πλήρως στην οικογενειακή ζωή, ενώ ένας καλά ενημερωμένος κηδεμόνας είναι σε θέση να κατανοεί και να ανταποκρίνεται στις ανάγκες του τετράποδου φίλου του. Με υπομονή, συνέπεια και μια ισορροπημένη προσέγγιση, μπορείτε να διδάξετε στο κουτάβι σας τα βασικά, από την τουαλέτα μέχρι τις εντολές υπακοής, και να διαχειριστείτε συνηθισμένες συμπεριφορές όπως το δάγκωμα, θέτοντας τα θεμέλια για μια ζωή γεμάτη εμπιστοσύνη και συνεργασία.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Εκπαίδευση Τουαλέτας: Υπομονή και Συνέπεια</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Η επιτυχής εκπαίδευση τουαλέτας απαιτεί υπομονή, επιμονή και πιστή τήρηση ρουτίνας. Είναι μια από τις πρώτες και πιο σημαντικές δεξιότητες που θα μάθει το κουτάβι σας, και η επιτυχία σε αυτόν τον τομέα ενισχύει την αυτοπεποίθηση του κουταβιού και την εμπιστοσύνη στη σχέση σας.</p>
+                        <p class="mt-2">Οι συστηματικές έξοδοι είναι το πρώτο βήμα. Το κουτάβι πρέπει να βγαίνει έξω μόλις ξυπνήσει, μετά από κάθε γεύμα, μετά το παιχνίδι και κάθε μία με δύο ώρες. Αρχικά, οι κηδεμόνες πρέπει να παραμένουν έξω για λίγα λεπτά. Μόλις το κουτάβι κάνει την ανάγκη του, πρέπει να επιβραβεύεται άμεσα με λιχουδιές και επαίνους. Αυτή η άμεση επιβράβευση δημιουργεί μια ισχυρή θετική σύνδεση με τη σωστή συμπεριφορά.</p>
+                        <p class="mt-2">Η αναγνώριση των σημαδιών ότι το κουτάβι θέλει τουαλέτα είναι κρίσιμη. Αυτά περιλαμβάνουν νευρικό περπάτημα, έντονο μυρίζοντας το έδαφος, προσέγγιση της πόρτας, κλαψούρισμα, γάβγισμα ή καμπύλωση του σώματος προς το έδαφος. Είναι καλό το κουτάβι να βγαίνει στο ίδιο σημείο για τουαλέτα, καθώς οι οσμές το βοηθούν να καταλάβει πού πρέπει να κάνει την ανάγκη του.</p>
+                        <p class="mt-2">Αποφύγετε την τιμωρία για ατυχήματα μέσα στο σπίτι, καθώς μπορεί να προκαλέσει φόβο και να δυσχεράνει την εκπαίδευση τουαλέτας. Αντίθετα, καθαρίστε το σημείο χωρίς υπερβολική αντίδραση και ενισχύστε σταθερά τη σωστή συμπεριφορά έξω. Η συνέπεια στην ρουτίνα και η θετική ενίσχυση είναι πολύ πιο αποτελεσματικές από την τιμωρία, χτίζοντας μια σχέση βασισμένη στην εμπιστοσύνη και την κατανόηση.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Διαχείριση Δαγκώματος και Μασήματος</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Το δάγκωμα είναι μια φυσική συμπεριφορά των κουταβιών, ειδικά κατά την περίοδο της οδοντοφυΐας και της εξερεύνησης του περιβάλλοντος. Η αποτελεσματική εκπαίδευση ενός κουταβιού, ιδίως για φυσικές συμπεριφορές όπως το δάγκωμα, βασίζεται στη θετική ενίσχυση και την ανακατεύθυνση, θέτοντας παράλληλα σαφή όρια και συνέπειες για τις ανεπιθύμητες συμπεριφορές. Η τιμωρία ενός κουταβιού μπορεί να βλάψει τον δεσμό του με τον άνθρωπο, να δημιουργήσει φόβο και να οδηγήσει σε πιο σοβαρά συμπεριφορικά ζητήματα μακροπρόθεσμα.</p>
+                        <p class="mt-2">Τα κουτάβια μαθαίνουν τον έλεγχο της δύναμης του δαγκώματος από τη μητέρα τους και τα αδέρφια τους. Εάν ένα κουτάβι απομακρυνθεί νωρίς από την οικογένειά του, είναι ευθύνη των κηδεμόνων να του διδάξουν τι είναι αποδεκτό.</p>
+                        <p class="mt-2">Παρέχετε ασφαλή παιχνίδια για μάσημα, κατάλληλα για την ηλικία και το μέγεθός του. Μην ενθαρρύνετε το δάγκωμα χρησιμοποιώντας τα χέρια ως παιχνίδι. Αν το κουτάβι δαγκώσει δυνατά, σταματήστε αμέσως το παιχνίδι και απομακρυνθείτε για λίγο, ώστε να καταλάβει ότι το δάγκωμα τερματίζει τη διασκέδαση. Αυτή η συνέπεια είναι μια σαφής επικοινωνία του ορίου. Επαρκής άσκηση μειώνει επίσης την ανάγκη για δάγκωμα. Η σταθερότητα και η συνέπεια είναι κλειδιά για την επιτυχία, με όλα τα μέλη της οικογένειας να αντιδρούν με τον ίδιο τρόπο στα δαγκώματα. Το crate (κλουβί εκπαίδευσης) μπορεί να χρησιμοποιηθεί ως ένα ασφαλές και ήρεμο μέρος για να ηρεμήσει το κουτάβι, προσφέροντας δομή και ένα προσωπικό καταφύγιο.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Βασικές Εντολές Υπακοής ✨</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Η εκπαίδευση υπακοής ξεκινά από νωρίς και βασίζεται στη θετική ενίσχυση και τη συνέπεια. Αυτές οι εντολές δεν είναι απλώς κόλπα, αλλά θεμελιώδεις δεξιότητες που ενισχύουν την ασφάλεια, την επικοινωνία και τον δεσμό σας με το κουτάβι.</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Προσοχή ("Έλα"): Διδάξτε το κουτάβι να προσέχει όταν του μιλάτε, χρησιμοποιώντας λιχουδιές και επαίνους για να τραβήξετε την προσοχή του. Η εντολή "έλα" είναι ζωτικής σημασίας για την ασφάλειά του, καθώς διασφαλίζει ότι θα επιστρέψει αμέσως όταν του ζητηθεί, ειδικά σε επικίνδυνες καταστάσεις ή σε ανοιχτούς χώρους. Η εκμάθηση αυτής της εντολής χτίζει εμπιστοσύνη και αξιοπιστία.</li>
+                            <li>"Κάτσε" / "Μείνε": Το "κάτσε" είναι μια βασική εντολή ελέγχματος που μπορεί να χρησιμοποιηθεί σε αμέτρητες καθημερινές καταστάσεις, από την ώρα του φαγητού μέχρι τη συνάντηση με ξένους. Η εντολή "μείνε" είναι σημαντική για τον έλεγχο του σκύλου σε διάφορες καταστάσεις, ενισχύοντας την υπακοή του και την ικανότητά του να παραμένει ήρεμος και συγκεντρωμένος, ακόμα και με περισπασμούς.</li>
+                            <li>"Όχι" / "Άφησε το": Είναι ζωτικής σημασίας να διδαχθεί το κουτάβι να μην κλέβει ή να μην αγγίζει αντικείμενα που δεν του ανήκουν. Αυτή η εντολή καθιερώνει σαφή όρια και προστατεύει τόσο το κουτάβι (από το να φάει κάτι επικίνδυνο) όσο και τα υπάρχοντά σας. Η συνέπεια στην εφαρμογή αυτής της εντολής είναι κλειδί.</li>
+                            <li>Διαχείριση Γαβγίσματος: Το υπερβολικό γάβγισμα είναι συχνά ένας τρόπος γκρίνιας, αναζήτησης προσοχής, ή έκφρασης άγχους. Οι κηδεμόνες πρέπει να διδάξουν το κουτάβι να μην γαβγίζει για τα πάντα, αλλά να επικοινωνεί με πιο αποδεκτούς τρόπους. Η εκπαίδευση στο "σιωπή" και η ανταμοιβή της ηρεμίας είναι σημαντικές για την αρμονία στο σπίτι.</li>
+                        </ul>
+
+                        <h3 class="mt-6 text-lg font-semibold text-gray-700">Συμβουλές για Συγκεκριμένο Πρόβλημα Συμπεριφοράς ✨</h3>
+                        <div class="mt-3">
+                            <p class="mb-3 text-justify">Χρησιμοποιήστε την τεχνητή νοημοσύνη για να λάβετε εξατομικευμένες συμβουλές για συγκεκριμένα προβλήματα συμπεριφοράς του κουταβιού σας. Περιγράψτε το πρόβλημα και δείτε πώς μπορείτε να το διαχειριστείτε με θετική ενίσχυση.</p>
+                            <label for="behavior-problem-input" class="block text-sm font-medium text-gray-700 mb-1">Περιγράψτε το πρόβλημα συμπεριφοράς του κουταβιού σας (π.χ. υπερβολικό γάβγισμα, μάσημα επίπλων, άγχος αποχωρισμού):</label>
+                            <textarea id="behavior-problem-input" rows="4" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3"></textarea>
+                            <button id="get-behavior-advice" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                                Λήψη Συμβουλών ✨
+                            </button>
+                            <div id="behavior-advice-output" class="llm-output hidden mt-4"></div>
+                            <div id="behavior-advice-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Προχωρημένη Εκπαίδευση και Αθλήματα Σκύλων: Ενισχύοντας τον Δεσμό και τις Δεξιότητες</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Η εκπαίδευση του σκύλου σας δεν τελειώνει με τις βασικές εντολές. Η προχωρημένη εκπαίδευση και η συμμετοχή σε αθλήματα σκύλων προσφέρουν πληθώρα οφελών, ενισχύοντας περαιτέρω τον δεσμό σας, βελτιώνοντας την πνευματική και σωματική υγεία του σκύλου, και προσφέροντας νέες ευκαιρίες για κοινωνικοποίηση και διασκέδαση.</p>
+                        <h4 class="font-semibold mt-2">Οφέλη Προχωρημένης Εκπαίδευσης:</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Ενίσχυση του Δεσμού: Η συνεχής συνεργασία και η εκμάθηση νέων δεξιοτήτων ενισχύουν την εμπιστοσύνη και την κατανόηση μεταξύ σας. Ο σκύλος σας μαθαίνει να σας εμπιστεύεται και να συνεργάζεται πρόθυμα.</li>
+                            <li>Πνευματική Διέγερση: Η εκμάθηση πιο σύνθετων εντολών και η επίλυση προβλημάτων κρατούν το μυαλό του σκύλου ενεργό και αποτρέπουν την πλήξη, η οποία συχνά οδηγεί σε ανεπιθύμητες συμπεριφορές.</li>
+                            <li>Βελτιωμένη Συμπεριφορά: Ένας σκύλος που μαθαίνει συνεχώς είναι πιο συγκεντρωμένος, υπάκουος και λιγότερο πιθανό να αναπτύξει προβλήματα συμπεριφορές. Η προχωρημένη εκπαίδευση μπορεί να βοηθήσει στην αντιμετώπιση ειδικών φοβιών ή επιθετικότητας.</li>
+                            <li>Αυξημένη Ασφάλεια: Η ικανότητα του σκύλου να ακούσει και να υπακούσει σε πιο σύνθετες εντολές σε διάφορα περιβάλλοντα αυξάνει την ασφάλειά του, ειδικά σε δημόσιους χώρους ή σε καταστάσεις έκτακτης ανάγκης.</li>
+                            <li>Κοινωνικοποίηση: Τα μαθήματα προχωρημένης εκπαίδευσης και τα αθλήματα προσφέρουν ευκαιρίες για κοινωνικοποίηση με άλλους σκύλους και ανθρώπους σε ένα δομημένο και θετικό περιβάλλον.</li>
+                        </ul>
+                        <h4 class="font-semibold mt-2">Δημοφιλή Αθλήματα Σκύλων:</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Agility: Ένα άθλημα όπου ο σκύλος διασχίζει μια διαδρομή με εμπόδια (τούνελ, άλματα, σλάλομ) υπό την καθοδήγηση του κηδεμόνα. Είναι εξαιρετικό για σωματική άσκηση και πνευματική διέγερση.</li>
+                            <li>Obedience (Υπακοή): Εστιάζει στην ακρίβεια και την ταχύτητα στην εκτέλεση εντολών. Ενισχύει την επικοινωνία και την πειθαρχία.</li>
+                            <li>Rally Obedience: Συνδυάζει την υπακοή με μια διαδρομή, όπου ο σκύλος και ο κηδεμόνας εκτελούν εντολές σε διαδοχικούς σταθμούς. Προσφέρει μια πιο χαλαρή ατμόσφαιρα από την κλασική υπακοή.</li>
+                            <li>Flyball: Ένα ομαδικό άθλημα όπου σκύλοι τρέχουν σε μια διαδρομή με άλματα, πατούν έναν μηχανισμό για να απελευθερώσουν μια μπάλα, την πιάνουν και επιστρέφουν. Ιδανικό για σκύλους με υψηλή ενέργεια.</li>
+                            <li>Canicross / Bikejoring: Αθλήματα όπου ο σκύλος τρέχει ή σέρνει τον κηδεμόνα (ο οποίος τρέχει ή κάνει ποδήλατο) με ειδικό εξοπλισμό. Εξαιρετικό για σκύλους που αγαπούν το τρέξιμο.</li>
+                        </ul>
+                        <p class="text-justify mt-2">Η επιλογή ενός αθλήματος ή η συνέχιση της εκπαίδευσης μπορεί να προσφέρει έναν εξαιρετικό τρόπο να περνάτε ποιοτικό χρόνο με τον σκύλο σας, να ενισχύετε τον δεσμό σας και να διατηρείτε και τους δύο σας σωματικά και πνευματικά ενεργούς.</p>
+                    </div>
+                </div>
+                 <h3 class="mt-6 text-lg font-semibold text-gray-700">Εξατομικευμένα Σχέδια Εκπαίδευσης ✨</h3>
+                <div class="mt-3">
+                    <p class="mb-3 text-justify">Εισάγετε τη ράτσα του κουταβιού, την ηλικία, και ένα συγκεκριμένο εκπαιδευτικό στόχο (π.χ., "να μην τραβάει στο λουρί"). Λάβετε ένα εξατομικευμένο σχέδιο εκπαίδευσης με απλά βήματα.</p>
+                    <label for="training-breed-input" class="block text-sm font-medium text-gray-700 mb-1">Ράτσα κουταβιού:</label>
+                    <input type="text" id="training-breed-input" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-2" placeholder="π.χ. Labrador, Κανίς">
+                    <label for="training-age-input" class="block text-sm font-medium text-gray-700 mb-1">Ηλικία κουταβιού (π.χ. 3 μηνών, 1 έτους):</label>
+                    <input type="text" id="training-age-input" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-2" placeholder="π.χ. 3 μηνών">
+                    <label for="training-goal-input" class="block text-sm font-medium text-gray-700 mb-1">Εκπαιδευτικός Στόχος:</label>
+                    <textarea id="training-goal-input" rows="3" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3" placeholder="π.χ. να μην τραβάει στο λουρί, να έρχεται όταν το καλώ"></textarea>
+                    <button id="generate-training-plan" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                        Δημιουργία Σχεδίου Εκπαίδευσης ✨
+                    </button>
+                    <div id="training-plan-output" class="llm-output hidden mt-4"></div>
+                    <div id="training-plan-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
+                </div>
+            </div>
+
+            <div id="tab-first-aid" class="tab-pane hidden content-section">
+                <h2>"Τι να κάνω αν..." / Πρώτες Βοήθειες ✨</h2>
+                <p class="mb-4 text-justify">Περιγράψτε μια ξαφνική κατάσταση ή ένα σύμπτωμα που σας ανησυχεί για το κουτάβι σας για να λάβετε γενικές συμβουλές πρώτης ανταπόκρισης. Αυτές οι συμβουλές δεν αντικαθιστούν την επαγγελματική κτηνιατρική γνώμη.</p>
+                
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                    <p class="font-bold">Σημαντική Προειδοποίηση!</p>
+                    <p>Οι παρακάτω πληροφορίες είναι γενικές συμβουλές και ΔΕΝ αποτελούν κτηνιατρική διάγνωση ή ιατρική συμβουλή. Σε κάθε περίπτωση έκτακτης ανάγκης ή ανησυχίας για την υγεία του κουταβιού σας, επικοινωνήστε ΑΜΕΣΑ με τον κτηνίατρό σας. Μην βασίζεστε αποκλειστικά σε αυτές τις πληροφορίες για τη λήψη αποφάσεων σχετικά με την υγεία του ζώου σας.</p>
+                </div>
+            
+                <label for="first-aid-situation-input" class="block text-sm font-medium text-gray-700 mb-1">Περιγράψτε την κατάσταση (π.χ. "το κουτάβι μου έφαγε σοκολάτα", "έχει διάρροια"):</label>
+                <textarea id="first-aid-situation-input" rows="4" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3"></textarea>
+                <button id="get-first-aid-advice" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                    Λήψη Συμβουλών Πρώτης Ανταπόκρισης ✨
+                </button>
+                <div id="first-aid-advice-output" class="llm-output hidden mt-4"></div>
+                <div id="first-aid-advice-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
+            </div>
+
+            <div id="tab-stories" class="tab-pane hidden content-section">
+                <h2>Δημιουργία "Ιστοριών Κοινωνικοποίησης" / Θετικών Εμπειριών ✨</h2>
+                <p class="mb-4 text-justify">Εισάγετε ένα σενάριο κοινωνικοποίησης και λάβετε μια μικρή, θετική ιστορία ή ένα πλάνο βημάτων για το πώς να διαχειριστείτε την κατάσταση με θετικό τρόπο, ενθαρρύνοντας την ομαλή κοινωνικοποίηση του κουταβιού σας.</p>
+                
+                <label for="socialization-scenario-input" class="block text-sm font-medium text-gray-700 mb-1">Περιγράψτε το Σενάριο Κοινωνικοποίησης (π.χ. "πώς να συστήσω το κουτάβι μου σε μια γάτα", "πρώτη επίσκεψη στον κτηνίατρο"):</label>
+                <textarea id="socialization-scenario-input" rows="4" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-3"></textarea>
+                <button id="generate-socialization-story" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200">
+                    Δημιουργία Ιστορίας/Πλάνου ✨
+                </button>
+                <div id="socialization-story-output" class="llm-output hidden mt-4"></div>
+                <div id="socialization-story-loading" class="hidden text-gray-500 mt-2">Φορτώνει...</div>
+            </div>
+
+
+            <div id="tab-longterm" class="tab-pane hidden content-section">
+                <h2>VII. Μακροπρόθεσμες Ευθύνες του Κηδεμόνα</h2>
+                <p class="mb-4 text-justify">Η φροντίδα ενός σκύλου είναι μια δέσμευση που απαιτεί χρόνο, υπομονή, αγάπη και υπευθυνότητα. Η στείρωση ή ο ευνουχισμός προσφέρουν σημαντικά οφέλη, ενώ η συνεχής εκπαίδευση και κοινωνικοποίηση διασφαλίζουν έναν ισορροπημένο σύντροφο για όλη του τη ζωή. Ενημερωθείτε για αυτές τις σημαντικές πτυχές της υπεύθυνης κηδεμονίας.</p>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Στείρωση/Ευνουχισμός: Οφέλη</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md mb-3">
+                        <p>Συνιστάται γύρω στους 6 μήνες. Δεν αλλάζει τον χαρακτήρα, επηρεάζει ορμονοεξαρτώμενες συμπεριφορές.</p>
+                        <h4 class="font-semibold mt-2">Οφέλη Υγείας:</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Θηλυκά: Εξαλείφει κίνδυνο ανεπιθύμητης εγκυμοσύνης, οιστρικού κύκλου. Μειώνει κίνδυνο καρκίνου μαστού, λοιμώξεων μήτρας, καρκίνου ωοθηκών.</li>
+                            <li>Αρσενικά: Μειώνει κίνδυνο όγκων όρχεων, προβλημάτων προστάτη.</li>
+                        </ul>
+                        <h4 class="font-semibold mt-2">Οφέλη Συμπεριφοράς:</h4>
+                        <p>Μειώνει επιθετικότητα, σεξουαλικές ορμές, τάση περιπλάνησης, υπερβολικό γάβγισμα, ανησυχία. Διευκολύνει θετικές αλληλεπιδράσεις. Η αύξηση βάρους προλαμβάνεται με σωστή διατροφή & άσκηση.</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button w-full text-left p-3 rounded-md font-semibold mb-1">Συνεχής Εκπαίδευση και Κοινωνικοποίηση στην Ενηλικίωση</button>
+                    <div class="accordion-content hidden p-3 rounded-b-md">
+                        <p>Οι σκύλοι μαθαίνουν σε όλη τους τη ζωή. Η συνεχής ενασχόληση αποτρέπει υποτροπές, αντιμετωπίζει νέες προκλήσεις.</p>
+                        <h4 class="font-semibold mt-2">Οφέλη Συνεχούς Εκπαίδευσης:</h4>
+                        <p>Μειώνει άγχος, νευρικότητα. Αντιμετωπίζει ανεπιθύμητες/επιθετικές συμπεριφορές. Ενισχύει σχέση με κηδεμόνα.</p>
+                        <h4 class="font-semibold mt-2">Συνεχής Κοινωνικοποίηση:</h4>
+                        <p>Ευκαιρίες για γνωριμίες με νέους ανθρώπους & περιβάλλοντα. Θετική ενίσχυση.</p>
+                        <h4 class="font-semibold mt-2">Ψυχική Υγεία & Προληπτικά Μέτρα:</h4>
+                        <p>Παιχνίδια σκέψης, νέες δραστηριότητες, ποιοτικός χρόνος. Τακτικές επισκέψεις κτηνιάτρου, έλεγχος δοντιών/αυτιών, διατήρηση υγιούς βάρους.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab-conclusion" class="tab-pane hidden content-section">
+                <h2>Συμπέρασμα: Η Ανταμοιβή μιας Υπεύθυνης Φροντίδας</h2>
+                <p class="text-justify">Η υιοθεσία ενός κουταβιού είναι μια δέσμευση που απαιτεί χρόνο, υπομονή, αγάπη και υπευθυνότητα. Από την προετοιμασία του σπιτού και τις πρώτες ημέρες προσαρμογής, μέχρι την τακτική κτηνιατρική φροντίδα, τη σωστή διατροφή, την επαρκή άσκηση και τη συνεχή εκπαίδευση, κάθε πτυχή της φροντίδας συμβάλλει στη διαμόρφωση ενός υγιούς, ευτυχισμένου και ισορροπημένου σκύλου. Η ανταμοιβή είναι ένας πιστός, χαρούμενος και καλά προσαρμοσμένος σύντροφος.</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        // --- I18N (Internationalization) ---
-        // All the Greek text is now correctly decoded in the 'el' object
-        const translations = {
-            el: {
-                logoAltText: "The Happy Leash - Λογότυπο Οδηγός Φροντίδας Κουταβιού",
-                mainTitle: "🐾 Οδηγός Φροντίδας Κουταβιού 🐾",
-                subTitle: "Όλα όσα πρέπει να γνωρίζετε για το νέο σας φίλο!",
-                tabIntro: "Εισαγωγή",
-                tabPreparation: "Προετοιμασία ✨",
-                tabFirstDays: "Πρώτες Μέρες ✨",
-                tabHealth: "Υγεία ✨",
-                tabNutrition: "Διατροφή ✨",
-                tabExercise: "Άσκηση ✨",
-                tabTraining: "Εκπαίδευση ✨",
-                tabFirstAid: "Πρώτες Βοήθειες ✨",
-                tabStories: "Ιστορίες Κοινωνικοποίησης ✨",
-                tabLongterm: "Μακροπρόθεσμα",
-                tabConclusion: "Συμπέρασμα",
-                // ... all other keys and their correct Greek values ...
-                 nutritionAISuggestionTitle: "✨ AI Σύμβουλος Γευμάτων & Λιχουδιών",
-                 nutritionAIDescription: "Δώστε μας μερικές πληροφορίες για το κουτάβι σας για εξατομικευμένες προτάσεις!",
-                 nutritionAIAgeLabel: "Ηλικία Κουταβιού:",
-                 nutritionAIAgeUnder3: "< 3 μηνών",
-                 nutritionAIAge3_6: "3-6 μηνών",
-                 nutritionAIAge6_12: "6-12 μηνών",
-                 nutritionAIAgeOver12: "> 1 έτους",
-                 nutritionAISuggestionTypeLabel: "Τύπος Πρότασης:",
-                 nutritionAISuggestionMeal: "Ιδέα Σπιτικού Γεύματος",
-                 nutritionAISuggestionTreat: "Ιδέα Υγιεινής Λιχουδιάς",
-                 nutritionAIPreferencesLabel: "Αλλεργίες / Προτιμήσεις / Σημειώσεις (προαιρετικά):",
-                 nutritionAIPreferencesPlaceholder: "π.χ. αλλεργία στο κοτόπουλο, προτιμά ψάρι...",
-                 nutritionAIButtonText: "✨ Λήψη Προτάσεων Διατροφής (AI)",
-                 nutritionAIDisclaimer: "Οι προτάσεις είναι γενικές. Πάντα να συμβουλεύεστε τον κτηνίατρό σας για τις συγκεκριμένες διατροφικές ανάγκες του κουταβιού σας.",
-                 nutritionAIError: "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την AI για προτάσεις διατροφής. Παρακαλώ δοκιμάστε ξανά αργότερα.",
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const accordions = document.querySelectorAll('.accordion');
 
-            },
-            en: {
-                // English translations remain the same
-                logoAltText: "The Happy Leash - Puppy Care Guide Logo",
-                mainTitle: "🐾 Puppy Care Guide 🐾",
-                subTitle: "Everything you need to know for your new friend!",
-                // ... all english keys ...
-                nutritionAISuggestionTitle: "✨ AI Meal & Treat Advisor",
-                nutritionAIDescription: "Tell us a bit about your puppy for personalized suggestions!",
-                nutritionAIAgeLabel: "Puppy Age:",
-                nutritionAIAgeUnder3: "< 3 months",
-                nutritionAIAge3_6: "3-6 months",
-                nutritionAIAge6_12: "6-12 months",
-                nutritionAIAgeOver12: "> 1 year",
-                nutritionAISuggestionTypeLabel: "Suggestion Type:",
-                nutritionAISuggestionMeal: "Homemade Meal Idea",
-                nutritionAISuggestionTreat: "Healthy Treat Idea",
-                nutritionAIPreferencesLabel: "Allergies / Preferences / Notes (optional):",
-                nutritionAIPreferencesPlaceholder: "E.g., chicken allergy, prefers fish...",
-                nutritionAIButtonText: "✨ Get Nutrition Suggestions (AI)",
-                nutritionAIDisclaimer: "Suggestions are general. Always consult your vet for your puppy's specific dietary needs.",
-                nutritionAIError: "An error occurred while contacting the AI for nutrition suggestions. Please try again later.",
-            }
-        };
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
 
-        // --- Gemini API Call Helper ---
-        async function callGeminiAPI(prompt, outputElement, loadingElement, buttonElement, errorKey) {
-            const currentLang = localStorage.getItem('language') || 'el';
-            loadingElement.classList.remove('hidden');
-            loadingElement.textContent = getTranslation(currentLang, 'loadingMessage');
-            outputElement.classList.add('hidden');
-            outputElement.textContent = ''; // Clear previous content
-            if (buttonElement) buttonElement.disabled = true;
-
-            // !!! SECURITY WARNING !!!
-            // DO NOT expose your API key in client-side code. 
-            // This is for demonstration only. In a real application, you must
-            // make this API call from a server-side backend (like Node.js, Python Flask, etc.)
-            // which keeps your API key secure.
-            const apiKey = "YOUR_API_KEY_HERE"; // <-- IMPORTANT: Replace with a secure method
-            if (apiKey === "YOUR_API_KEY_HERE") {
-                 outputElement.textContent = "API Key not configured. Please see the security warning in the code.";
-                 loadingElement.classList.add('hidden');
-                 outputElement.classList.remove('hidden');
-                 if (buttonElement) buttonElement.disabled = false;
-                 return;
-            }
-
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
-            
-            const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-            const payload = { contents: chatHistory };
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                const targetTab = button.dataset.tab;
+                tabPanes.forEach(pane => {
+                    if (pane.id === targetTab) {
+                        pane.classList.remove('hidden');
+                        pane.classList.add('active');
+                    } else {
+                        pane.classList.add('hidden');
+                        pane.classList.remove('active');
+                    }
                 });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error("API Error Response:", errorData);
-                    throw new Error(`API call failed: ${errorData.error?.message || response.status}`);
-                }
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates[0]?.content?.parts[0]?.text) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    outputElement.textContent = text; 
-                } else {
-                    console.error('Unexpected API response structure:', result);
-                    outputElement.textContent = getTranslation(currentLang, errorKey) + ' (No content found)';
-                }
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                outputElement.textContent = getTranslation(currentLang, errorKey) + ` (${error.message})`;
-            } finally {
-                loadingElement.classList.add('hidden');
-                outputElement.classList.remove('hidden');
-                if (buttonElement) buttonElement.disabled = false;
-            }
-        }
-        
-        // The rest of your JavaScript functions (switchLanguage, initializeTabs, etc.)
-        // remain here. They are correct. I've omitted them for brevity but they should be included.
-
-        // --- All your initialization functions go here ---
-        // e.g., switchLanguage, initializeTabs, initializeAccordions, initializeFeedingChart, etc.
-        // Make sure to include all of them from your original script.
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            // Your entire DOMContentLoaded logic goes here.
-            // It correctly initializes everything.
-            console.log("Puppy care guide script initialized successfully.");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
+
+        accordions.forEach(accordion => {
+            const button = accordion.querySelector('.accordion-button');
+            const content = accordion.querySelector('.accordion-content');
+
+            button.addEventListener('click', () => {
+                const isVisible = !content.classList.contains('hidden');
+                content.classList.toggle('hidden', isVisible);
+                 button.setAttribute('aria-expanded', !isVisible);
+            });
+        });
+        
+        // Feeding Schedule Chart
+        const feedingCtx = document.getElementById('feedingScheduleChart');
+        if (feedingCtx) {
+            new Chart(feedingCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['8-12 εβδ.', '3-6 μηνών', '6-12 μηνών', '>1 έτους'],
+                    datasets: [{
+                        label: 'Γεύματα ανά Ημέρα',
+                        data: [4, 3, 2, 1.5], // Used 1.5 to represent 1-2 meals
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(153, 102, 255, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            title: {
+                                display: true,
+                                text: 'Αριθμός Γευμάτων'
+                            }
+                        },
+                        x: {
+                             title: {
+                                display: true,
+                                text: 'Ηλικία Κουταβιού'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        if (context.label === '>1 έτους') {
+                                             label += '1-2';
+                                        } else {
+                                            label += context.parsed.y;
+                                        }
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Exercise recommendation selector
+        const dogTypeSelector = document.getElementById('dog-type-selector');
+        const exerciseRecommendationDiv = document.getElementById('exercise-recommendation');
+
+        if (dogTypeSelector && exerciseRecommendationDiv) {
+            const recommendations = {
+                puppy: "Για κουτάβια: Σύντομες, συχνές περίοδοι παιχνιδιού (5-10 λεπτά). Αποφύγετε την υπερβολική άσκηση, το τρέξιμο σε σκληρές επιφάγειες και τα πολλά άλματα για την προστασία των αναπτυσσόμενων οστών.",
+                adult_low: "Για ενήλικες χαμηλής ενέργειας (π.χ. Pug, Basset Hound): 30 λεπτά έως 1 ώρα ήπιας άσκηση/ημέρα.",
+                adult_medium: "Για ενήλικες μεσαίας ενέργειας (π.χ. Labrador, Beagle): 1 έως 1.5 ώρα άσκηση/ημέρα. ",
+                adult_high: "Για ενήλικες υψηλής ενέργειας (π.χ. Border Collie, Jack Russell): 1.5 έως 2+ ώρες έντονης άσκηση/ημέρα. ",
+                senior: "Για ηλικιωμένους σκύλους: Η ανάγκη για άσκηση μειώνεται αλλά παραμένει σημαντική. Σύντομες, ήπιες βόλτες αρκετές φορές την ημέρα για διατήρηση της κινητικότητας και της ψυχικής υγείας. Προσαρμόστε στις αντοχές τους."
+            };
+
+            function updateRecommendation() {
+                const selectedType = dogTypeSelector.value;
+                exerciseRecommendationDiv.textContent = recommendations[selectedType] || "Επιλέξτε τύπο για να δείτε προτάσεις.";
+            }
+            
+            dogTypeSelector.addEventListener('change', updateRecommendation);
+            updateRecommendation(); // Initial call to set default message or based on initial selection
+        }
+
+        // LLM Integration for Activity Ideas
+        const generateActivityIdeasButton = document.getElementById('generate-activity-ideas');
+        const activityEnergyLevel = document.getElementById('activity-energy-level');
+        const activityType = document.getElementById('activity-type');
+        const activityIdeasOutput = document.getElementById('activity-ideas-output');
+        const activityIdeasLoading = document.getElementById('activity-ideas-loading');
+
+        if (generateActivityIdeasButton) {
+            generateActivityIdeasButton.addEventListener('click', async () => {
+                const energy = activityEnergyLevel.value;
+                const type = activityType.value;
+                const prompt = `Πρότεινε 3-5 ιδέες για ${type} δραστηριότητες για ένα κουτάβι με ${energy} ενέργεια. Να είναι σύντομες και πρακτικές.`;
+
+                activityIdeasOutput.classList.add('hidden');
+                activityIdeasLoading.classList.remove('hidden');
+                activityIdeasOutput.innerHTML = '';
+
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
+                    });
+                    const result = await response.json();
+
+                    if (result.text) { 
+                        activityIdeasOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        activityIdeasOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        activityIdeasOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        activityIdeasOutput.classList.remove('hidden');
+                    } else {
+                        activityIdeasOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ιδέες. Παρακαλώ δοκιμάστε ξανά.';
+                        activityIdeasOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for activity ideas:', error);
+                    activityIdeasOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη δημιουργία ιδεών. Παρακαλώ δοκιμάστε ξανά.';
+                    activityIdeasOutput.classList.remove('hidden');
+                } finally {
+                    activityIdeasLoading.classList.add('hidden');
+                }
+            });
+        }
+
+        // LLM Integration for Behavior Advice
+        const getBehaviorAdviceButton = document.getElementById('get-behavior-advice');
+        const behaviorProblemInput = document.getElementById('behavior-problem-input');
+        const behaviorAdviceOutput = document.getElementById('behavior-advice-output');
+        const behaviorAdviceLoading = document.getElementById('behavior-advice-loading');
+
+        if (getBehaviorAdviceButton) {
+            getBehaviorAdviceButton.addEventListener('click', async () => {
+                const problem = behaviorProblemInput.value.trim();
+                if (!problem) {
+                    behaviorAdviceOutput.innerHTML = 'Παρακαλώ περιγράψτε το πρόβλημα συμπεριφοράς.';
+                    behaviorAdviceOutput.classList.remove('hidden');
+                    return;
+                }
+
+                const prompt = `Είμαι εκπαιδευτής σκύλων. Δώσε σύντομες, πρακτικές συμβουλές για το ακόλουθο πρόβλημα συμπεριφοράς κουταβιού: "${problem}". Εστίασε σε θετική ενίσχυση και διαχείριση.`;
+
+                behaviorAdviceOutput.classList.add('hidden');
+                behaviorAdviceLoading.classList.remove('hidden');
+                behaviorAdviceOutput.innerHTML = '';
+
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
+                    });
+                    const result = await response.json(); 
+
+                    if (result.text) { 
+                        behaviorAdviceOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        behaviorAdviceOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        behaviorAdviceOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        behaviorAdviceOutput.classList.remove('hidden');
+                    } else {
+                        behaviorAdviceOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω συμβουλές. Παρακαλώ δοκιμάστε ξανά.';
+                        behaviorAdviceOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for behavior advice:', error);
+                    behaviorAdviceOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη λήψη συμβουλών. Παρακαλώ δοκιμάστε ξανά.';
+                    behaviorAdviceOutput.classList.remove('hidden');
+                } finally {
+                    behaviorAdviceLoading.classList.add('hidden');
+                }
+            });
+        }
+
+        // LLM Integration for Name Suggestions
+        const generateNameIdeasButton = document.getElementById('generate-name-ideas');
+        const nameGenderSelector = document.getElementById('name-gender-selector');
+        const nameStyleInput = document.getElementById('name-style-input');
+        const nameIdeasOutput = document.getElementById('name-ideas-output');
+        const nameIdeasLoading = document.getElementById('name-ideas-loading');
+
+        if (generateNameIdeasButton) {
+            generateNameIdeasButton.addEventListener('click', async () => {
+                const gender = nameGenderSelector.value;
+                const style = nameStyleInput.value.trim();
+                const prompt = `Πρότεινε 5-7 ${gender} ονόματα για κουτάβι, με στυλ/θέμα: "${style}". Να είναι δημιουργικά και πρωτότυπα.`;
+
+                nameIdeasOutput.classList.add('hidden');
+                nameIdeasLoading.classList.remove('hidden');
+                nameIdeasOutput.innerHTML = '';
+
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
+                    });
+                    const result = await response.json(); 
+
+                    if (result.text) { 
+                        nameIdeasOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        nameIdeasOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        nameIdeasOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        nameIdeasOutput.classList.remove('hidden');
+                    } else {
+                        nameIdeasOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ονόματα. Παρακαλώ δοκιμάστε ξανά.';
+                        nameIdeasOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for name ideas:', error);
+                    nameIdeasOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη δημιουργία ονομάτων. Παρακαλώ δοκιμάστε ξανά.';
+                    nameIdeasOutput.classList.remove('hidden');
+                } finally {
+                    nameIdeasLoading.classList.add('hidden');
+                }
+            });
+        }
+
+        // LLM Integration for Daily Routine
+        const generateRoutineButton = document.getElementById('generate-routine');
+        const routineAgeSelector = document.getElementById('routine-age-selector');
+        const routineEnergySelector = document.getElementById('routine-energy-selector');
+        const routineOutput = document.getElementById('routine-output');
+        const routineLoading = document.getElementById('routine-loading');
+
+        if (generateRoutineButton) {
+            generateRoutineButton.addEventListener('click', async () => {
+                const age = routineAgeSelector.value;
+                const energy = routineEnergySelector.value;
+                const prompt = `Δώσε 5-7 βασικές δραστηριότητες (π.χ. τουαλέτα, γεύμα, παιχνίδι, ύπνος) για την καθημερινή ρουτίνα ενός κουταβιού ${age} με ${energy} ενέργεια. Μόνο λίστα με ώρα και δραστηριότητα.`;
+
+                routineOutput.classList.add('hidden');
+                routineLoading.classList.remove('hidden');
+                routineOutput.innerHTML = '';
+
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] }) 
+                    });
+                    const result = await response.json();
+
+                    if (result.text) { 
+                        routineOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        routineOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        routineOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        routineOutput.classList.remove('hidden');
+                    } else {
+                        routineOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ρουτίνα. Παρακαλώ δοκιμάστε ξανά.';
+                        routineOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for routine:', error);
+                    routineOutput.innerHTML = 'Παρουσιάστηκε σφάλμα κατά τη δημιουργία ρουτίνας. Παρακαλώ δοκιμάστε ξανά.';
+                    routineOutput.classList.remove('hidden');
+                } finally {
+                    routineLoading.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΕΞΑΤΟΜΙΚΕΥΜΕΝΑ ΣΧΕΔΙΑ ΕΚΠΑΙΔΕΥΣΗΣ ---
+        const generateTrainingPlanButton = document.getElementById('generate-training-plan');
+        const trainingBreedInput = document.getElementById('training-breed-input');
+        const trainingAgeInput = document.getElementById('training-age-input');
+        const trainingGoalInput = document.getElementById('training-goal-input');
+        const trainingPlanOutput = document.getElementById('training-plan-output');
+        const trainingPlanLoading = document.getElementById('training-plan-loading');
+
+        if (generateTrainingPlanButton) {
+            generateTrainingPlanButton.addEventListener('click', async () => {
+                const breed = trainingBreedInput.value.trim();
+                const age = trainingAgeInput.value.trim();
+                const goal = trainingGoalInput.value.trim();
+
+                if (!breed || !age || !goal) {
+                    trainingPlanOutput.innerHTML = 'Παρακαλώ συμπληρώστε όλα τα πεδία: ράτσα, ηλικία και εκπαιδευτικό στόχο.';
+                    trainingPlanOutput.classList.remove('hidden');
+                    return;
+                }
+                const prompt = `Δημιούργησε ένα απλό σχέδιο εκπαίδευσης 3-5 βημάτων για ένα κουτάβι ράτσας ${breed}, ηλικίας ${age}, με στόχο "${goal}". Εστίασε σε θετική ενίσχυση και δώσε πρακτικές, σαφείς οδηγίες για κάθε βήμα.`;
+                
+                trainingPlanOutput.classList.add('hidden');
+                trainingPlanLoading.classList.remove('hidden');
+                trainingPlanOutput.innerHTML = '';
+
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
+                    });
+                    const result = await response.json();
+                    if (result.text) {
+                        trainingPlanOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        trainingPlanOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        trainingPlanOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        trainingPlanOutput.classList.remove('hidden');
+                    } else {
+                        trainingPlanOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω σχέδιο εκπαίδευσης. Παρακαλώ δοκιμάστε ξανά.';
+                        trainingPlanOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for training plan:', error);
+                    trainingPlanOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
+                    trainingPlanOutput.classList.remove('hidden');
+                } finally {
+                    trainingPlanLoading.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΠΡΩΤΕΣ ΒΟΗΘΕΙΕΣ ---
+        const getFirstAidAdviceButton = document.getElementById('get-first-aid-advice');
+        const firstAidSituationInput = document.getElementById('first-aid-situation-input');
+        const firstAidAdviceOutput = document.getElementById('first-aid-advice-output');
+        const firstAidAdviceLoading = document.getElementById('first-aid-advice-loading');
+
+        if (getFirstAidAdviceButton) {
+            getFirstAidAdviceButton.addEventListener('click', async () => {
+                const situation = firstAidSituationInput.value.trim();
+                if (!situation) {
+                    firstAidAdviceOutput.innerHTML = 'Παρακαλώ περιγράψτε την κατάσταση.';
+                    firstAidAdviceOutput.classList.remove('hidden');
+                    return;
+                }
+                const prompt = `Το κουτάβι μου αντιμετωπίζει την εξής κατάσταση: "${situation}". Δώσε γενικές συμβουλές πρώτης ανταπόκρισης σε μορφή λίστας με 2-4 σημεία και τι να παρακολουθήσω. Στο τέλος, τόνισε έντονα με κεφαλαία γράμματα και bold ότι πρέπει να επικοινωνήσω ΑΜΕΣΑ με κτηνίατρο και ότι αυτές οι πληροφορίες ΔΕΝ αντικαθιστούν την επαγγελματική κτηνιατρική συμβουλή.`;
+
+                firstAidAdviceOutput.classList.add('hidden');
+                firstAidAdviceLoading.classList.remove('hidden');
+                firstAidAdviceOutput.innerHTML = '';
+
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
+                    });
+                    const result = await response.json();
+                    if (result.text) {
+                        firstAidAdviceOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        firstAidAdviceOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        firstAidAdviceOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        firstAidAdviceOutput.classList.remove('hidden');
+                    } else {
+                        firstAidAdviceOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω συμβουλές. Παρακαλώ δοκιμάστε ξανά.';
+                        firstAidAdviceOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for first aid advice:', error);
+                    firstAidAdviceOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
+                    firstAidAdviceOutput.classList.remove('hidden');
+                } finally {
+                    firstAidAdviceLoading.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΠΡΟΤΑΣΕΙΣ ΔΙΑΤΡΟΦΗΣ ---
+        const generateNutritionSuggestionsButton = document.getElementById('generate-nutrition-suggestions');
+        const nutritionAgeInput = document.getElementById('nutrition-age-input');
+        const nutritionSizeInput = document.getElementById('nutrition-size-input');
+        const nutritionAllergiesInput = document.getElementById('nutrition-allergies-input');
+        const nutritionSuggestionsOutput = document.getElementById('nutrition-suggestions-output');
+        const nutritionSuggestionsLoading = document.getElementById('nutrition-suggestions-loading');
+
+        if (generateNutritionSuggestionsButton) {
+            generateNutritionSuggestionsButton.addEventListener('click', async () => {
+                const age = nutritionAgeInput.value.trim();
+                const size = nutritionSizeInput.value.trim();
+                const allergies = nutritionAllergiesInput.value.trim() || "καμία γνωστή"; 
+
+                if (!age || !size) {
+                    nutritionSuggestionsOutput.innerHTML = 'Παρακαλώ συμπληρώστε τουλάχιστον την ηλικία και το μέγεθος/ράτσα.';
+                    nutritionSuggestionsOutput.classList.remove('hidden');
+                    return;
+                }
+                const prompt = `Πρότεινε τύπους τροφών ή/και 2-3 ασφαλείς, υγιεινές λιχουδιές για ένα κουτάβι ${age}, μεγέθους/ράτσας "${size}", με τις εξής πιθανές αλλεργίες/ευαισθησίες: "${allergies}". Δώσε τις προτάσεις σε μορφή λίστας, σύντομα και περιεκτικά.`;
+                
+                nutritionSuggestionsOutput.classList.add('hidden');
+                nutritionSuggestionsLoading.classList.remove('hidden');
+                nutritionSuggestionsOutput.innerHTML = '';
+
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
+                    });
+                    const result = await response.json();
+                    if (result.text) {
+                        nutritionSuggestionsOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        nutritionSuggestionsOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        nutritionSuggestionsOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        nutritionSuggestionsOutput.classList.remove('hidden');
+                    } else {
+                        nutritionSuggestionsOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω προτάσεις διατροφής. Παρακαλώ δοκιμάστε ξανά.';
+                        nutritionSuggestionsOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for nutrition suggestions:', error);
+                    nutritionSuggestionsOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
+                    nutritionSuggestionsOutput.classList.remove('hidden');
+                } finally {
+                    nutritionSuggestionsLoading.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- ΝΕΟ JAVASCRIPT ΓΙΑ ΙΣΤΟΡΙΕΣ ΚΟΙΝΩΝΙΚΟΠΟΙΗΣΗΣ ---
+        const generateSocializationStoryButton = document.getElementById('generate-socialization-story');
+        const socializationScenarioInput = document.getElementById('socialization-scenario-input');
+        const socializationStoryOutput = document.getElementById('socialization-story-output');
+        const socializationStoryLoading = document.getElementById('socialization-story-loading');
+
+        if (generateSocializationStoryButton) {
+            generateSocializationStoryButton.addEventListener('click', async () => {
+                const scenario = socializationScenarioInput.value.trim();
+                if (!scenario) {
+                    socializationStoryOutput.innerHTML = 'Παρακαλώ περιγράψτε το σενάριο κοινωνικοποίησης.';
+                    socializationStoryOutput.classList.remove('hidden');
+                    return;
+                }
+                const prompt = `Δημιούργησε μια μικρή, θετική ιστορία ή ένα πλάνο 3-4 απλών βημάτων για το πώς να διαχειριστώ το ακόλουθο σενάριο κοινωνικοποίησης για ένα κουτάβι: "${scenario}". Εστίασε σε θετικές εμπειρίες και πρακτικές συμβουλές.`;
+
+                socializationStoryOutput.classList.add('hidden');
+                socializationStoryLoading.classList.remove('hidden');
+                socializationStoryOutput.innerHTML = '';
+                
+                try {
+                    const response = await fetch('/.netlify/functions/gemini-proxy', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt, chatHistory: [] })
+                    });
+                    const result = await response.json();
+                    if (result.text) {
+                        socializationStoryOutput.innerHTML = result.text.replace(/\n/g, '<br>');
+                        socializationStoryOutput.classList.remove('hidden');
+                    } else if (result.error) {
+                        socializationStoryOutput.innerHTML = `Σφάλμα: ${result.error}`;
+                        socializationStoryOutput.classList.remove('hidden');
+                    } else {
+                        socializationStoryOutput.innerHTML = 'Δεν μπόρεσα να δημιουργήσω ιστορία/πλάνο. Παρακαλώ δοκιμάστε ξανά.';
+                        socializationStoryOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Netlify function for socialization story:', error);
+                    socializationStoryOutput.innerHTML = 'Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
+                    socializationStoryOutput.classList.remove('hidden');
+                } finally {
+                    socializationStoryLoading.classList.add('hidden');
+                }
+            });
+        }
 
     </script>
 </body>
